@@ -31,4 +31,3 @@ def task_16616():
       if abs(int(answer[0]) - answer[0]) < 0.000001:
         break
   return task, round(answer[0])
-  return task, round(answer[0])
