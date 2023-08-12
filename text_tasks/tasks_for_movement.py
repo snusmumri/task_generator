@@ -2,7 +2,7 @@ from random import randint, choice
 import numpy as np
 
 
-def input_parameters(i=None):
+def input_parameters_movements(i=None):
     """Функция возвращает набор входных параметров в задачи на движение"""
     i = randint(0, 2)
     values = {
@@ -19,7 +19,7 @@ def task_940():
     """Генерация аналогичной задачи с портала https://kuzovkin.info/one_exercise_1/940:
     Из двух диаметрально противоположных точек круговой беговой дорожки одновременно в одном направлении стартовали два
     спортсмена. Первый пробегает полный круг за 15 мин, а второй – за 20 мин. Через какое время после старта они встретятся первый раз?"""
-    pers, action, action1, place, direction = input_parameters()
+    pers, action, action1, place, direction = input_parameters_movements()
     time1, time2 = (randint(10, 45) for _ in range(2))
     answer = 1.234
     if direction == 'в противоположных направлениях':

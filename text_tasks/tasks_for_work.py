@@ -6,7 +6,7 @@ from pymorphy2 import MorphAnalyzer
 from fractions import Fraction
 
 
-def input_parameters(i=None):
+def input_parameters_work(i=None):
     # случайным образом получаем сюжет задачи
     i = i if i is not None else randint(0, 11)
     """
@@ -50,7 +50,7 @@ def task_9515():
      Лев съел овцу за 2 ч, волк съел овцу за 3 ч, а пёс съел овцу за 6 ч. Как скоро они втроём съели бы одну овцу?
      """
     # получаем сюжет задачи
-    pers1, pers2, pers3, task = input_parameters()
+    pers1, pers2, pers3, task = input_parameters_work()
     answer = 1.2345678
     # случайным образом получаем ответ к задаче
     while int(answer * 1) - answer * 1 != 0:
@@ -65,7 +65,7 @@ def task_9517():
      Маша и Оля пропалывают грядку за 12 мин, а одна Оля – за 15 мин. За сколько минут пропалывает грядку одна Маша?
      """
     # получаем сюжет задачи
-    pers1, pers2, _, task = input_parameters()
+    pers1, pers2, _, task = input_parameters_work()
     answer = 1.2345678
     while int(answer * 1) - answer * 1 != 0:
         time1, time2 = np.random.randint(5, 100, size=2)
@@ -80,7 +80,7 @@ def task_11101():
     Бассейн при одновременном включении трех труб может наполниться за 4 ч, через одну первую трубу – за 10 ч,
     а через одну вторую – за 15 ч. За сколько часов может наполниться бассейн через одну третью трубу?"""
     # получаем сюжет задачи
-    pers1, pers2, pers3, task = input_parameters()
+    pers1, pers2, pers3, task = input_parameters_work()
     answer = 1.23456
     # случайным образом получаем ответ к задаче
     while int(answer * 1) - answer * 1 != 0:
@@ -96,7 +96,7 @@ def task_11108():
     """Генерация аналогичной задачи с портала https://kuzovkin.info/one_exercise_1/11108:
     Вася и Лева могут покрасить забор за 3 часа, Лева и Петя могут покрасить этот же забор за 6 часов,
     а Петя и Вася – за 4 часа. За какое время мальчики покрасят забор, работая втроем?"""
-    pers1, pers2, pers3, task = input_parameters()
+    pers1, pers2, pers3, task = input_parameters_work()
     answer = 1.2345678
     # случайным образом получаем ответ к задаче
     while int(answer * 1) - answer * 1 != 0:
@@ -114,7 +114,7 @@ def task_936():
     # исключаем женский род персонажей
     i = randint(0, 9)
     # выбираем сюжет
-    pers1, pers2, _, task = input_parameters(i)
+    pers1, pers2, _, task = input_parameters_work(i)
     time1 = choice([i for i in range(1, 20) if not i % 2])
     time2 = time1 * randint(1, 10)
     # получаем ответ
@@ -183,7 +183,7 @@ def task_2610():
     # исключаем женский род персонажей
     i = randint(0, 9)
     # выбираем сюжет
-    pers, _, _, task = input_parameters(i)
+    pers, _, _, task = input_parameters_work(i)
     # подбираем дискриминант, чтобы получить ответ в целых числах
     discr, x, y, s = choose_discr()
     v = (-(x * y) + math.sqrt(discr)) / (2 * y)
@@ -204,7 +204,7 @@ def task_17612():
     # исключаем женский род персонажей
     i = randint(0, 9)
     # выбираем сюжет
-    pers, _, _, task = input_parameters(i)
+    pers, _, _, task = input_parameters_work(i)
     # подбираем целочисленный ответ
     v = 1.2345
     while int(v) - v != 0:
@@ -246,7 +246,7 @@ def task_17610():
     # исключаем женский род персонажей
     i = choice([0, 1, 2, 3, 5, 6, 7, 12, 13])
     # выбираем сюжет
-    pers1, pers2, _, task = input_parameters(i)
+    pers1, pers2, _, task = input_parameters_work(i)
     # подбираем дискриминант, чтобы получить ответ в целых числах
     discr, t, x = choose_discr_without_s()
     t2 = (2 * t - x + math.sqrt(discr)) / 2
@@ -263,7 +263,7 @@ def task_17613():
     в час начал выпускать цех?"""
     i = choice([0, 4, 6, 9, 12])
     # выбираем сюжет
-    pers, _, _, task = input_parameters(i)
+    pers, _, _, task = input_parameters_work(i)
     # подбираем ответ
     answer = 1.2345
     while int(answer) - answer != 0:
@@ -310,7 +310,7 @@ def task_17583():
     # исключаем женский род персонажей
     i = randint(0, 9)
     # выбираем сюжет
-    pers1, pers2, _, task = input_parameters(i)
+    pers1, pers2, _, task = input_parameters_work(i)
     # подбираем ответ
     discr, s1, s2, x, y = choose_discr_with_two_s()
     v2 = (s1 - s2 + x * y + math.sqrt(discr)) / (2 * y)
@@ -354,7 +354,7 @@ def task_17596():
     стало изготавливать в месяц на 70 насосов больше, и на 1 месяц раньше срока перевыполнило задание на 30 насосов.
     За какой срок было изготовлено 6030 насосов?"""
     i = choice([1, 4, 9, 12, 13])
-    pers, _, _, task = input_parameters(i)
+    pers, _, _, task = input_parameters_work(i)
     s, s1, t, x, y = choose_discr_with_delta_s()
     print( s, s1, t, x, y )
     answer = t - x
@@ -414,7 +414,7 @@ def task_17624():
     из них, то работа заняла бы 20 часов. За какое время два комбайна могут убрать первое поле?
     """
     i = choice([0, 2, 3, 4, 8, 9])
-    pers1, pers2, pers3, _ = input_parameters(i)
+    pers1, pers2, pers3, _ = input_parameters_work(i)
     x, y = 1.23, 1.23
     while int(x) - x != 0:
         t1, t2 = sorted([randint(1, 36) for _ in range(2)])
