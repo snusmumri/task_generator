@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from random import randint
+from random import randint, choice
 import numpy as np
 import math as m
 import decimal as d
@@ -902,9 +902,323 @@ def function_result():
   return answer, task, paint, solution
 
 
+# Задача 12 https://math-ege.sdamgia.ru/problem?id=509042
+# Логарифмическая функция f(x)=loga(x + b)
+def input_parameters():
+    """Функция формирует точки, через которые строится график"""
+    while True:
+      b = randint(1, 7)
+      a = randint(2, 10 - b)
+      if a != 0:
+        x = list(np.linspace(-b + 0.00001, 20, 400))
+        y = [m.log((b + numb), a) for numb in x]
+        break
+    return x, y, a, b
 
 
+def function_graph(x, y, a, b):
+    """Функция строит график по переданным параметрам"""
+    fig = plt.figure()
+    ax = plt.axes()
+    fig.add_axes(ax)
+    ax.spines[["left", "bottom"]].set_position('zero')
+    ax.spines[["top", "right"]].set_visible(False)
+    ax.plot(1, 0, ">k", transform=ax.get_yaxis_transform(), clip_on=False)
+    ax.plot(0, 1, "^k", transform=ax.get_xaxis_transform(), clip_on=False)
+    ax.plot(x, y, c='orange')
+    plt.xticks(np.arange(-20, 20, 1), fontsize=8)
+    plt.yticks(np.arange(-20, 20, 1), fontsize=8)
+    ax.grid(True)
+    plt.xlim(-b - 1, -b + 11)
+    plt.ylim(-5, + 5)
+    for x_point in range(-b + 2, 11):
+      y_point = m.log((x_point + b), a)
+      if float(y_point).is_integer():
+        plt.scatter(x_point, y_point, c='black')
+    arrow_length = 10
+    ax.annotate('x', xy=(1, 0), xycoords=('axes fraction', 'data'),
+                xytext=(0, arrow_length), textcoords='offset points',
+                ha='center', va='bottom')
+    ax.annotate('y', xy=(0, 1), xycoords=('data', 'axes fraction'),
+                xytext=(arrow_length, 0), textcoords='offset points',
+                ha='center', va='bottom')
+    plt.show()
+
+def function_result():
+  """Функция генерирует задание, выводит правильный ответ и график"""
+  x, y, a, b = input_parameters()
+  while True:
+    x_task = randint(b + 10, 500)
+    y_task = m.log((x_task + b), a)
+    if float(y_task).is_integer():
+      y_task = int(y_task)
+      break
+  random_task = randint(0, 1)
+  if random_task == 1:
+    task = f'На рисунке изображён график функции \(f(x)=\log_{{a}}(x + b)\). Найдите \(f({x_task})\).'
+    answer = y_task
+  else:
+    task = f'На рисунке изображён график функции \(f(x)=\log_{{a}}(x + b)\). Найдите значение \(x\), при котором \(f(x) = {y_task}\).'
+    answer = x_task
+  solution = None
+  def paint():
+    function_graph(x, y, a, b)
+
+  return answer, task, paint, solution
 
 
+# Задача 13 https://math-ege.sdamgia.ru/problem?id=639672
+# Логарифмическая функция f(x)=loga(x)
+def input_parameters():
+    """Функция формирует точки, через которые строится график"""
+    while True:
+      a = randint(2, 10)
+      if a != 0:
+        x = list(np.linspace(0.00001, 15, 300))
+        y = [m.log((numb), a) for numb in x]
+        break
+    return x, y, a
 
 
+def function_graph(x, y, a):
+    """Функция строит график по переданным параметрам"""
+    fig = plt.figure()
+    ax = plt.axes()
+    fig.add_axes(ax)
+    ax.spines[["left", "bottom"]].set_position('zero')
+    ax.spines[["top", "right"]].set_visible(False)
+    ax.plot(1, 0, ">k", transform=ax.get_yaxis_transform(), clip_on=False)
+    ax.plot(0, 1, "^k", transform=ax.get_xaxis_transform(), clip_on=False)
+    ax.plot(x, y, c='orange')
+    plt.xticks(np.arange(-20, 20, 1), fontsize=8)
+    plt.yticks(np.arange(-20, 20, 1), fontsize=8)
+    ax.grid(True)
+    plt.xlim(0, 10)
+    plt.ylim(-5, 5)
+    for x_point in range(1, 10):
+      y_point = m.log((x_point), a)
+      if float(y_point).is_integer():
+        plt.scatter(x_point, y_point, c='black')
+    arrow_length = 10
+    ax.annotate('x', xy=(1, 0), xycoords=('axes fraction', 'data'),
+                xytext=(0, arrow_length), textcoords='offset points',
+                ha='center', va='bottom')
+    ax.annotate('y', xy=(0, 1), xycoords=('data', 'axes fraction'),
+                xytext=(arrow_length, 0), textcoords='offset points',
+                ha='center', va='bottom')
+    plt.show()
+
+def function_result():
+  """Функция генерирует задание, выводит правильный ответ и график"""
+  x, y, a = input_parameters()
+  while True:
+    x_task = randint(10, 500)
+    y_task = m.log((x_task), a)
+    if float(y_task).is_integer():
+      y_task = int(y_task)
+      break
+  random_task = randint(0, 1)
+  if random_task == 1:
+    task = f'На рисунке изображён график функции \(f(x)=\log_{{a}}x\). Найдите \(f({x_task})\).'
+    answer = y_task
+  else:
+    task = f'На рисунке изображён график функции \(f(x)=\log_{{a}}x\). Найдите значение \(x\), при котором \(f(x) = {y_task}\).'
+    answer = x_task
+  solution = None
+  def paint():
+    function_graph(x, y, a)
+
+  return answer, task, paint, solution
+
+
+# Задача 14 https://math-ege.sdamgia.ru/problem?id=509089
+# Логарифмическая функция f(x) = a^x + b
+def input_parameters():
+    """Функция формирует точки, через которые строится график"""
+    while True:
+      b = randint(-6, 2)
+      a = randint(2, b + 7)
+      if a != 0 and b != 0:
+        x = np.linspace(-20, 20, 400)
+        y = a**x + b
+        break
+    return x, y, a, b
+
+
+def function_graph(x, y, a, b):
+    """Функция строит график по переданным параметрам"""
+    fig = plt.figure()
+    ax = plt.axes()
+    fig.add_axes(ax)
+    ax.spines[["left", "bottom"]].set_position('zero')
+    ax.spines[["top", "right"]].set_visible(False)
+    ax.plot(1, 0, ">k", transform=ax.get_yaxis_transform(), clip_on=False)
+    ax.plot(0, 1, "^k", transform=ax.get_xaxis_transform(), clip_on=False)
+    ax.plot(x, y, c='orange')
+    plt.xticks(np.arange(-20, 20, 1), fontsize=8)
+    plt.yticks(np.arange(-20, 20, 1), fontsize=8)
+    ax.grid(True)
+    plt.xlim(-5, 5)
+    plt.ylim(b - 2, b + 8)
+    for x_point in range(1, 11):
+      y_point = a**x_point + b
+      if float(y_point).is_integer():
+        plt.scatter(x_point, y_point, c='black')
+    arrow_length = 10
+    ax.annotate('x', xy=(1, 0), xycoords=('axes fraction', 'data'),
+                xytext=(0, arrow_length), textcoords='offset points',
+                ha='center', va='bottom')
+    ax.annotate('y', xy=(0, 1), xycoords=('data', 'axes fraction'),
+                xytext=(arrow_length, 0), textcoords='offset points',
+                ha='center', va='bottom')
+    plt.show()
+
+def function_result():
+  """Функция генерирует задание, выводит правильный ответ и график"""
+  x, y, a , b = input_parameters()
+  while True:
+    x_task = randint(3, 7)
+    y_task = a**x_task + b
+    if float(y_task).is_integer() and y_task < 10000:
+      break
+  random_task = randint(0, 1)
+  if random_task == 1:
+    task = f'На рисунке изображён график функции \(f(x)=a^x + b\). Найдите \(f({x_task})\).'
+    answer = int(y_task)
+  else:
+    task = f'На рисунке изображён график функции \(f(x)=a^x + b\). Найдите значение \(x\), при котором \(f(x) = {y_task}\).'
+    answer = int(x_task)
+  solution = None
+  def paint():
+    function_graph(x, y, a, b)
+
+  return answer, task, paint, solution
+
+
+# Задача 15 https://math-ege.sdamgia.ru/problem?id=509101
+# Логарифмическая функция f(x) = a^(x + b)
+def input_parameters():
+    """Функция формирует точки, через которые строится график"""
+    while True:
+      b = randint(-5, 4)
+      a = randint(2, 8)
+      if a != 0 and b != 0:
+        x = np.linspace(-20, 20, 400)
+        y = a**(x + b)
+        break
+    return x, y, a, b
+
+
+def function_graph(x, y, a, b):
+    """Функция строит график по переданным параметрам"""
+    fig = plt.figure()
+    ax = plt.axes()
+    fig.add_axes(ax)
+    ax.spines[["left", "bottom"]].set_position('zero')
+    ax.spines[["top", "right"]].set_visible(False)
+    ax.plot(1, 0, ">k", transform=ax.get_yaxis_transform(), clip_on=False)
+    ax.plot(0, 1, "^k", transform=ax.get_xaxis_transform(), clip_on=False)
+    ax.plot(x, y, c='orange')
+    plt.xticks(np.arange(-20, 20, 1), fontsize=8)
+    plt.yticks(np.arange(-20, 20, 1), fontsize=8)
+    ax.grid(True)
+    plt.xlim(-b - 5, -b + 5)
+    plt.ylim(-1, 9)
+    for x_point in range(-b, -b + 11):
+      y_point = a**(x_point + b)
+      if float(y_point).is_integer():
+        plt.scatter(x_point, y_point, c='black')
+    arrow_length = 10
+    ax.annotate('x', xy=(1, 0), xycoords=('axes fraction', 'data'),
+                xytext=(0, arrow_length), textcoords='offset points',
+                ha='center', va='bottom')
+    ax.annotate('y', xy=(0, 1), xycoords=('data', 'axes fraction'),
+                xytext=(arrow_length, 0), textcoords='offset points',
+                ha='center', va='bottom')
+    plt.show()
+
+def function_result():
+  """Функция генерирует задание, выводит правильный ответ и график"""
+  x, y, a , b = input_parameters()
+  while True:
+    x_task = d.Decimal(randint(-b - 4, -b + 15))
+    y_task = d.Decimal(d.Decimal(a)**(x_task + d.Decimal(b)))
+    if  x_task < -b and (y_task % d.Decimal(0.0625) == 0 or y_task % d.Decimal(0.015625) == 0 or y_task % d.Decimal(0.01) == 0):
+      break
+    elif x_task > -b + 3 and float(y_task).is_integer() and y_task < d.Decimal(10000):
+      break
+  random_task = randint(0, 1)
+  if random_task == 1:
+    task = f'На рисунке изображён график функции \(f(x)=a^{{x + b}}\). Найдите \(f({x_task})\).'
+    answer = y_task
+  else:
+    task = f'На рисунке изображён график функции \(f(x)=a^{{x + b}}\). Найдите значение \(x\), при котором \(f(x) = {y_task}\).'
+    answer = x_task
+  solution = None
+  def paint():
+    function_graph(x, y, a, b)
+
+  return answer, task, paint, solution
+
+
+# Задача 16 https://math-ege.sdamgia.ru/problem?id=639480
+# Логарифмическая функция f(x) = a^x
+def input_parameters():
+    """Функция формирует точки, через которые строится график"""
+    while True:
+      a = choice([0.5, 1, 2, 3, 4, 5, 6, 7, 8])
+      if a != 0 and a != 1:
+        x = np.linspace(-10, 10, 400)
+        y = a**(x)
+        break
+    return x, y, a
+
+
+def function_graph(x, y, a):
+    """Функция строит график по переданным параметрам"""
+    fig = plt.figure()
+    ax = plt.axes()
+    fig.add_axes(ax)
+    ax.spines[["left", "bottom"]].set_position('zero')
+    ax.spines[["top", "right"]].set_visible(False)
+    ax.plot(1, 0, ">k", transform=ax.get_yaxis_transform(), clip_on=False)
+    ax.plot(0, 1, "^k", transform=ax.get_xaxis_transform(), clip_on=False)
+    ax.plot(x, y, c='orange')
+    plt.xticks(np.arange(-20, 20, 1), fontsize=8)
+    plt.yticks(np.arange(-20, 20, 1), fontsize=8)
+    ax.grid(True)
+    plt.xlim( - 5, 5)
+    plt.ylim(-1, 9)
+    for x_point in range(-5, 5):
+      y_point = a**(x_point)
+      if float(y_point).is_integer():
+        plt.scatter(x_point, y_point, c='black')
+    arrow_length = 10
+    ax.annotate('x', xy=(1, 0), xycoords=('axes fraction', 'data'),
+                xytext=(0, arrow_length), textcoords='offset points',
+                ha='center', va='bottom')
+    ax.annotate('y', xy=(0, 1), xycoords=('data', 'axes fraction'),
+                xytext=(arrow_length, 0), textcoords='offset points',
+                ha='center', va='bottom')
+    plt.show()
+
+def function_result():
+  """Функция генерирует задание, выводит правильный ответ и график"""
+  x, y, a= input_parameters()
+  while True:
+    x_task = d.Decimal(randint(-8, 8))
+    y_task = d.Decimal(d.Decimal(a)**(x_task))
+    if x_task != 0 and x_task != 1 and (y_task % d.Decimal(0.0625) == 0 or y_task % d.Decimal(0.015625) == 0 or y_task % d.Decimal(0.01) == 0) and y_task < 10000:
+      break
+  random_task = randint(0, 1)
+  if random_task == 1:
+    task = f'На рисунке изображён график функции \(f(x)=a^x\). Найдите \(f({x_task})\).'
+    answer = y_task
+  else:
+    task = f'На рисунке изображён график функции \(f(x)=a^x\). Найдите значение \(x\), при котором \(f(x) = {y_task}\).'
+    answer = x_task
+  solution = None
+  def paint():
+    function_graph(x, y, a)
+
+  return answer, task, paint, solution
