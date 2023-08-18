@@ -3,7 +3,7 @@ from random import randint, choice
 import numpy as np
 import math as m
 import decimal as d
-from sympy import Point, Line, solve
+from sympy import Point, Line, solve, symbols, Eq
 from sympy.abc import x, y
 
 def plot():# Функция создает координатную ось
