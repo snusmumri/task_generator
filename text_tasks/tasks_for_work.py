@@ -9,20 +9,18 @@ morph = MorphAnalyzer()
 
 
 def input_parameters_work(i=None):
-    # случайным образом получаем сюжет задачи
-    i = i if i is not None else randint(0, 17)
-
     values = {
         'pers1': ["студент Вова", "Карлсон", 'дровосек Миша', "блогер Коля", "Федя", "певец Паша", "медбрат Аркадий",
                   "лев", "первый рабочий", "токарь Миша", "швея Аня", "первая труба", "цех", "предприятие", 'мастер',
-                  "бригада трактористов", 'бригада рабочих', "печник"],
+                  "бригада трактористов", 'бригада рабочих', "печник", 'ферма', 'овощная база', 'мешок', 'элеватор'],
         'pers2': ["студент Петя", "Малыш", "дровосек Коля", "блогер Толя", "Паша", "певец Саша", "медбрат Рома", "волк",
                   "второй рабочий", "токарь Вася", "швея Оля", "вторая труба", "цех", "предприятие", 'ученик',
-                  "бригада трактористов", 'бригада рабочих', "печник"],
+                  "бригада трактористов", 'бригада рабочих', "печник", 'ферма', 'овощная база', 'мешок', 'элеватор'],
         'pers3': ["студентка Кристина", "Фрекен Бок", "дровосек Саша", "блогер Лева", "Вася", "певица Настя",
                   "медсестра Вика", "пес", "третий рабочий", "токарь Гера", "швея Юля", "третья труба", "цех",
-                  "предприятие", "ученик", "бригада трактористов", 'бригада рабочих', "печник"],
-        'task': [[("изготовить образец для измерений", None), ("съесть пиццу", ('размером', 'м2')),
+                  "предприятие", "ученик", "бригада трактористов", 'бригада рабочих', "печник", 'ферма', 'овощная база',
+                  'мешок', 'элеватор'],
+        'task': [[("изготовить образец для измерений", None), ("съесть пиццу", ('площадью', 'м2')),
                   ("провести измерения", None), ("решить задачу", ('количества', "шт")), ("выплавить сплав", None),
                   ('отшлифовать образцы', ('количества', "шт"))],
                  [("распугать воров", None), ("сварить варенье", ('количества', "шт")),
@@ -54,11 +52,42 @@ def input_parameters_work(i=None):
                  [('вспахать поле', ('площадью', 'м2')), ('вспахать участок', ('площадью', 'м2'))],
                  [('сделать ремонт дороги', ('длиной', 'км')), ('выполнить заказ', ('количество', 'шт')),
                   ('покрасить гараж', ('объемом', 'м3'))],
-                 [('сложить печь', ('объемом', 'м3'))]
+                 [('сложить печь', ('объемом', 'м3'))],
+                 [('изготовить', ('силоса', 'кг'))],
+                 [('вырастить', choice([('картофеля', 'кг'), ('свеклы', 'кг'), ('моркови', 'кг')]))],
+                 [('хранить', ('сахара', 'кг'))],
+                 [('хранить', ('зерна', 'кг'))]
                 ]
     }
+    # случайным образом получаем сюжет задачи
+    i = i if i is not None else randint(0, len(values['pers1']) - 1)
 
     return values['pers1'][i], values['pers2'][i], values['pers3'][i], choice(values['task'][i])
+
+
+def correct_word(key, values) -> str:
+    """Функция для подбора правильных склонений слов"""
+    words_collection = {
+        'раз': ['раз', 'раза', 'раз'],
+        'день': ['день', 'дня', 'дней']
+    }
+    if key in words_collection:
+        words = words_collection.get(key)
+        if all((values % 10 == 1, values % 100 != 11)):
+            return words[0]
+        elif all((2 <= values % 10 <= 4,
+                  any((values % 100 < 10, values % 100 >= 20)))):
+            return words[1]
+        return words[2]
+    else:
+        task1, task2 = key.rsplit(' ', maxsplit=1)
+        result = []
+        for value in values:
+            try:
+                result.append(morph.parse(task2)[0].make_agree_with_number(value).word)
+            except:
+                result.append(task2)
+        return task1, result
 
 
 def task_9515():
@@ -167,32 +196,6 @@ def choose_discr() -> tuple:
         if int(s) - s == 0:
             break
     return discr, x, y, s
-
-
-def correct_word(key, values) -> str:
-    """Функция для подбора правильных склонений слов"""
-    words_collection = {
-        'раз': ['раз', 'раза', 'раз'],
-        'день': ['день', 'дня', 'дней']
-    }
-    if key in words_collection:
-        words = words_collection.get(key)
-        if all((values % 10 == 1, values % 100 != 11)):
-            return words[0]
-        elif all((2 <= values % 10 <= 4,
-                  any((values % 100 < 10, values % 100 >= 20)))):
-            return words[1]
-        return words[2]
-    else:
-        task1, task2 = key.rsplit(' ', maxsplit=1)
-
-        result = []
-        for value in values:
-            try:
-                result.append(morph.parse(task2)[0].make_agree_with_number(value).word)
-            except:
-                result.append(task2)
-        return task1, result
 
 
 def task_2610():
@@ -421,8 +424,8 @@ def task_17622():
     """Генерация аналогичных задач 17622
     Две трубы наполнили бассейн объемом 54 м3. При этом первая труба открыта 3 часа, а вторая - 2 часа.
     Какова пропускная способность первой трубы, если 1 м3 она заполняет на 1 минуту медленнее, чем вторая?"""
-    i = 11
-    # i = randint(0, 13)
+    # i = 17
+    i = randint(0, 17)
     while True:
         pers1, pers2, _, (task, measure) = input_parameters_work(i)
         if measure:
@@ -430,7 +433,6 @@ def task_17622():
             break
         else:
             pers1, pers2, _, (task, measure) = input_parameters_work(i)
-    # print(pers1, pers2, task, measure, meas_word, unit)
 
     while True:
         t = choice([1, 2, 3, 4, 5, 6, 10, 12, 15, 30, 60])
@@ -449,30 +451,28 @@ def task_17622():
                 v1 = 1.2345
         if int(v1) - v1 == 0:
             break
+
     task1, (word1, word2) = correct_word(key=task, values=(v, 1))
+
     if unit in ('м3', 'м2', 'км'):
-        new_unit, word1 = unit, unit
+        word2, word1 = unit, f'{meas_word} {unit}'
         task1 = task
+
+    if len(pers1.split()) == 1:
+        pers1_gent = morph.parse(pers1)[0].inflect({'gent'}).word
     else:
-        new_unit = morph.parse(task.split()[1])[0].inflect({'accs', 'sing'}).word
+        pers1_gent_1, pers1_gent_2 = (morph.parse(item)[0].inflect({'gent'}).word for item in pers1.split())
+        pers1_gent = f'{pers1_gent_1} {pers1_gent_2.title()}'
 
     if pers1 == pers2:
-        pers1_gent = morph.parse(pers1)[0].inflect({'gent'}).word
         return v1, f"Два {pers1_gent} могут {task1} {v} {word1}. При этом первый {pers1} работает {t1} ч, " \
-                   f"а второй {pers2} - {t2} ч. Какова производительность первого {pers1_gent}, если 1 {new_unit} " \
+                   f"а второй {pers2} - {t2} ч. Какова производительность первого {pers1_gent}, если 1 {word2} " \
                    f"он может {task.split()[0]} на {t} мин медленнее, чем второй?"""
 
-    else:
-        if len(pers1.split()) == 1:
-            pers1_gent = morph.parse(pers1)[0].inflect({'gent'}).word
-        else:
-            pers1_gent_1, pers1_gent_2 = (morph.parse(item)[0].inflect({'gent'}).word for item in pers1.split())
-            pers1_gent = f'{pers1_gent_1} {pers1_gent_2}'
-        # task_word = morph.parse(task.split()[1])[0].inflect({'accs'}).word
-
-        return v1, f"{pers1.title()} и {pers2} могут вместе {task1} {v} {word1}. " \
-                   f"При этом {pers1} работает {t1} ч, а {pers2} - {t2} ч. " \
-                   f"Какова производительность {pers1_gent}, если 1 {new_unit} он(а) может {task.split()[0]} на {t} мин медленнее, чем {pers2}?"""
+    return v1, f"{pers1.title()} и {pers2} могут вместе {task1} {v} {word1}. " \
+               f"При этом {pers1} работает {t1} ч, а {pers2} - {t2} ч. " \
+               f"Какова производительность {pers1_gent}, если 1 {word2} он(а) может {task.split()[0]} " \
+               f"на {t} мин медленнее, чем {pers2}?"""
 
 
 def task_17624():
@@ -503,11 +503,11 @@ def task_17624():
 
 
 def task_5173():
-    """Генерация аналогичных задач 5.173, 5.156:
+    """Генерация аналогичных задач 5.173, 5.156 из задачника для классов Пушкин С.А.:
     Бригада трактористов планировала вспахивать в день по 40 га, но из-за ненастной погоды она вспахивала в день
     по 30 га и закончила работу на 2 дня позже срока. Найдите площадь участка."""
-    i = 16
-    # i = randint(0, 16)
+    # i = 16
+    i = randint(0, 16)
     while True:
         pers, _, _, (task, measure) = input_parameters_work(i)
         if measure:
@@ -516,7 +516,7 @@ def task_5173():
             break
         else:
             pers, _, _, (task, measure) = input_parameters_work(i)
-    pers = pers.split()[1] if 'первая' in pers else pers
+    pers = pers.split()[1] if 'перв' in pers else pers
 
     while True:
         t = randint(1, 10)
@@ -555,19 +555,90 @@ def task_5173():
         gender = ('должна', 'приступила', 'она')
     else:
         gender = ('планировал', 'приступил', 'он')
-    q = choice([
+    task_condition = choice([
         f'по {v2} {word3} в день ',
         f'на {delta_v} {word1} больше запланированного {meas_word1} в день '
     ])
     return answer, f"{pers.title()} {gender[0]} {task1} {new_unit}несколько {word1} за определенный срок - " \
                    f"по {v1} {unit} в день. Когда {pers} {gender[1]} к работе, оказалось, " \
-                   f"что {gender[2]} может {task1} {q}" \
+                   f"что {gender[2]} может {task1} {task_condition}" \
                    f"и завершить процесс на {t} {correct_word('день', t)} {comparison} срока. {question}"
 
 
+def task_108():
+    """Генерация аналогичных задач 108, 118 из учебника Алгебра. 7 класс_Алимов Ш.А.
+    В первом мешке было 50 кг сахара, а во втором 80 кг. Из второго мешка взяли сахара в 3 раза больше,
+    чем из первого мешка, и тогда в первом мешке сахара осталось вдвое больше, чем во втором.
+    Сколько килограммов сахара взяли из каждого мешка?"""
+    # выбираем контекст
+    i = randint(18, 21)
+    place, _, (item, unit) = input_parameters_work(i)
+    # item = morph.parse(item)[0].inflect({"gent"}).word
+    if len(place.split()) == 1:
+        place_gent = morph.parse(place)[0].inflect({"gent"}).word
+        place_loct = morph.parse(place)[0].inflect({"loct"}).word
+    else:
+        place_gent = ' '.join([morph.parse(word)[0].inflect({"gent"}).word for word in place.split()])
+        place_loct = ' '.join([morph.parse(word)[0].inflect({"loct"}).word for word in place.split()])
+
+    if morph.parse(place)[0].tag.gender == 'femn':
+        start = (f'На одной {place_loct}', 'на другой', f'С первой {place_gent}', 'со второй', f'c каждой {place_gent}', f'На первой {place_loct}', 'на второй', f'на каждой {place_loct}', 'на вторую')
+    else:
+        start = (f'В одном {place_loct}', 'в другом', f'Из первого {place_gent}', 'из второго', f'из каждого {place_gent}', f'На первом {place_loct}', 'на втором', f'в каждом {place_loct}', 'на второй')
+
+    # выбираем условие задачи, а точнее искомое значение и соответствующее решение
+    condition = choice(['time', 'init_volume', 'delta_volume'])
+
+    if condition == 'delta_volume':
+        while True:
+            vol1, vol2 = (randint(10, 1000) for _ in range(2))
+            k1, k2 = (randint(2, 10) for _ in range(2))
+            try:
+                x = (vol1 - vol2 * k2) / (k1 * k2 - 1)
+            except ZeroDivisionError:
+                x = 1.2345
+            if int(x) - x == 0 and x > 0:
+                break
+
+        return (x, k1 * x), f'{start[0]} было {vol1} {unit} {item}, а {start[1]} - {vol2} {unit}. {start[2]} ' \
+                            f'забрали в {k1} раза больше {item}, чем {start[3]}. ' \
+                            f'Сколько {unit} {item} взяли {start[4]}?'
+
+    elif condition == 'time':
+        while True:
+            vol1, vol2 = (randint(1000, 10000) for _ in range(2))
+            k = randint(1, 10)
+            v1, v2 = (randint(min(vol1, vol2) // 100, min(vol1, vol2) // 10) for _ in range(2))
+            try:
+                t = (vol1 - vol2 * k) / (v1 - k * v2)
+            except ZeroDivisionError:
+                t = 1.2345
+            if int(t) - t == 0 and t > 0:
+                break
+
+        question = 'станут равными' if k == 1 else f'{start[5].lower()} станут в {k} {correct_word("раз", k)} меньше, чем {start[6]}'
+
+        return t, f'{start[0]} было {vol1} {unit} {item}, а {start[1]} - {vol2} {unit}. ' \
+                  f'{start[5]} ежедневно расходуется {v1} {unit}, а {start[6]} - {v2} {unit} {item}. ' \
+                  f'Через сколько дней запасы {item} {question}?'
+
+    elif condition == 'init_volume':
+        while True:
+            vol1, vol2 = (randint(10, 1000) for _ in range(2))
+            k = randint(2, 10)
+            # k = 2
+            # vol1, vol2 = 750, 350
+            x = (vol1 + vol2) / (k - 1)
+            if int(x) - x == 0:
+                break
+        return (x * k, x), f'{start[0]} было в {k} {correct_word("раз", k)} больше {item}, чем {start[1]}. ' \
+                           f'{start[2]} забрали {vol1} {unit} {item}, {start[8]} добавили {vol2} {unit}, ' \
+                           f'после чего {item} стало поровну. Сколько {item} было первоначально {start[7]}?'
+
+
 if __name__ == "__main__":
-    # pprint(task_17622())
+    pprint(task_17622())
     # pprint(task_17583())
-    pprint(task_5173())
+    # pprint(task_5173())
     # pprint(task_17583())
     # pprint(task_17596())
