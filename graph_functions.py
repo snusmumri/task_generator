@@ -6,7 +6,7 @@ import decimal as d
 from sympy import Point, Line, solve, symbols, Eq
 from sympy.abc import x, y
 
-def function_graph(x_coord, y_coord, x_points, y_points, point_A=[], lim=[[-9, 9], [-9, 9]], dash=[]):
+def function_graph(x_coord, y_coord, x_points, y_points, point_A=[], lim=[[-9, 9], [-9, 9]], dash=[], trigonometry=False, color=['orange', 'blue']):
     """Функция стоит график(и) по переданным параметрам"""
     fig = plt.figure()
     ax = plt.axes()
@@ -15,8 +15,18 @@ def function_graph(x_coord, y_coord, x_points, y_points, point_A=[], lim=[[-9, 9
     ax.spines[["top", "right"]].set_visible(False)
     ax.plot(1, 0, ">k", transform=ax.get_yaxis_transform(), clip_on=False)
     ax.plot(0, 1, "^k", transform=ax.get_xaxis_transform(), clip_on=False)
-    plt.xticks(np.arange(-30, 30, 1), fontsize=8)
-    plt.yticks(np.arange(-30, 30, 1), fontsize=8)
+    if trigonometry:
+        radian_values = [-2 * np.pi, -7 * np.pi / 4, -6 * np.pi / 4, -5 * np.pi / 4, -np.pi, -3 * np.pi / 4, -np.pi / 2,
+                         -np.pi / 4, 0, np.pi / 4, np.pi / 2, 3 * np.pi / 4, np.pi, 5 * np.pi / 4, 6 * np.pi / 4,
+                         7 * np.pi / 4, 2 * np.pi]
+        plt.xticks(radian_values,
+                   [r'$-2\pi$', '', '', '', r'$-\pi$', '', '', '', '', '', '', '', r'$+\pi$', '', '', '', r'$+2\pi$'],
+                   fontsize=10)
+        y_values = np.arange(-4, 4.5, 0.5)
+        plt.yticks(y_values, ['', '', '', '', '', '', '-1', '', 'O', '', '1', '', '', '', '', '', ''], fontsize=10)
+    else:
+        plt.xticks(np.arange(-30, 30, 1), fontsize=8)
+        plt.yticks(np.arange(-30, 30, 1), fontsize=8)
     ax.grid(True)
     arrow_length = 10
     ax.annotate('x', xy=(1, 0), xycoords=('axes fraction', 'data'),
@@ -26,7 +36,7 @@ def function_graph(x_coord, y_coord, x_points, y_points, point_A=[], lim=[[-9, 9
               xytext=(arrow_length, 0), textcoords='offset points',
               ha='center', va='bottom')
     for i in range(len(y_coord)):
-        ax.plot(x_coord[i], y_coord[i])
+        ax.plot(x_coord[i], y_coord[i], c=color[i])
     for i in range(len(y_points)):
         plt.scatter(x_points[i], y_points[i], c='black', s=15)
     if point_A:
@@ -34,7 +44,7 @@ def function_graph(x_coord, y_coord, x_points, y_points, point_A=[], lim=[[-9, 9
         plt.text(point_A[0] + 0.3, point_A[1] + 0.3, 'A', fontsize=18)
     if dash:
         for i in range(len(dash)):
-            ax.plot(dash[i][0], dash[i][1], linestyle='dashed', c='black')
+            ax.plot(dash[i][0], dash[i][1], linestyle='dashed', c='gray')
     plt.xlim(lim[0][0], lim[0][1])
     plt.ylim(lim[1][0], lim[1][1])
     plt.show()
@@ -77,7 +87,7 @@ def two_lines():
             task = f'На рисунке изображены графики двух линейных функций. Найдите ординату точки пересечения графиков.'  # ордината - y
             answer = y_int
         else:
-            task = f'На рисунке изображены графики двух линейных функций. Найдите абциссу точки пересечения графиков.'  # абцисса - x
+            task = f'На рисунке изображены графики двух линейных функций. Найдите абсциссу точки пересечения графиков.'  # абсцисса - x
             answer = x_int
         solution = None
 
@@ -168,7 +178,7 @@ def two_parabolas():
             axis = f'ординату'
         else:
             answer = point_B[0]
-            axis = f'абциссу'
+            axis = f'абсциссу'
         task = f'На рисунке изображены графики функций \({equation1}\) и \(g(x) = ax^2 + bx + c\), которые пересекаются в точках A и B. Найдите {axis} точки B.'
         lim = [[point_A[0] - 9, point_A[0] + 9], [point_A[1] - 9, point_A[1] + 9]]
 
@@ -183,7 +193,7 @@ def two_parabolas():
 
 # Задача 3 №562285 c сайта https://math-ege.sdamgia.ru/problem?id=562285
 # Парабола вида y = a * x ** 2 + b * x + c
-def sigle_parabola_1():
+def single_parabola_1():
     def input_parameters():
         """Функция формирует две точки, через которые строится парабола"""
         while True:
@@ -234,7 +244,7 @@ def sigle_parabola_1():
 
 # Задача 4 https://math-ege.sdamgia.ru/problem?id=562061
 # Парабола вида y = (x ** 2) / a + b * x + c
-def sigle_parabola_2():
+def single_parabola_2():
     def input_parameters():
         """Функция формирует две точки, через которые строится парабола"""
         while True:
@@ -274,7 +284,7 @@ def sigle_parabola_2():
             if (-10 > answer or answer > 10) and float(answer).is_integer():
                 answer = int(answer)
                 break
-        task = f'На рисунке изображён график функции вида \(f(x) = \frac{{x^2}}{{a}} + bx + c\), где числа a, b и c — целые. Найдите значение уравнения при \(f({x_task})\). '
+        task = f'На рисунке изображён график функции вида \(f(x) = \\frac{{x^2}}{{a}} + bx + c\), где числа a, b и c — целые. Найдите значение уравнения при \(f({x_task})\). '
         solution = None
 
         def paint():
@@ -288,7 +298,7 @@ def sigle_parabola_2():
 
 # Задача 5 https://math-ege.sdamgia.ru/problem?id=508903
 # одна прямая вида f(x) = kx + b
-def sigle_line():
+def single_line():
     def input_parameters():
         while True:
             x1, y1, x2, y2 = np.random.randint(-8, 9, size=4)
@@ -318,7 +328,7 @@ def sigle_line():
                     answer = int(answer)
                     break
             else:
-                task = f'На рисунке изображён график функции \(f(x) = kx + b\). Найдите значение \(f({x_y_random})\).'  # абцисса - x
+                task = f'На рисунке изображён график функции \(f(x) = kx + b\). Найдите значение \(f({x_y_random})\).'  # абсцисса - x
                 answer = (-coef[1] * x_y_random - coef[2]) / coef[0]
                 if float(answer).is_integer():
                     answer = int(answer)
@@ -398,11 +408,12 @@ def giperbola_1():
         lim = [[-a - 10, -a + 10], [-10, 10]]
         x_coord, y_coord = [x1, x2], [y1, y2]
         dash = [[[int(-a), int(-a)],[int(-a) - 50, int(-a) + 50]]]
-        return x_coord, y_coord, x_points, y_points, lim, dash, coef
+        color = ['orange', 'orange']
+        return x_coord, y_coord, x_points, y_points, lim, dash, coef, color
 
     def function_result():
       """Функция генерирует задание, выводит правильный ответ и график"""
-      x_coord, y_coord, x_points, y_points, lim, dash, coef = input_parameters()
+      x_coord, y_coord, x_points, y_points, lim, dash, coef, color = input_parameters()
       while True:
         x_task = randint(-60, 60)
         if (x_task + coef[0]) != 0:
@@ -411,15 +422,15 @@ def giperbola_1():
             break
       random_task = randint(0,1)
       if random_task == 1:
-        task = f'На рисунке изображён график функции вида \(f(x) = \frac{{k}}{{x + a}}\). Найдите значение \(f({x_task})\)'
+        task = f'На рисунке изображён график функции вида \(f(x) = \\frac{{k}}{{x + a}}\). Найдите значение \(f({x_task})\)'
         answer = y_task
       else:
-        task = f'На рисунке изображён график функции вида \(f(x) = \frac{{k}}{{x + a}}\). Найдите значение x, при котором \(f(x) = {y_task}\)'
+        task = f'На рисунке изображён график функции вида \(f(x) = \\frac{{k}}{{x + a}}\). Найдите значение x, при котором \(f(x) = {y_task}\)'
         answer = x_task
       solution = None
 
       def paint():
-        function_graph(x_coord, y_coord, x_points, y_points, lim=lim, dash=dash)
+        function_graph(x_coord, y_coord, x_points, y_points, lim=lim, dash=dash, color=color)
       return answer, task, paint, solution
 
     answer, task, paint, solution = function_result()
@@ -450,11 +461,12 @@ def giperbola_2():
         lim = [[-10, 10], [-10 + a, 10 + a]]
         x_coord, y_coord = [x1, x2], [y1, y2]
         dash = [[[int(a) - 50, int(a) + 50], [int(a), int(a)]]]
-        return x_coord, y_coord, x_points, y_points, lim, dash, coef
+        color = ['orange', 'orange']
+        return x_coord, y_coord, x_points, y_points, lim, dash, coef, color
 
     def function_result():
         """Функция генерирует задание, выводит правильный ответ и график"""
-        x_coord, y_coord, x_points, y_points, lim, dash, coef = input_parameters()
+        x_coord, y_coord, x_points, y_points, lim, dash, coef, color = input_parameters()
         while True:
             y_task = randint(-100, 100)
             if y_task - coef[0] != 0:
@@ -463,15 +475,15 @@ def giperbola_2():
                     break
         random_task = randint(0, 1)
         if random_task == 1:
-            task = f'На рисунке изображён график функции вида \(f(x) = \frac{{k}}{{x}} + a\). Найдите значение \(f({x_task})\)'
+            task = f'На рисунке изображён график функции вида \(f(x) = \\frac{{k}}{{x}} + a\). Найдите значение \(f({x_task})\)'
             answer = y_task
         else:
-            task = f'На рисунке изображён график функции вида \(f(x) = \frac{{k}}{{x}} + a\). Найдите значение x, при котором \(f(x) = {y_task}\)'
+            task = f'На рисунке изображён график функции вида \(f(x) = \\frac{{k}}{{x}} + a\). Найдите значение x, при котором \(f(x) = {y_task}\)'
             answer = x_task
         solution = None
 
         def paint():
-            function_graph(x_coord, y_coord, x_points, y_points, lim=lim, dash=dash)
+            function_graph(x_coord, y_coord, x_points, y_points, lim=lim, dash=dash, color=color)
 
         return answer, task, paint, solution
 
@@ -508,15 +520,16 @@ def giperbola_3():
         lim = [[-10 - c, 10 - c], [-10 + a, 10 + a]]
         x_coord, y_coord = [x1, x2], [y1, y2]
         dash = [[[int(a) - 50, int(a) + 50], [int(a), int(a)]], [[int(-c), int(-c)], [int(-c) - 50, int(-c) + 50]]]
-        return x_coord, y_coord, x_points, y_points, lim, dash, coef
+        color = ['orange', 'orange']
+        return x_coord, y_coord, x_points, y_points, lim, dash, coef, color
 
 
     def function_result():
         """Функция генерирует задание, выводит правильный ответ и график"""
-        x_coord, y_coord, x_points, y_points, lim, dash, coef = input_parameters()
+        x_coord, y_coord, x_points, y_points, lim, dash, coef, color = input_parameters()
 
         def paint():
-            function_graph(x_coord, y_coord, x_points, y_points, lim=lim, dash=dash)
+            function_graph(x_coord, y_coord, x_points, y_points, lim=lim, dash=dash, color=color)
 
         random_task = randint(0, 4)
         if random_task == 0:
@@ -556,8 +569,10 @@ def sqrt():
         x_points = []
         y_points = []
         for x_point in range(2, 20):
-            y_points.append(k * (x_point ** 0.5))
-            x_points.append(x_point)
+            y_point = k * (x_point ** 0.5)
+            if float(y_point).is_integer():
+                y_points.append(y_point)
+                x_points.append(x_point)
         if k > 0:
             lim = [[0, 10], [0, 10]]
         else:
@@ -890,8 +905,352 @@ def exponent_3():
     return answer, task, paint, solution
 
 
-answer, task, paint, solution = giperbola_1()
-print(task)
-print(answer)
-print(solution)
-paint()
+# Задача 17 https://math-ege.sdamgia.ru/problem?id=509123
+# Триганометрическая функция f(x) = acosx + b
+def trigonometric_1():
+    def input_parameters():
+        """Функция формирует точки, через которые строится график"""
+        a = choice([0.5, 1.5, 2])
+        b = choice([-1.5, -1, -0.5, 0.5, 1, 1.5])
+        x_coord = np.linspace(-2*np.pi,2*np.pi,600,endpoint=True)
+        y_coord = [a*np.cos(x_coord) + b]
+        x_coord = [x_coord]
+        coef = [a, b]
+        x_points = []
+        y_points = []
+        for x_point in [0, -np.pi / 2, np.pi]:
+            x_points.append(x_point)
+            y_points.append(a * np.cos(x_point) + b)
+        lim = [[-7*np.pi/4, 7*np.pi/4], [-3.5, 3.5]]
+        return x_coord, y_coord, x_points, y_points, lim, coef
+
+    def function_result():
+        """Функция генерирует задание, выводит правильный ответ и график"""
+        x_coord, y_coord, x_points, y_points, lim, coef = input_parameters()
+        random_task = randint(0, 1)
+        if random_task == 1:
+            task = f'На рисунке изображён график функции \(f(x)=acosx + b\). Найдите \(a\)).'
+            answer = coef[0]
+        else:
+            task = f'На рисунке изображён график функции \(f(x)=acosx + b\). Найдите \(b\).'
+            answer = coef[1]
+        solution = None
+
+        def paint():
+            function_graph(x_coord, y_coord, x_points, y_points, lim=lim, trigonometry=True)
+
+        return answer, task, paint, solution
+
+    answer, task, paint, solution = function_result()
+    return answer, task, paint, solution
+
+
+# Задача 18 https://math-ege.sdamgia.ru/problem?id=509287
+# Триганометрическая функция f(x) = asinx + b
+def trigonometric_2():
+    def input_parameters():
+        """Функция формирует точки, через которые строится график"""
+        a = choice([0.5, 1.5, 2])
+        b = choice([-1.5, -1, -0.5, 0.5, 1, 1.5])
+        x_coord = np.linspace(-2*np.pi,2*np.pi,600,endpoint=True)
+        y_coord = [a*np.sin(x_coord) + b]
+        x_coord = [x_coord]
+        coef = [a, b]
+        x_points = []
+        y_points = []
+        for x_point in [0, -np.pi / 2, np.pi]:
+            x_points.append(x_point)
+            y_points.append(a * np.sin(x_point) + b)
+        lim = [[-7*np.pi/(4), 7*np.pi/(4)], [-3.5, 3.5]]
+        return x_coord, y_coord, x_points, y_points, lim, coef
+
+    def function_result():
+        """Функция генерирует задание, выводит правильный ответ и график"""
+        x_coord, y_coord, x_points, y_points, lim, coef = input_parameters()
+        random_task = randint(0, 1)
+        if random_task == 1:
+            task = f'На рисунке изображён график функции \(f(x)=asinx + b\). Найдите \(a\)).'
+            answer = coef[0]
+        else:
+            task = f'На рисунке изображён график функции \(f(x)=asinx + b\). Найдите \(b\).'
+            answer = coef[1]
+        solution = None
+
+        def paint():
+            function_graph(x_coord, y_coord, x_points, y_points, lim=lim, trigonometry=True)
+
+        return answer, task, paint, solution
+
+    answer, task, paint, solution = function_result()
+    return answer, task, paint, solution
+
+
+# Задача 19 https://math-ege.sdamgia.ru/problem?id=509143
+# Триганометрическая функция f(x) = atanx + b
+def trigonometric_3():
+    def input_parameters():
+        """Функция формирует точки, через которые строится график"""
+        a = choice([-2, -1.5, -0.5, 0.5, 1.5, 2])
+        b = choice([-1.5, -1, -0.5, 0.5, 1, 1.5])
+        x1 = np.linspace(-5 * np.pi / 2 + 0.0001, -3 * np.pi / 2 - 0.0001, 200, endpoint=True)
+        x2 = np.linspace(-3 * np.pi / 2 + 0.0001, -np.pi / 2 - 0.0001, 200, endpoint=True)
+        x3 = np.linspace(-np.pi / 2 + 0.0001, np.pi / 2 - 0.0001, 200, endpoint=True)
+        x4 = np.linspace(np.pi / 2 + 0.0001, 3 * np.pi / 2 - 0.0001, 200, endpoint=True)
+        x5 = np.linspace(3 * np.pi / 2 + 0.0001, 5 * np.pi / 2 - 0.0001, 200, endpoint=True)
+        y1, y2, y3, y4, y5 = a * np.tan(x1) + b, a * np.tan(x2) + b, a * np.tan(x3) + b, a * np.tan(x4) + b,  a * np.tan(x5) + b
+        x1, x2, x3, x4, x5, y1, y2, y3, y4, y5 = [list(val) for val in [x1, x2, x3, x4, x5, y1, y2, y3, y4, y5]]
+        x_coord, y_coord = [x1, x2, x3, x4, x5], [y1, y2, y3, y4, y5]
+        coef = [a, b]
+        x_points = []
+        y_points = []
+        for x_point in [-np.pi / 4, np.pi / 4]:
+            x_points.append(x_point)
+            y_points.append(a * np.tan(x_point) + b)
+        lim = [[-7*np.pi/4, 7*np.pi/4], [-3.5, 3.5]]
+        dash = []
+        y_dash = [-50, 50]
+        for x_dash in [[-3 * np.pi / 2, -3 * np.pi / 2], [-np.pi / 2, -np.pi / 2], [np.pi / 2, np.pi / 2],
+                       [3 * np.pi / 2, 3 * np.pi / 2]]:
+            dash.append([x_dash, y_dash])
+        color = ['orange', 'orange', 'orange', 'orange', 'orange']
+        return x_coord, y_coord, x_points, y_points, lim, dash, coef, color
+
+    def function_result():
+        """Функция генерирует задание, выводит правильный ответ и график"""
+        x_coord, y_coord, x_points, y_points, lim, dash, coef, color = input_parameters()
+        random_task = randint(0, 1)
+        if random_task == 1:
+            task = f'На рисунке изображён график функции \(f(x)=atgx + b\). Найдите \(a\)).'
+            answer = coef[0]
+        else:
+            task = f'На рисунке изображён график функции \(f(x)=atgx + b\). Найдите \(b\).'
+            answer = coef[1]
+        solution = None
+
+        def paint():
+            function_graph(x_coord, y_coord, x_points, y_points, lim=lim, dash=dash, trigonometry=True, color=color)
+        return answer, task, paint, solution
+
+    answer, task, paint, solution = function_result()
+    return answer, task, paint, solution
+
+
+
+# Задача 20 https://math-ege.sdamgia.ru/problem?id=509149
+# пересечение параболы и прямой
+def line_and_parab():
+    def input_parameters():
+        """Функция формирует точки, через которые строится график"""
+        while True:
+            a, b, c, k, d = np.random.randint(-6, 7, size=5)
+            if a != 0 and b != 0 and c != 0 and k != 0 and d != 0:
+                eq1 = (a * x ** 2 + b * x + c - y)
+                eq2 = (k * x + d - y)
+                solution = solve([eq1, eq2], x, y, dict=True)
+                if len(solution) == 2:
+                    x_int_1, y_int_1 = solution[0].get(x), solution[0].get(y)
+                    x_int_2, y_int_2 = solution[1].get(x), solution[1].get(y)
+                    if (x_int_1 % 0.025 == 0 or x_int_1 % 0.03125 == 0) and (
+                            x_int_2 % 0.025 == 0 or x_int_2 % 0.03125 == 0) and (
+                            y_int_1 % 0.025 == 0 or y_int_1 % 0.03125 == 0) and (
+                            y_int_2 % 0.025 == 0 or y_int_2 % 0.03125 == 0):
+                        if ((y_int_2 > 20 or y_int_2 < -20) and (-10 < y_int_1 < 10)) or (
+                                (y_int_1 > 20 or y_int_1 < -20) and (-10 < y_int_2 < 10)):
+                            break
+        x_int_1, y_int_1, x_int_2, y_int_2 = [(int(param) if (float(param).is_integer()) else float(param)) for param in
+                                              (x_int_1, y_int_1, x_int_2, y_int_2)]
+        intersection = [[x_int_1, y_int_1], [x_int_2, y_int_2]]
+        x_coords = np.linspace(-15, 15, 250)
+        y_coord = [list(a * x_coords ** 2 + b * x_coords + c), list(k * x_coords + d)]
+        x_coord = [list(x_coords), list(x_coords)]
+        coef = [a, b, c, k, d]
+        lim = [[-9, 9], [-9, 9]]
+        x_points = []
+        y_points = []
+        for x_point in range(-10, 10, 2):
+            y_point_1 = a * x_point ** 2 + b * x_point + c
+            if float(y_point_1).is_integer():
+                x_points.append(x_point)
+                y_points.append(y_point_1)
+            y_point_2 = k * x_point + d
+            if float(y_point_2).is_integer():
+                x_points.append(x_point)
+                y_points.append(y_point_2)
+        return x_coord, y_coord, x_points, y_points, lim, coef, intersection
+
+
+    def function_result():
+        """Функция генерирует задание, выводит правильный ответ и график"""
+        x_coord, y_coord, x_points, y_points, lim, coef, intersection = input_parameters()
+        if intersection[1][1] > 10 or intersection[1][1] < -10:
+            point_B = [intersection[1][0], intersection[1][1]]
+            point_A = [intersection[0][0], intersection[0][1]]
+        else:
+            point_A = [intersection[1][0], intersection[1][1]]
+            point_B = [intersection[0][0], intersection[0][1]]
+        task_random = randint(0, 1)
+        if task_random == 1:
+            answer = point_B[1]
+            task = f'На рисунке изображены графики функций \(f(x) = kx + d\) и \(g(x) = ax^2 + bx + c\). Найдите ординату точки пересечения графиков.'  # ордината - y
+        else:
+            answer = point_B[0]
+            task = f'На рисунке изображены графики функций \(f(x) = kx + d\) и \(g(x) = ax^2 + bx + c\). Найдите абсциссу точки пересечения графиков.'  # абсцисса  - x
+
+        solution = None
+
+        def paint():
+            function_graph(x_coord, y_coord, x_points, y_points, point_A, lim)
+
+        return answer, task, paint, solution
+
+    answer, task, paint, solution = function_result()
+    return answer, task, paint, solution
+
+
+# Задача 21 https://math-ege.sdamgia.ru/problem?id=509167
+# пересечение гиперболы и прямой
+def line_and_giperbola():
+    def input_parameters():
+        """Функция формирует точки, через которые строится график"""
+        while True:
+            a, b, k = np.random.randint(-9, 10, size=3)
+            if a != 0 and b != 0 and k != 0:
+                eq1 = (a * x + b - y)
+                eq2 = (k / x - y)
+                solution = solve([eq1, eq2], x, y, dict=True)
+                if len(solution) == 2:
+                    x_int_1, y_int_1 = solution[0].get(x), solution[0].get(y)
+                    x_int_2, y_int_2 = solution[1].get(x), solution[1].get(y)
+                    if (x_int_1 % 0.025 == 0 or x_int_1 % 0.03125 == 0) and (
+                            x_int_2 % 0.025 == 0 or x_int_2 % 0.03125 == 0) and (
+                            y_int_1 % 0.025 == 0 or y_int_1 % 0.03125 == 0) and (
+                            y_int_2 % 0.025 == 0 or y_int_2 % 0.03125 == 0):
+                        if (x_int_1 < 0 and x_int_2 > 0) or (x_int_2 < 0 and x_int_1 > 0):
+                            break
+        x_int_1, y_int_1, x_int_2, y_int_2 = [(int(param) if (float(param).is_integer()) else float(param)) for param in
+                                              (x_int_1, y_int_1, x_int_2, y_int_2)]
+        x_coord_1 = np.linspace(-15, 15, 250)
+        x_coord_2 = np.linspace(-15, -0000.1, 250)
+        x_coord_3 = np.linspace(0000.1, 15, 250)
+        y_coord = [list(a * x_coord_1 + b), list(k / x_coord_2), list(k / x_coord_3)]
+        x_coord = [list(x_) for x_ in [x_coord_1, x_coord_2, x_coord_3]]
+        coef = [a, b, k]
+        if y_int_2 > 10 or y_int_2 < -10:
+            point_B = [x_int_2, y_int_2]
+            point_A = [x_int_1, y_int_1]
+        else:
+            point_A = [x_int_2, y_int_2]
+            point_B = [x_int_1, y_int_1]
+        if point_A[1] > 0:
+            lim = [[-3, 11], [-3, 11]]
+        else:
+            lim = [[-3, 11], [-11, 3]]
+        x_points = []
+        y_points = []
+        for x_point in range(-10, 10, 1):
+            if x_point == 0:
+                continue
+            y_point_1 = a * x_point + b
+            if float(y_point_1).is_integer():
+                x_points.append(x_point)
+                y_points.append(y_point_1)
+            y_point_2 = k / x_point
+            if float(y_point_2).is_integer():
+                x_points.append(x_point)
+                y_points.append(y_point_2)
+        color = ['blue', 'orange', 'orange']
+        return x_coord, y_coord, x_points, y_points, lim, coef, point_A, point_B, color
+
+    def function_result():
+        """Функция генерирует задание, выводит правильный ответ и график"""
+        x_coord, y_coord, x_points, y_points, lim, coef, point_A, point_B, color = input_parameters()
+        task_random = randint(0, 1)
+        if task_random == 1:
+            answer = point_B[1]
+            task = f'На рисунке изображены графики функций \(f(x) = ax + b\) и \(g(x) = \\frac{{k}}{{x}}\). Найдите ординату точки пересечения графиков.'  # ордината - y
+        else:
+            answer = point_B[0]
+            task = f'На рисунке изображены графики функций \(f(x) = ax + b\) и \(g(x) = \\frac{{k}}{{x}}\). Найдите абсциссу точки пересечения графиков.'  # абсцисса - x
+        solution = None
+
+        def paint():
+            function_graph(x_coord, y_coord, x_points, y_points, point_A, lim, color=color)
+
+        return answer, task, paint, solution
+
+    answer, task, paint, solution = function_result()
+    return answer, task, paint, solution
+
+
+# Задача 22 https://math-ege.sdamgia.ru/problem?id=509279
+# пересечение коренной функции и прямой
+def line_and_sqrt():
+    def input_parameters():
+        """Функция формирует точки, через которые строится график"""
+        while True:
+            a, b, k = np.random.randint(-30, 30, size=3)
+            if a != 0 and b != 0 and k != 0:
+                eq1 = (k * x + b - y)
+                eq2 = (a * x ** 0.5 - y)
+                solution = solve([eq1, eq2], x, y, dict=True)
+                if len(solution) == 1:
+                    x_int_1, y_int_1 = solution[0].get(x), solution[0].get(y)
+                    if (x_int_1 % 0.00025 == 0 or x_int_1 % 0.0003125 == 0) and (
+                            y_int_1 % 0.00025 == 0 or y_int_1 % 0.0003125 == 0) and (
+                            (x_int_1 >= 10) or ((x_int_1 < 10) and (y_int_1 >= 10))):
+                        break
+        x_int_1, y_int_1 = [(int(param) if (float(param).is_integer()) else float(param)) for param in
+                            (x_int_1, y_int_1)]
+        x_coord_1 = np.linspace(-15, 15, 250)
+        x_coord_2 = np.linspace(0, 15, 250)
+        x_coord = [list(x_coord_1), list(x_coord_2)]
+        y_first, y_second = list(k * x_coord_1 + b), list(a * (x_coord_2 ** 0.5))
+        y_coord = [y_first, y_second]
+        coef = [a, b, k]
+        point_A = [x_int_1, y_int_1]
+        if point_A[1] > 0:
+            lim = [[-5, 10], [-5, 10]]
+        else:
+            lim = [[-5, 10], [-10, 5]]
+        x_points = []
+        y_points = []
+        for x_point in range(-10, 10, 1):
+            y_point_1 = k * x_point + b
+            if float(y_point_1).is_integer():
+                x_points.append(x_point)
+                y_points.append(y_point_1)
+            if x_point > 0:
+                y_point_2 = a * (x_point ** 0.5)
+                if float(y_point_2).is_integer():
+                    x_points.append(x_point)
+                    y_points.append(y_point_2)
+        return x_coord, y_coord, x_points, y_points, lim, coef, point_A
+
+    def function_result():
+        """Функция генерирует задание, выводит правильный ответ и график"""
+        x_coord, y_coord, x_points, y_points, lim, coef, point_A = input_parameters()
+        task_random = randint(0, 1)
+        if task_random == 1:
+            answer = point_A[1]
+            task = f'На рисунке изображены графики функций \(f(x) = a\sqrt{{x}}\) и \(g(x) = kx + b\), которые пересекаются в точке \(A\). Найдите ординату точки \(A\).'  # ордината - y
+        else:
+            answer = point_A[0]
+            task = f'На рисунке изображены графики функций ](f(x) = a\sqrt{{x}}\) и \(g(x) = kx + b\), которые пересекаются в точке \(A\). Найдите абсциссу точки \(A\).'   # абсцисса - x
+
+        solution = None
+
+        def paint():
+            function_graph(x_coord, y_coord, x_points, y_points, point_A, lim)
+
+        return answer, task, paint, solution
+
+    answer, task, paint, solution = function_result()
+    return answer, task, paint, solution
+
+
+if __name__ == '__main__':
+    answer, task, paint, solution = trigonometric_3()
+    print(task)
+    print(answer)
+    print(solution)
+    paint()
