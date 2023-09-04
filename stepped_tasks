@@ -19,9 +19,6 @@ def task_14784():
           break
     return task, answer
 
-task, answer = task_14784()
-print(task)
-print(answer)
 
 def task_14785():
     '''Задача №14785 с портала https://kuzovkin.info/one_exercise_1/14785'''
@@ -36,7 +33,6 @@ def task_14785():
          break
     return task, answer
 
-print(task_14785())
 
 def task_14809():
     '''Задача №14809 с портала https://kuzovkin.info/one_exercise_1/14809 и аналогичные к ней с 14810 по 14813'''
@@ -49,9 +45,6 @@ def task_14809():
          break
     return task, answer
 
-task, answer = task_14809()
-print(task)
-print(answer)
 
 def task_14814():
     '''Задача №14814 с портала https://kuzovkin.info/one_exercise_1/14814'''
@@ -66,9 +59,6 @@ def task_14814():
          break
     return task, answer
 
-task, answer = task_14814()
-print(task)
-print(answer)
 
 def task_14815():
     '''Задача №14815 с портала https://kuzovkin.info/one_exercise_1/14815'''
@@ -87,9 +77,6 @@ def task_14815():
           break
     return task, round(answer, 5)
 
-task, answer = task_14815()
-print(task)
-print(answer)
 
 def task_14816():
     '''Задача №14816 с портала https://kuzovkin.info/one_exercise_1/14816'''
@@ -110,9 +97,6 @@ def task_14816():
             break
     return task, round(answer, 5)
 
-task, answer = task_14816()
-print(task)
-print(answer)
 
 def task_14817():
     '''Задача №14817 с портала https://kuzovkin.info/one_exercise_1/14817 и аналогичная 14818'''
@@ -135,9 +119,6 @@ def task_14817():
           break
     return task, round(answer, 5)
 
-task, answer = task_14817()
-print(task)
-print(answer)
 
 def task_14819():
     '''Задача №14819 с портала https://kuzovkin.info/one_exercise_1/14819 и аналогичные 14820, 14821, 14822'''
@@ -150,9 +131,6 @@ def task_14819():
         break
     return task, answer
 
-task, answer = task_14819()
-print(task)
-print(answer)
 
 def task_14836():
     '''Задача №14836 с портала https://kuzovkin.info/one_exercise_1/14836 и аналогичные 14837, 14838'''
@@ -165,9 +143,6 @@ def task_14836():
         break
     return task, answer
 
-task, answer = task_14836()
-print(task)
-print(answer)
 
 def task_14839():
     '''Задача №14839 с портала https://kuzovkin.info/one_exercise_1/14839 и аналогичная 14840'''
@@ -180,9 +155,6 @@ def task_14839():
         break
     return task, answer
 
-task, answer = task_14839()
-print(task)
-print(answer)
 
 def task_14841():
     '''Задача №14841 с портала https://kuzovkin.info/one_exercise_1/14841'''
@@ -197,9 +169,6 @@ def task_14841():
             break
     return task, answer
 
-task, answer = task_14841()
-print(task)
-print(answer)
 
 def task_14842():
     '''Задача №14842 с портала https://kuzovkin.info/one_exercise_1/14842'''
@@ -212,9 +181,6 @@ def task_14842():
         break
     return task, answer
 
-task, answer = task_14842()
-print(task)
-print(answer)
 
 def task_15021():
     '''Задача №15021 с портала https://kuzovkin.info/one_exercise_1/15021 и аналогичные 15022, 15023'''
@@ -228,9 +194,6 @@ def task_15021():
           break
     return task, answer
 
-task, answer = task_15021()
-print(task)
-print(answer)
 
 def task_15024():
     '''Задача №15021 с портала https://kuzovkin.info/one_exercise_1/15024'''
@@ -244,9 +207,6 @@ def task_15024():
           break
     return task, round(answer)
 
-task, answer = task_15024()
-print(task)
-print(answer)
 
 def task_15025():
     '''Задача №15025 с портала https://kuzovkin.info/one_exercise_1/15025 и аналогичные 15027'''
@@ -260,9 +220,6 @@ def task_15025():
           break
     return task, round(answer, 5)
 
-task, answer = task_15025()
-print(task)
-print(answer)
 
 def task_15026():
     '''Задача №15026 с портала https://kuzovkin.info/one_exercise_1/15026 и аналогичные 15028'''
@@ -278,9 +235,6 @@ def task_15026():
             break
     return task, float(answer)
 
-task, answer = task_15026()
-print(task)
-print(answer)
 
 def task_15046():
     '''Задача №15046 с портала https://kuzovkin.info/one_exercise_1/15046 и аналогичные 15047, 15048, 15049'''
@@ -294,7 +248,3 @@ def task_15046():
       if answer < 1500:
         break
     return task, answer
-
-task, answer = task_15046()
-print(task)
-print(answer)
