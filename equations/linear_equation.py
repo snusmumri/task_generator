@@ -1,544 +1,185 @@
-import random
 import fractions
-import numpy as np
+import random
 from sympy import *
+import re
 
-def task_16515():
-  '''задача 16515 с портала https://kuzovkin.info/one_exercise_1/16515 Решите уравнение: 10⋅x2−(2⋅x−3)⋅(5⋅x−1)=31'''
-  while True:
-    x_int_1, x_int_2, int_1, int_2  = np.random.randint(1, 30, size=4)
-    eq_ans = random.randint(1, 300)
-    x = symbols('x')
-    eq = Eq(x_int_1 * x_int_2 * x**2 - (x_int_1 * x - int_1) * (x_int_2 * x - int_2), eq_ans)
-    task = r'Решите уравнение: \(' +latex(eq)+'\)'
-    answer = solve(eq, x)
-    if len(answer) > 0:
-      if abs(int(answer[0]) - answer[0]) < 0.000001:
-        break
-  return task, round(answer[0])
+# Функция для вывода ответа
+def find_answer(splitted_eq):
+  x = symbols('x')
+  eq = Eq(sympify(splitted_eq[0]), sympify(splitted_eq[1]))
+  answer = solve(eq, x)
+  if len(answer) > 0 and im(solve(eq, x)[0])==0:
+    if abs(int(answer[0]) - answer[0]) < 0.000001:
+      return round(answer[0])
+  return False
 
-def task_16616():
-  '''задача 16616 (и аналогичные) с портала https://kuzovkin.info/one_exercise_1/16616 Решите уравнение: (x−2)⋅(x−3)=(x+2)⋅(x−5)'''
-  while True:
-    x_int_1, x_int_2, = [random.randrange(1, 10) for i in range(1, 3)]
-    int_1, int_2, int_3, int_4 = [random.randrange(-20, 20) for i in range(1, 5)]
-    while int_1 * int_2 * int_3 * int_4 == 0:
-      int_1, int_2, int_3, int_4 = [random.randrange(-20, 20) for i in range(1, 5)]
-    x = symbols('x')
-    eq = Eq((x_int_1*x + int_1) * (x_int_2 * x + int_2), (x_int_1 * x_int_2 * x + int_3) * (x + int_4))
-    task = r'Решите уравнение: \(' +latex(eq)+'\)'
-    answer = solve(eq, x)
-    if len(answer) > 0:
-      if abs(int(answer[0]) - answer[0]) < 0.000001:
-        break
-  return task, round(answer[0])
+# Функция создания обыкновенной дроби
+def create_fraction():
+  n = random.randint(1, 20)
+  m = random.randint(n+1, n+30)
+  return fractions.Fraction(n, m)
 
-def task_16641():
-  '''задача 16641, 16689, 16690, 16691 с портала https://kuzovkin.info/one_exercise_1/16641 Решите уравнение: (2⋅x−3)/3+(7⋅x−13)/6+(5−2⋅x)/2=x−1'''
+# Новый генератор значений (немного увеличила его за счет добавления блока генерации дробей)
+def generate_values_and_recieve_answer(equation_to_solve):
+  variables = re.findall('\{c\d+\}', equation_to_solve) # Найдите все вхождения c1, c2, c3, c4 в выражении
+  fractions_ = re.findall('\{fr\d+\}', equation_to_solve) # Найдите все вхождения обыкновенных дробей, если они есть
+  deci = re.findall('\{deci\d+\}', equation_to_solve) # Найдите все вхождения десятичных дробей, если они есть
   while True:
-    del_1, del_2 = [random.randrange(1, 30) for i in range(1, 3)]
-    x_int_1, x_int_2, x_int_3, int_1, int_2, int_3, int_4 = [random.randrange(-20, 20) for i in range(1, 8)]
-    while int_1 * int_2 * int_3 * int_4 * x_int_1 * x_int_2 * x_int_3 == 0:
-      x_int_1, x_int_2, x_int_3, int_1, int_2, int_3, int_4 = [random.randrange(-20, 20) for i in range(1, 8)]
-    x = symbols('x')
-    eq_show = Eq(UnevaluatedExpr(x_int_1 * x + int_1)*Pow(del_1, -1) + UnevaluatedExpr(x_int_2 * x + int_2)*Pow(del_1 * del_2, -1) + UnevaluatedExpr(int_3 + x_int_3 * x) * Pow(del_2, -1), x + int_4)
-    eq = Eq(((x_int_1 * x + int_1)/del_1) + ((x_int_2 * x + int_2)/(del_1 * del_2)) + ((int_3 + x_int_3 * x)/del_2), x + int_4)
-    task = r'Решите уравнение: \(' +latex(eq_show)+'\)'
-    answer = solve(eq, x)
-    if len(answer) > 0:
-      if abs(int(answer[0]) - answer[0]) < 0.000001:
+    equation_to_solve_after_parse = equation_to_solve
+    for var in variables:
+      rand_num = random.randint(-20, 20)
+      while rand_num == 0:
+        rand_num = random.randint(-20, 20)
+      equation_to_solve_after_parse = re.sub(var, str(rand_num), equation_to_solve_after_parse)
+    if len(fractions_) != 0:
+      for fract in fractions_:
+        gen_fr = create_fraction()
+        equation_to_solve_after_parse = re.sub(fract, str(gen_fr), equation_to_solve_after_parse)
+    if len(deci) != 0:
+      for de in deci:
+        de_gen = random.randrange(-1000, 1000, 25) / 100
+        equation_to_solve_after_parse = re.sub(de, str(de_gen), equation_to_solve_after_parse)
+    splitted_eq = equation_to_solve_after_parse.split('=')
+    answer = find_answer(splitted_eq)
+    if answer:
         break
-  return task, round(answer[0])
+  return equation_to_solve_after_parse, answer
 
-def task_16651():
-  '''задача 16651 с портала https://kuzovkin.info/one_exercise_1/16651 Решите уравнение: (2⋅x+1)/5=1'''
-  while True:
-    del_1, x_int = [random.randrange(1, 30) for i in range(1, 3)]
-    int_1, int_2 = [random.randrange(-20, 20) for i in range(1, 3)]
-    while int_1 * int_2 == 0:
-      int_1, int_2 = [random.randrange(-20, 20) for i in range(1, 3)]
-    x = symbols('x')
-    eq_show = Eq(UnevaluatedExpr(x_int * x + int_1)*Pow(del_1, -1), int_2)
-    eq = Eq((x_int * x + int_1)/del_1, int_2)
-    task = r'Решите уравнение: \(' +latex(eq_show)+'\)'
-    answer = solve(eq, x)
-    if len(answer) > 0:
-      if abs(int(answer[0]) - answer[0]) < 0.000001:
-        break
-  return task, round(answer[0])
+# Парсер уравнений
+def parse_and_generate_task(equation_to_solve):
+  equation_to_solve = equation_to_solve.replace('+-', '-').replace('--', '+')
+  spl_eq = equation_to_solve.split(' = ')
+  splitted_eq = []
+  for eq_part in spl_eq:
+    splitted_eq.append(eq_part.split(' '))
+  # print(splitted_eq) # для проверки вывода
+  k = 0
+  all_parts_list = []
+  for spl_part in splitted_eq:
+    for part in spl_part:
+      if len(re.findall(r'^[-]*\d+\*\([-\d*]+[+-]+[-()\d]+', part))!=0: # Проверка и упрощение для выражений типа '16*(2*4*14-(4)**2*(1*2-5*-11)/(5*1))+(14)**2-((4)**2*2*-11)/(5*1)'
+        part = str(sympify(part))
+      elif (len(re.findall(r'^[-]*[()\/\d*x.]+', part))!=0 and len(re.findall(r'^\-*[\d]*[x]*[*]*\([-\dx+*]*\)\/[-]*[\d]+$', part))==0
+            and len(re.findall(r'\([-]*[\d]+\/[\d]+\)[*]+', part))==0): # что угодно: (2)**2*3*x*(3*x+18), (12)**2/-2*(-2*x**2+3), -1*x, -1*2*x**2, (2)**2*3*x*(3*x+18)*(3*x+18)
+        part_sym_spl = part.split('*(', 1)
+        if len(re.findall(r'^[-]*\d+[.]\d+$', part_sym_spl[0]))!=0:
+          if len(part_sym_spl)==2:  part = part_sym_spl[0]+'*('+part_sym_spl[1]
+          else: part = str(part)
+        elif len(part_sym_spl) == 2 and '(' in part_sym_spl[0] and ('+' or '-') in part_sym_spl[0]:
+          part = '('+str(sympify(part_sym_spl[0]))+')'+'*('+part_sym_spl[1]
+        elif len(part_sym_spl) == 2 and ')*(' in part_sym_spl[1]:
+          part = str(sympify(part_sym_spl[0]))+'*('+part_sym_spl[1]
+        elif len(part_sym_spl) == 2 and '(' not in part_sym_spl[0]:
+          part = str(sympify(part_sym_spl[0]))+'*('+part_sym_spl[1]
+        elif len(part_sym_spl) == 1 and '(' in part and len(re.findall(r'\*\*\d$', part))==0:
+          part = '('+str(sympify(part))+')'
+        else: part = str(sympify(part))
 
-def task_16653():
-  '''задача 16653 с портала https://kuzovkin.info/one_exercise_1/16653 Решите уравнение: (11−3⋅x)/4=1/2'''
-  while True:
-    n = random.randint(1, 20)
-    m = random.randint(n+1, n+30)
-    fract = fractions.Fraction(n, m)
-    del_1, int_1 = [random.randrange(1, 30) for i in range(1, 3)]
-    x_int = random.randrange(-20, 20)
-    while x_int == 0:
-      x_int = random.randrange(-20, 20)
-    x = symbols('x')
-    eq_show = Eq(UnevaluatedExpr(int_1 + x_int * x)*Pow(del_1, -1), n * Pow(m, -1))
-    eq = Eq((int_1 + x_int * x)/del_1, fract)
-    task = r'Решите уравнение: \(' +latex(eq_show)+'\)'
-    answer = solve(eq, x)
-    if len(answer) > 0:
-      if abs(int(answer[0]) - answer[0]) < 0.000001:
-        break
-  return task, round(answer[0])
+      part = part.replace(' ', '').replace('*x', ' x').replace('**2', '^{2}').replace('**3', '^{3}').replace('**5', '^{5}')
 
-def task_16654():
-  '''задача 16654 с портала https://kuzovkin.info/one_exercise_1/16654 Решите уравнение: (3⋅x+7)/5=(6⋅x+4)/5'''
-  while True:
-    x_int_1, x_int_2 = [random.randrange(1, 30) for i in range(1, 3)]
-    int_1, int_2 = [random.randrange(-20, 20) for i in range(1, 3)]
-    while int_1 * int_2 == 0:
-      int_1, int_2 = [random.randrange(-20, 20) for i in range(1, 3)]
-    del_1 = random.randrange(2, 30)
-    x = symbols('x')
-    eq_show = Eq(UnevaluatedExpr(x_int_1 * x + int_1)*Pow(del_1, -1), UnevaluatedExpr(x_int_2 * x + int_2)*Pow(del_1, -1))
-    eq = Eq((x_int_1 * x + int_1)/del_1, (x_int_2 * x + int_2)/del_1)
-    task = r'Решите уравнение: \(' +latex(eq_show)+'\)'
-    answer = solve(eq, x)
-    if len(answer) > 0:
-      if abs(int(answer[0]) - answer[0]) < 0.000001:
-        break
-  return task, round(answer[0])
+      if len(re.findall(r'\([-]*[\d]+\/[\d]+\)', part)) != 0: # для обыкновенных дробей (3/5), при генерации обязательно задаются скобки
+        splitted_part = part.strip('()').split(' ')
+        list_ = []
+        for el in splitted_part:
+          if '/' in el:
+            sp_el = el.split('/')
+            list_.append('\\frac{'+sp_el[0].strip('()')+'}{'+sp_el[1].strip('()')+'}')
+          else: list_.append(el)
+        expr = ''
+        for el in list_:
+          expr += el
+        if '(('  in part:
+          expr = '('+expr+')'
+        all_parts_list.append(expr)
+      elif len(re.findall(r'^\-*[\d]*[x ]*[*]*\([-\d x+^{}]*\)\/[-]*[\d]+$', part)) != 0: # ловим (-5 x-6)/8, -5 x*(-5 x-6)/8, -5*(-5 x-6)/8, -5*(-6-5 x)/8
+        splitted_part = part.split('/')
+        for el in splitted_part:
+          splitted_part[splitted_part.index(el)] = el.split('*')
+        spl_eq_part = []
+        for el in splitted_part:
+          if type(el) == list:
+            for i in range(0, len(el)):
+              spl_eq_part.append(el[i])
+          else: spl_eq_part.append(el)
+        if spl_eq_part[0] == '-1 x': spl_eq_part[0] = '-x'
+        elif spl_eq_part[0] == '1 x': spl_eq_part[0] = 'x'
+        if len(spl_eq_part) == 3:
+          if '-' in spl_eq_part[0] and '-' in spl_eq_part[2]: # для такой структуры: ['-7', '(1*x+101)', '-14']
+            spl_eq_part[0] = spl_eq_part[0].strip('-')
+            spl_eq_part[2] = spl_eq_part[2].strip('-')
+          elif '-' not in spl_eq_part[0] and '-' in spl_eq_part[2]: # для такой структуры: ['7', '(1*x+101)', '-14']
+            spl_eq_part[0] = '-' + spl_eq_part[0]
+            spl_eq_part[2] = spl_eq_part[2].strip('-')
+        elif len(spl_eq_part) == 2:
+          if '-' in spl_eq_part[1]:
+            spl_eq_part[0] = '-' + spl_eq_part[0]
+            spl_eq_part[1] = spl_eq_part[1].strip('-')
+        for el in spl_eq_part:
+          if el == '1':
+            spl_eq_part.remove(el)
+          elif el == '-1':
+            spl_eq_part[spl_eq_part.index(el)+1] = '-'+spl_eq_part[spl_eq_part.index(el)+1]
+            spl_eq_part.remove(el)
+        if len(spl_eq_part) == 3:
+          all_parts_list.append(spl_eq_part[0]+'\\cdot'+'\\frac{'+spl_eq_part[1].strip('()')+'}{'+spl_eq_part[2]+'}')
+        elif len(spl_eq_part) == 2 and '(' in spl_eq_part[1]:
+          all_parts_list.append(spl_eq_part[0]+'\\cdot'+spl_eq_part[1])
+        elif len(spl_eq_part) == 2 and '-(' in spl_eq_part[0]:
+          all_parts_list.append('-\\frac{'+spl_eq_part[0].strip('-').strip('()')+'}{'+spl_eq_part[1]+'}')
+        elif len(spl_eq_part) == 2 and '(' in spl_eq_part[0]:
+          all_parts_list.append('\\frac{'+spl_eq_part[0].strip('()')+'}{'+spl_eq_part[1]+'}')
+        else: all_parts_list.append(*spl_eq_part)
 
-def task_16655():
-  '''задача 16655, 16657 с портала https://kuzovkin.info/one_exercise_1/16655 Решите уравнение: 3⋅x−(2⋅x−1)/5=(3⋅x−19)/5'''
-  while True:
-    x_int_1, x_int_2, x_int_3 = [random.randrange(1, 30) for i in range(1, 4)]
-    int_1, int_2 = [random.randrange(-20, 20) for i in range(1, 3)]
-    while int_1 * int_2 == 0:
-      int_1, int_2 = [random.randrange(-20, 20) for i in range(1, 3)]
-    del_1 = random.randrange(2, 30)
-    x = symbols('x')
-    eq_show = Eq(x_int_1 * x - UnevaluatedExpr(x_int_2 * x + int_1)*Pow(del_1, -1), UnevaluatedExpr(x_int_3 * x + int_2)*Pow(del_1, -1))
-    eq = Eq(x_int_1 * x - (x_int_2 * x + int_1)/del_1, (x_int_3 * x + int_2)/del_1)
-    task = r'Решите уравнение: \(' +latex(eq_show)+'\)'
-    answer = solve(eq, x)
-    if len(answer) > 0:
-      if abs(int(answer[0]) - answer[0]) < 0.000001:
-        break
-  return task, round(answer[0])
+      # пошли куски для вывода различных вариантов регулярок
+      elif len(re.findall(r'^[-]*\d*[ x]*\/\d*(\*\([-\d x+^{}]*\))+$', part)) != 0:  # для таких структур -x/11*(11 x-19), 110 x/11*(11 x-19), 110 x/11*(11 x^{2}-19), 110 x/11*(11 x-19)*(11 x-19), 7/2*(14 x-15)*(1 x-5)
+        splitted_part = part.split('*')
+        if len(splitted_part) == 3:
+          if len(re.findall(r'^\-', splitted_part[0])) != 0:
+            all_parts_list.append('-\\frac{'+splitted_part[0].split('/')[0].strip('-')+'}{'+splitted_part[0].split('/')[1]+'}\\cdot'+splitted_part[1]+'\\cdot'+splitted_part[2])
+          else: all_parts_list.append('\\frac{'+splitted_part[0].split('/')[0]+'}{'+splitted_part[0].split('/')[1]+'}\\cdot'+splitted_part[1]+'\\cdot'+splitted_part[2])
+        elif len(splitted_part) == 2:
+          if len(re.findall(r'^\-', splitted_part[0])) != 0:
+            all_parts_list.append('-\\frac{'+splitted_part[0].split('/')[0].strip('-')+'}{'+splitted_part[0].split('/')[1]+'}\\cdot'+splitted_part[1])
+          else: all_parts_list.append('\\frac{'+splitted_part[0].split('/')[0]+'}{'+splitted_part[0].split('/')[1]+'}\\cdot'+splitted_part[1])
+      elif len(re.findall(r'^[-\d. x]*([*]*\([-\d x+^{}()]*\))+$', part)) != 0: # для таких структур -5 x*(x-13), -2*(x-11), (2 x^{2}-9)*(2 x+3), (x^{2}+17), (2 x-2)*(x^{2}-2 x+17), -x*(2 x^{2}-9)*(2 x+3), -15 x*(-15+(9 x+8))
+        splitted_part = part.split('*')
+        if len(splitted_part) == 3:
+          all_parts_list.append(splitted_part[0]+'\\cdot'+splitted_part[1]+'\\cdot'+splitted_part[2])
+        elif len(splitted_part) == 2:
+          all_parts_list.append(splitted_part[0]+'\\cdot'+splitted_part[1])
+        else: all_parts_list.append(str(part))
 
-def task_16656():
-  '''задача 16656, 16658 с портала https://kuzovkin.info/one_exercise_1/16656 Решите уравнение: (8⋅x−3)/7−(3⋅x+1)/10=2'''
-  while True:
-    x_int_1, x_int_2, del_1, del_2 = [random.randrange(1, 30) for i in range(1, 5)]
-    int_1, int_2, int_3 = [random.randrange(-20, 20) for i in range(1, 4)]
-    while int_1 * int_2 == 0:
-      int_1, int_2 = [random.randrange(-20, 20) for i in range(1, 3)]
-    x = symbols('x')
-    eq_show = Eq(UnevaluatedExpr(x_int_1 * x + int_1)*Pow(del_1, -1) - UnevaluatedExpr(x_int_2 * x + int_2)*Pow(del_2, -1), int_3)
-    eq = Eq(((x_int_1 * x + int_1)/del_1) - ((x_int_2 * x + int_2)/del_2), int_3)
-    task = r'Решите уравнение: \(' +latex(eq_show)+'\)'
-    answer = solve(eq, x)
-    if len(answer) > 0:
-      if abs(int(answer[0]) - answer[0]) < 0.000001:
-        break
-  return task, round(answer[0])
+      # # elif.. а тут пойдет ветка для других хитрых структур, которые надо парсить (если еще будет надо)
 
-def task_16659():
-  '''задача 16659 с портала https://kuzovkin.info/one_exercise_1/16659 Решите уравнение: 6⋅x⋅(x+2)−0,5⋅(12⋅x2−7⋅x)−31=0'''
-  while True:
-    x_sq = random.randrange(1, 20)
-    deci_1 = random.randrange(0, 1000, 5) / 1000
-    x_int, int_1, int_2 = [random.randrange(-30, 30) for i in range(1, 4)]
-    while x_int * int_1 * int_2 == 0:
-      x_int, int_1, int_2 = [random.randrange(-30, 30) for i in range(1, 4)]
-    x = symbols('x')
-    eq_show = Eq(UnevaluatedExpr(x_sq * deci_1 * x * (x + int_1)) - UnevaluatedExpr(deci_1) * (UnevaluatedExpr(x_sq * x**2) + UnevaluatedExpr(x_int * x)) + int_2, 0)
-    eq = Eq((x_sq * deci_1 * x * (x + int_1)) - deci_1 * (x_sq * x**2 + x_int * x) + int_2, 0)
-    task = r'Решите уравнение: \(' +latex(eq_show)+'\)'
-    answer = solve(eq, x)
-    if len(answer) > 0:
-      if abs(int(answer[0]) - answer[0]) < 0.000001:
-        break
-  return task, round(answer[0])
+      else: all_parts_list.append(str(part))
+    if k == 0:
+      all_parts_list.append('=')
+      k += 1
+  # Сборка выражения
+  # print(all_parts_list) # для проверки вывода
+  i = 0
+  final_string = 'Решите уравнение: \('
+  while i < len(all_parts_list):
+    if i == 0:
+      final_string += all_parts_list[i]
+      i += 1
+    elif all_parts_list[i] == '+' and len(re.findall(r'^\-', all_parts_list[i+1])) != 0:
+      final_string += ' - ' + all_parts_list[i+1].strip('-')
+      i += 2
+    elif all_parts_list[i] == '-' and len(re.findall(r'^\-', all_parts_list[i+1])) != 0:
+      final_string += ' + ' + all_parts_list[i+1].strip('-')
+      i += 2
+    elif i == len(all_parts_list)-1:
+      final_string += ' '+all_parts_list[i]+'\)'
+      i += 1
+    else:
+      final_string += ' '+all_parts_list[i]+' '
+      i += 1
 
-def task_16660():
-  '''задача 16660 с портала https://kuzovkin.info/one_exercise_1/16660 Решите уравнение: 2⋅x3−x⋅(x2−6)−3⋅(2⋅x−1)−30=0'''
-  while True:
-    x_cub = random.randrange(1, 20)
-    x_sq = x_cub - 1
-    x_int, int_1 = [random.randrange(1, 20) for i in range(1, 3)]
-    int_2, int_3 = [random.randrange(-30, 30) for i in range(1, 3)]
-    while int_2 * int_3 == 0:
-      int_2, int_3 = [random.randrange(-30, 30) for i in range(1, 3)]
-    x = symbols('x')
-    eq_show = Eq(x_cub * x**3 - x * (x_sq * x**2 - int_1 * x_int) - int_1 * (UnevaluatedExpr(x_int * x + int_2)) + int_3, 0)
-    eq = Eq(x_cub * x**3 - x * (x_sq * x**2 - int_1 * x_int) - int_1 * (x_int * x + int_2) + int_3, 0)
-    task = r'Решите уравнение: \(' +latex(eq_show)+'\)'
-    answer = solve(eq, x)
-    if len(answer) > 0 and im(solve(eq, x)[0])==0:
-      if abs(int(answer[0]) - answer[0]) < 0.000001:
-        break
-  return task, round(answer[0])
+  return final_string
 
-def task_16661():
-  '''задача 16661 с портала https://kuzovkin.info/one_exercise_1/16661 Решите уравнение: 12⋅x⋅(x−8)−4⋅x⋅(3⋅x−5)=10−26⋅x'''
-  while True:
-    x_int_1, x_int_2 = [random.randrange(1, 20) for i in range(1, 3)]
-    int_1, int_2, int_3, x_int_3 = [random.randrange(-30, 30) for i in range(1, 5)]
-    while int_1 * int_2 * int_3 * x_int_3 == 0:
-      int_1, int_2, int_3, x_int_3 = [random.randrange(-30, 30) for i in range(1, 5)]
-    x = symbols('x')
-    eq = Eq(x_int_1 * x_int_2 * x * (x + int_1) - x_int_1 * x * (x_int_2 * x + int_2), int_3 + x_int_3 * x)
-    task = r'Решите уравнение: \(' +latex(eq)+'\)'
-    answer = solve(eq, x)
-    if len(answer) > 0:
-      if abs(int(answer[0]) - answer[0]) < 0.000001:
-        break
-  return task, round(answer[0])
-
-def task_16662():
-  '''задача 16662 с портала https://kuzovkin.info/one_exercise_1/16662 Решите уравнение: 8⋅(x2−5)−5⋅x⋅(x+2)+10⋅(x+4)=0'''
-  while True:
-    x_int = random.randrange(1, 20)
-    int_1, int_2, int_3, int_4 = [random.randrange(-30, 30) for i in range(1, 5)]
-    while int_1 * int_2 * int_3 * int_4 == 0:
-      int_1, int_2, int_3, int_4 = [random.randrange(-30, 30) for i in range(1, 5)]
-    x = symbols('x')
-    eq_show = Eq(int_1 * UnevaluatedExpr(x**2 + int_2) - x_int * x * (x + int_3) + x_int * int_3 * UnevaluatedExpr(x + int_4), 0)
-    eq = Eq(int_1 * (x**2 + int_2) - x_int * x * (x + int_3) + x_int * int_3 * (x + int_4), 0)
-    task = r'Решите уравнение: \(' +latex(eq_show)+'\)'
-    answer = solve(eq, x)
-    if len(answer) > 0 and im(solve(eq, x)[0])==0:
-      if abs(int(answer[0]) - answer[0]) < 0.000001:
-        break
-  return task, round(answer[0])
-
-def task_16664():
-  '''задача 16664 с портала https://kuzovkin.info/one_exercise_1/16664 Решите уравнение:   x−3⋅x⋅(1−12⋅x)=11−(5−6⋅x)⋅(6⋅x+5)'''
-  while True:
-    x_int_1, x_int_2, x_int_3, x_int_4, int_1, int_2, int_3, int_4 = [random.randrange(1, 20) for i in range(1, 9)]
-    while x_int_1 * x_int_2 != x_int_3 * x_int_4:
-      x_int_1, x_int_2, x_int_3, x_int_4 = [random.randrange(1, 20) for i in range(1, 5)]
-    x = symbols('x')
-    eq = Eq(x - x_int_1 * x * (int_1 - x_int_2 * x), int_2 - (int_3 - x_int_3 * x) * (x_int_4 * x + int_4))
-    task = r'Решите уравнение: \(' +latex(eq)+'\)'
-    answer = solve(eq, x)
-    if len(answer) > 0 and im(solve(eq, x)[0])==0:
-      if abs(int(answer[0]) - answer[0]) < 0.000001:
-        break
-  return task, round(answer[0])
-
-def task_16665():
-  '''задача 16665 с портала https://kuzovkin.info/one_exercise_1/16665 Решите уравнение: (6⋅x−1)⋅(6⋅x+1)−4⋅x⋅(9⋅x+2)=−1'''
-  while True:
-    x_int_1, x_int_2, x_int_3, x_int_4 = [random.randrange(1, 20) for i in range(1, 5)]
-    while x_int_1 * x_int_2 != x_int_3 * x_int_4:
-      x_int_1, x_int_2, x_int_3, x_int_4 = [random.randrange(1, 20) for i in range(1, 5)]
-    int_1, int_2, int_3, int_4 = [random.randrange(-10, 10) for i in range(1, 5)]
-    while int_1 * int_2 * int_3 * int_4 == 0:
-      int_1, int_2, int_3, int_4 = [random.randrange(-10, 10) for i in range(1, 5)]
-    x = symbols('x')
-    eq = Eq((x_int_1 * x + int_1) * (x_int_2 * x + int_2) - x_int_3 * x * (x_int_4 * x + int_3), int_4)
-    task = r'Решите уравнение: \(' +latex(eq)+'\)'
-    answer = solve(eq, x)
-    if len(answer) > 0:
-      if abs(int(answer[0]) - answer[0]) < 0.000001:
-        break
-  return task, round(answer[0])
-
-def task_16667():
-  '''задача 16667, 16670 с портала https://kuzovkin.info/one_exercise_1/16667 Решите уравнение: (x−6)ˆ2−x⋅(x+8)=2'''
-  while True:
-    x_int_1, x_int_2, x_int_3 = [random.randrange(1, 10) for i in range(1, 4)]
-    while x_int_1**2 != x_int_2 * x_int_3:
-      x_int_1, x_int_2, x_int_3 = [random.randrange(1, 10) for i in range(1, 4)]
-    int_1, int_2, int_3 = [random.randrange(-10, 10) for i in range(1, 4)]
-    while int_1 * int_2 == 0:
-      int_1, int_2 = [random.randrange(-10, 10) for i in range(1, 3)]
-    x = symbols('x')
-    eq = Eq((x_int_1 * x + int_1)**2 - x_int_2 * x * (x_int_3 * x + int_2), int_3)
-    task = r'Решите уравнение: \(' +latex(eq)+'\)'
-    answer = solve(eq, x)
-    if len(answer) > 0:
-      if abs(int(answer[0]) - answer[0]) < 0.000001:
-        break
-  return task, round(answer[0])
-
-def task_16672():
-  '''задача 16672 с портала https://kuzovkin.info/one_exercise_1/16672 Решите уравнение: : x+(5⋅x+2)**2=25⋅(1+x**2)'''
-  while True:
-    x_int_1, int_1, int_2 = [random.randrange(-10, 10) for i in range(1, 4)]
-    while x_int_1 * int_1 * int_2 == 0:
-      x_int_1, int_1, int_2 = [random.randrange(-10, 10) for i in range(1, 4)]
-    int_3, x_sq = [random.randrange(1, 20) for i in range(1, 3)]
-    x = symbols('x')
-    eq_show = Eq(x_int_1 * x + (int_3 * x_sq * x + int_1)**2, int_3 * UnevaluatedExpr(int_2 + x_sq * x**2))
-    eq = Eq(x_int_1 * x + (int_3 * x_sq * x + int_1)**2, int_3 * (int_2 + x_sq * x**2))
-    task = r'Решите уравнение: \(' +latex(eq_show)+'\)'
-    answer = solve(eq, x)
-    if len(answer) > 0 and im(solve(eq, x)[0])==0:
-      if abs(int(answer[0]) - answer[0]) < 0.000001:
-        break
-  return task, round(answer[0])
-
-def task_16676():
-  '''задача 16676, 16678 с портала https://kuzovkin.info/one_exercise_1/16676 Решите уравнение: (2⋅x+3)**2−4⋅(x−1)⋅(x−1)=49'''
-  while True:
-    x_int_1, x_int_2, x_int_3, int_1 = [random.randrange(1, 10) for i in range(1, 5)]
-    while x_int_1**2 != int_1 * x_int_2 * x_int_3:
-      x_int_1, x_int_2, x_int_3, int_1 = [random.randrange(1, 10) for i in range(1, 5)]
-    int_2, int_3, int_4 = [random.randrange(-10, 10) for i in range(1, 4)]
-    while int_2 * int_3 * int_4 == 0:
-      int_2, int_3, int_4 = [random.randrange(-10, 10) for i in range(1, 4)]
-    answ_int = random.randrange(-100, 100)
-    x = symbols('x')
-    eq_show = Eq((x_int_1 * x + int_2)**2 - UnevaluatedExpr(int_1) * (x_int_2 * x + int_3) * (x_int_3 * x + int_4), answ_int)
-    eq = Eq((x_int_1 * x + int_2)**2 - int_1 * (x_int_2 * x + int_3) * (x_int_3 * x + int_4), answ_int)
-    task = r'Решите уравнение: \(' +latex(eq_show)+'\)'
-    answer = solve(eq, x)
-    if len(answer) > 0:
-      if abs(int(answer[0]) - answer[0]) < 0.000001:
-        break
-  return task, round(answer[0])
-
-def task_16679():
-  '''задача 16679, 16680, 16681, 16682 с портала https://kuzovkin.info/one_exercise_1/16679 Решите уравнение: (x−1)⋅(x**2+x+1)=0'''
-  while True:
-    int_1, x_int_1 = [random.randrange(-5, 5) for i in range(1, 3)]
-    while int_1 * x_int_1 == 0:
-      int_1, x_int_1 = [random.randrange(-5, 5) for i in range(1, 3)]
-    answ_int = random.randrange(-50, 50)
-    x = symbols('x')
-    eq = Eq((x + int_1) * (x**2 + x_int_1 * x - int_1 * x_int_1), 0)
-    task = r'Решите уравнение: \(' +latex(eq)+'\)'
-    answer = solve(eq, x)
-    if len(answer) > 0:
-      if abs(int(answer[0]) - answer[0]) < 0.000001:
-        break
-  return task, round(answer[0])
-
-def task_16684():
-  '''задача 16684, 16686 с портала https://kuzovkin.info/one_exercise_1/16684 Решите уравнение: (x**2−3)⋅(x+2)+(x**2+3)⋅(x−2)=4'''
-  while True:
-    int_1, int_2 = [random.randrange(-10, 10) for i in range(1, 3)]
-    while int_1 * int_2 == 0:
-      int_1, int_2 = [random.randrange(-10, 10) for i in range(1, 3)]
-    answ_int = random.randrange(-30, 30)
-    x = symbols('x')
-    eq = Eq((x**2 + int_1) * (x + int_2) + (x**2 - int_1) * (x - int_2), answ_int)
-    task = r'Решите уравнение: \(' +latex(eq)+'\)'
-    answer = solve(eq, x)
-    if len(answer) > 0 and im(solve(eq, x)[0])==0:
-      if abs(int(answer[0]) - answer[0]) < 0.000001:
-        break
-  return task, round(answer[0])
-
-def task_16687():
-  '''задача 16687 с портала https://kuzovkin.info/one_exercise_1/16687 Решите уравнение: 12⋅x**2−(4⋅x−3)⋅(3⋅x+1)=−2'''
-  while True:
-    x_int_1, x_int_2, int_1, int_2 = [random.randrange(-10, 10) for i in range(1, 5)]
-    while x_int_1 * x_int_2 == 0:
-      x_int_1, x_int_2, int_1, int_2 = [random.randrange(-10, 10) for i in range(1, 5)]
-    answ_int = random.randrange(-30, 30)
-    x = symbols('x')
-    eq = Eq(x_int_1 * x_int_2 * x**2 - (x_int_1 * x + int_1) * (x_int_2 * x + int_2), answ_int)
-    task = r'Решите уравнение: \(' +latex(eq)+'\)'
-    answer = solve(eq, x)
-    if len(answer) > 0:
-      if abs(int(answer[0]) - answer[0]) < 0.000001:
-        break
-  return task, round(answer[0])
-
-def task_16692():
-  '''задача 16692 с портала https://kuzovkin.info/one_exercise_1/16692 Решите уравнение: 2⋅x+x⋅(3−(x+1))=x⋅(2−x)+12'''
-  while True:
-    int_1, int_2, int_3 = [random.randrange(-20, 20) for i in range(1, 4)]
-    while int_1 * int_2 * int_3 == 0:
-       int_1, int_2, int_3 = [random.randrange(-20, 20) for i in range(1, 4)]
-    x_int_1, x_int_2 = [random.randrange(-10, 10) for i in range(1, 3)]
-    while x_int_1 * x_int_2  == 0:
-      x_int_1, x_int_2 = [random.randrange(-10, 10) for i in range(1, 3)]
-    x = symbols('x')
-    eq = Eq(x_int_1 * x + x * (int_1 + x_int_2 * (x + int_2)), x * (x_int_1 + x_int_2 * x) + int_3)
-    eq_show = Eq(x_int_1 * x + x * (int_1 + x_int_2 * UnevaluatedExpr(x + int_2)), x * (x_int_1 + x_int_2 * x) + int_3)
-    task = r'Решите уравнение: \(' +latex(eq_show)+'\)'
-    answer = solve(eq, x)
-    if len(answer) > 0:
-      if abs(int(answer[0]) - answer[0]) < 0.000001:
-        break
-  return task, round(answer[0])
-
-def task_16693():
-  '''задача 16693 с портала https://kuzovkin.info/one_exercise_1/16693 Решите уравнение: x**2⋅(5⋅x+3)−6⋅x⋅(x**2−4)=3⋅x⋅(8+x)'''
-  while True:
-    x_int_1, int_1, x_int_2, int_2 = [random.randrange(-20, 20) for i in range(1, 5)]
-    while x_int_1 * int_1 * x_int_2 * int_2 == 0 or x_int_1 * int_1 != x_int_2 * int_2:
-       x_int_1, int_1, x_int_2, int_2 = [random.randrange(-20, 20) for i in range(1, 5)]
-    x = symbols('x')
-    eq = Eq(x**2 * ((-1) * (1 + x_int_1) * x + x_int_2) + x_int_1 * x * (x**2 + int_1), x_int_2 * x * (int_2 + x))
-    task = r'Решите уравнение: \(' +latex(eq)+'\)'
-    answer = solve(eq, x)
-    if len(answer) > 0:
-      if abs(int(answer[0]) - answer[0]) < 0.000001:
-        break
-  return task, round(answer[0])
-
-def task_16696():
-  '''задача 16696, 16697 с портала https://kuzovkin.info/one_exercise_1/16696 Решите уравнение: (5⋅x−3)+(7⋅x−4)=8−(15−11⋅x)
-  осталась нерешенная проблема с раскрытием скобок и урощением выводимого выражения
-  '''
-  while True:
-    x_int_1, x_int_2, x_int_3, int_1, int_2, int_3, int_4 = [random.randrange(-20, 20) for i in range(1, 8)]
-    while x_int_1 * x_int_2 * x_int_3 * int_1 * int_2 * int_3 * int_4 == 0:
-       x_int_1, x_int_2, x_int_3, int_1, int_2, int_3, int_4 = [random.randrange(-20, 20) for i in range(1, 8)]
-    x = symbols('x')
-    eq = Eq((x_int_1 * x + int_1) + (x_int_2 * x + int_2), int_3 - (int_4 + x_int_3 * x))
-    eq_show = Eq(Add((UnevaluatedExpr(x_int_1 * x) + UnevaluatedExpr(int_1)),  (UnevaluatedExpr(x_int_2 * x) - UnevaluatedExpr(int_2))), int_3 - (int_4 + UnevaluatedExpr(x_int_3 * x)))
-    task = r'Решите уравнение: \(' +latex(eq_show)+'\)'
-    answer = solve(eq, x)
-    if len(answer) > 0:
-      if abs(int(answer[0]) - answer[0]) < 0.000001:
-        break
-  return task, round(answer[0])
-
-def task_16699():
-  '''задача 16699 с портала https://kuzovkin.info/one_exercise_1/16699 Решите уравнение: (2⋅x+3)+(3⋅x+4)+(5⋅x+5)=12−7⋅x
-  осталась нерешенная проблема с раскрытием скобок и урощением выводимого выражения
-  '''
-  while True:
-    x_int_1, x_int_2, x_int_3, x_int_4, int_1, int_2, int_3, int_4 = [random.randrange(-20, 20) for i in range(1, 9)]
-    while x_int_1 * x_int_2 * x_int_3 * x_int_4 * int_1 * int_2 * int_3 * int_4 == 0:
-       x_int_1, x_int_2, x_int_3, x_int_4, int_1, int_2, int_3, int_4 = [random.randrange(-20, 20) for i in range(1, 9)]
-    x = symbols('x')
-    eq = Eq((x_int_1 * x + int_1) + (x_int_2 * x + int_2) + (x_int_3 * x + int_3), int_4 + x_int_4 * x)
-    eq_show = Eq((UnevaluatedExpr(x_int_1 * x) + UnevaluatedExpr(int_1)) + (UnevaluatedExpr(x_int_2 * x) + UnevaluatedExpr(int_2)) + (UnevaluatedExpr(x_int_3 * x) + UnevaluatedExpr(int_3)), int_4 + x_int_4 * x)
-    task = r'Решите уравнение: \(' +latex(eq_show)+'\)'
-    answer = solve(eq, x)
-    if len(answer) > 0:
-      if abs(int(answer[0]) - answer[0]) < 0.000001:
-        break
-  return task, round(answer[0])
-
-def task_16702():
-  '''задача 16702 с портала https://kuzovkin.info/one_exercise_1/16702 Решите уравнение: 3/8*x−(1/3*x−2,4)=−0,4
-  осталась нерешенная проблема с раскрытием скобок и урощением выводимого выражения
-  '''
-  while True:
-    x_int_1, x_int_2 = [random.randrange(1, 10) for i in range(1, 3)]
-    del_1 = random.randrange(x_int_1 + 1, x_int_1 + 20)
-    del_2 = random.randrange(x_int_2 + 1, x_int_2 + 20)
-    deci_1, deci_2 = [random.randrange(-1000, 1000, 5) / 100 for i in range(1, 3)]
-    x = symbols('x')
-    eq = Eq((x_int_1/del_1) * x - ((x_int_2/del_2) * x + deci_1), deci_2)
-    eq_show = Eq(UnevaluatedExpr(x_int_1*Pow(del_1, -1) * x) - (UnevaluatedExpr(UnevaluatedExpr(x_int_2*Pow(del_2, -1) * x) + deci_1)), deci_2)
-    task = r'Решите уравнение: \(' +latex(eq_show)+'\)'
-    answer = solve(eq, x)
-    if len(answer) > 0:
-      if abs(int(answer[0]) - answer[0]) < 0.000001:
-        break
-  return task, round(answer[0])
-
-def task_16703():
-  '''задача 16703 с портала https://kuzovkin.info/one_exercise_1/16703 Решите уравнение: 1/2⋅x−(2,5⋅x−3)=1,8'''
-  while True:
-    x_int_1 = random.randrange(1, 10)
-    del_1 = random.randrange(x_int_1 + 1, x_int_1 + 20)
-    deci_x, deci_answ = [random.randrange(-1000, 1000, 5) / 100 for i in range(1, 3)]
-    int_1 = random.randrange(-10, 10)
-    while int_1 == 0:
-      int_1 = random.randrange(-10, 10)
-    x = symbols('x')
-    eq = Eq((x_int_1/del_1) * x - (deci_x * x + int_1), deci_answ)
-    eq_show = Eq(UnevaluatedExpr(x_int_1*Pow(del_1, -1) * x) - (UnevaluatedExpr(deci_x * x) + int_1), deci_answ)
-    task = r'Решите уравнение: \(' +latex(eq_show)+'\)'
-    answer = solve(eq, x)
-    if len(answer) > 0:
-      if abs(int(answer[0]) - answer[0]) < 0.000001:
-        break
-  return task, round(answer[0])
-
-def task_16704():
-  '''задача 16704 с портала https://kuzovkin.info/one_exercise_1/16704 Решите уравнение: 2x**2−(2⋅x**2−5⋅x)−(4⋅x−2)=5'''
-  while True:
-    x_sq = random.randrange(-10, 10)
-    while x_sq == 0:
-      x_sq = random.randrange(-10, 10)
-    x_int_1, x_int_2 = [random.randrange(-15, 15) for i in range(1, 3)]
-    while x_int_1 * x_int_2 == 0:
-      x_int_1, x_int_2 = [random.randrange(-15, 15) for i in range(1, 3)]
-    int_1, int_2 = [random.randrange(-30, 30) for i in range(1, 3)]
-    while int_1 * int_2 == 0:
-      int_1, int_2 = [random.randrange(-30, 30) for i in range(1, 3)]
-    x = symbols('x')
-    eq = Eq(x_sq * x**2 - (x_sq * x**2 + x_int_1 * x) - (x_int_2 * x + int_1), int_2)
-    eq_show = Eq(UnevaluatedExpr(x_sq * x**2) - (UnevaluatedExpr(x_sq * x**2) + x_int_1 * x) - (UnevaluatedExpr(x_int_2 * x) + int_1), int_2)
-    task = r'Решите уравнение: \(' +latex(eq_show)+'\)'
-    answer = solve(eq, x)
-    if len(answer) > 0:
-      if abs(int(answer[0]) - answer[0]) < 0.000001:
-        break
-  return task, round(answer[0])
-
-def task_16705():
-  '''задача 16705 с портала https://kuzovkin.info/one_exercise_1/16705 Решите уравнение: (y**3+y)+(3−6⋅y)−(4−5⋅y)=−2
-  осталась нерешенная проблема с раскрытием скобок и урощением выводимого выражения
-  '''
-  while True:
-    y_int_1, y_int_2, y_int_3 = [random.randrange(-10, 10) for i in range(1, 4)]
-    while y_int_1 + y_int_2 - y_int_3 != 0 or y_int_1 * y_int_2 * y_int_3 == 0:
-      y_int_1, y_int_2, y_int_3 = [random.randrange(-10, 10) for i in range(1, 4)]
-    int_1, int_2, int_3 = [random.randrange(-30, 30) for i in range(1, 4)]
-    while int_1 * int_2 * int_3 == 0:
-      int_1, int_2, int_3 = [random.randrange(-30, 30) for i in range(1, 4)]
-    y = symbols('y')
-    eq = Eq((y**3 + y_int_1 * y) + (int_1 + y_int_2 *y) - (int_2 - y_int_3 * y), int_3)
-    eq_show = Eq(UnevaluatedExpr(y**3 + UnevaluatedExpr(y_int_1 * y)) + UnevaluatedExpr(int_1 + UnevaluatedExpr(y_int_2 *y)) - UnevaluatedExpr(int_2 + UnevaluatedExpr(y_int_3 * y)), int_3)
-    task = r'Решите уравнение: \(' +latex(eq_show)+'\)'
-    answer = solve(eq, y)
-    if len(answer) > 0 and im(solve(eq, y)[0])==0:
-      if abs(int(answer[0]) - answer[0]) < 0.000001:
-        break
-  return task, round(answer[0])
-
-def task_16706():
-  '''задача 16706 с портала https://kuzovkin.info/one_exercise_1/16706 Решите уравнение: (x**2−7⋅x−11)−(5⋅x**2−13⋅x−18)=16−4⋅x**2
-  осталась нерешенная проблема с раскрытием скобок и урощением выводимого выражения
-  '''
-  while True:
-    x_sq_1, x_sq_2, x_sq_3 = [random.randrange(-10, 10) for i in range(1, 4)]
-    while x_sq_1 - x_sq_2 + x_sq_3 != 0 or x_sq_1 * x_sq_2 * x_sq_3 == 0:
-      x_sq_1, x_sq_2, x_sq_3 = [random.randrange(-10, 10) for i in range(1, 4)]
-    x_int_1, int_1, x_int_2, int_2,  x_int_3, int_3 = [random.randrange(-20, 20) for i in range(1, 7)]
-    while x_int_1 * int_1 * x_int_2 * int_2 *  x_int_3 * int_3 == 0:
-      x_int_1, int_1, x_int_2, int_2,  x_int_3, int_3 = [random.randrange(-20, 20) for i in range(1, 7)]
-    x = symbols('x')
-    eq = Eq((x_sq_1 * x**2 + x_int_1 * x + int_1) - (x_sq_2 * x**2 + x_int_2 * x + int_2), int_3 + x_int_3 * x**2)
-    eq_show = Eq(UnevaluatedExpr(x_sq_1 * x**2 + x_int_1 * x + int_1) - UnevaluatedExpr(x_sq_2 * x**2 + x_int_2 * x + int_2), int_3 + x_int_3 * x**2)
-    task = r'Решите уравнение: \(' +latex(eq_show)+'\)'
-    answer = solve(eq, x)
-    if len(answer) > 0 and im(solve(eq, x)[0])==0:
-      if abs(int(answer[0]) - answer[0]) < 0.000001:
-        break
-  return task, round(answer[0])
-
-def task_16707():
-  '''задача 16707 с портала https://kuzovkin.info/one_exercise_1/16707 Решите уравнение: (y**2−5⋅y**5−19)−(5⋅y**2−6⋅y**5−9)=22−4⋅y**2
-  осталась нерешенная проблема с раскрытием скобок и урощением выводимого выражения
-  '''
-  while True:
-    y_sq_1, y_sq_2, y_sq_3 = [random.randrange(-10, 10) for i in range(1, 4)]
-    while y_sq_1 - y_sq_2 - y_sq_3 != 0 or y_sq_1 * y_sq_2 * y_sq_3 == 0:
-      y_sq_1, y_sq_2, y_sq_3 = [random.randrange(-10, 10) for i in range(1, 4)]
-    y_f_1 = random.randrange(-10, 10)
-    while y_f_1 ==0:
-      y_f_1 = random.randrange(-10, 10)
-    y_f_2 = -1 * y_f_1
-    int_1, int_2, int_3 = [random.randrange(-30, 30) for i in range(1, 4)]
-    while int_1 * int_2 * int_3 == 0:
-      int_1, int_2, int_3 = [random.randrange(-30, 30) for i in range(1, 4)]
-    y = symbols('y')
-    eq = Eq((y_sq_1 * y**2 + y_f_1 * y**5 + int_1) - (y_sq_2 * y**2 + y_f_2 * y**5 + int_2), int_3 + y_sq_3 * y**2)
-    eq_show = Eq(UnevaluatedExpr(y_sq_1 * y**2 + y_f_1 * y**5 + int_1) - UnevaluatedExpr(y_sq_2 * y**2 + y_f_2 * y**5 + int_2), int_3 + y_sq_3 * y**2)
-    task = r'Решите уравнение: \(' +latex(eq_show)+'\)'
-    answer = solve(eq, y)
-    if len(answer) > 0:
-      if abs(int(answer[0]) - answer[0]) < 0.000001:
-        break
-  return task, round(answer[0])
+def x_equation_generator_with_parser(equation_to_solve):
+  '''Функция для создания линейного уравнения, которая обращается внутри себя к парсеру для вывода уравнения'''
+  prep_equation, answer = generate_values_and_recieve_answer(equation_to_solve)
+  task = parse_and_generate_task(prep_equation)
+  return task, answer
