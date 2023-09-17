@@ -163,12 +163,18 @@ def parse_and_generate_task(equation_to_solve):
     if i == 0:
       final_string += all_parts_list[i]
       i += 1
-    elif all_parts_list[i] == '+' and len(re.findall(r'^\-', all_parts_list[i+1])) != 0:
+    elif all_parts_list[i] == '+' and len(re.findall(r'^\-', all_parts_list[i+1])) != 0 and i != len(all_parts_list)-2:
       final_string += ' - ' + all_parts_list[i+1].strip('-')
       i += 2
-    elif all_parts_list[i] == '-' and len(re.findall(r'^\-', all_parts_list[i+1])) != 0:
+    elif all_parts_list[i] == '-' and len(re.findall(r'^\-', all_parts_list[i+1])) != 0 and i != len(all_parts_list)-2:
       final_string += ' + ' + all_parts_list[i+1].strip('-')
       i += 2
+    elif all_parts_list[i] == '+' and len(re.findall(r'^\-', all_parts_list[i+1])) != 0 and i == len(all_parts_list)-2:
+      final_string += ' - ' + all_parts_list[i+1].strip('-')+'\)'
+      break
+    elif all_parts_list[i] == '-' and len(re.findall(r'^\-', all_parts_list[i+1])) != 0 and i == len(all_parts_list)-2:
+      final_string += ' + ' + all_parts_list[i+1].strip('-')+'\)'
+      break
     elif i == len(all_parts_list)-1:
       final_string += ' '+all_parts_list[i]+'\)'
       i += 1
