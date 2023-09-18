@@ -22,13 +22,19 @@
 
 # Применение
 
-Пример использования 
+Пример использования для генерации простейших задач с ответом на тему "логарифмы"
     
-    from task_generator import logarythms
+    from task_generator.Algebra import logarythms
 
     task,answer = logarythms.random_logarythm()
     print(task)
     print(answer)
+
+В качестве результата получим в формате latex условие задачи с ответом:
+ Вычислите: $log{7}{1} $
+
+    
+    Вычислите: $log{7}{1} $
 
 
 
