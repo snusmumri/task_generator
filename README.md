@@ -31,13 +31,13 @@
     print(answer)
 
 В качестве результата получим в формате latex условие задачи 
-<div align='center'>
+
 Вычислите: $log_{7}{1} $
-</div>
+
 с ответом:
-<div align='center'>
+
 $0$
-</div>
+
 
 
 
