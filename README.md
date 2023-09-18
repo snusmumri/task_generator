@@ -35,11 +35,15 @@
 
 Вычислите: $log_{7}{1} $
 
-Вычислите: \( log_{7}{1} \)
-
 0
 
-
+```diff
+- text in red
++ text in green
+! text in orange
+# text in gray
+@@ text in purple (and bold)@@
+```
 
 
 # Документация (в процессе разработки)
