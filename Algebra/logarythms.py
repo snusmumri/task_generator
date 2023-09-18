@@ -14,7 +14,7 @@ def random_logarythm():
     base_of_logarythm = random.randint(2,21)
     answer = random.randint(0,9)
     degree_of_logarithm = base_of_logarythm**answer
-    task = r'Вычислите: \(log{'+ str(base_of_logarythm)+"}{"+str(degree_of_logarithm)+"} \)"
+    task = r'Вычислите: \(log_{'+ str(base_of_logarythm)+"}{"+str(degree_of_logarithm)+"} \)"
 
   return task, answer
 
