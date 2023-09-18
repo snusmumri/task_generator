@@ -461,3 +461,147 @@ def task_16887():
       if n%2==0 and a!=b:
         break
     return task, answer
+
+def task_17084():
+    '''Задача №17084 с портала https://kuzovkin.info/one_exercise_1/17084 '''
+    while True:
+      a, k = np.random.randint(2, 6, size=2)
+      while sqrt(a) == int(a):
+        a = random.randint(2, 6)
+      b = pow(k, 3)+3*k*a
+      c = 3*pow(k, 2)+a
+      result = pow(pow(b, 2)-pow(c, 2)*a, 1/3)
+      task = r'Проверить справедливость равенств: \( \sqrt['+str('3')+']{'+latex(UnevaluatedExpr(b))+('+')+latex(UnevaluatedExpr(c)*sqrt(UnevaluatedExpr(a)))+'}{'+str('\cdot')+'}('+latex(UnevaluatedExpr(k))+latex(-sqrt(UnevaluatedExpr(a)))+'){'+str('=')+'}{'+latex(UnevaluatedExpr(int(result)))+'} \)'
+      answer = r'Верное равенство'
+      if result == int(result):
+        if result !=0:
+          break
+    return task, answer
+
+def task_17086():
+    '''Задача №17086 с портала https://kuzovkin.info/one_exercise_1/17086 '''
+    while True:
+      a, b = np.random.randint(2, 5, size=2)
+      c = a+b
+      d = a*b
+      k = pow(a, 2)*c
+      f = pow(a, 4)*b+1
+      task = r'Проверить справедливость равенств: \( \frac{\sqrt{'+latex(UnevaluatedExpr(c))+('-')+latex(UnevaluatedExpr(a)*sqrt(UnevaluatedExpr(d)))+'}({'+latex(UnevaluatedExpr(c))+('+')+latex(UnevaluatedExpr(a)*sqrt(UnevaluatedExpr(d)))+'})({'+latex(UnevaluatedExpr(f))+('-')+latex(UnevaluatedExpr(k)*sqrt(UnevaluatedExpr(d)))+'})}{{'+latex(sqrt(UnevaluatedExpr(pow(b, 3))))+'}{'+('-')+latex(UnevaluatedExpr(3)*sqrt(UnevaluatedExpr(pow(b, 2)*a)))+'}{'+('+')+latex(UnevaluatedExpr(3)*sqrt(UnevaluatedExpr(pow(a, 2)*b)))+'}{'+('+')+latex(sqrt(UnevaluatedExpr(pow(a, 3))))+'}} {'+str('=')+'} {'+latex(UnevaluatedExpr(1))+'} \)'
+      answer = r'Верное равенство'
+      if sqrt(d)!=int(d):
+        break
+    return task, answer
+
+def task_17108():
+    '''Задача №17108 с портала https://kuzovkin.info/one_exercise_1/17108 '''
+    while True:
+      a = np.random.randint(2, 5)
+      b = pow(a, 2)
+      c = pow(b, 2)-1
+      task = r'Проверить справедливость равенств: \( \sqrt['+str('3')+']{'+latex(UnevaluatedExpr(b))+('+')+latex(sqrt(UnevaluatedExpr(c)))+'}{'+str('+')+'}\\sqrt['+str('3')+']{'+latex(UnevaluatedExpr(b))+('-')+latex(sqrt(UnevaluatedExpr(c)))+'}{'+str('=')+'}{'+latex(UnevaluatedExpr(a))+'} \)'
+      answer = r'Верное равенство'
+      if b<c:
+        break
+    return task, answer
+
+def task_17144():
+    '''Задача №17144 с портала https://kuzovkin.info/one_exercise_1/17144 и аналогичные 17145, 46770, 46771 '''
+    while True:
+      a = np.random.randint(2, 10)
+      b, c, k = np.random.randint(2, 7, size=3)
+      d = c*k
+      task = r'Проверить справедливость равенств: \( \sqrt{'+latex(UnevaluatedExpr(b))+('-')+latex(sqrt(UnevaluatedExpr(c)))+'}({'+latex(UnevaluatedExpr(b))+('+')+latex(sqrt(UnevaluatedExpr(c)))+'})({'+latex(sqrt(UnevaluatedExpr(d)))+('-')+latex(sqrt(UnevaluatedExpr(k)))+'}){'+str('=')+'}{'+latex(UnevaluatedExpr(a))+'} \)'
+      answer = r'Верное равенство'
+      if sqrt(c)!=int(c):
+        break
+    return task, answer
+
+def task_46736():
+    '''Задача №46736 с портала https://kuzovkin.info/one_exercise_1/46736 '''
+    while True:
+      a, b, c = np.random.randint(2, 10, size=3)
+      d = pow(c, 2)-pow(b, 2)*a
+      task = r'Найдите значение выражения: \( {(\sqrt{'+latex(UnevaluatedExpr(c))+('+')+latex(UnevaluatedExpr(b)*sqrt(UnevaluatedExpr(a)))+'}{'+str('-')+'} \\sqrt{'+latex(UnevaluatedExpr(c))+('-')+latex(UnevaluatedExpr(b)*sqrt(UnevaluatedExpr(a)))+'})}^{'+latex(UnevaluatedExpr(2))+'} \)'
+      answer = 2*c-2*sqrt(d)
+      if c>b and sqrt(a)!=int(a):
+        if sqrt(d)==int(d):
+          break
+    return task, answer
+
+def task_46737():
+    '''Задача №46737 с портала https://kuzovkin.info/one_exercise_1/46737 '''
+    while True:
+      a, b = np.random.randint(2, 20, size=2)
+      n = np.random.randint(3, 9)
+      m = n/2
+      while sqrt(a) == int(a):
+        a = np.random.randint(2, 20)
+      c = pow(b, 2)+a
+      d = 2*b
+      task = r'Найдите значение выражения: \( {(\sqrt['+str(int(m))+']{'+latex(UnevaluatedExpr(b))+('-')+latex(sqrt(UnevaluatedExpr(a)))+'} {'+str('\cdot')+'} \\sqrt['+str(n)+']{'+latex(UnevaluatedExpr(c))+('+')+latex(UnevaluatedExpr(d)*sqrt(UnevaluatedExpr(a)))+'})}^{'+latex(UnevaluatedExpr(int(m)))+'} \)'
+      answer = sqrt(pow(c, 2)-pow(d, 2)*a)
+      if answer == int(answer):
+        if n%2==0 and a>b:
+          break
+    return task, answer
+
+def task_46756():
+    '''Задача №46756 с портала https://kuzovkin.info/one_exercise_1/46756 '''
+    while True:
+      k, b, c = np.random.randint(2, 20, size=3)
+      a = symbols('a')
+      eq_show = Eq(sqrt(b+a) + sqrt(c-a), k)
+      task = r'Известно, что \('+ latex(eq_show) +'\). Найдите значение выражения \('+ latex(sqrt((UnevaluatedExpr(b)+UnevaluatedExpr(a))*(UnevaluatedExpr(c)-UnevaluatedExpr(a)))) +'\)'
+      answer = (pow(k, 2)-b-c)/2
+      if answer>0:
+        if answer == int(answer):
+          break
+    return task, int(answer)
+
+def task_46766():
+    '''Задача №46766 с портала https://kuzovkin.info/one_exercise_1/46766 '''
+    while True:
+      a, b = np.random.randint(2, 16, size=2)
+      while sqrt(a) == int(a):
+        a = random.randint(2, 16)
+      k, m, n, e, g, h = np.random.randint(1, 9, size=6)
+      p = e*(a-pow(k, 2))
+      q = g*(a-pow(m, 2))
+      f = h*(pow(n, 2)-a)
+      check_1 = e+g-h
+      check_2 = e*k-g*m+h*n
+      task = r'Найдите значение выражения: \( (\frac{'+latex(UnevaluatedExpr(p))+'}{'+latex(sqrt(UnevaluatedExpr(a)))+('+')+latex(UnevaluatedExpr(k))+'}{'+str('+')+'} \\frac{'+latex(UnevaluatedExpr(q))+'}{'+latex(sqrt(UnevaluatedExpr(a)))+('-')+latex(UnevaluatedExpr(m))+'}{'+str('-')+'} \\frac{'+latex(UnevaluatedExpr(f))+'}{'+latex(UnevaluatedExpr(n))+('-')+latex(sqrt(UnevaluatedExpr(a)))+'}) {'+str('*')+'} ({'+latex(sqrt(UnevaluatedExpr(a)))+('+')+latex(UnevaluatedExpr(b))+'}) \)'
+      answer = a-pow(b, 2)
+      if a!=b and p>0 and q>0 and f>0:
+        if check_1 == 1 and check_2 == b:
+          break
+    return task, answer
+
+def task_46768():
+    '''Задача №46768 с портала https://kuzovkin.info/one_exercise_1/46768 '''
+    while True:
+      a, b, c = np.random.randint(2, 8, size=3)
+      while sqrt(a) == int(a):
+        a = random.randint(2, 8)
+      m = a*c
+      l = 2*b
+      k = pow(b, 2)+m
+      task = r'Найдите значение выражения: \( \sqrt{'+latex(sqrt(UnevaluatedExpr(a)))+('-')+latex(sqrt(UnevaluatedExpr(b)-UnevaluatedExpr(sqrt(k-l*UnevaluatedExpr(sqrt(m))))))+'} \)'
+      answer = 1
+      if sqrt(m)!=int(m):
+        break
+    return task, answer
+
+def task_46772():
+    '''Задача №46772 с портала https://kuzovkin.info/one_exercise_1/46772 '''
+    while True:
+      a, b, c = np.random.randint(2, 8, size=3)
+      while sqrt(a) == int(a):
+        a = random.randint(2, 8)
+      d = c*(a+b)
+      task = r'Докажите, что: \( \frac{'+latex(sqrt(UnevaluatedExpr(d)))+('+')+latex(UnevaluatedExpr(pow(b, 3))*sqrt(UnevaluatedExpr(a)))+'}{'+latex(UnevaluatedExpr(pow(b, 2))+UnevaluatedExpr(sqrt(a)))+'} {'+str('\cdot')+'} {'+latex(sqrt(UnevaluatedExpr(pow(c, 2))-UnevaluatedExpr(pow(b, 2))*UnevaluatedExpr(sqrt(a))))+'} {'+str('=')+'} {'+latex(sqrt(UnevaluatedExpr(a)))+('-')+latex(UnevaluatedExpr(b))+'} \)'
+      answer = r'\( {'+latex(sqrt(UnevaluatedExpr(a)))+('-')+latex(UnevaluatedExpr(b))+'} )'
+      if sqrt(d)!=int(d):
+        if a!=b:
+          break
+    return task, answer
