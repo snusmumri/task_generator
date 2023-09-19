@@ -2,6 +2,8 @@ from random import randint, choice
 from fractions import Fraction
 import sympy
 
+from input_parameters import input_parameters_work, morph, correct_word
+
 
 def task_13021():
     """Генерация аналогичных задач 13.021 М.И. Сканави:

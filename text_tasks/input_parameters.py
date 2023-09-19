@@ -1,4 +1,8 @@
 from random import randint, choice
+from pymorphy2 import MorphAnalyzer
+
+
+morph = MorphAnalyzer()
 
 
 def input_parameters_work(i=None):
@@ -56,3 +60,28 @@ def input_parameters_work(i=None):
     i = i if i is not None else randint(0, len(values['pers1']) - 1)
 
     return values['pers1'][i], values['pers2'][i], values['pers3'][i], choice(values['task'][i])
+
+
+def correct_word(key, values) -> str:
+    """Функция для подбора правильных склонений слов"""
+    words_collection = {
+        'раз': ['раз', 'раза', 'раз'],
+        'день': ['день', 'дня', 'дней']
+    }
+    if key in words_collection:
+        words = words_collection.get(key)
+        if all((values % 10 == 1, values % 100 != 11)):
+            return words[0]
+        elif all((2 <= values % 10 <= 4,
+                  any((values % 100 < 10, values % 100 >= 20)))):
+            return words[1]
+        return words[2]
+    else:
+        task1, task2 = key.rsplit(' ', maxsplit=1)
+        result = []
+        for value in values:
+            try:
+                result.append(morph.parse(task2)[0].make_agree_with_number(value).word)
+            except:
+                result.append(task2)
+        return task1, result
