@@ -1,6 +1,5 @@
+from pprint import pprint
 from random import randint, choice
-from fractions import Fraction
-import sympy
 
 from input_parameters import input_parameters_work, morph, correct_word
 
@@ -11,17 +10,39 @@ def task_13021():
     После того как в течение 5 дней работала одна первая бригада, к ней присоединилась вторая, и обе вместе закончили
     работу. Сколько дней бригады работали вместе ?
     """
+    # находим параметры к задаче и ответ
     while True:
         # delta_t, t1 = 5, 12
         # k = 75
         delta_t, t1 = sorted(randint(1, 100) for _ in range(2))
-        k = randint(10, 100)
+        k = randint(10, 99)
         t2 = k / 100 * t1
         t = (1 - delta_t / t1) / (1 / t1 + 1 / t2)
         if int(t) - t == 0 and t != 0:
             break
 
-    return t
+    answer = t
+    # i = 1
+    i = choice([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 15, 16])
+    pers1, pers2, _, (task, measure) = input_parameters_work(i)
+
+    pers1 = pers1.split()[1] if 'перв' in pers1 else pers1
+    pers2 = pers2.split()[1] if 'втор' in pers2 else pers2
+
+    if morph.parse(pers1.split()[0])[0].tag.gender == 'femn':
+        gender = ('работала', 'ней', 'присоединилась', 'обе', 'Первая', 'Вторая')
+    else:
+        gender = ('работал', 'нему', 'присоединился', 'оба', 'Первый', 'Второй')
+
+    if pers1 == pers2:
+        return f"{gender[4]} {pers1} может {task} за {t1} {correct_word('день', t1)}. {gender[5]} {pers2} может выполнить " \
+               f"ту же работу за {k}% этого времени. После того, как {delta_t} {correct_word('день', delta_t)} " \
+               f"{gender[0]} только {gender[4].lower()} {pers1}, к {gender[1]} {gender[2]} {gender[5].lower()} {pers2}, " \
+               f"и {gender[3]} закончили работу вместе. Сколько дней они работали вместе?", answer
+    else:
+        return f"{pers1.title()} может {task} за {t1} {correct_word('день', t1)}. {pers2.title()} может выполнить ту же работу за {k}% этого времени. " \
+               f"После того, как {delta_t} {correct_word('день', delta_t)} {gender[0]} только {pers1}, к {gender[1]} {gender[2]} {pers2}, " \
+               f"и {gender[3]} закончили работу вместе. Сколько дней {pers1} и {pers2} работали вместе?", answer
 
 
 def task_13023():
@@ -141,5 +162,6 @@ def task_13075():
 
 
 if __name__ == "__main__":
-    print(task_13075())
+    # print(correct_word('день', 42))
+    pprint(task_13021())
     # print(task_13037())
