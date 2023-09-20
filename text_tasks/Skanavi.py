@@ -22,6 +22,8 @@ def task_13021():
             break
 
     answer = t
+
+    # выбираем контекст
     # i = 1
     i = choice([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 15, 16])
     pers1, pers2, _, (task, measure) = input_parameters_work(i)
@@ -51,32 +53,67 @@ def task_13023():
     второго. Сколько деталей было обработано за смену каждым станком, если первый работал в эту смену 6 ч, а второй - 8 ч,
     причём оба изготовили 820 деталей.
     """
+    # находим решение
     while True:
-        k = randint(50, 100)  # / 100
+        k = randint(50, 99)  # / 100
         s = randint(10, 1000)
         t1, t2 = sorted(randint(1, 100) for _ in range(2))
         v2 = s / ((1 + k / 100) * t1 + t2)
         v1 = (1 + k / 100) * v2
         s1, s2 = v1 * t1, v2 * t2
         if int(v2) - v2 == 0 and int(v1) - v1 == 0:
-            print(v1, v2)
             break
+    # выбираем контекст
+    while True:
+        i = choice([0, 1, 2, 3, 4, 5, 6, 7, 9, 10, 12, 14, 15, 16])
+        pers1, pers2, _, (task, measure) = input_parameters_work(i)
+        if measure and pers1 != pers2:
+            meas_word, unit = measure
+            break
+        else:
+            pers1, pers2, _, (task, measure) = input_parameters_work(i)
 
-    questions = [
-        'Какова скорость каждого персонажа?',
-        'Сколько деталей обработано каждым персонажем'
-    ]
-    return s1, s2
+    if len(pers1.split()) == 1:
+        pers1_gent = morph.parse(pers1)[0].inflect({'gent'}).word
+        pers2_gent = morph.parse(pers2)[0].inflect({'gent'}).word
+    else:
+        pers1_gent_1, pers1_gent_2 = (morph.parse(item)[0].inflect({'gent'}).word for item in pers1.split())
+        pers1_gent = f'{pers1_gent_1} {pers1_gent_2.title()}'
+        pers2_gent_1, pers2_gent_2 = (morph.parse(item)[0].inflect({'gent'}).word for item in pers2.split())
+        pers2_gent = f'{pers2_gent_1} {pers2_gent_2.title()}'
+
+    if unit in ('м3', 'м2', 'км'):
+        word1, word2, new_unit = unit, unit, meas_word + ' '
+        task1 = task
+    else:
+        new_unit = ''
+
+    task1, (word1, word2) = correct_word(key=task, values=(10, s))
+
+    if morph.parse(pers1.split()[0])[0].tag.gender == 'femn':
+        gender = ('каждой', 'должна', 'каждая', 'первая', 'работала', 'вторая')
+    else:
+        gender = ('каждого', 'должен', 'каждый', 'первый', 'работал', 'второй')
+
+    question, answer = choice([
+        (f'Какова скорость {gender[0]} из них', (v1, v2)),
+        (f'Сколько {gender[1]} {word1} {task1} {gender[2]} из них', (s1, s2))
+    ])
+
+    return f"{pers1.title()} и {pers2} должны {task1} несколько {word1}. Производительность {pers1_gent} на {k}% выше " \
+           f"производительности {pers2_gent}. {question}, если {gender[3]} {gender[4]} {t1} ч, " \
+           f"а {gender[5]} - {t2} ч, причём всего они смогли {task1} {new_unit}{s} {word2}", answer
 
 
 def task_13024():
     """ Генерация аналогичных задач 13.024, 13.010 М.И. Сканави:
     Тракторная бригада может вспахать 5/6 участка земли за 4 ч 15 мин До обеденного перерыва бригада работала 4.5 ч,
-    после чего осталось невспаханными ещё 8га. Как велик был участок?
+    после чего осталось невспаханными ещё 8 га. Как велик был участок?
     """
     while True:
         a, b = sorted(randint(1, 10) for _ in range(2))
-        x = a / b if a != b else 2 / 3
+        a, b = (a, b) if a != b else (2, 3)
+        x = a / b
         delta_s = randint(1, 100)
         t2, t1 = sorted(randint(1, 1000) for _ in range(2))
         t = t1 / x
@@ -84,8 +121,45 @@ def task_13024():
         if int(s) - s == 0:
             print(t1, t2, delta_s, x)
             break
-    return f'{s} т, {t * 60} min'
 
+    while True:
+        # i = 16
+        i = choice([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 15, 16])
+        pers, _, _, (task, measure) = input_parameters_work(i)
+        if measure:
+            meas_word, unit = measure
+            break
+        else:
+            pers, _, _, (task, measure) = input_parameters_work(i)
+
+    task1, (word1, word2) = correct_word(key=task, values=(10, delta_s))
+
+    if unit == 'км':
+        word2 = f'{unit} {word2}'
+
+    # корректируем время для условия
+    if t1 / 60 > 1:
+        time1 = f'{int(t1)} ч' if t1 % 60 == 0 else f'{int(t1)} ч {int(t1 % 60)} мин'
+    else:
+        time1 = f'{int(t1)} мин'
+    if t2 / 60 > 1:
+        time2 = f'{int(t2)} ч' if t1 % 60 == 0 else f'{int(t2)} ч {int(t2 % 60)} мин'
+    else:
+        time2 = f'{int(t2)} мин'
+    # выбираем вопрос к задаче
+    units = {
+        'шт': (s, f'Сколько всего {word1} {pers} может {task1} за отведенное время?'),
+        'м3': (s, f'Найдите объем {word1}.'),
+        'м2': (s, f'Найдите площадь {word1}.'),
+        'км': (s, f'Найдите длину {morph.parse(word1)[0].inflect({"gent", "sing"}).word}.')
+    }
+    try:
+        answer, question = units.get(unit, '')
+        return f"{pers.title()} может выполнить {a}/{b} заказа за {time1}. {pers.title()} работал(а) {time2}, после чего " \
+               f"осталось {task1} еще {delta_s} {word2}. {question}", answer
+    except ValueError:
+        return task_13024()
+    
 
 def task_13032():
     """Генерация аналогичных задач 13.032 М.И. Сканави:
@@ -163,5 +237,5 @@ def task_13075():
 
 if __name__ == "__main__":
     # print(correct_word('день', 42))
-    pprint(task_13021())
+    pprint(task_13024())
     # print(task_13037())
