@@ -4,7 +4,7 @@ from random import randint, choice
 import numpy as np
 from pprint import pprint
 
-from input_parameters import input_parameters_work, morph, correct_word
+from input_parameters import input_parameters_work, morph, correct_word, gent_pers
 
 
 def task_9515():
@@ -377,11 +377,7 @@ def task_17622():
     else:
         new_unit = ''
 
-    if len(pers1.split()) == 1:
-        pers1_gent = morph.parse(pers1)[0].inflect({'gent'}).word
-    else:
-        pers1_gent_1, pers1_gent_2 = (morph.parse(item)[0].inflect({'gent'}).word for item in pers1.split())
-        pers1_gent = f'{pers1_gent_1} {pers1_gent_2.title()}'
+    pers1_gent = gent_pers((pers1,))
 
     if morph.parse(pers1.split()[0])[0].tag.gender == 'femn':
         gender = ('первая', 'вторая', 'первой', 'она', 'каждой', 'Две')
@@ -591,14 +587,7 @@ def task_721():
     t1 = (-(delta_t - 2 * t) + d) / 2
     t2 = t1 + delta_t
 
-    if len(pers1.split()) == 1:
-        pers1_gent = morph.parse(pers1)[0].inflect({'gent'}).word
-        # pers2_gent = morph.parse(pers2)[0].inflect({'gent'}).word
-    else:
-        pers1_gent_1, pers1_gent_2 = (morph.parse(item)[0].inflect({'gent'}).word for item in pers1.split())
-        pers1_gent = f'{pers1_gent_1} {pers1_gent_2}'
-        # pers2_gent_1, pers2_gent_2 = (morph.parse(item)[0].inflect({'gent'}).word for item in pers2.split())
-        # pers2_gent = f'{pers2_gent_1} {pers2_gent_2}'
+    pers1_gent = gent_pers((pers1,))
 
     if morph.parse(pers1.split()[0])[0].tag.gender == 'femn':
         gender = ('первая', 'вторая', 'каждая', 'одна', 'Две')
@@ -649,11 +638,7 @@ def task_745():
         if k < 1:
             break
 
-    if len(pers1.split()) == 1:
-        pers1_gent = morph.parse(pers1)[0].inflect({'gent'}).word
-    else:
-        pers1_gent_1, pers1_gent_2 = (morph.parse(item)[0].inflect({'gent'}).word for item in pers1.split())
-        pers1_gent = f'{pers1_gent_1} {pers1_gent_2}'
+    pers1_gent = gent_pers((pers1,))
 
     if morph.parse(pers1.split()[0])[0].tag.gender == 'femn':
         gender = ('первая', 'вторая', 'каждая', 'одна', 'Две')

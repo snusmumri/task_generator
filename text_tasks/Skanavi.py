@@ -1,7 +1,7 @@
 from pprint import pprint
 from random import randint, choice
 
-from input_parameters import input_parameters_work, morph, correct_word
+from input_parameters import input_parameters_work, morph, correct_word, gent_pers
 
 
 def task_13021():
@@ -73,14 +73,7 @@ def task_13023():
         else:
             pers1, pers2, _, (task, measure) = input_parameters_work(i)
 
-    if len(pers1.split()) == 1:
-        pers1_gent = morph.parse(pers1)[0].inflect({'gent'}).word
-        pers2_gent = morph.parse(pers2)[0].inflect({'gent'}).word
-    else:
-        pers1_gent_1, pers1_gent_2 = (morph.parse(item)[0].inflect({'gent'}).word for item in pers1.split())
-        pers1_gent = f'{pers1_gent_1} {pers1_gent_2.title()}'
-        pers2_gent_1, pers2_gent_2 = (morph.parse(item)[0].inflect({'gent'}).word for item in pers2.split())
-        pers2_gent = f'{pers2_gent_1} {pers2_gent_2.title()}'
+    pers1_gent, pers2_gent = gent_pers((pers1, pers2))
 
     if unit in ('м3', 'м2', 'км'):
         word1, word2, new_unit = unit, unit, meas_word + ' '
@@ -119,11 +112,10 @@ def task_13024():
         t = t1 / x
         s = delta_s * t / (t - t2)
         if int(s) - s == 0:
-            print(t1, t2, delta_s, x)
             break
 
     while True:
-        # i = 16
+        # i = 15
         i = choice([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 15, 16])
         pers, _, _, (task, measure) = input_parameters_work(i)
         if measure:
@@ -132,20 +124,20 @@ def task_13024():
         else:
             pers, _, _, (task, measure) = input_parameters_work(i)
 
-    task1, (word1, word2) = correct_word(key=task, values=(10, delta_s))
+    task1, (word1, word2) = correct_word(key=task, values=(2, delta_s))
 
     if unit == 'км':
         word2 = f'{unit} {word2}'
 
     # корректируем время для условия
-    if t1 / 60 > 1:
-        time1 = f'{int(t1)} ч' if t1 % 60 == 0 else f'{int(t1)} ч {int(t1 % 60)} мин'
-    else:
-        time1 = f'{int(t1)} мин'
-    if t2 / 60 > 1:
-        time2 = f'{int(t2)} ч' if t1 % 60 == 0 else f'{int(t2)} ч {int(t2 % 60)} мин'
-    else:
-        time2 = f'{int(t2)} мин'
+    times = []
+    for i, time in enumerate((t1, t2)):
+        if time / 60 > 1:
+            time1 = f'{int(time)} ч' if time % 60 == 0 else f'{int(time)} ч {int(time % 60)} мин'
+        else:
+            time1 = f'{int(time)} мин'
+        times.append(time1)
+    time1, time2 = times
     # выбираем вопрос к задаче
     units = {
         'шт': (s, f'Сколько всего {word1} {pers} может {task1} за отведенное время?'),
@@ -159,7 +151,7 @@ def task_13024():
                f"осталось {task1} еще {delta_s} {word2}. {question}", answer
     except ValueError:
         return task_13024()
-    
+
 
 def task_13032():
     """Генерация аналогичных задач 13.032 М.И. Сканави:
@@ -167,6 +159,7 @@ def task_13032():
     может изготовить 60% всех деталей, а скорости выполнения работы на третьем и на втором прессах относятся как 6:5.
     За какое время будет выполнен весь заказ, если все три пресса будут работать одновременно?
     """
+    # находим ответ к задаче
     while True:
         k1, k2 = (randint(10, 100) for _ in range(2))  # / 100
         t1, t2 = sorted(randint(1, 100) for _ in range(2))
@@ -175,7 +168,27 @@ def task_13032():
         t = 1 / (k1 / t1 + k2 / t2 * (1 + a/b)) * 60
         if int(t) - t == 0:
             break
-    return t
+    # корректируем время для условия
+    times = []
+    for i, time in enumerate((t1, t2, t)):
+        if time / 60 > 1:
+            time1 = f'{int(time)} ч' if time % 60 == 0 else f'{int(time)} ч {int(time % 60)} мин'
+        else:
+            time1 = f'{int(time)} мин'
+        times.append(time1)
+    t1, t2, answer = times
+
+    # выбираем условие
+    while True:
+        pers1, pers2, pers3, (task, measure) = input_parameters_work()
+        if not pers1 == pers2 == pers3 or (not pers1 == pers2 and not pers3 == pers2):
+            break
+
+    pers2_gent, pers3_gent = gent_pers((pers2, pers3))
+
+    return f"{pers1.title()}, {pers2} и {pers3} должны {task}. За {t1} работы {pers1} может выполнить {k1}% всей работы. " \
+           f"{pers2.title()} за {t2} выполнит {k2}% всей работы. Скорости выполнения работы {pers2_gent} и {pers3_gent} " \
+           f"относятся как {a}:{b}. За какое время будет выполнена вся работа, если они будут работать вместе?", answer
 
 
 def task_13033():
@@ -184,6 +197,7 @@ def task_13033():
     за то же время, за которое вторая перепечатывала 5 страниц. Сколько страниц перепечатывала каждая машинистка в час,
     если первая закончила работу на 1,5 ч быстрее?
     """
+    # находим ответ
     while True:
         a, b = sorted(randint(1, 10) for _ in range(2))
         s = randint(1, 100)
@@ -192,7 +206,33 @@ def task_13033():
         v1 = b / a * v2
         if int(v1) - v1 == 0 and v1 != 0 and int(v2) - v2 == 0:
             break
-    return v1, v2
+    answer = (v1, v2)
+    # выбираем условие
+    while True:
+        i = choice([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 16])
+        pers1, pers2, _, (task, measure) = input_parameters_work(i)
+        if measure and pers1 != pers2:
+            meas_word, unit = measure
+            break
+        else:
+            pers1, pers2, _, (task, measure) = input_parameters_work(i)
+
+    task1, (word1, word2) = correct_word(key=task, values=(s, 10))
+
+    if unit in ('м3', 'м2', 'км'):
+        word1, word2, new_unit = unit, unit, meas_word + ' '
+        task1 = task
+    else:
+        new_unit = ''
+
+    if morph.parse(pers1.split()[0])[0].tag.gender == 'femn':
+        gender = ('каждая', 'Первая', 'вторая', 'закончила')
+    else:
+        gender = ('каждый', 'Первый', 'второй', 'закончил')
+
+    return f"{pers1.title()} и {pers2} должны {task1} {new_unit}несколько {word2} - по {s} {word1} {gender[0]}. {gender[1]} может " \
+           f"{task1} {a} {unit} за то же время, за которое {gender[2]} может {task1} {b} {unit}. Сколько {word2} " \
+           f"может {task1} {gender[0]}, если {gender[1].lower()} {gender[3]} работу на {delta_t} ч быстрее?"
 
 
 def task_13037():
@@ -237,5 +277,5 @@ def task_13075():
 
 if __name__ == "__main__":
     # print(correct_word('день', 42))
-    pprint(task_13024())
+    pprint(task_13033())
     # print(task_13037())

@@ -66,22 +66,46 @@ def correct_word(key, values) -> str:
     """Функция для подбора правильных склонений слов"""
     words_collection = {
         'раз': ['раз', 'раза', 'раз'],
-        'день': ['день', 'дня', 'дней']
+        'день': ['день', 'дня', 'дней'],
+        'поле': ['поле', 'поля', 'полей']
     }
     if key in words_collection:
         words = words_collection.get(key)
-        if all((values % 10 == 1, values % 100 != 11)):
-            return words[0]
-        elif all((2 <= values % 10 <= 4,
-                  any((values % 100 < 10, values % 100 >= 20)))):
-            return words[1]
-        return words[2]
+        return help_to_correct_word(words, values)
     else:
         task1, task2 = key.rsplit(' ', maxsplit=1)
         result = []
         for value in values:
             try:
-                result.append(morph.parse(task2)[0].make_agree_with_number(value).word)
+                if task2 in words_collection:
+                    words = words_collection.get(task2)
+                    result.append(help_to_correct_word(words, value))
+                else:
+                    result.append(morph.parse(task2)[0].make_agree_with_number(value).word)
             except:
                 result.append(task2)
         return task1, result
+
+
+def help_to_correct_word(words, value):
+    if all((value % 10 == 1, value % 100 != 11)):
+        return words[0]
+    elif all((2 <= value % 10 <= 4,
+              any((value % 100 < 10, value % 100 >= 20)))):
+        return words[1]
+    return words[2]
+
+
+def gent_pers(persons):
+    persons_gent = []
+    for pers in persons:
+        if len(pers.split()) == 1:
+            persons_gent.append(morph.parse(pers)[0].inflect({'gent'}).word)
+        else:
+            pers1_gent_1, pers1_gent_2 = (morph.parse(item)[0].inflect({'gent'}).word for item in pers.split())
+            persons_gent.append(f'{pers1_gent_1} {pers1_gent_2.title()}')
+    return persons_gent
+
+
+if __name__ == '__main__':
+    print(correct_word('поле', 72))
