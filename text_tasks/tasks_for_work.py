@@ -4,8 +4,8 @@ from random import randint, choice
 import numpy as np
 from pprint import pprint
 
-from input_parameters import input_parameters_work, morph, correct_word, gent_pers
-
+#from input_parameters import input_parameters_work, morph, correct_word, gent_pers
+from task_generator.text_tasks.input_parameters import input_parameters_work, morph, correct_word, gent_pers
 
 def task_9515():
     """Генерация аналогичной задачи с портала https://kuzovkin.info/one_exercise_1/9515:
