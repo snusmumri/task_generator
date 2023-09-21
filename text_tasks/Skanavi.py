@@ -12,17 +12,14 @@ def task_13021():
     """
     # находим параметры к задаче и ответ
     while True:
-        # delta_t, t1 = 5, 12
-        # k = 75
+
         delta_t, t1 = sorted(randint(1, 100) for _ in range(2))
         k = randint(10, 99)
         t2 = k / 100 * t1
         t = (1 - delta_t / t1) / (1 / t1 + 1 / t2)
         if int(t) - t == 0 and t != 0:
             break
-
     answer = t
-
     # выбираем контекст
     # i = 1
     i = choice([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 15, 16])
@@ -178,10 +175,10 @@ def task_13032():
         times.append(time1)
     t1, t2, answer = times
 
-    # выбираем условие
+    # выбираем контекст
     while True:
         pers1, pers2, pers3, (task, measure) = input_parameters_work()
-        if not pers1 == pers2 == pers3 or (not pers1 == pers2 and not pers3 == pers2):
+        if not pers1 == pers2 == pers3 and not pers1 == pers2 and not pers3 == pers2:
             break
 
     pers2_gent, pers3_gent = gent_pers((pers2, pers3))
@@ -207,9 +204,9 @@ def task_13033():
         if int(v1) - v1 == 0 and v1 != 0 and int(v2) - v2 == 0:
             break
     answer = (v1, v2)
-    # выбираем условие
+    # выбираем контекст
     while True:
-        i = choice([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 16])
+        i = choice([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14])
         pers1, pers2, _, (task, measure) = input_parameters_work(i)
         if measure and pers1 != pers2:
             meas_word, unit = measure
@@ -232,15 +229,14 @@ def task_13033():
 
     return f"{pers1.title()} и {pers2} должны {task1} {new_unit}несколько {word2} - по {s} {word1} {gender[0]}. {gender[1]} может " \
            f"{task1} {a} {unit} за то же время, за которое {gender[2]} может {task1} {b} {unit}. Сколько {word2} " \
-           f"может {task1} {gender[0]}, если {gender[1].lower()} {gender[3]} работу на {delta_t} ч быстрее?"
+           f"может {task1} {gender[0]}, если {gender[1].lower()} {gender[3]} работу на {delta_t} ч быстрее?", answer
 
 
 def task_13037():
     """Генерация аналогичных задач 13.037 М.И. Сканави:
     Одна мельница может смолоть 19 ц пшеницы за 3 ч., другая 32 ц за 5 ч.а третья 10 ц за 2 часа. Как распределить 133
     тонны пшеницы между этими мельницами чтобы одновременно начав работу они окончили её также одновременно?"""
-    # s1, s2, s3 = 19, 32, 10
-    # t1, t2, t3 = 3, 5, 2
+    # ищем ответ
     while True:
         # s = 133
         s = randint(10, 200)
@@ -250,7 +246,35 @@ def task_13037():
         x1, x2, x3 = s1 / t1 * t * 10, s2 / t2 * t * 10, s3 / t3 * t * 10
         if int(t * 60) - t * 60 == 0 and int(x1) - x1 == 0 and int(x2) - x2 == 0 and int(x3) - x3 == 0:
             break
-    return f'{s} т, {t * 60} min, {x1, x2, x3}'
+    answer = (x1, x2, x3)
+    # выбираем контекст
+    while True:
+        pers1, pers2, pers3, (task, measure) = input_parameters_work()
+        if not pers1 == pers2 == pers3 and not pers1 == pers2 and not pers3 == pers2:
+            break
+    while True:
+        i = choice([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11])
+        # i = 11
+        pers1, pers2, pers3, (task, measure) = input_parameters_work(i)
+        if measure and (not pers1 == pers2 == pers3 or (not pers1 == pers2 and not pers3 == pers2)):
+            meas_word, unit = measure
+            break
+        else:
+            pers1, pers2, pers3, (task, measure) = input_parameters_work(i)
+
+    task1, (word1, word2, word3, word4) = correct_word(key=task, values=(s1, s2, s3, s))
+
+    if unit in ('м3', 'м2', 'км'):
+        word1, word2, word3, word4, new_unit = unit, unit, unit, unit, meas_word + ' '
+        task1 = task
+    else:
+        new_unit = ''
+    """Генерация аналогичных задач 13.037 М.И. Сканави:
+        Одна мельница может смолоть 19 ц пшеницы за 3 ч., другая 32 ц за 5 ч.а третья 10 ц за 2 часа. Как распределить 133
+        тонны пшеницы между этими мельницами чтобы одновременно начав работу они окончили её также одновременно?{new_unit}"""
+    return f"{pers1.title()} может {task1} {new_unit}{s1} {word1} за {t1} ч, {pers2} - {s2} {word2} за {t2} ч, а {pers3} - " \
+           f"{s3} {word3} за {t3} ч. Как распределить {s} {word4} между ними, чтобы одновременно начав работу, " \
+           f"они закончили её также одновременно?", answer
 
 
 def task_13075():
@@ -258,9 +282,8 @@ def task_13075():
     Двое рабочих за одну смену изготовили 72 детали. После увеличения производительности первого рабочего на 15%,
     а второго на 25%, они вместе за смену изготовили 86 деталей. Сколько деталей изготовляет каждый рабочий за смену
     после (или до) повышения производительности труда?"""
+    # находим ответ
     while True:
-        # k1, k2 = 15, 25
-        # s1, s2 = 72, 86
         k1, k2 = (randint(5, 50) for _ in range(2))  # / 100
         if k1 == k2:
             k2 = 51 - k2
@@ -272,10 +295,24 @@ def task_13075():
 
         if int(x2) - x2 == 0 and int(x2_new) - x2_new == 0 and x1 > 0 and x2 > 0:
             break
-    return x2, x1
+    # выбираем вопрос
+    question, answer = choice([
+        ("до повышения производительности труда?", (x2, x1)),
+        ("после повышения производительности труда?", (x2_new, x1_new)),
+    ])
+    # выбираем контекст
+    i = choice([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 14])
+    pers1, pers2, _, (task, _) = input_parameters_work(i)
+    task1, (word1, word2, word3) = correct_word(key=task, values=(s1, s2, 10))
+    pers1_gent, pers2_gent = gent_pers((pers1, pers2))
+
+    word4 = 'каждая' if morph.parse(pers1.split()[0])[0].tag.gender == 'femn' else 'каждый'
+
+    return f"{pers1.title()} и {pers2} могут вместе {task1} {s1} {word1}. После увеличения производительности {pers1_gent} на " \
+           f"{k1}%, а {pers2_gent} на {k2}%, они могут вместе {task1} {s2} {word2}. Сколько {word3} может {task1} {word4} из них " \
+           f"{question}", answer
 
 
 if __name__ == "__main__":
-    # print(correct_word('день', 42))
-    pprint(task_13033())
+    pprint(task_13075())
     # print(task_13037())
