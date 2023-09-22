@@ -99,14 +99,20 @@ def help_to_correct_word(words, value):
 def gent_pers(persons):
     persons_gent = []
     for pers in persons:
-        if len(pers.split()) == 1:
-            persons_gent.append(morph.parse(pers)[0].inflect({'gent'}).word)
+        if len(pers.split(' ')) == 1:
+            try:
+                persons_gent.append(morph.parse(pers)[0].inflect({'gent'}).word)
+            except AttributeError:
+                persons_gent.append(pers)
         else:
-            pers1_gent_1, pers1_gent_2 = (morph.parse(item)[0].inflect({'gent'}).word for item in pers.split())
-            if pers1_gent_1 == 'второй':
-                pers1_gent_1 = 'второго' if morph.parse(pers1_gent_2)[0].tag.gender != 'femn' else pers1_gent_1
-            pers1_gent_2 = pers1_gent_2.title() if pers.split()[1][0].isupper() else pers1_gent_2
-            persons_gent.append(f'{pers1_gent_1} {pers1_gent_2}')
+            try:
+                pers1_gent_1, pers1_gent_2 = (morph.parse(item)[0].inflect({'gent'}).word for item in pers.split())
+                if pers1_gent_1 == 'второй':
+                    pers1_gent_1 = 'второго' if morph.parse(pers1_gent_2)[0].tag.gender != 'femn' else pers1_gent_1
+                pers1_gent_2 = pers1_gent_2.title() if pers.split()[1][0].isupper() else pers1_gent_2
+                persons_gent.append(f'{pers1_gent_1} {pers1_gent_2}')
+            except AttributeError:
+                persons_gent.append(pers)
     return persons_gent
 
 
