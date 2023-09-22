@@ -105,8 +105,18 @@ def gent_pers(persons):
             pers1_gent_1, pers1_gent_2 = (morph.parse(item)[0].inflect({'gent'}).word for item in pers.split())
             if pers1_gent_1 == 'второй':
                 pers1_gent_1 = 'второго' if morph.parse(pers1_gent_2)[0].tag.gender != 'femn' else pers1_gent_1
-            persons_gent.append(f'{pers1_gent_1} {pers1_gent_2.title()}')
+            pers1_gent_2 = pers1_gent_2.title() if pers.split()[1][0].isupper() else pers1_gent_2
+            persons_gent.append(f'{pers1_gent_1} {pers1_gent_2}')
     return persons_gent
+
+
+def start_title(person):
+    if len(person.split()) == 1:
+        return person.title()
+    else:
+        pers1, pers2 = person.split()
+        pers2 = pers2.title() if pers2[0].isupper() else pers2
+        return f'{pers1.title()} {pers2}'
 
 
 if __name__ == '__main__':

@@ -4,7 +4,7 @@ from random import randint, choice
 import numpy as np
 from pprint import pprint
 
-from input_parameters import input_parameters_work, morph, correct_word, gent_pers
+from input_parameters import input_parameters_work, morph, correct_word, gent_pers, start_title
 
 
 def task_9515():
@@ -20,7 +20,7 @@ def task_9515():
         answer = 1 / (1 / time1 + 1 / time2 + 1 / time3)
         if int(answer) - answer == 0:
             break
-    return f"{pers1.title()} может {task} за {time1} ч, {pers2} может {task} за {time2} ч, {pers3} - за {time3} ч. " \
+    return f"{start_title(pers1)} может {task} за {time1} ч, {pers2} может {task} за {time2} ч, {pers3} - за {time3} ч. " \
            f"За какое время они втроем могут {task}?", answer
 
 
@@ -37,7 +37,7 @@ def task_9517():
         answer = time1 * time2 / (time2 - time1)
         if int(answer) - answer == 0:
             break
-    return f"{pers1.title()} и {pers2} могут {task} за {time1} мин, а 1 {pers1} - за {time2} мин. За сколько минут " \
+    return f"{start_title(pers1)} и {pers2} могут {task} за {time1} мин, а 1 {pers1} - за {time2} мин. За сколько минут " \
            f"может {task} {pers2}?", answer
 
 
@@ -51,12 +51,15 @@ def task_11101():
     # случайным образом получаем ответ к задаче
     while True:
         time1, time2, time3 = sorted(np.random.randint(4, 100, size=3))
-        answer = 1 / (1 / time1 - 1 / time2 - 1 / time3)
-        if answer <= 0:
+        result = (1 / time1 - 1 / time2 - 1 / time3)
+        if 10 ** -5 <= result:
+            answer = 1 / result
+        else:
             answer = 1.23456
         if int(answer) - answer == 0:
             break
-    return f"{pers1.title()}, {pers2} и {pers3} вместе могут {task} за {time1} ч. {pers1} может {task} за {time2} ч, " \
+
+    return f"{start_title(pers1)}, {pers2} и {pers3} вместе могут {task} за {time1} ч. {pers1} может {task} за {time2} ч, " \
            f"а {pers2} – за {time3} ч. За сколько часов это сделает {pers3}?", answer
 
 
@@ -72,7 +75,7 @@ def task_11108():
         answer = 2 / (1 / time1 + 1 / time2 + 1 / time3)
         if int(answer) - answer == 0:
             break
-    return f"{pers1.title()} и {pers2} могут {task} за {time1} ч. {pers2} и {pers3} могут {task} за {time2} ч, " \
+    return f"{start_title(pers1)} и {pers2} могут {task} за {time1} ч. {pers2} и {pers3} могут {task} за {time2} ч, " \
            f"а {pers1} и {pers3} - за {time3} ч. За какое время они могут {task}, работая вместе?", answer
 
 
@@ -89,7 +92,7 @@ def task_936():
     time2 = time1 * randint(1, 10)
     # получаем ответ
     answer = time1 + (time2 - time1) / 2
-    return f"{pers1.title()} и {pers2} должны {task}. Каждый из них способен сделать это за {time2} ч. " \
+    return f"{start_title(pers1)} и {pers2} должны {task}. Каждый из них способен сделать это за {time2} ч. " \
            f"Через {time1} ч после того, как {pers1} начал делать это в одиночку, к нему присоединился {pers2}, " \
            f"и они закончили вместе. За сколько часов задача была выполнена?", answer
 
@@ -136,7 +139,7 @@ def task_2610():
         (t, 'За сколько дней он выполнит задачу'),
         (v, 'Сколько раз в день он должен был делать это по плану')
     ])
-    return f"{pers.title()} должен {task1} {int(s)} {word1} - по несколько в день. Когда он приступил к работе, оказалось, " \
+    return f"{start_title(pers)} должен {task1} {int(s)} {word1} - по несколько в день. Когда он приступил к работе, оказалось, " \
            f"что он может {task1} на {x} {word2} больше запланированного количества в день " \
            f"и завершить процесс на {y} {correct_word('день', y)} раньше срока. {question}?", answer
 
@@ -161,7 +164,7 @@ def task_17612():
     answer = v + x
     # делаем множественное число
     task1, (word1, word2) = correct_word(key=task, values=(10, x))
-    return f"{pers.title()} должен был за {t} {correct_word('день', t)} {task1} несколько {word1}. " \
+    return f"{start_title(pers)} должен был за {t} {correct_word('день', t)} {task1} несколько {word1}. " \
            f"Перевыполняя ежедневную норму на {x} {word2}, он закончил на {y} " \
            f"{correct_word('день', y)} раньше срока. Сколько раз в день он делал поставленную задачу?", answer
 
@@ -196,7 +199,7 @@ def task_17610():
     discr, t, x = choose_discr_without_s()
     t2 = (2 * t - x + math.sqrt(discr)) / 2
     t1 = t2 + x
-    return f"{pers1.title()} и {pers2}, работая одновременно, могут {task} за {t} ч. Один {pers1.title()} " \
+    return f"{start_title(pers1)} и {pers2}, работая одновременно, могут {task} за {t} ч. Один {pers1} " \
            f"затратит на эту работу на {x} ч больше, чем {pers2}. За какое время могут {task} каждый из них, " \
            f"работая отдельно?", (t1, t2)
 
@@ -225,7 +228,7 @@ def task_17613():
     # делаем множественное число
     task1, (word1, word2) = correct_word(key=task, values=(x, 5))
 
-    return f"{pers.title()} усовершенствовал свои навыки и теперь может за час {task1} на {x} {word1} больше, " \
+    return f"После усовершенствования технологии {pers} теперь может {task1} за час на {x} {word1} больше, " \
            f"чем прежде. Поэтому за {t1} ч работы он начал выполнять {k} прежней {t2}-часовой нормы. " \
            f"Сколько {word2} в час теперь может {task1} {pers}?", answer
 
@@ -266,7 +269,7 @@ def task_17583():
     # делаем множественное число
     task1, (word1, word2, word3, word4) = correct_word(key=task, values=(s1, x, s2, 10))
     # task1, word3, word4 = correct_word(key=task, values=(s2, 10))
-    return f"{pers1.title()} должен {task1} {s1} {word1}, a {pers2} - {s2} {word3}. Первый может {task1} в день " \
+    return f"{start_title(pers1)} должен {task1} {s1} {word1}, a {pers2} - {s2} {word3}. Первый может {task1} в день " \
            f"на {x} {word2} больше, чем второй, и закончить на {y} {correct_word('день', y)} раньше, чем второй. " \
            f"По сколько {word4} в день может {task1} каждый из них?", (v1, v2)
 
@@ -302,8 +305,8 @@ def task_17596():
     Предприятие должно было изготовить за несколько месяцев 6000 насосов. Увеличив производительность труда, предприятие
     стало изготавливать в месяц на 70 насосов больше, и на 1 месяц раньше срока перевыполнило задание на 30 насосов.
     За какой срок было изготовлено 6030 насосов?"""
-    # i = choice([1, 4, 9, 12, 13])
-    i = randint(0, 17)
+    i = 15
+    # i = randint(0, 17)
     pers, _, _, (task, measure) = input_parameters_work(i)
     if measure:
         meas_word, unit = measure
@@ -316,7 +319,7 @@ def task_17596():
         f"За какой срок {pers} может {task1} {s + s1} {word4}?",
         f"За какой срок {pers} может {task1} на {s1} {word3} больше запланированного количества?"
     ])
-    return f"{pers.title()} может {task1} {s} {word1}. Увеличив производительность, {pers} теперь может {task1} " \
+    return f"{start_title(pers)} может {task1} {s} {word1}. Увеличив производительность, {pers} теперь может {task1} " \
            f"в месяц на {y} {word2} больше, и на {x} мес. раньше срока, перевыполнив задание на {s1} {word3}. " \
            f"{question}", answer
 
@@ -331,9 +334,9 @@ def task_17621():
         t = s / v
         if v <= 0:
             t = 1.2345
-        if int(t) - t != 0:
+        if int(t) - t == 0:
             break
-    return f"Бассейн, содержащий {s} м3 воды, сначала был опорожнен, а затем наполнен до прежнего уровня. " \
+    return f"Бассейн, содержащий {int(s)} м3 воды, сначала был опорожнен, а затем наполнен до прежнего уровня. " \
            f"На все это потребовалось {y} ч. Сколько времени шло заполнение бассейна, если при наполнении " \
            f"насос перекачивает на {x} м3 воды меньше, чем при опорожнении?", t
 
@@ -342,7 +345,7 @@ def task_17622():
     """Генерация аналогичных задач 17622
     Две трубы наполнили бассейн объемом 54 м3. При этом первая труба открыта 3 часа, а вторая - 2 часа.
     Какова пропускная способность первой трубы, если 1 м3 она заполняет на 1 минуту медленнее, чем вторая?"""
-    # i = 10
+    # i = 16
     while True:
         i = choice([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 15, 16])
         pers1, pers2, _, (task, measure) = input_parameters_work(i)
@@ -366,7 +369,7 @@ def task_17622():
             v2 = (v - t1 * v1) / t2
             if v1 <= 0 or v2 <= 0:
                 v1 = 1.2345
-        if int(v1) - v1 == 0:
+        if int(v1) - v1 == 0 and int(v2) - v2 == 0:
             break
 
     task1, (word1, word2) = correct_word(key=task, values=(v, 1))
@@ -377,7 +380,7 @@ def task_17622():
     else:
         new_unit = ''
 
-    pers1_gent = gent_pers((pers1,))
+    [pers1_gent] = gent_pers((pers1,))
 
     if morph.parse(pers1.split()[0])[0].tag.gender == 'femn':
         gender = ('первая', 'вторая', 'первой', 'она', 'каждой', 'Две')
@@ -405,7 +408,7 @@ def task_17622():
                f"{t1} ч, а {gender[1]} {pers2} - {t2} ч. {question}", answer
     else:
         answer, question = choice(questions['different'])
-        return f"{pers1.title()} и {pers2} могут вместе {task1} {new_unit}{v} {word1}. " \
+        return f"{start_title(pers1)} и {pers2} могут вместе {task1} {new_unit}{v} {word1}. " \
                f"При этом {pers1} работает {t1} ч, а {pers2} - {t2} ч. {question}", answer
 
 
@@ -430,7 +433,7 @@ def task_17624():
 
     answer, question = choice([(x/2, 'сделают первый заказ'), (y/2, 'сделают второй заказ')])
 
-    res = f'{pers1.title()}, {pers2} и {pers3} вместе выполнили первый заказ, а потом {pers2} и {pers3} выполнили ' \
+    res = f'{start_title(pers1)}, {pers2} и {pers3} вместе выполнили первый заказ, а потом {pers2} и {pers3} выполнили ' \
           f'второй заказ (заказы разные по объему). Вся работа заняла {t1} ч. Если бы они вместе сделали половину всей ' \
           f'работы, а оставшуюся часть делал бы кто-то один из них, работа заняла бы {t2} ч. ' \
           f'За какое время двое из них {question}?'
@@ -441,21 +444,10 @@ def task_5173():
     """Генерация аналогичных задач 5.170, 5.173, 5.156 из задачника для классов Пушкин С.А.:
     Бригада трактористов планировала вспахивать в день по 40 га, но из-за ненастной погоды она вспахивала в день
     по 30 га и закончила работу на 2 дня позже срока. Найдите площадь участка."""
-    # i = 16
-    i = randint(0, 16)
-    while True:
-        pers, _, _, (task, measure) = input_parameters_work(i)
-        if measure:
-            meas_word, unit = measure
-            meas_word1 = morph.parse(meas_word)[0].inflect({'gent', 'sing'}).word
-            break
-        else:
-            pers, _, _, (task, measure) = input_parameters_work(i)
-    pers = pers.split()[1] if 'перв' in pers else pers
 
     while True:
         t = randint(1, 10)
-        v1 = randint(11, 100)
+        v1 = randint(1, 10)
         delta_v = randint(1, 10)
         comparison = choice(['раньше', 'позже'])
         v2 = v1 + delta_v if comparison == 'раньше' else v1 - delta_v
@@ -465,19 +457,33 @@ def task_5173():
             s = 1.2345
         if s <= 0:
             s = 1.2345
-        if int(s) - s == 0:
+        if int(s) - s == 0 and v2 > 0:
             break
+    # i = 16
+    i = randint(0, 16)
+    while True:
+        pers, _, _, (task, measure) = input_parameters_work(i)
+        if measure:
+            meas_word, unit = measure
+            meas_word1 = morph.parse(meas_word)[0].inflect({'gent', 'sing'}).word
+            # делаем множественное число
+            task1, (word1, word2, word3) = correct_word(key=task, values=(10, 3, v2))
+            # выбираем вопрос к задаче
+            units = {
+                'шт': (s, f'Сколько всего {word1} {pers} может {task1} за отведенное время?'),
+                'м3': (s, f'Найдите объем {word2}.'),
+                'м2': (s, f'Найдите площадь {word2}.'),
+                'км': (s, f'Найдите длину дороги.')
+            }
+            try:
+                answer, question = units.get(unit, '')
+                break
+            except ValueError:
+                continue
+        else:
+            pers, _, _, (task, measure) = input_parameters_work(i)
 
-    # делаем множественное число
-    task1, (word1, word2, word3) = correct_word(key=task, values=(10, 3, v2))
-    # выбираем вопрос к задаче
-    units = {
-        'шт': (s, f'Сколько всего {word1} {pers} может {task1} за отведенное время?'),
-        'м3': (s, f'Найдите объем {word2}.'),
-        'м2': (s, f'Найдите площадь {word2}.'),
-        'км': (s, f'Найдите длину {morph.parse(word2)[0].inflect({"gent", "sing"}).word}.')
-    }
-    answer, question = units.get(unit, '')
+    pers = pers.split()[1] if 'перв' in pers else pers
 
     if unit in ('м3', 'м2', 'км'):  #
         new_unit, word1, word3 = meas_word + ' ', unit, unit
@@ -490,11 +496,12 @@ def task_5173():
         gender = ('должна', 'приступила', 'она')
     else:
         gender = ('планировал', 'приступил', 'он')
+
     task_condition = choice([
         f'по {v2} {word3} в день ',
         f'на {delta_v} {word1} больше запланированного {meas_word1} в день '
     ])
-    return f"{pers.title()} {gender[0]} {task1} {new_unit}несколько {word1} за определенный срок -  по {v1} {unit} " \
+    return f"{start_title(pers)} {gender[0]} {task1} {new_unit}несколько {word1} за определенный срок - по {v1} {unit} " \
            f"в день. Когда {pers} {gender[1]} к работе, оказалось, что {gender[2]} может {task1} {task_condition}" \
            f"и завершить процесс на {t} {correct_word('день', t)} {comparison} срока. {question}", answer
 
@@ -506,8 +513,7 @@ def task_108():
     Сколько килограммов сахара взяли из каждого мешка?"""
     # выбираем контекст
     i = randint(18, 21)
-    place, _, (item, unit) = input_parameters_work(i)
-    # item = morph.parse(item)[0].inflect({"gent"}).word
+    place, _, _, (task, (item, unit)) = input_parameters_work(i)
     if len(place.split()) == 1:
         place_gent = morph.parse(place)[0].inflect({"gent"}).word
         place_loct = morph.parse(place)[0].inflect({"loct"}).word
@@ -516,9 +522,11 @@ def task_108():
         place_loct = ' '.join([morph.parse(word)[0].inflect({"loct"}).word for word in place.split()])
 
     if morph.parse(place)[0].tag.gender == 'femn':
-        start = (f'На одной {place_loct}', 'на другой', f'С первой {place_gent}', 'со второй', f'c каждой {place_gent}', f'На первой {place_loct}', 'на второй', f'на каждой {place_loct}', 'на вторую')
+        start = (f'На одной {place_loct}', 'на другой', f'С первой {place_gent}', 'со второй', f'c каждой {place_gent}',
+                 f'На первой {place_loct}', 'на второй', f'на каждой {place_loct}', 'на вторую')
     else:
-        start = (f'В одном {place_loct}', 'в другом', f'Из первого {place_gent}', 'из второго', f'из каждого {place_gent}', f'На первом {place_loct}', 'на втором', f'в каждом {place_loct}', 'на второй')
+        start = (f'В одном {place_loct}', 'в другом', f'Из первого {place_gent}', 'из второго', f'из каждого {place_gent}',
+                 f'На первом {place_loct}', 'на втором', f'в каждом {place_loct}', 'на второй')
 
     # выбираем условие задачи, а точнее искомое значение и соответствующее решение
     condition = choice(['time', 'init_volume', 'delta_volume'])
@@ -574,7 +582,7 @@ def task_721():
     Две бригады, работая вместе, могут выполнить задание за 8 часов. Первая бригада, работая одна, могла бы выполнить
     задание на 12 часов быстрее, чем вторая бригада. За сколько часов могла бы выполнить работу первая бригада,
     если бы она работала одна?"""
-    # i = 11
+    # i = 15
     i = choice([0, 1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 14, 15, 16])
     pers1, pers2, _, (task, measure) = input_parameters_work(i)
     pers1, pers2 = (pers.split()[1] if any(map(lambda x: x in pers, ('перв', 'втор'))) else pers for pers in (pers1, pers2))
@@ -587,7 +595,7 @@ def task_721():
     t1 = (-(delta_t - 2 * t) + d) / 2
     t2 = t1 + delta_t
 
-    pers1_gent = gent_pers((pers1,))
+    [pers1_gent] = gent_pers((pers1,))
 
     if morph.parse(pers1.split()[0])[0].tag.gender == 'femn':
         gender = ('первая', 'вторая', 'каждая', 'одна', 'Две')
@@ -598,12 +606,12 @@ def task_721():
         'equal': [
             (t1, f'За сколько часов {gender[0]} {pers1} может выполнить работу, работая {gender[3]}?'),
             (t2, f'За сколько часов {gender[1]} {pers2} может выполнить работу, работая {gender[3]}?'),
-            ((t1, t2), f'За сколько часов {gender[2]} {pers1}, выполнит такую же работу по отдельности?')
+            ((t1, t2), f'За сколько часов {gender[2]} {pers1}, выполнит такую же работу отдельно друг от друга?')
         ],
         'different': [
             (t1, f'За сколько часов {pers1} может выполнить работу, работая {gender[3]}?'),
             (t2, f'За сколько часов {pers2} может выполнить работу, работая {gender[3]}?'),
-            ((t1, t2), f'За сколько времени {pers1} и {pers2} выполнят задание, работая по отдельности?')
+            ((t1, t2), f'За сколько времени {pers1} и {pers2} выполнят задание, работая отдельно друг от друга?')
         ]
     }
 
@@ -613,7 +621,7 @@ def task_721():
                f"может выполнить все задание на {delta_t} ч быстрее, чем {gender[1]}. {question}", answer
     else:
         answer, question = choice(questions['different'])
-        return f"{pers1.title()} и {pers2} должны {task} за {t} ч. При этом {pers1}, работая в одиночку, " \
+        return f"{start_title(pers1)} и {pers2} должны {task} за {t} ч. При этом {pers1}, работая в одиночку, " \
                f"может выполнить все задание на {delta_t} ч быстрее, чем {pers2}. {question}", answer
 
 
@@ -622,23 +630,14 @@ def task_745():
     Мастер, работая с учеником, обрабатывает деталь за 2 ч 24 мин. Если мастер будет работать 2ч, а ученик - 1 ч,
     будет выполнено 2/3 всей работы. Сколько времени потребуется мастеру и ученику в отдельности на обработку детали?"""
 
-    i = choice([0, 1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 14, 15, 16])
+    i = choice([0, 2, 3, 4, 5, 7, 9, 10, 11, 12, 14, 15, 16])
     pers1, pers2, _, (task, measure) = input_parameters_work(i)
     pers1, pers2 = (pers.split()[1] if any(map(lambda x: x in pers, ('перв', 'втор'))) else pers for pers in
                     (pers1, pers2))
-    while True:
-        # x, y = 4, 6
-        x, y = randint(1, 20), randint(1, 20)
-        t = x * y / (x + y)
-        if int(t * 60) - t * 60 == 0:
-            break
-    while True:
-        t1, t2 = randint(1, 20), randint(1, 20)
-        k = Fraction(t1, x) + Fraction(t2, x)
-        if k < 1:
-            break
 
-    pers1_gent = gent_pers((pers1,))
+    x, y, t, t1, t2, k = solution_task_745()
+
+    [pers1_gent] = gent_pers((pers1,))
 
     if morph.parse(pers1.split()[0])[0].tag.gender == 'femn':
         gender = ('первая', 'вторая', 'каждая', 'одна', 'Две')
@@ -667,13 +666,32 @@ def task_745():
                f"а {gender[1]} - {t2} ч, будет выполнено {k} всей работы. {question}", answer
     else:
         answer, question = choice(questions['different'])
-        return f"{pers1.title()} и {pers2} должны {task} за {time}. Если {pers1} будет работать {t1} ч, " \
+        return f"{start_title(pers1)} и {pers2} должны {task} за {time}. Если {pers1} будет работать {t1} ч, " \
                f"а {pers2} - {t2} ч, будет выполнено {k} всей работы. {question}", answer
 
 
-if __name__ == "__main__":
-    pprint(task_745())
+def solution_task_745():
+    k, cnt2 = 1, 0
+    while True:
+        x, y = randint(1, 20), randint(1, 20)
+        t = x * y / (x + y)
+        if int(t * 60) - t * 60 == 0:
+            while not k < 1:
+                cnt2 += 1
+                t1, t2 = randint(1, 20), randint(1, 20)
+                k = Fraction(t1, x) + Fraction(t2, x)
+
+                if cnt2 > 100:
+                    return solution_task_745()
+            return x, y, t, t1, t2, str(k)
+
+
+pprint(task_745())
+
+# if __name__ == "__main__":
     # pprint(task_721())
+    # pprint(task_745())
+    # pprint(task_108())
     # pprint(task_17622())
     # pprint(task_17583())
     # pprint(task_5173())

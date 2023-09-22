@@ -1,7 +1,7 @@
 from pprint import pprint
 from random import randint, choice
 
-from input_parameters import input_parameters_work, morph, correct_word, gent_pers
+from input_parameters import input_parameters_work, morph, correct_word, gent_pers, start_title
 
 
 def task_13021():
@@ -39,7 +39,7 @@ def task_13021():
                f"{gender[0]} только {gender[4].lower()} {pers1}, к {gender[1]} {gender[2]} {gender[5].lower()} {pers2}, " \
                f"и {gender[3]} закончили работу вместе. Сколько дней они работали вместе?", answer
     else:
-        return f"{pers1.title()} может {task} за {t1} {correct_word('день', t1)}. {pers2.title()} может выполнить ту же работу за {k}% этого времени. " \
+        return f"{start_title(pers1)} может {task} за {t1} {correct_word('день', t1)}. {start_title(pers2)} может выполнить ту же работу за {k}% этого времени. " \
                f"После того, как {delta_t} {correct_word('день', delta_t)} {gender[0]} только {pers1}, к {gender[1]} {gender[2]} {pers2}, " \
                f"и {gender[3]} закончили работу вместе. Сколько дней {pers1} и {pers2} работали вместе?", answer
 
@@ -90,7 +90,7 @@ def task_13023():
         (f'Сколько {gender[1]} {word1} {task1} {gender[2]} из них', (s1, s2))
     ])
 
-    return f"{pers1.title()} и {pers2} должны {task1} несколько {word1}. Производительность {pers1_gent} на {k}% выше " \
+    return f"{start_title(pers1)} и {pers2} должны {task1} несколько {word1}. Производительность {pers1_gent} на {k}% выше " \
            f"производительности {pers2_gent}. {question}, если {gender[3]} {gender[4]} {t1} ч, " \
            f"а {gender[5]} - {t2} ч, причём всего они смогли {task1} {new_unit}{s} {word2}", answer
 
@@ -140,11 +140,11 @@ def task_13024():
         'шт': (s, f'Сколько всего {word1} {pers} может {task1} за отведенное время?'),
         'м3': (s, f'Найдите объем {word1}.'),
         'м2': (s, f'Найдите площадь {word1}.'),
-        'км': (s, f'Найдите длину {morph.parse(word1)[0].inflect({"gent", "sing"}).word}.')
+        'км': (s, f'Найдите длину дороги.')
     }
     try:
         answer, question = units.get(unit, '')
-        return f"{pers.title()} может выполнить {a}/{b} заказа за {time1}. {pers.title()} работал(а) {time2}, после чего " \
+        return f"{start_title(pers)} может выполнить {a}/{b} заказа за {time1}. {start_title(pers)} работал(а) {time2}, после чего " \
                f"осталось {task1} еще {delta_s} {word2}. {question}", answer
     except ValueError:
         return task_13024()
@@ -183,8 +183,8 @@ def task_13032():
 
     pers2_gent, pers3_gent = gent_pers((pers2, pers3))
 
-    return f"{pers1.title()}, {pers2} и {pers3} должны {task}. За {t1} работы {pers1} может выполнить {k1}% всей работы. " \
-           f"{pers2.title()} за {t2} выполнит {k2}% всей работы. Скорости выполнения работы {pers2_gent} и {pers3_gent} " \
+    return f"{start_title(pers1)}, {pers2} и {pers3} должны {task}. За {t1} работы {pers1} может выполнить {k1}% всей работы. " \
+           f"{start_title(pers2)} за {t2} выполнит {k2}% всей работы. Скорости выполнения работы {pers2_gent} и {pers3_gent} " \
            f"относятся как {a}:{b}. За какое время будет выполнена вся работа, если они будут работать вместе?", answer
 
 
@@ -227,8 +227,8 @@ def task_13033():
     else:
         gender = ('каждый', 'Первый', 'второй', 'закончил')
 
-    return f"{pers1.title()} и {pers2} должны {task1} {new_unit}несколько {word2} - по {s} {word1} {gender[0]}. {gender[1]} может " \
-           f"{task1} {a} {unit} за то же время, за которое {gender[2]} может {task1} {b} {unit}. Сколько {word2} " \
+    return f"{start_title(pers1)} и {pers2} должны {task1} {new_unit}несколько {word2} - по {s} {word1} {gender[0]}. " \
+           f"{gender[1]} может {task1} {a} {unit} за то же время, за которое {gender[2]} может {task1} {b} {unit}. Сколько {word2} " \
            f"может {task1} {gender[0]}, если {gender[1].lower()} {gender[3]} работу на {delta_t} ч быстрее?", answer
 
 
@@ -269,10 +269,8 @@ def task_13037():
         task1 = task
     else:
         new_unit = ''
-    """Генерация аналогичных задач 13.037 М.И. Сканави:
-        Одна мельница может смолоть 19 ц пшеницы за 3 ч., другая 32 ц за 5 ч.а третья 10 ц за 2 часа. Как распределить 133
-        тонны пшеницы между этими мельницами чтобы одновременно начав работу они окончили её также одновременно?{new_unit}"""
-    return f"{pers1.title()} может {task1} {new_unit}{s1} {word1} за {t1} ч, {pers2} - {s2} {word2} за {t2} ч, а {pers3} - " \
+
+    return f"{start_title(pers1)} может {task1} {new_unit}{s1} {word1} за {t1} ч, {pers2} - {s2} {word2} за {t2} ч, а {pers3} - " \
            f"{s3} {word3} за {t3} ч. Как распределить {s} {word4} между ними, чтобы одновременно начав работу, " \
            f"они закончили её также одновременно?", answer
 
@@ -308,7 +306,7 @@ def task_13075():
 
     word4 = 'каждая' if morph.parse(pers1.split()[0])[0].tag.gender == 'femn' else 'каждый'
 
-    return f"{pers1.title()} и {pers2} могут вместе {task1} {s1} {word1}. После увеличения производительности {pers1_gent} на " \
+    return f"{start_title(pers1)} и {pers2} могут вместе {task1} {s1} {word1}. После увеличения производительности {pers1_gent} на " \
            f"{k1}%, а {pers2_gent} на {k2}%, они могут вместе {task1} {s2} {word2}. Сколько {word3} может {task1} {word4} из них " \
            f"{question}", answer
 
