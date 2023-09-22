@@ -303,7 +303,7 @@ def task_17622():
     else:
         new_unit = ''
 
-    [pers1_gent] = gent_pers((pers1,))
+    pers1_gent = gent_pers((pers1,))[0]
 
     if morph.parse(pers1.split()[0])[0].tag.gender == 'femn':
         gender = ('первая', 'вторая', 'первой', 'она', 'каждой', 'Две')
@@ -519,7 +519,7 @@ def task_721():
     t1 = (-(delta_t - 2 * t) + d) / 2
     t2 = t1 + delta_t
 
-    [pers1_gent] = gent_pers((pers1,))
+    pers1_gent = gent_pers((pers1,))[0]
 
     if morph.parse(pers1.split()[0])[0].tag.gender == 'femn':
         gender = ('первая', 'вторая', 'каждая', 'одна', 'Две')
@@ -561,7 +561,7 @@ def task_745():
 
     x, y, t, t1, t2, k = solution_task_745()
 
-    [pers1_gent] = gent_pers((pers1,))
+    pers1_gent = gent_pers((pers1,))[0]
 
     if morph.parse(pers1.split()[0])[0].tag.gender == 'femn':
         gender = ('первая', 'вторая', 'каждая', 'одна', 'Две')
