@@ -4,7 +4,7 @@ from random import randint, choice
 import numpy as np
 from pprint import pprint
 
-from input_parameters import input_parameters_work, morph, correct_word, gent_pers, start_title
+from task_generator.text_tasks.input_parameters import input_parameters_work, morph, correct_word, gent_pers, start_title
 
 
 def task_9515():
@@ -441,7 +441,8 @@ def task_17624():
 
 
 def task_5173():
-    """Генерация аналогичных задач 5.170, 5.173, 5.156 из задачника для классов Пушкин С.А.:
+    """Генерация аналогичных задач 5.170, 5.173, 5.156 из задачника для классов Пушкин С.А.
+    (на сайте kuzoviin.info задачи с номерами 51833,51834):
     Бригада трактористов планировала вспахивать в день по 40 га, но из-за ненастной погоды она вспахивала в день
     по 30 га и закончила работу на 2 дня позже срока. Найдите площадь участка."""
 
@@ -686,11 +687,9 @@ def solution_task_745():
             return x, y, t, t1, t2, str(k)
 
 
-pprint(task_745())
-
-# if __name__ == "__main__":
+if __name__ == "__main__":
     # pprint(task_721())
-    # pprint(task_745())
+    pprint(task_745())
     # pprint(task_108())
     # pprint(task_17622())
     # pprint(task_17583())
