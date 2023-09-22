@@ -82,7 +82,7 @@ def correct_word(key, values) -> str:
                     result.append(help_to_correct_word(words, value))
                 else:
                     result.append(morph.parse(task2)[0].make_agree_with_number(value).word)
-            except:
+            except Exception:
                 result.append(task2)
         return task1, result
 

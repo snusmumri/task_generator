@@ -1,7 +1,7 @@
 from pprint import pprint
 from random import randint, choice
 
-from input_parameters import input_parameters_work, morph, correct_word, gent_pers, start_title
+from task_generator.text_tasks.input_parameters import input_parameters_work, morph, correct_word, gent_pers, start_title
 
 
 def task_13021():
