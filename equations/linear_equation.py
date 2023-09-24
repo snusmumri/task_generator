@@ -9,8 +9,10 @@ def find_answer(splitted_eq):
   eq = Eq(sympify(splitted_eq[0]), sympify(splitted_eq[1]))
   answer = solve(eq, x)
   if len(answer) > 0 and im(solve(eq, x)[0])==0:
-    if abs(int(answer[0]) - answer[0]) < 0.000001:
+    if answer[0] == 0 or abs(int(answer[0]) - answer[0]) < 0.000001:
       return round(answer[0])
+    elif abs(int(answer[0]*100) - answer[0]*100) < 0.0001:
+      return round(answer[0], 2)
   return False
 
 # Функция создания обыкновенной дроби
@@ -28,7 +30,7 @@ def generate_values_and_recieve_answer(equation_to_solve):
     equation_to_solve_after_parse = equation_to_solve
     for var in variables:
       rand_num = random.randint(-20, 20)
-      while rand_num == 0:
+      while rand_num == 0 or (var in ['{c20}', '{c21}', '{c22}', '{c23}', '{c24}'] and (rand_num == -1 or rand_num == 1)):
         rand_num = random.randint(-20, 20)
       equation_to_solve_after_parse = re.sub(var, str(rand_num), equation_to_solve_after_parse)
     if len(fractions_) != 0:
@@ -37,11 +39,13 @@ def generate_values_and_recieve_answer(equation_to_solve):
         equation_to_solve_after_parse = re.sub(fract, str(gen_fr), equation_to_solve_after_parse)
     if len(deci) != 0:
       for de in deci:
-        de_gen = random.randrange(-1000, 1000, 25) / 100
+        de_gen = random.randrange(-1000, 1000, 5) / 100
+        while de_gen == 0 or de_gen % 1 == 0:
+          de_gen = random.randrange(-1000, 1000, 5) / 100
         equation_to_solve_after_parse = re.sub(de, str(de_gen), equation_to_solve_after_parse)
     splitted_eq = equation_to_solve_after_parse.split('=')
     answer = find_answer(splitted_eq)
-    if answer:
+    if answer or str(answer) == '0':
         break
   return equation_to_solve_after_parse, answer
 
@@ -52,12 +56,11 @@ def parse_and_generate_task(equation_to_solve):
   splitted_eq = []
   for eq_part in spl_eq:
     splitted_eq.append(eq_part.split(' '))
-  # print(splitted_eq) # для проверки вывода
   k = 0
   all_parts_list = []
   for spl_part in splitted_eq:
     for part in spl_part:
-      if len(re.findall(r'^[-]*\d+\*\([-\d*]+[+-]+[-()\d]+', part))!=0: # Проверка и упрощение для выражений типа '16*(2*4*14-(4)**2*(1*2-5*-11)/(5*1))+(14)**2-((4)**2*2*-11)/(5*1)'
+      if len(re.findall(r'^[-]*\d+\*\([-\d*]+[+-]+[-()\d]+', part))!=0 or len(re.findall(r'^x\*\([-\d*]+\*x[+-]+[\d]+\)$', part))!=0: # Проверка и упрощение для выражений типа '16*(2*4*14-(4)**2*(1*2-5*-11)/(5*1))+(14)**2-((4)**2*2*-11)/(5*1)'
         part = str(sympify(part))
       elif (len(re.findall(r'^[-]*[()\/\d*x.]+', part))!=0 and len(re.findall(r'^\-*[\d]*[x]*[*]*\([-\dx+*]*\)\/[-]*[\d]+$', part))==0
             and len(re.findall(r'\([-]*[\d]+\/[\d]+\)[*]+', part))==0): # что угодно: (2)**2*3*x*(3*x+18), (12)**2/-2*(-2*x**2+3), -1*x, -1*2*x**2, (2)**2*3*x*(3*x+18)*(3*x+18)
@@ -141,7 +144,7 @@ def parse_and_generate_task(equation_to_solve):
           if len(re.findall(r'^\-', splitted_part[0])) != 0:
             all_parts_list.append('-\\frac{'+splitted_part[0].split('/')[0].strip('-')+'}{'+splitted_part[0].split('/')[1]+'}\\cdot'+splitted_part[1])
           else: all_parts_list.append('\\frac{'+splitted_part[0].split('/')[0]+'}{'+splitted_part[0].split('/')[1]+'}\\cdot'+splitted_part[1])
-      elif len(re.findall(r'^[-\d. x]*([*]*\([-\d x+^{}()]*\))+$', part)) != 0: # для таких структур -5 x*(x-13), -2*(x-11), (2 x^{2}-9)*(2 x+3), (x^{2}+17), (2 x-2)*(x^{2}-2 x+17), -x*(2 x^{2}-9)*(2 x+3), -15 x*(-15+(9 x+8))
+      elif len(re.findall(r'^[-\d. x^{}]*([*]*\([-\d x+^{}()]*\))+[\d{}^]*$', part)) != 0: # для таких структур -5 x*(x-13), -2*(x-11), (2 x^{2}-9)*(2 x+3), (x^{2}+17), (2 x-2)*(x^{2}-2 x+17), -x*(2 x^{2}-9)*(2 x+3), -15 x*(-15+(9 x+8))
         splitted_part = part.split('*')
         if len(splitted_part) == 3:
           all_parts_list.append(splitted_part[0]+'\\cdot'+splitted_part[1]+'\\cdot'+splitted_part[2])
@@ -156,7 +159,6 @@ def parse_and_generate_task(equation_to_solve):
       all_parts_list.append('=')
       k += 1
   # Сборка выражения
-  # print(all_parts_list) # для проверки вывода
   i = 0
   final_string = 'Решите уравнение: \('
   while i < len(all_parts_list):
@@ -185,7 +187,7 @@ def parse_and_generate_task(equation_to_solve):
   return final_string
 
 def x_equation_generator_with_parser(equation_to_solve):
-  '''Функция для создания линейного уравнения, которая обращается внутри себя к парсеру для вывода уравнения'''
+  '''Функция для создания уравнения, которая обращается внутри себя к парсеру для вывода выражения в формате latex'''
   prep_equation, answer = generate_values_and_recieve_answer(equation_to_solve)
   task = parse_and_generate_task(prep_equation)
   return task, answer
