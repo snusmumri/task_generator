@@ -10,12 +10,12 @@ def task_2908():
     '''Задача №2908 с портала https://kuzovkin.info/one_exercise_1/2908 и аналогичная 6780'''
     while True:
       a, b, c = np.random.randint(2, 15, size=3)
-      task = r'Возвести корень в степень: \(' + latex(pow(sqrt(a+b*sqrt(c))-sqrt(a-b*sqrt(c)), 2)) + '\)'
+      task = r'Возвести корень в степень: \( (\sqrt{'+latex(UnevaluatedExpr(a))+('+')+latex(UnevaluatedExpr(b*sqrt(c)))+'}{'+str('-')+'}\\sqrt{'+latex(UnevaluatedExpr(a))+('-')+latex(UnevaluatedExpr(b*sqrt(c)))+'})^{'+latex(UnevaluatedExpr(2))+'} \)'
       answer = pow(pow(a+b*pow(c, 1/2), 1/2)-pow(a-b*pow(c, 1/2), 1/2), 2)
       if b%2==0 and a==pow(b/2, 2)+c:
         if b/2<c:
           break
-    return task, round(answer, 5)
+    return task, int(answer)
 
 def task_2922():
     '''Задача №2922 с портала https://kuzovkin.info/one_exercise_1/2922 и аналогичные 2924, 6798'''
@@ -25,7 +25,7 @@ def task_2922():
       b = pow(a, n)
       task = r'Извлечь корень: \( \sqrt['+str(n)+']{'+str(b)+'} \)'
       answer = pow(b, 1/n)
-      if b<=10000:
+      if b<=5000:
         break
     return task, int(answer)
 
