@@ -41,30 +41,28 @@ def choose_discr_without_s() -> tuple:
     return discr, t, x
 
 
-def choose_discr_with_delta_s() -> tuple:
+def solution_task_17596() -> tuple:
     """Функция подбора коэффициентов квадратного уравнения для получения целых корней
     s - запланированная производительность
     s1 - превышение s
-    x - изменение скорости
-    y - изменение времени"""
-    discr = choice(tuple(i ** 2 for i in range(1000)))
-    # счетчик на случай, если к случайно выбранному значению дискриминанта нельзя подобрать подходящие коэффициенты
-    cnt = 0
+    x - изменение времени
+    y - изменение скорости"""
     while True:
-        cnt += 1
         s, s1 = randint(1000, 10000), randint(10, 100)
         y, x = randint(10, 100), randint(1, 12)
-        velocity = (-(s1 + x * y) + math.sqrt(discr)) / (2 * x)
-        if velocity <= 0:
-            return choose_discr_with_delta_s()
-        t = s / velocity
-        if cnt > 100:
-            return choose_discr_with_delta_s()
-        if not 0 <= t <= 100:
-            t = 1.2345
-        if int(t) - t == 0:
-            break
-    return s, s1, t, x, y
+        # s, s1 = 6000, 30
+        # y, x = 70, 1
+        # discr = 1300 ** 2
+        a, b, c = y, -(s1 + x * y), -s * x
+        discr = math.sqrt(b ** 2 - 4 * a * c)
+        try:
+            d = int(discr)
+            if d - discr == 0 and discr < 10 ** 6:
+                t = (-b + discr) / (2 * a)
+                if int(t) - t == 0 and 0 < t <= 10 ** 4:
+                    return s, s1, t, x, y
+        except Exception:
+            continue
 
 
 def choose_discr_with_two_s() -> tuple:

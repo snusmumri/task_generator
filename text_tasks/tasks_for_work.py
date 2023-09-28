@@ -4,8 +4,8 @@ import numpy as np
 from pprint import pprint
 
 from task_generator.text_tasks.input_parameters import input_parameters_work, morph, correct_word, gent_pers, start_title
-from task_generator.text_tasks.task_solutions import choose_discr, choose_discr_without_s, choose_discr_with_delta_s, \
-    solution_task_745, choose_discr_with_two_s
+from task_generator.text_tasks.task_solutions import choose_discr, choose_discr_without_s,\
+    solution_task_745, choose_discr_with_two_s, solution_task_17596
 
 
 def task_9515():
@@ -224,26 +224,26 @@ def task_17583():
 
 
 def task_17596():
-    """Генерация аналогичных задач 17594, 17596, 5.157
+    """Генерация аналогичных задач 17594, 17596, 5.157, 13.177 (Сканави)
     Предприятие должно было изготовить за несколько месяцев 6000 насосов. Увеличив производительность труда, предприятие
     стало изготавливать в месяц на 70 насосов больше, и на 1 месяц раньше срока перевыполнило задание на 30 насосов.
     За какой срок было изготовлено 6030 насосов?"""
-    i = 15
-    # i = randint(0, 17)
+    # i = 15
+    i = randint(0, 17)
     pers, _, _, (task, measure) = input_parameters_work(i)
     if measure:
         meas_word, unit = measure
         if unit != 'шт':
             pers, _, _, (task, measure) = input_parameters_work(i)
-    s, s1, t, x, y = choose_discr_with_delta_s()
-    answer = t - x
+    s, s1, t, x, y = solution_task_17596()
     task1, (word1, word2, word3, word4) = correct_word(key=task, values=(s, y, s1, s + s1))
-    question = choice([
-        f"За какой срок {pers} может {task1} {s + s1} {word4}?",
-        f"За какой срок {pers} может {task1} на {s1} {word3} больше запланированного количества?"
+    question, answer = choice([
+        (f"За какой срок {pers} может {task1} {s + s1} {word4}?",  t - x),
+        (f"За какой срок {pers} может {task1} на {s1} {word3} больше запланированного количества?",  t - x),
+        (f"За какой срок было предусмотрено, что {pers} сможет {task1} {s} {word1}?", t)
     ])
     return f"{start_title(pers)} может {task1} {s} {word1}. Увеличив производительность, {pers} теперь может {task1} " \
-           f"в месяц на {y} {word2} больше, и на {x} мес. раньше срока, перевыполнив задание на {s1} {word3}. " \
+           f"в месяц на {y} {word2} больше, и закончить на {x} мес. раньше срока, перевыполнив задание на {s1} {word3}. " \
            f"{question}", answer
 
 
@@ -596,10 +596,10 @@ def task_745():
 
 if __name__ == "__main__":
     # pprint(task_721())
-    pprint(task_745())
+    # pprint(task_745())
     # pprint(task_108())
     # pprint(task_17622())
     # pprint(task_17583())
     # pprint(task_5173())
     # pprint(task_17583())
-    # pprint(task_17596())
+    pprint(task_17596())
