@@ -308,7 +308,7 @@ def task_5838():
     while True:
       a, b, k = np.random.randint(2, 10, size=3)
       m, n, c = symbols('m n c')
-      task = r'Упростите выражение: \( \frac{'+latex(UnevaluatedExpr(a*m))+('-')+latex(n)+'}{'+latex(UnevaluatedExpr(b)*c)+'} {'+str('\cdot')+'} \\frac{'+latex(UnevaluatedExpr(k*c))+'}{'+latex(n)+('-')+latex(UnevaluatedExpr(a*m))+'} \)'
+      task = r'Упростите выражение: \( \frac{'+latex(UnevaluatedExpr(a*m))+('-')+latex(n)+'}{'+latex(UnevaluatedExpr(b*c))+'} {'+str('\cdot')+'} \\frac{'+latex(UnevaluatedExpr(k*c))+'}{'+latex(n)+('-')+latex(UnevaluatedExpr(a*m))+'} \)'
       answer = r'\( -\frac{'+latex(UnevaluatedExpr(k))+'}{'+latex(UnevaluatedExpr(b))+'} \)'
       if k<b:
         break
