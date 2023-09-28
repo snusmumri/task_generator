@@ -101,3 +101,54 @@ def solution_task_745():
                     return solution_task_745()
             return x, y, t, t1, t2, str(k)
 
+
+def solution_task_13135():
+    """
+    x - производительность второго персонажа (он выполняет работу дольше)
+    y - производительность первого персонажа (того что быстрее)
+    """
+    discr = choice(tuple(i ** 2 for i in range(100)))
+    cnt = 0
+    while True:
+        cnt += 1
+        t1, delta_t, t2 = (randint(1, 50) for _ in range(3))
+        k = randint(10, 99)
+        # t1, t2, delta_t = 18, 6, 15
+        # k = 60
+        a = k / 100
+        b = t1 + t2 + a * delta_t
+        c = delta_t * t1
+        result = b ** 2 - 4 * a * c
+        if result == discr:
+            x1, x2 = (b + math.sqrt(discr)) / (2 * a), (b - math.sqrt(discr)) / (2 * a)
+            y1, y2 = x1 - delta_t, x2 - delta_t
+            if x1 > 0 and y1 > 0 and int(x1) - x1 == 0:
+                return t1, t2, delta_t, k, (x1, y1)
+            elif x2 > 0 and y2 > 0 and int(x2) - x2 == 0:
+                return t1, t2, delta_t, k, (x2, y2)
+        if cnt == 100:
+            discr = choice(tuple(i ** 2 for i in range(100)))
+            cnt = 0
+
+
+def solution_task_13137():
+    # delta_t = 2
+    # k = 2
+    # t = 8 / 3
+    discr = choice(tuple(i ** 2 for i in range(100)))
+    while True:
+        delta_t, t = (randint(1, 60) for _ in range(2))
+        k = choice([2, 3, 4, 5])
+        a = k
+        b = k * delta_t - t * (2 * k + 1)
+        c = - delta_t * t * (k + 1)
+        discr = math.sqrt(b ** 2 - 4 * a * c)
+        if int(discr) - discr == 0:
+            x1 = (- b + discr) / (2 * a)
+            x2 = (- b - discr) / (2 * a)
+            if x1 > 0 and int(x1) - x1 == 0:
+                return delta_t, t, k, (x1, delta_t + x1, k * x1)
+            elif x2 > 0 and int(x2) - x2 == 0:
+                return delta_t, t, k, (x2, delta_t + x2, k * x2)
+
+

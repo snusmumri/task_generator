@@ -15,7 +15,7 @@ def input_parameters_work(i=None):
                   "бригада трактористов", 'бригада рабочих', "печник", 'ферма', 'овощная база', 'мешок', 'элеватор'],
         'pers3': ["студентка Кристина", "Фрекен Бок", "дровосек Саша", "блогер Лева", "Вася", "певица Настя",
                   "медсестра Вика", "пес", "третий рабочий", "токарь Гера", "швея Юля", "третья труба", "цех",
-                  "предприятие", "ученик", "бригада трактористов", 'бригада рабочих', "печник", 'ферма', 'овощная база',
+                  "предприятие", "подмастерье", "бригада трактористов", 'бригада рабочих', "печник", 'ферма', 'овощная база',
                   'мешок', 'элеватор'],
         'task': [[("изготовить образец для измерений", None), ("съесть пиццу", ('площадью', 'м2')),
                   ("провести измерения", None), ("решить задачу", ('количества', "шт")), ("выплавить сплав", None),
@@ -96,17 +96,19 @@ def help_to_correct_word(words, value):
     return words[2]
 
 
-def gent_pers(persons):
+def gent_pers(persons, padej='gent'):
     persons_gent = []
     for pers in persons:
         if len(pers.split(' ')) == 1:
             try:
-                persons_gent.append(morph.parse(pers)[0].inflect({'gent'}).word)
+                pers_gent = morph.parse(pers)[0].inflect({padej}).word
+                pers_result = pers_gent.title() if pers[0].isupper() else pers_gent
+                persons_gent.append(pers_result)
             except AttributeError:
                 persons_gent.append(pers)
         else:
             try:
-                pers1_gent_1, pers1_gent_2 = (morph.parse(item)[0].inflect({'gent'}).word for item in pers.split())
+                pers1_gent_1, pers1_gent_2 = (morph.parse(item)[0].inflect({padej}).word for item in pers.split())
                 if pers1_gent_1 == 'второй':
                     pers1_gent_1 = 'второго' if morph.parse(pers1_gent_2)[0].tag.gender != 'femn' else pers1_gent_1
                 pers1_gent_2 = pers1_gent_2.title() if pers.split()[1][0].isupper() else pers1_gent_2
