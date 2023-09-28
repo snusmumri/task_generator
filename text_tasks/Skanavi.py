@@ -2,7 +2,7 @@ from pprint import pprint
 from random import randint, choice
 
 from task_generator.text_tasks.input_parameters import input_parameters_work, morph, correct_word, gent_pers, start_title
-from task_generator.text_tasks.task_solutions import solution_task_13135, solution_task_13137
+from task_generator.text_tasks.task_solutions import solution_task_13135, solution_task_13137, solution_task_13140
 
 
 def task_13021():
@@ -324,8 +324,10 @@ def task_13135():
     word = 'каждой' if morph.parse(pers1.split()[0])[0].tag.gender == 'femn' else 'каждому'
     question, answer = choice([
         (f"Сколько времени потребуется {word} из них для самостоятельного выполнения всего задания?", (x, y)),
-        (f"Сколько времени потребуется {gent_pers((pers1,), padej='datv')[0]} для самостоятельного выполнения всего задания?", y),
-        (f"Сколько времени потребуется {gent_pers((pers2,), padej='datv')[0]} для самостоятельного выполнения всего задания?", x),
+        (f"Сколько времени потребуется {gent_pers((pers1,), padej='datv')[0]} для самостоятельного выполнения всего "
+         f"задания?", y),
+        (f"Сколько времени потребуется {gent_pers((pers2,), padej='datv')[0]} для самостоятельного выполнения всего "
+         f"задания?", x),
     ])
     return f"{start_title(pers1)} и {pers2} должны выполнить задание: {task}, причем {pers1} может сделать это на " \
            f"{delta_t} мин быстрее, чем {pers2}. Если {pers2} будет выполнять задание {t1} мин, " \
@@ -344,13 +346,13 @@ def task_13137():
     delta_t, t, k, (x1, x2, x3) = solution_task_13137()
     word, word2 = ('каждой', 'одна') if morph.parse(pers1.split()[0])[0].tag.gender == 'femn' else ('каждому', 'один')
     question, answer = choice([
-        (f"Сколько времени потребуется {word} из них для самостоятельного выполнения всего задания?", (x1, x2, x3)),
-        (f"Сколько времени потребуется {gent_pers((pers1,), padej='datv')[0]} для самостоятельного выполнения всего "
-         f"задания?", x1),
-        (f"Сколько времени потребуется {gent_pers((pers2,), padej='datv')[0]} для самостоятельного выполнения всего "
-         f"задания?", x2),
-        (f"Сколько времени потребуется {gent_pers((pers3,), padej='datv')[0]} для самостоятельного выполнения всего "
-         f"задания?", x3),
+        (f"Сколько времени потребуется {word} из них для самостоятельного выполнения всей работы?", (x1, x2, x3)),
+        (f"Сколько времени потребуется {gent_pers((pers1,), padej='datv')[0]} для самостоятельного выполнения всей "
+         f"работы?", x1),
+        (f"Сколько времени потребуется {gent_pers((pers2,), padej='datv')[0]} для самостоятельного выполнения всей "
+         f"работы?", x2),
+        (f"Сколько времени потребуется {gent_pers((pers3,), padej='datv')[0]} для самостоятельного выполнения всей "
+         f"работы?", x3),
     ])
     return f"{start_title(pers1)}, {pers2} и {pers3} должны выполнить работу: {task}. {word2.title()} {pers2} выполнит " \
            f"всю работу на {delta_t} мин дольше, чем {word2} {pers1}. {word2.title()} {pers3} может выполнить всю " \
@@ -358,6 +360,26 @@ def task_13137():
            f"на 3 равных части. {question}", answer
 
 
+def task_13140():
+    """Генерация аналогичных задач 13.137 М.И. Сканави:
+    На одном из двух станков обрабатывают партию деталей на три дня дольше, чем на другом. Сколько дней продолжалось
+    бы обработка этой партии деталей каждым станком в отдельности, если при совместной работе на этих станках в 3 раза
+    большая партия деталей была обработана за 20 дней?"""
+    i = choice([0, 1, 2, 3, 4, 7, 9, 10, 14])
+    pers1, pers2, pers3, (task, _) = input_parameters_work(i)
+    delta_t, t, k, (x1, x2) = solution_task_13140()
+    word = 'каждой' if morph.parse(pers1.split()[0])[0].tag.gender == 'femn' else 'каждому'
+    question, answer = choice([
+        (f"Сколько дней потребуется {word} из них для самостоятельного выполнения всего заказа", (x1, x2)),
+        (f"Сколько дней потребуется {gent_pers((pers1,), padej='datv')[0]} для самостоятельного выполнения всего "
+         f"заказа", x1),
+        (f"Сколько дней потребуется {gent_pers((pers2,), padej='datv')[0]} для самостоятельного выполнения всего "
+         f"заказа", x2),
+    ])
+    return f"{start_title(pers1)} может выполнить заказ ({task}) на {delta_t} {correct_word('день', delta_t)} быстрее, " \
+           f"чем {pers2}. {question}, если при совместной работе за {t} {correct_word('день', t)} будет выполнена " \
+           f"работа объемом в {k} раз больше?", answer
+
+
 if __name__ == "__main__":
-    pprint(task_13137())
-    # print(task_13037())
+    pprint(task_13140())

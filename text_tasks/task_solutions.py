@@ -135,7 +135,6 @@ def solution_task_13137():
     # delta_t = 2
     # k = 2
     # t = 8 / 3
-    discr = choice(tuple(i ** 2 for i in range(100)))
     while True:
         delta_t, t = (randint(1, 60) for _ in range(2))
         k = choice([2, 3, 4, 5])
@@ -146,9 +145,20 @@ def solution_task_13137():
         if int(discr) - discr == 0:
             x1 = (- b + discr) / (2 * a)
             x2 = (- b - discr) / (2 * a)
-            if x1 > 0 and int(x1) - x1 == 0:
-                return delta_t, t, k, (x1, delta_t + x1, k * x1)
-            elif x2 > 0 and int(x2) - x2 == 0:
-                return delta_t, t, k, (x2, delta_t + x2, k * x2)
+            if (x1 > 0 and int(x1) - x1 == 0) or (x2 > 0 and int(x2) - x2 == 0):
+                x = x1 if x1 > 0 else x2
+                return delta_t, t, k, (x, delta_t + x, k * x)
 
 
+def solution_task_13140():
+    while True:
+        delta_t, t = randint(1, 10), randint(1, 30)
+        k = choice([2, 3, 4, 5])
+        a, b, c = k, k * delta_t - 2 * t, -delta_t * t
+        discr = math.sqrt(b ** 2 - 4 * a * c)
+        if int(discr) - discr == 0:
+            x1 = (- b + discr) / (2 * a)
+            x2 = (- b - discr) / (2 * a)
+            if (x1 > 0 and int(x1) - x1 == 0) or (x2 > 0 and int(x2) - x2 == 0):
+                x = x1 if x1 > 0 else x2
+                return delta_t, t, k, (x, delta_t + x)
