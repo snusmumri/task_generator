@@ -24,7 +24,7 @@ def choose_discr() -> tuple:
     return discr, x, y, s
 
 
-def choose_discr_without_s() -> tuple:
+def solution_task_17610() -> tuple:
     """Функция подбора коэффициентов квадратного уравнения для получения целых корней
     t - затраченное время
     x - изменение времени"""
@@ -37,7 +37,7 @@ def choose_discr_without_s() -> tuple:
         t, x = (randint(2, 15) for _ in range(2))
         result = (x - 2 * t) ** 2 + 4 * x * t
         if cnt > 100:
-            return choose_discr_without_s()
+            return solution_task_17610()
     return discr, t, x
 
 
@@ -65,7 +65,7 @@ def solution_task_17596() -> tuple:
             continue
 
 
-def choose_discr_with_two_s() -> tuple:
+def solution_task_17583() -> tuple:
     """Функция подбора коэффициентов квадратного уравнения для получения целых корней
     s1, s2 - производительность первого и второго персонажа соответственно
     x - изменение скорости
@@ -80,7 +80,7 @@ def choose_discr_with_two_s() -> tuple:
         y, x = (randint(1, 15) for _ in range(2))
         result = (s2 - s1 - x * y) ** 2 + 4 * x * y * s2
         if cnt > 100:
-            return choose_discr_with_two_s()
+            return solution_task_17583()
     return discr, s1, s2, x, y
 
 
