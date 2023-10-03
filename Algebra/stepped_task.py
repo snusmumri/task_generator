@@ -29,7 +29,7 @@ def task_14785():
       x = pow(a, c)
       task = r'Вычислите: \(' + latex(pow(UnevaluatedExpr(a), c)/b) + '\)'
       answer = x / b
-      if abs(answer*1000 - int(answer*1000)) < 0.0001:
+      if abs(answer*1000 - int(answer*1000)) < 0.0001 and int(a)!=a:
          break
     return task, answer
 
@@ -110,14 +110,13 @@ def task_14817():
       mix_frac_2 = whole_part_2 + frac_2
       show_1 = pow(UnevaluatedExpr(mix_frac_1), m)
       show_2 = f"{whole_part_2}" + latex(UnevaluatedExpr(frac_2))
-      # latex(pow(UnevaluatedExpr(whole_part_2)*UnevaluatedExpr(frac_2), n))
-      task = r'Вычислите: \(' + latex(show_1) + '-' + show_2*n + '\)'
+      task = r'Вычислите: \( {'+latex(show_1)+'}{'+str('-')+'} ({'+show_2+'})^{'+latex(UnevaluatedExpr(n))+'}  \)'
       result = pow(mix_frac_1, m) - pow(mix_frac_2, n)
       answer = float(result)
       if a<b and c<b:
         if abs(int(result*1000) - result*1000) < 0.000001:
           break
-    return task, round(answer, 5)
+    return task, int(answer)
 
 
 def task_14819():
