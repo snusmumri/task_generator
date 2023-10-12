@@ -304,9 +304,10 @@ prototype_43115 = "(tan(x) - m)**p"
 # этот прототип не работает
 
 
-def find_extremes_2(prototype):
+def find_extremes(prototype):
     '''данная функция находит экстремумы функции
-     со случайными коэффициентами'''
+     со случайными коэффициентами
+     (эта функция решает все задачи, кроме задач 13317 и 43501-43525)'''
     x = Symbol('x')
     equation = prototype
     while True:
@@ -322,35 +323,36 @@ def find_extremes_2(prototype):
         prime = substituted_eq.diff(x)
         trig_functions = ['sin', 'asin', 'cos', 'acos', 'tan', 'atan', 'cot', 'acot']
         pattern_1 = "|".join(trig_functions)
-        if random.randint(0, 3) == 0:
-            text = r'Найти критические точки функции: \( y= '
-        elif random.randint(0, 3) == 1:
-            text = r'Найти точки экстремума функций: \( y= '
-        elif random.randint(0, 3) == 2:
-            text = r'Найти точки максимумов и минимумов функций: \( y= '
+        if random.randint(0, 2) == 0:
+            text = r'Найти критическую точку функции: \( y= '
+        elif random.randint(0, 2) == 1:
+            text = r'Найти точку экстремума функции: \( y= '
         else:
-            text = r'Найти экстремумы функций: \( y= '
+            text = r'Найти экстремум функции: \( y= '
         if re.search(pattern_1, equation):
             prime_final = simplify(prime)
             eq_diff = Eq(prime_final, 0)
             critical_points = solve(eq_diff, x)
-            for i in critical_points:
-                answer = i
-            task = text + str(latex(substituted_eq)) + '\)'
-            if ask(Q.integer(answer*10000)) is True:
+            condition = all(Mul(number, 10000).is_Integer and Mul(number, 10000).as_real_imag()[0] % 10 == 0 for
+                            number in critical_points)
+            if condition is True:
                 break
         else:
             eq_diff = Eq(prime, 0)
             critical_points = solve(eq_diff, x)
-            for i in critical_points:
-                answer = i
-            task = text + str(latex(substituted_eq)) + '\)'
-            if ask(Q.integer(answer*10000)) is True:
+            condition = all(Mul(number, 10000).is_Integer and Mul(number, 10000).as_real_imag()[0] % 10 == 0 for
+                            number in critical_points)
+            if condition is True:
                 break
-    answer_float = float(answer)
-    return task, answer_float
-
-# Эта функция решает все задачи, кроме задач 3064, 13213, 13303, 13317 и 43501-43525
+    if len(critical_points) > 1:
+        note = r'значений больше 1, в ответе пишем все значения'
+    elif len(critical_points) == 1:
+        note = r'есть только одно значение'
+    else:
+        note = r'если решений нет, тогда в ответе пишем 0'
+    task = text + str(latex(substituted_eq)) + '\)' + ', ' + note
+    answer = [float(number) for number in critical_points]
+    return task, answer
 
 prototype_3034 = "k*x**2 + m*x + n"
 
@@ -359,28 +361,32 @@ prototype_3034 = "k*x**2 + m*x + n"
 
 prototype_3042 = "k*x**2 - m*x + n"
 
-prototype_3046 = "x*(sqrt(m + x))"
+prototype_3046 = "k*(x**p)*(sqrt(m + (n*x)))"
 
-prototype_3047 = "k*x + (m/x)"
+prototype_3047 = "k*x + (m/x) + n*x**2"
+
+prototype_3064 = "(x**2)/k - ln(x**2 - m)"
 
 prototype_3122 = "m*x - k*x**2"
 
-prototype_3128 = "k*x**2 + m*x + n"
+prototype_3128 = "k*(x**p) + m*(x**q) + n"
 
-prototype_6908 = "(-k)*x**2 + m*x - n"
+prototype_6908 = "k*(x**p) + m*(x**q) + n"
 
 # prototype_6910 = "k*x**2 + (m/x)"
 # этот прототип не работает
 
-prototype_6908 = "k*x**3 - m*x**2 + n"
+prototype_6928 = "k*x**3 - m*x**2 + n*x + v"
 
-prototype_6931 = "(-k)*x**3 + m*x + n"
+prototype_6931 = "(-k)*x**3 + m*x**2 + n*x + v"
 
 prototype_6933 = "k*x**3 - m*x"
 
 prototype_6938 = "k*x**3 - m*x + n"
 
-prototype_13214 = "k*x**2 - m*x + n"
+prototype_13213 = "k**(m*x + n) - p*(k**(s*x + t))"
+
+prototype_13214 = "k*(x**p) - m*(x**q) + n"
 
 prototype_13215 = "(k/x) - (m/(x**2))"
 
@@ -388,7 +394,7 @@ prototype_13218 = "k*x - sqrt(m + n*x)"
 
 prototype_13219 = "k*x**2 + m*x"
 
-prototype_13220 = "(k/x) - (m/(x**2))"
+prototype_13220 = "(k/x**p) - (m/(x**q))"
 
 prototype_13224 = "k*x**2 + m*x**3 - n"
 
@@ -413,17 +419,18 @@ prototype_13288 = "(-k)*x**2 - m*x + n"
 
 prototype_13289 = "x**4 - k*x**3 - k*x**2"
 
-prototype_13293 = "k*x**3 - m*x**2 - n*x + v"
+prototype_13293 = "k*(x**p) - m*(x**q) - n*x + v"
 
 prototype_13298 = "(k/m)*x**3 - n*x**2 + v*x - p"
+
+prototype_13303 = "k*x + exp((-m)*x)"
 
 # prototype_13304 = "((x**4)/k) - m*x"
 # этот прототип не работает
 
-# prototype_13305 = "k*x**4 - m*x**3 - n*x**2 + v*x - p"
-# этот прототип не работает
+prototype_13305 = "k*x**4 - m*x**3 - n*x**2 + v*x - p"
 
-prototype_13306 = "m*x + k*x**2"
+prototype_13306 = "m*(x**p) + k*(x**q)"
 
 prototype_13313 = "k*x**3 + m*x**2 - n*x + v"
 
