@@ -12,31 +12,51 @@ def transformation_task(string):
 
         while start_index != -1:
             end_index = string.find(']', start_index)
-            element = string[start_index : end_index + 1]
+            element = string[start_index: end_index + 1]
             elements.append(element)
             start_index = string.find('C_', end_index)
 
         values = []
+
         for element in elements:
             start_index = element.find('[') + 1
             end_index = element.find(']')
-            range_string = element[start_index : end_index]
+            range_string = element[start_index: end_index]
             range_values = list(map(int, range_string.split(', ')))
             random_value = random.randint(range_values[0], range_values[1])
             values.append(random_value)
 
+        elements_g = []
+        start_index = string.find('G_')
+        while start_index != -1:
+            end_index = string.find(']', start_index)
+            element = string[start_index : end_index + 1]
+            elements_g.append(element)
+            start_index = string.find('G_', end_index)
+
+        values_g = []
+        for element in elements_g:
+            start_index = element.find('[') + 1
+            end_index = element.find(']')
+            range_string = element[start_index : end_index]
+            range_values = list(map(float, range_string.split(', ')))
+            random_value = round(random.uniform(range_values[0], range_values[1]), 2)
+            values_g.append(random_value)
+          
         updated_string = string
         for i, el in enumerate(elements):
             updated_string = updated_string.replace(el, str(values[i]))
+        for i, el in enumerate(elements_g):
+            updated_string = updated_string.replace(el, str(values_g[i]))
 
         answer = eval(updated_string)
         task = 'Вычислите: '+py2tex(updated_string, print_formula = False, print_latex = False)
 
         if abs(answer * 1000 - int(answer * 1000)) < 0.0001 or abs(int(answer * 1000) - answer * 1000) < 0.0001:
-            if answer <= 10000 and answer >= -10000:
+            if answer <= 10000 and answer >= -1000 and answer != 0:
                 break
 
-    return task, round(answer, 3)
+    return task, round(answer, 5)
 
 prototype_14815 = transformation_task('pow( C_1[1, 10] / C_2[1, 10], C_5[2, 5])*C_4[2, 30] + pow(0.1, C_6[2, 5])*(C_3[1, 10]*1000)')
 
@@ -124,10 +144,10 @@ prototype_15055 = transformation_task(' (pow(C_1[2, 6], C_2[5, 12])*pow(C_1[2, 6
 
 prototype_15056 = transformation_task(' (pow(C_1[2, 6], C_2[2, 5])*pow(C_1[2, 6], 3))/ pow(pow(C_1[2, 6], 2), C_3[2, 6]) ')
 
-prototype_15227 = transformation_task(' ( pow(C_1[11, 19]/10, C_6[2, 5])-pow(C_2[31, 49]/10, 0)*C_1[11, 19]*(C_3[1, 9]/10) + pow(C_3[1, 9]/10, C_6[2, 5]) ) / ( C_4[101, 199]/100 - pow(C_5[1, 9]/10, C_6[2, 5]) ) ')
+prototype_15227 = transformation_task(' ( pow(G_1[11, 19], C_6[2, 5])-pow(G_2[31, 49], 0)*C_1[11, 19]*(G_3[1, 9]) + pow(G_3[1, 9], C_6[2, 5]) ) / ( G_4[101, 199] - pow(G_5[1, 9], C_6[2, 5]) ) ')
 
 prototype_15228 = transformation_task(' C_1[2, 5]/C_2[2, 8] + pow(pow(C_3[9, 20], 0), C_1[2, 5]) -  pow((C_4[1, 4]+C_5[1, 1]/C_6[2, 2]), C_6[2, 2]) + pow(C_4[2, 5], C_1[2, 5])*(C_8[1, 9]/10) ')
 
-prototype_15229 = transformation_task(' ( pow((C_1[11, 19]/10), 2) - pow((C_2[11, 19]/10), 2) ) / ( pow((C_1[11, 19]/10), 0)*(C_3[1, 9]/10) - pow((C_2[11, 19]/10), 0)*(C_4[91, 99]/10)  ) ')
+prototype_15229 = transformation_task(' ( pow((G_1[11, 19]), 2) - pow((G_2[11, 19]), 2) ) / ( pow((G_1[11, 19]), 0)*(G_3[1, 9]) - pow((G_2[11, 19]), 0)*(G_4[91, 99])  ) ')
 
 prototype_15230 = transformation_task(' pow(pow(-C_1[2, 10], 0), C_4[4, 9]) - C_2[3, 9]*(1/C_2[3, 9]) - C_3[2, 7]*(1/C_3[2, 7]) ')
