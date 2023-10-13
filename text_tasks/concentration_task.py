@@ -61,29 +61,48 @@ def input_parameters_mix(task_type, i=None):
     """Генерирует случайные входные параметры для задачи."""
 
     if task_type == 'liquids':
-        concentrates = ['уксусная кислота', 'соль', 'серная кислота']
+        concentrates = [
+            'уксусная кислота', 'соль', 'серная кислота', 'сахар', 'амиак',
+            'метанол', 'спирт', 'бром', 'угольная кислота',
+            'кремниевая кислота', 'йод',
+            ]
         solution_type = 'раствор'
         water = 'вода'
-        pure = 'чистая'
-        i = random.randint(0, 2)
+        pure = ['чистая', 'чистый']
+        range_limit = len(concentrates) - 1
+        i = random.randint(0, range_limit)
         concentrate = concentrates[i]
 
-        return concentrate, solution_type, water, pure
+        morph = pymorphy2.MorphAnalyzer()
+        parsed_word = morph.parse(concentrate)
+        pure_gendered = pure[1] if 'masc' in parsed_word[0].tag else pure[0]
+
+        return concentrate, solution_type, water, pure, pure_gendered
 
     elif task_type == 'organic compound':
-        concentrates = ['целлюлозная масса']
+        concentrates = [
+            'целлюлозная масса', 'уксус', 'физраствор', 'рассол', 'известковая закваска',
+            'штукатурная смесь', 'гипсовая смесь', 'спирт', 'антифриз', 'бульон',
+            ]
         water = 'вода'
-        i = random.randint(0, len(concentrates) - 1)
+        range_limit = len(concentrates) - 1
+        i = random.randint(0, range_limit)
         concentrate = concentrates[i]
 
         return concentrate, water
 
     elif task_type == 'food':
-        ingredients = ['грибы', 'фрукты']
+        ingredients = [
+            'грибы', 'фрукты', 'бананы', 'яблоки', 'персики',
+            'абрикрсы', 'ананасы', 'апельсины', 'грейпфруты', 'каперсы',
+            'мандарины', 'некторины', 'огурцы', 'ягоды', 'лимоны',
+            'финики', 'томаты', 'артишоки', 'бобы', 'кабачки',
+            ]
         fresh = 'свежие'
         dried = 'сухие'
         water = 'вода'
-        i = random.randint(0, len(ingredients) - 1)
+        range_limit = len(ingredients) - 1
+        i = random.randint(0, range_limit)
         ingredient = ingredients[i]
 
         return ingredient, fresh, dried, water
@@ -101,14 +120,14 @@ def inflect_word(words, case):
 def generate_task_4774():
     """Генерирует задачу 4774 со случайно сгенерированными входными параметрами и вычисленным ответом."""
 
-    concentrate, solution_type, water, pure = input_parameters_mix(task_type='liquids')
+    concentrate, solution_type, water, pure, pure_gendered = input_parameters_mix(task_type='liquids')
     substance = f'{solution_type} {concentrate}'
-    diluent = f'{pure} {water}'
+    diluent = f'{pure[0]} {water}'
 
     while True:
-        mass_of_substance_before = random.randint(1, 10)
-        concentrate_perc = random.randint(1, 99)
-        mass_of_diluent_added = random.randint(1, 10)
+        mass_of_substance_before = random.randint(1, 20)
+        concentrate_perc = random.randint(1,80)
+        mass_of_diluent_added = random.randint(1, 20)
 
         if mass_of_substance_before == 1:
             liter = 'литр'
@@ -133,14 +152,14 @@ def generate_task_4774():
 def generate_task_4787():
     """Генерирует задачу 4787 со случайно сгенерированными входными параметрами и вычисленным ответом."""
 
-    concentrate, solution_type, water, pure = input_parameters_mix(task_type='liquids')
+    concentrate, solution_type, water, pure, pure_gendered = input_parameters_mix(task_type='liquids')
     substance = f'{solution_type} {concentrate}'
-    diluent = f'{pure} {water}'
+    diluent = f'{pure[0]} {water}'
 
     while True:
-        concentrate_perc_before = random.randint(1, 100)
+        concentrate_perc_before = random.randint(20, 95)
         mass_of_substance_after = random.randint(1, 1000)
-        concentrate_perc_after = random.randint(1, concentrate_perc_before)
+        concentrate_perc_after = random.randint(1, concentrate_perc_before - 1)
 
         task = (
             f'Какое количество {concentrate_perc_before}%-го {inflect_word(substance, "gent")} надо взять, '
@@ -158,14 +177,14 @@ def generate_task_4787():
 def generate_task_4789():
     """Генерирует задачу 4789 со случайно сгенерированными входными параметрами и вычисленным ответом."""
 
-    concentrate, solution_type, water, pure = input_parameters_mix(task_type='liquids')
+    concentrate, solution_type, water, pure, pure_gendered = input_parameters_mix(task_type='liquids')
     substance = f'{solution_type} {concentrate}'
     diluent = f'{water}'
 
     while True:
-        mass_of_substance_before = random.randint(1, 100)
-        concentrate_perc_after = random.randint(1, 100)
-        concentrate_perc_before = random.randint(1, concentrate_perc_after - 1)
+        mass_of_substance_before = random.randint(1, 1000)
+        concentrate_perc_before = random.randint(1, 50)
+        concentrate_perc_after = random.randint(concentrate_perc_before - 1, 100)
 
         task = (
             f'Сколько {inflect_word(diluent, "gent")} надо выпарить из {mass_of_substance_before} г {concentrate_perc_before}%-го {inflect_word(substance, "gent")}, чтобы получить {concentrate_perc_after}%-ый раствор?'
@@ -182,12 +201,12 @@ def generate_task_4789():
 def generate_task_9487():
     """Генерирует задачу 9487 со случайно сгенерированными входными параметрами и вычисленным ответом."""
 
-    concentrate, solution_type, water, pure = input_parameters_mix(task_type='liquids')
-    pure_substance = f'{pure} {concentrate}'
+    concentrate, solution_type, water, pure, pure_gendered = input_parameters_mix(task_type='liquids')
+    pure_substance = f'{pure_gendered} {concentrate}'
 
     while True:
-        concentrate_perc_before = random.randint(1, 80)
-        concentrate_perc_after = random.randint(concentrate_perc_before, 100)
+        concentrate_perc_before = random.randint(1, 60)
+        concentrate_perc_after = random.randint(concentrate_perc_before + 1, 99)
         concentrate_mass_added = random.randint(1, 1000)
 
         task = (
@@ -206,14 +225,14 @@ def generate_task_9487():
 def generate_task_17645():
     """Генерирует задачу 17645 со случайно сгенерированными входными параметрами и вычисленным ответом."""
 
-    concentrate, solution_type, water, pure = input_parameters_mix(task_type='liquids')
+    concentrate, solution_type, water, pure, pure_gendered = input_parameters_mix(task_type='liquids')
     substance = f'{solution_type} {concentrate}'
-    diluent = f'{pure} {water}'
+    diluent = f'{pure[0]} {water}'
 
     while True:
-        mass_of_substance_before = random.randint(1, 10)
-        concentrate_perc = random.randint(1, 99)
-        mass_of_diluent_added = random.randint(1, 10)
+        mass_of_substance_before = random.randint(1, 20)
+        concentrate_perc = random.randint(5, 90)
+        mass_of_diluent_added = random.randint(1, 20)
 
         if mass_of_substance_before == 1:
             liter = 'литр'
@@ -236,19 +255,23 @@ def generate_task_17645():
 
 
 def generate_task_4770():
-    """Генерирует задачу 4770 со случайно сгенерированными входными параметрами и вычисленным ответом."""
+    """Генерирует задачу со случайно сгенерированными входными параметрами и вычисленным ответом."""
 
     concentrate, water = input_parameters_mix(task_type = 'organic compound')
+    including = ['содержащей', 'содержащего']
+    morph = pymorphy2.MorphAnalyzer()
+    parsed_word = morph.parse(concentrate)
+    including_gendered = including[1] if 'masc' in parsed_word[0].tag else including[0]
 
     while True:
         mass_of_substance_before_t = round(random.uniform(0, 10), 1)
         mass_of_substance_before_kg = mass_of_substance_before_t * 1000
-        water_perc_before = random.randint(1, 100)
-        water_perc_after = random.randint(1, water_perc_before)
+        water_perc_before = random.randint(5, 90)
+        water_perc_after = random.randint(1, water_perc_before - 1)
 
         task = (
             f'Сколько килограммов {inflect_word(water, "gent")} нужно выпарить из {mass_of_substance_before_t} т {inflect_word(concentrate, "gent")}, '
-            f'содержащей {water_perc_before}% {inflect_word(water, "gent")}, чтобы получить массу с содержанием {water_perc_after}% {inflect_word(water, "gent")}?'
+            f'{including_gendered} {water_perc_before}% {inflect_word(water, "gent")}, чтобы получить массу с содержанием {water_perc_after}% {inflect_word(water, "gent")}?'
         )
 
         answer = mass_of_substance_before_kg - ((mass_of_substance_before_kg * (100 - water_perc_before) / 100) * 100 / (100 - water_perc_after))
@@ -266,15 +289,14 @@ def generate_task_4772():
 
     while True:
         mass_of_ingredients_before = random.randint(1, 1000)
-        water_perc_before = random.randint(1, 99)
-        water_perc_after = random.randint(1, water_perc_before)
+        water_perc_before = random.randint(60, 96)
+        water_perc_after = random.randint(2, water_perc_before - 1)
 
         task = (
             f'{fresh.capitalize()} {inflect_word(ingredient, "nomn")} содержат по весу {water_perc_before}% {inflect_word(water, "gent")}, '
             f'а {dried} − {water_perc_after}% {inflect_word(water, "gent")}. '
             f'Сколько получится {inflect_word(dried, "gent")} {inflect_word(ingredient, "gent")} из {mass_of_ingredients_before} кг свежих?'
             )
-
 
         answer = (mass_of_ingredients_before * (100 - water_perc_before) / 100) * 100 / (100 - water_perc_after)
 
@@ -290,15 +312,15 @@ def generate_task_4782():
     ingredient, fresh, dried, water = input_parameters_mix(task_type='food')
 
     while True:
-        total_mass_before = random.randint(1, 1000)
-        total_mass_after = random.randint(1, total_mass_before)
-        water_perc_after = random.randint(1, 99)
+        total_mass_before = random.randint(3, 100)
+        total_mass_after = random.randint(1, total_mass_before - 1)
+        water_perc_after = random.randint(1, 20)
 
         task = (
-            f'Из 10 кг {inflect_word(fresh, "gent")} {inflect_word(ingredient, "gent")} получают 3,5 кг {inflect_word(dried, "gent")} {inflect_word(ingredient, "gent")}, содержащих 20% {inflect_word(water, "gent")}.  '
+            f'Из {total_mass_before} кг {inflect_word(fresh, "gent")} {inflect_word(ingredient, "gent")} получают {total_mass_after} кг '
+            f'{inflect_word(dried, "gent")} {inflect_word(ingredient, "gent")}, содержащих {water_perc_after}% {inflect_word(water, "gent")}. '
             f'Каково процентное содержание {inflect_word(water, "gent")} в {inflect_word(fresh, "loct")} {inflect_word(ingredient, "loct")}? '
             )
-
 
         answer = 100 - ((total_mass_after - (total_mass_after / 100 * water_perc_after)) * 100 / total_mass_before)
 
@@ -315,9 +337,9 @@ def generate_task_9481():
 
     while True:
 
-        water_perc_before = random.randint(1, 99)
-        water_perc_after = random.randint(1, water_perc_before)
-        total_mass_after = random.randint(1, 1000)
+        water_perc_before = random.randint(60, 96)
+        water_perc_after = random.randint(1, water_perc_before - 1)
+        total_mass_after = random.randint(1, 100)
 
         task = (
             f'{fresh.capitalize()} {inflect_word(ingredient, "nomn")} содержат по массе {water_perc_before}% {inflect_word(water, "gent")}, а {dried} − {water_perc_after}%. '
@@ -339,9 +361,9 @@ def generate_task_9491():
 
     while True:
 
-        total_mass_before = random.randint(1, 1000)
-        moisture_before = random.randint(2, 99)
-        moisture_after = random.randint(1, moisture_before)
+        total_mass_before = random.randint(1, 100)
+        moisture_before = random.randint(60, 96)
+        moisture_after = random.randint(1, moisture_before - 1)
 
         task = (
             f'Собрали {total_mass_before} кг {inflect_word(ingredient, "gent")}. Оказалось, что их влажность {moisture_before}%. '
