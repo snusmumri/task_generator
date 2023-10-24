@@ -1,153 +1,101 @@
-from pytexit import py2tex
-import re
-import random
-import math
 from sympy import *
 import numpy as np
+import fractions
+from fractions import Fraction
+import random
+import math
+import decimal
+from pytexit import py2tex
+import re
 
 def transformation_task(string):
-    while True:
-        elements = []
-        start_index = string.find('C_')
+  while True:
+    elements = []
+    start_index = string.find('C_')
 
-        while start_index != -1:
-            end_index = string.find(']', start_index)
-            element = string[start_index: end_index + 1]
-            elements.append(element)
-            start_index = string.find('C_', end_index)
+    while start_index != -1:
+      end_index = string.find(']', start_index)
+      element = string[start_index: end_index + 1]
+      elements.append(element)
+      start_index = string.find('C_', end_index)
 
-        values = []
+      values = []
 
-        for element in elements:
-            start_index = element.find('[') + 1
-            end_index = element.find(']')
-            range_string = element[start_index: end_index]
-            range_values = list(map(int, range_string.split(', ')))
-            random_value = random.randint(range_values[0], range_values[1])
-            values.append(random_value)
+    for element in elements:
+      start_index = element.find('[') + 1
+      end_index = element.find(']')
+      range_string = element[start_index: end_index]
+      range_values = list(map(int, range_string.split(', ')))
+      random_value = random.randint(range_values[0], range_values[1])
+      values.append(random_value)
 
-        elements_g = []
-        start_index = string.find('G_')
-        while start_index != -1:
-            end_index = string.find(']', start_index)
-            element = string[start_index : end_index + 1]
-            elements_g.append(element)
-            start_index = string.find('G_', end_index)
+    elements_g = []
+    start_index = string.find('G_')
 
-        values_g = []
-        for element in elements_g:
-            start_index = element.find('[') + 1
-            end_index = element.find(']')
-            range_string = element[start_index : end_index]
-            range_values = list(map(float, range_string.split(', ')))
-            random_value = round(random.uniform(range_values[0], range_values[1]), 2)
-            values_g.append(random_value)
-          
-        updated_string = string
-        for i, el in enumerate(elements):
-            updated_string = updated_string.replace(el, str(values[i]))
-        for i, el in enumerate(elements_g):
-            updated_string = updated_string.replace(el, str(values_g[i]))
+    while start_index != -1:
+      end_index = string.find(']', start_index)
+      element = string[start_index : end_index + 1]
+      elements_g.append(element)
+      start_index = string.find('G_', end_index)
 
-        answer = eval(updated_string)
-        task = 'Вычислите: '+py2tex(updated_string, print_formula = False, print_latex = False)
+    values_g = []
 
-        if abs(answer * 1000 - int(answer * 1000)) < 0.0001 or abs(int(answer * 1000) - answer * 1000) < 0.0001:
-            if answer <= 10000 and answer >= -1000 and answer != 0:
-                break
+    for element in elements_g:
+      start_index = element.find('[') + 1
+      end_index = element.find(']')
+      range_string = element[start_index : end_index]
+      range_values = list(map(float, range_string.split(', ')))
+      random_value = round(random.uniform(range_values[0], range_values[1]), 2)
+      values_g.append(random_value)
 
-    return task, round(answer, 5)
+    updated_string = string
 
-prototype_14815 = transformation_task('pow( C_1[1, 10] / C_2[1, 10], C_5[2, 5])*C_4[2, 30] + pow(0.1, C_6[2, 5])*(C_3[1, 10]*1000)')
+    for i, el in enumerate(elements):
+      updated_string = updated_string.replace(el, str(values[i]))
 
-prototype_14784 = transformation_task('pow( (C_1[1, 8] / C_2[1, 8]), C_3[1, 8])*( C_4[1, 8] + C_5[1, 8] / C_1[1, 8] )')
+    for i, el in enumerate(elements_g):
+      updated_string = updated_string.replace(el, str(values_g[i]))
 
-prototype_14785 = transformation_task('pow( (C_1[1, 40] / 10), C_3[2, 5]) / C_2[2, 51]')
+    answer = eval(updated_string)
+    task_ower = 'Вычислите: '+py2tex(updated_string,
+                                print_formula = False,
+                                print_latex = False,
+                                tex_enclosure='$',
+                                simplify_multipliers=False,
+                                tex_multiplier='\cdot',
+                                simplify_fractions =True)
 
-prototype_14809 = transformation_task('C_1[2, 10]*pow(C_2[2, 10], C_3[2, 6]) + C_2[2, 10]*pow(C_2[2, 10], C_4[2, 6])')
+    pattern_1 = r'{(\\)?frac{(\d+)}{(\d+)}}\^(\d+)'
+    replacement = r'(\1frac{\2}{\3})^\4'
+    task_show = re.sub(pattern_1, replacement, task_ower)
 
-prototype_14814 = transformation_task('C_1[2, 10]*pow(C_2[2, 10], C_3[2, 5]) + C_2[2, 10]*pow(C_2[2, 10], C_4[2, 5])')
+    pattern_2 = r'\\frac{(\d+)}{(\d+)}'
+    matches = re.findall(pattern_2, task_show)
 
-prototype_14816 = transformation_task('C_1[10, 101] / pow(C_2[2, 11], C_7[2, 5]) - pow( (C_5[1, 11] / C_6[1, 11]), C_3[2, 5])*C_4[2, 500]')
+    list_results = []
+    for match in matches:
+      a = int(match[0])
+      b = int(match[1])
+      result = f'\\frac{{{a}}}{{{b}}}'
+      list_results.append(result)
+    
+    numerators = []
+    for fraction in list_results:
+      match = re.match(r'\\frac{(\d+)}{(\d+)}', fraction)
+      a = int(match.group(1))
+      b = int(match.group(2))
+      if a >= b:
+        d = b
+        a, b = a // b, a % b
+        numerators.append(b)
+        frac_to_add = r'('+str(a) + r'\frac{' + str(b) + '}{' + str(d) + '})'
+      else:
+        frac_to_add =  r'\frac{' + str(a) + '}{' + str(b) + '}'
+      task_show = task_show.replace(fraction, frac_to_add)
 
-prototype_14817 = transformation_task('pow( ( C_4[1, 11]+(C_1[1, 7]/C_2[1, 7]) ), C_6[2, 5]) - pow( ( C_5[1, 11]+( C_3[1, 7]  / C_2[1, 7]) ), C_7[2, 5])')
+    if abs(answer)>=0.000001 and 0 not in numerators:
+      if abs(int(answer * 1000) - answer * 1000) < 0.0001:
+        if answer<=10000 and answer>=-1000:
+          break
 
-prototype_14819 = transformation_task('-pow(-C_1[2, 10], C_5[2, 5]) / C_2[2, 10] - pow(C_3[2, 10], C_6[2, 5])*C_4[2, 10]')
-
-prototype_14836 = transformation_task('pow(C_1[-1, 1], C_4[2, 70]) + pow(C_2[-1, 1], C_5[2, 70]) + pow(C_3[-1, 1], C_6[2, 70])')
-
-prototype_14839 = transformation_task('pow(C_1[-1, 1], C_5[2, 503]) - pow(C_2[-1, 1], C_6[2, 503]) + pow(C_3[-1, 1], C_7[2, 503]) + pow(C_4[-1, 1], C_8[2, 503])')
-
-prototype_14841 = transformation_task('pow(-1, C_2[2, 10]) - pow(-1, C_3[2, 10]) - pow(-1, C_4[2, 10]) - pow(-1, C_5[2, 10])')
-
-prototype_14842 = transformation_task('pow(C_1[-1, 1], C_5[2, 30]) + pow(C_2[-1, 1], C_6[2, 30]) - pow(C_3[-1, 1], C_7[2, 30]) - pow(C_4[-1, 1], C_8[2, 30])*pow(C_2[-1, 1], C_7[2, 30])')
-
-prototype_15021 = transformation_task('( pow(C_1[2, 20], C_2[1, 15]) * pow(C_1[2, 20], C_3[1, 15]) )/pow(C_1[2, 20], C_4[1, 15])')
-
-prototype_15024 = transformation_task('( pow(C_1[10, 50], C_2[1, 15]) / pow(C_1[10, 50], C_3[1, 15]) )*pow(C_1[10, 50], C_4[1, 15])')
-
-prototype_15025 = transformation_task('( pow( (C_1[1, 9]/10), C_2[1, 15])*pow( (C_1[1, 9]/10), C_3[1, 15]) ) / pow( (C_1[1, 9]/10), C_4[1, 15])')
-
-prototype_15026 = transformation_task('( pow( (C_1[1, 9] / C_2[1, 9]) , C_3[1, 15])*pow( (C_1[1, 9] / C_2[1, 9]), C_4[1, 15]) )/pow( (C_1[1, 9] / C_2[1, 9]), C_5[1, 15])')
-
-prototype_15046 = transformation_task('pow(pow(C_1[2, 10], C_2[2, 5]), C_3[2, 5])')
-
-prototype_15164 = transformation_task('pow(C_1[2, 16], C_2[2, 10])*pow( (1/C_1[2, 16]), C_2[2, 10])')
-
-prototype_15165 = transformation_task('pow(C_1[2, 16], C_2[2, 10])*pow( (1/C_1[2, 16]), C_2[2, 10])')
-
-prototype_15166 = transformation_task('pow(C_1[2, 16], C_2[2, 10])*pow( (C_3[1, 5]/C_1[2, 16]), C_2[2, 10])')
-
-prototype_15167 = transformation_task('pow( (5/C_1[2, 10]), C_3[2, 10])*pow(2*C_1[2, 10], C_3[2, 10])')
-
-prototype_15168 = transformation_task('(-pow( ( C_1[2, 10]/C_2[2, 10] ), C_3[2, 10]))*(-pow( ( C_2[2, 10]/C_1[2, 10] ), C_3[2, 10]))')
-
-prototype_15169 = transformation_task('(-pow( ( C_1[2, 10]/C_2[2, 10] ), C_3[2, 15]))*(-pow( ( C_2[2, 10]/C_3[2, 15] ), C_3[2, 15]))')
-
-prototype_15170 = transformation_task('pow( ( C_1[2, 10]/C_2[2, 10] ), C_3[2, 15])*pow( ( 2*C_2[2, 10]/C_1[2, 10] ), C_3[2, 15])')
-
-prototype_15171 = transformation_task('pow( ( C_1[2, 10]/C_2[2, 10] ), C_3[2, 15])*pow( ( 2*C_2[2, 10]/C_1[2, 10] ), C_3[2, 15])')
-
-prototype_15172 = transformation_task('( pow(C_1[2, 5], C_3[3, 10])*pow(C_2[4, 12], C_3[3, 10]) ) / pow( (C_1[2, 5]*C_2[4, 12]), C_4[2, 9]) ')
-
-prototype_15173 = transformation_task('( pow(C_1[2, 5], C_3[3, 10])*pow(C_2[4, 12], C_3[3, 10]) ) / pow( (C_1[2, 5]*C_2[4, 12]), C_4[2, 9])')
-
-prototype_15174 = transformation_task('( pow(C_1[3, 9], C_3[3, 12])*pow(C_2[5, 15], C_3[3, 12]) ) / pow( (C_1[3, 9]*C_2[5, 15]), C_4[2, 10])')
-
-prototype_15175 = transformation_task('( pow(C_1[3, 9], C_3[3, 12])*pow(C_2[5, 15], C_3[3, 12]) ) / pow( (C_1[3, 9]*C_2[5, 15]), C_4[2, 10])')
-
-prototype_15176 = transformation_task('( pow(C_1[10, 20], C_3[2, 5])*pow(C_2[2, 6], C_3[2, 5]) ) / pow( (C_1[10, 20]*C_2[2, 6]), C_4[2, 4])')
-
-prototype_15177 = transformation_task(' pow( (C_1[2, 8]*C_2[3, 10]), C_4[3, 15]) / ( pow(C_1[2, 8], C_3[2, 5])*pow(C_2[3, 10], C_3[2, 5]) ) ')
-
-prototype_15178 = transformation_task('( pow(C_1[2, 7], C_3[11, 17])*pow(C_2[2, 8], C_3[11, 17]) ) / pow( (C_1[2, 7]*C_2[2, 8]), C_4[11, 17])')
-
-prototype_15179 = transformation_task(' pow( (C_1[2, 8]*C_2[3, 10]), C_4[3, 9]) / ( pow(C_1[2, 8], C_3[2, 5])*pow(C_2[3, 10], C_3[2, 5]) )')
-
-prototype_15057 = transformation_task(' pow( C_1[10, 19], C_3[3, 9]) / ( pow(C_2[2, 8], C_4[5, 11])*(C_1[10, 19]*C_2[2, 8]) )')
-
-prototype_15207 = transformation_task('pow(C_1[2, 10], C_4[2, 5]) + pow(C_2[2, 10], C_5[3, 9]) + pow(C_3[2, 10], C_6[0, 0])')
-
-prototype_15209 = transformation_task('pow(C_1[2, 10], C_2[0, 0])*pow(C_3[2, 10], C_4[3, 9]) + pow(C_5[6, 15], C_6[2, 5])')
-
-prototype_15050 = transformation_task(' ( pow(C_1[2, 4], C_2[2, 7])*(pow( pow(C_1[2, 4], C_3[2, 5]), C_4[3, 6])) ) / pow(C_1[2, 4], C_5[12, 20]) ')
-
-prototype_15051 = transformation_task(' (pow( pow(C_1[2, 5], C_3[2, 7]), C_4[2, 4])) / pow(C_1[2, 5], C_2[2, 4])*pow(C_1[2, 5], 2) ')
-
-prototype_15052 = transformation_task('( (pow( pow(C_1[2, 4], C_3[2, 5]), C_4[3, 6]))*pow(C_1[2, 4], C_2[2, 7]) ) / pow(C_1[2, 4], C_5[12, 20]) ')
-
-prototype_15053 = transformation_task(' pow(C_1[2, 5], C_2[2, 4])*pow(C_1[2, 5], 2)/(pow( pow(C_1[2, 5], C_3[2, 7]), C_4[2, 4])) ')
-
-prototype_15054 = transformation_task(' (pow(C_1[2, 6], C_2[2, 8])*pow(C_1[2, 6], 3))/ pow(pow(C_1[2, 6], 2), C_3[2, 5]) ')
-
-prototype_15055 = transformation_task(' (pow(C_1[2, 6], C_2[5, 12])*pow(C_1[2, 6], 3))/ pow(pow(C_1[2, 6], 2), C_3[3, 10]) ')
-
-prototype_15056 = transformation_task(' (pow(C_1[2, 6], C_2[2, 5])*pow(C_1[2, 6], 3))/ pow(pow(C_1[2, 6], 2), C_3[2, 6]) ')
-
-prototype_15227 = transformation_task(' ( pow(G_1[11, 19], C_6[2, 5])-pow(G_2[31, 49], 0)*C_1[11, 19]*(G_3[1, 9]) + pow(G_3[1, 9], C_6[2, 5]) ) / ( G_4[101, 199] - pow(G_5[1, 9], C_6[2, 5]) ) ')
-
-prototype_15228 = transformation_task(' C_1[2, 5]/C_2[2, 8] + pow(pow(C_3[9, 20], 0), C_1[2, 5]) -  pow((C_4[1, 4]+C_5[1, 1]/C_6[2, 2]), C_6[2, 2]) + pow(C_4[2, 5], C_1[2, 5])*(C_8[1, 9]/10) ')
-
-prototype_15229 = transformation_task(' ( pow((G_1[11, 19]), 2) - pow((G_2[11, 19]), 2) ) / ( pow((G_1[11, 19]), 0)*(G_3[1, 9]) - pow((G_2[11, 19]), 0)*(G_4[91, 99])  ) ')
-
-prototype_15230 = transformation_task(' pow(pow(-C_1[2, 10], 0), C_4[4, 9]) - C_2[3, 9]*(1/C_2[3, 9]) - C_3[2, 7]*(1/C_3[2, 7]) ')
+  return task_show, round(answer, 5)
