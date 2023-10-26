@@ -2,7 +2,8 @@ from pprint import pprint
 from random import randint, choice
 
 from task_generator.text_tasks.input_parameters import input_parameters_work, morph, correct_word, gent_pers, start_title
-from task_generator.text_tasks.task_solutions import solution_task_13135, solution_task_13137, solution_task_13140
+from task_generator.text_tasks.task_solutions import solution_task_13135, solution_task_13137, solution_task_13140, \
+    solution_task_13170, solution_task_13185, solution_task_13195
 
 
 def task_13021():
@@ -47,7 +48,7 @@ def task_13021():
 
 def task_13023():
     """ Генерация аналогичных задач 13.023 М.И. Сканави:
-    Однотипные детали обрабатываются на двух станках. Производительность первого станка на 40 % больше производительности
+    Однотипные детали обрабатываются на двух станках. Производительность первого станка на 40% больше производительности
     второго. Сколько деталей было обработано за смену каждым станком, если первый работал в эту смену 6 ч, а второй - 8 ч,
     причём оба изготовили 820 деталей.
     """
@@ -190,7 +191,7 @@ def task_13032():
 
 
 def task_13033():
-    """Генерация аналогичных задач 13.033 М.И. Сканави:
+    """Генерация аналогичных задач 13.033, 13.226 М.И. Сканави:
     Каждая из двух машинисток перепечатывала рукопись объемом 72 страницы. Первая машинистка перепечатывала 6 страниц
     за то же время, за которое вторая перепечатывала 5 страниц. Сколько страниц перепечатывала каждая машинистка в час,
     если первая закончила работу на 1,5 ч быстрее?
@@ -356,12 +357,12 @@ def task_13137():
     ])
     return f"{start_title(pers1)}, {pers2} и {pers3} должны выполнить работу: {task}. {word2.title()} {pers2} выполнит " \
            f"всю работу на {delta_t} мин дольше, чем {word2} {pers1}. {word2.title()} {pers3} может выполнить всю " \
-           f"работу за время в {k} раз больше, чем {word2} {pers1}. Считаем, что работу между ними можно разделить " \
+           f"работу за время в {k} {correct_word('раз', k)} больше, чем {word2} {pers1}. Считаем, что работу между ними можно разделить " \
            f"на 3 равных части. {question}", answer
 
 
 def task_13140():
-    """Генерация аналогичных задач 13.137 М.И. Сканави:
+    """Генерация аналогичных задач 13.140 М.И. Сканави:
     На одном из двух станков обрабатывают партию деталей на три дня дольше, чем на другом. Сколько дней продолжалось
     бы обработка этой партии деталей каждым станком в отдельности, если при совместной работе на этих станках в 3 раза
     большая партия деталей была обработана за 20 дней?"""
@@ -378,8 +379,131 @@ def task_13140():
     ])
     return f"{start_title(pers1)} может выполнить заказ ({task}) на {delta_t} {correct_word('день', delta_t)} быстрее, " \
            f"чем {pers2}. {question}, если при совместной работе за {t} {correct_word('день', t)} будет выполнена " \
-           f"работа объемом в {k} раз больше?", answer
+           f"работа объемом в {k} {correct_word('раз', k)} больше?", answer
+
+
+def task_13170():
+    """Генерация аналогичных задач 13.170 М.И. Сканави:
+    Одна тракторная бригада должна вспахать 240 га, а другая на 35% больше, чем первая. Первая бригада, вспахивая
+    ежедневно на 3 га меньше второй, закончила работу на 2 дня раньше, чем вторая бригада. Сколько гектаров вспахивала
+    каждая бригада ежедневно?"""
+    while True:
+        # i = 8
+        i = choice([0, 1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 14])
+        pers1, pers2, _, (task, measure) = input_parameters_work(i)
+        if measure:
+            meas_word, unit = measure
+            break
+        else:
+            pers1, pers2, _, (task, measure) = input_parameters_work(i)
+
+    s, k, delta_x, delta_t, t, x = solution_task_13170()
+    task1, (word1, word2) = correct_word(key=task, values=(s, 10))
+
+    if unit in ('м3', 'м2', 'км'):
+        word1, word2, new_unit = unit, unit, meas_word + ' '
+        task1 = task
+    else:
+        new_unit = ''
+
+    if morph.parse(pers1.split()[0])[0].tag.gender == 'femn':
+        gender = ('должна', 'Первая', 'второй', 'вторая', 'каждая', 'работала')
+    else:
+        gender = ('должен', 'Первый', 'второго', 'второй', 'каждый', 'работал')
+
+    question, answer = choice([
+        (f"Сколько {word2} может {task1} {gender[4]} из них ежедневно?", (x, x + delta_x)),
+        (f"Сколько дней {gender[5]} {gender[4]} из них?", (t, t + delta_t)),
+    ])
+    return f"{start_title(pers1)} {gender[0]} {task1} {new_unit}{s} {word1}, а {pers2} на {k}% больше. " \
+           f"{gender[1]} может {task1} на {x} {unit} в день меньше {gender[2]} и закончить работу на {delta_t} " \
+           f"{correct_word('день', delta_t)} раньше, чем {gender[3]}. {question}", answer
+
+
+def task_13185():
+    """Генерация аналогичных задач 13.185 М.И. Сканави:
+    При испытании двух двигателей было установлено, что первый израсходовал 300 г, а второй 192 г бензина,
+    причем второй работал на 2 ч меньше, чем первый. Первый двигатель затрачивает в час на 6 г бензина больше,
+    чем второй. Какое количество бензина в час расходует каждый из двигателей?"""
+    s1, s2, delta_x, delta_t, answer = solution_task_13185()
+    while True:
+        i = choice([0, 1, 2, 4, 6, 7, 8, 9, 10, 14])
+        pers1, pers2, _, (task, measure) = input_parameters_work(i)
+        if measure:
+            meas_word, unit = measure
+            break
+        else:
+            pers1, pers2, _, (task, measure) = input_parameters_work(i)
+
+    task1, (word1, word2, word3) = correct_word(key=task, values=(s1, s2, delta_x))
+
+    if unit in ('м3', 'м2', 'км'):
+        word1, word2, word3, new_unit = unit, unit, unit, meas_word + ' '
+        task1 = task
+    else:
+        new_unit = ''
+
+    gender = 'каждой' if morph.parse(pers1.split()[0])[0].tag.gender == 'femn' \
+        else 'каждого'
+
+    return f"{start_title(pers1)} может {task1} {new_unit}{s1} {word1}, а {pers2} - {new_unit}{s2} {word2}, " \
+           f"причем {pers2} работает на {delta_t} ч меньше, чем {pers1} и может {task1} на {new_unit}{delta_x} {word3} " \
+           f"в час больше. Какова скорость работы {gender} из них?", answer
+
+
+def task_13195():
+    """Генерация аналогичных задач 13.195 М.И. Сканави:
+    Бригада монтеров должна была прокладывать по 8 м кабеля в час и закончить работу в 4 часа дня. После того как
+    половина всего задания была сделана, один рабочий выбыл из бригады, и бригада стала прокладывать по 6 м кабеля
+    в час. В результате запланированная работы была выполнена в 6 часов вечера. Сколько метров кабеля было проложено
+    и за сколько часов?"""
+    x1, x2, k, delta_t, answer = solution_task_13195()
+    while True:
+        i = choice([0, 2, 4, 6, 9, 10, 14])
+        pers, _, _, (task, measure) = input_parameters_work(i)
+        if measure:
+            meas_word, unit = measure
+            break
+        else:
+            pers, _, _, (task, measure) = input_parameters_work(i)
+
+    task1, (word1, word2, word3) = correct_word(key=task, values=(x1, 10, x2))
+
+    if unit in ('м3', 'м2', 'км'):
+        word1, word2, word3, new_unit = unit, unit, unit, meas_word + ' '
+        task1 = task
+    else:
+        new_unit = ''
+    gender = ('должна', 'она', 'смогла', 'ее') if morph.parse(pers.split()[0])[0].tag.gender == 'femn' \
+        else ('должен', 'он', 'смог', 'его')
+
+    return f"{start_title(pers)} {gender[0]} {task1} {x1} {word1} в час и закончить работу вовремя. " \
+           f"После того, как была выполнена 1/{k} всей работы, {gender[3]} работоспособность снизилась " \
+           f"и теперь {gender[1]} может {task1} " \
+           f"по {x2} {word3} в час. В результате работа была закончена на {delta_t} ч позже. " \
+           f"Сколько всего {word2} {gender[1]} {gender[2]} {task1} и за сколько часов?", answer
+
+
+def task_13341():
+    """Генерация аналогичных задач 13.341 М.И. Сканави:
+    Трое рабочих участвовали в конкурсе. Первый и третий из них произвели продукции в 2 раза больше, чем второй,
+    а второй и третий — в 3 раза больше, чем первый. Какое место занял каждый рабочий в конкурсе?
+    В каком отношении находятся количества выработанной ими продукции?"""
+    while True:
+        pers1, pers2, pers3, (task, measure) = input_parameters_work()
+        if not pers1 == pers2 == pers3 and not pers1 == pers2 and not pers3 == pers2 and measure:
+            meas_word, unit = measure
+            if unit == 'шт':
+                break
+
+    k1, k2 = randint(2, 10), randint(2, 10)
+    answer = sorted((k1 + 1, k2 + 1, k1 * k2 - 1))
+    task1, (word1, word2) = correct_word(key=task, values=(10, 10))
+    return f"{start_title(pers1)}, {pers2} и {pers3} участвуют в конкурсе. {start_title(pers1)} и {pers3} могут {task1} " \
+           f"в {k1} {correct_word('раз', k1)} больше {word1}, чем {pers2}, а {pers2} и {pers3} - в {k2} " \
+           f"{correct_word('раз', k2)} больше {word1}, чем {pers1}. Как распределились конкурсные места? " \
+           f"В каком отношении находятся количества {word1}, которые они смогли {task1}?", answer
 
 
 if __name__ == "__main__":
-    pprint(task_13140())
+    pprint(task_13341())

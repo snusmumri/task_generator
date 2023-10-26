@@ -160,3 +160,63 @@ def solution_task_13140():
             if (x1 > 0 and int(x1) - x1 == 0) or (x2 > 0 and int(x2) - x2 == 0):
                 x = x1 if x1 > 0 else x2
                 return delta_t, t, k, (x, delta_t + x)
+
+
+def solution_task_13170():
+    cnt = 0
+    while True:
+        cnt += 1
+        if cnt > 1000:
+            return 240, 35, 3, 2, 10, 24
+        s = randint(10, 500)
+        k = randint(10, 99)
+        s2 = s * (1 + k / 100)
+        if int(s2) - s2 == 0:
+           delta_x, delta_t = randint(1, 10), randint(1, 10)
+           a = delta_x
+           b = s2 - s + delta_x * delta_t
+           c = s * delta_t
+           discr = b**2 - 4 * a * c
+           if discr >= 0:
+               discr = math.sqrt(discr)
+               if int(discr) - discr == 0:
+                t = (b - discr) / (2 * a)
+                x = s / t
+                if int(x) - x == 0 and int(t) - t == 0 and x > 0 and t > 0:
+                    return s, k, delta_x, delta_t, int(t), int(x)
+
+
+def solution_task_13185():
+    cnt = 0
+    while True:
+        cnt += 1
+        if cnt > 1000:
+            return 450, 288, 6, 3, (30, 24)
+        s1, s2 = sorted((randint(10, 1000), randint(10, 1000)), reverse=True)
+        delta_x, delta_t = randint(1, 10), randint(1, 10)
+        a, c = delta_t, s1 * delta_x
+        b = -(delta_x * delta_t + s1 - s2)
+        discr = b ** 2 - 4 * a * c
+        if discr >= 0:
+            discr = math.sqrt(discr)
+            if int(discr) - discr == 0:
+                x1, x2 = (-b + discr) / (2 * a), (-b - discr) / (2 * a)
+                if int(x1) - x1 == 0 and x1 > 0:
+                    return s1, s2, delta_x, delta_t, (int(x1), int(x1 - delta_x))
+                elif int(x2) - x2 == 0 and x2 > 0:
+                    return s1, s2, delta_x, delta_t, (int(x2), int(x2 - delta_x))
+
+
+def solution_task_13195():
+    cnt = 0
+    while True:
+        cnt += 1
+        if cnt > 1000:
+            return 8, 6, 2, 2, (96, 14)
+        x1, x2 = sorted((randint(1, 10), randint(1, 10)), reverse=True)
+        delta_t = randint(1, 10)
+        k = randint(2, 9)
+        t = x2 * delta_t / ((1 / k) * (x1 - x2))
+        if int(t) - t == 0 and t > 0:
+            s = x1 * t
+            return x1, x2, k, delta_t, (s, t + delta_t)
