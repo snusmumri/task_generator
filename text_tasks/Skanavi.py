@@ -3,7 +3,7 @@ from random import randint, choice
 
 from task_generator.text_tasks.input_parameters import input_parameters_work, morph, correct_word, gent_pers, start_title
 from task_generator.text_tasks.task_solutions import solution_task_13135, solution_task_13137, solution_task_13140, \
-    solution_task_13170, solution_task_13185, solution_task_13195
+    solution_task_13170, solution_task_13185, solution_task_13195, solution_task_13292, solution_task_13328
 
 
 def task_13021():
@@ -505,5 +505,44 @@ def task_13341():
            f"В каком отношении находятся количества {word1}, которые они смогли {task1}?", answer
 
 
+def task_13292():
+    """Генерация аналогичных задач 13.292, 13.293, 13.296 М.И. Сканави:
+    Два «механических крота» разной мощности при одновременной работе с разных концов тоннеля могли бы прорыть его
+    за 5 дней. В действительности оба «крота» были применены последовательно с одной стороны тоннеля, причем первый
+    прорыл 1/3, а второй остальные 2/3 его длины. На выполнение всей работы ушло при этом 10 дней. За сколько дней
+    каждый «крот», работая самостоятельно, мог бы прорыть тоннель?"""
+    while True:
+        pers1, pers2, _, (task, measure) = input_parameters_work()
+        if not pers1 == pers2 and morph.parse(pers1.split()[0])[0].tag.gender == 'masc':
+            break
+    t1, t2, k, answer = solution_task_13292()
+    return f"{start_title(pers1)} и {pers2} должны вместе {task} за {t1} {correct_word('день', t1)}. " \
+           f"В действительности они работали поочередно: {pers1} выполнил 1/{k} всей работы, а оставшуюся часть " \
+           f"выполнил {pers2}. На выполнение всей работы ушло {t2} {correct_word('день', t2)}. За сколько дней " \
+           f"каждый из них, работая самостоятельно, может {task}?", answer
+
+
+def task_13328():
+    """Генерация аналогичных задач 13.328 М.И. Сканави:
+    Бригада рыбаков намеревалась выловить в определенный срок 1800 ц рыбы. Треть этого срока был шторм, вследствие
+    чего плановое задание ежедневно недовыполнялось на 20 ц. Однако в остальные дни бригаде удавалось ежедневно
+    вылавливать на 20 ц больше дневной нормы, и плановое задание было выполнено за один день до срока. Сколько
+    центнеров рыбы намеревалась вылавливать бригада рыбаков ежедневно?"""
+    while True:
+        pers1, _, _, (task, measure) = input_parameters_work()
+        if morph.parse(pers1.split()[0])[0].tag.gender == 'masc' and measure:
+            meas_word, unit = measure
+            pers1 = pers1.split()[1] if 'первый' in pers1 else pers1
+            if unit == 'шт':
+                break
+
+    s, delta_s, k, answer = solution_task_13328()
+    task1, (word1, word2, word3) = correct_word(key=task, values=(s, delta_s, 10))
+    return f"{start_title(pers1)} должен {task1} {s} {word1}. 1/{k} рабочего времени его работоспособность была " \
+           f"снижена, вследствие чего ежедневно он мог {task1} на {delta_s} {word2} меньше, чем обычно. Однако в " \
+           f"остальные дни ему удалось восстановить силы и перевыполнять план на те же {delta_s} {word2} в день. " \
+           f"Сколько {word3} изначально планировал {task1} {pers1} каждый день? ", answer
+
+
 if __name__ == "__main__":
-    pprint(task_13341())
+    pprint(task_13328())

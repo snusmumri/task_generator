@@ -220,3 +220,54 @@ def solution_task_13195():
         if int(t) - t == 0 and t > 0:
             s = x1 * t
             return x1, x2, k, delta_t, (s, t + delta_t)
+
+
+def solution_task_13292():
+    cnt = 0
+    while True:
+        cnt += 1
+        if cnt > 5000:
+            return 5, 10, 3, (15, 7.5)
+        k = randint(2, 10)
+        k1, k2 = 1 / k, (k - 1) / k
+        t1, t2 = sorted((randint(1, 100), randint(1, 100)))
+        a = t1 * t2
+        b = t1 * (k1 - k2) - t2
+        c = k2
+        discr = b ** 2 - 4 * a * c
+        if discr >= 0:
+            discr = math.sqrt(discr)
+            if int(discr * k) - discr * k == 0:
+                y1, y2 = (-b + discr) / (2 * a), (-b - discr) / (2 * a)
+                x1, x2 = 1 / t1 - y1, 1 / t1 - y2
+                if y1 > 0 and x1 > 0:
+                    x, y = x1, y1
+                elif y2 > 0 and x2 > 0:
+                    x, y = x2, y2
+                else:
+                    x, y = None, None
+                if x:
+                    tx, ty = 1 / x, 1 / y
+                    if int(tx) - tx == 0 and int(ty) - ty == 0:
+                        return t1, t2, k, (tx, ty)
+
+
+def solution_task_13328():
+    cnt = 0
+    while True:
+        cnt += 1
+        if cnt > 5000:
+            return 1800, 20, 3, 100
+        s, delta_s = randint(100, 5000), randint(10, 100)
+        k = randint(2, 10)
+        k1, k2 = 1 / k, (k - 1) / k
+        b = delta_s
+        c = s * delta_s * (k1 - k2)
+        discr = b ** 2 - 4 * c
+        if discr >= 0:
+            discr = math.sqrt(discr)
+            if int(discr) - discr == 0:
+                x = (-b + discr) / 2
+                if x > 0:
+                    return s, delta_s, k, x
+
