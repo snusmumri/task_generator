@@ -3,8 +3,8 @@ from random import randint, choice
 import numpy as np
 from pprint import pprint
 
-from task_generator.text_tasks.input_parameters import input_parameters_work, morph, correct_word, gent_pers, start_title
-from task_generator.text_tasks.task_solutions import choose_discr, solution_task_17610, solution_task_745, \
+from text_tasks.input_parameters import input_parameters_work, morph, correct_word, gent_pers, start_title
+from text_tasks.task_solutions import choose_discr, solution_task_17610, solution_task_745, \
     solution_task_17596, solution_task_17583
 
 

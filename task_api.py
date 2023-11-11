@@ -3,7 +3,7 @@ import sys
 import importlib
 
 
-sys.path.append('task_generator')
+sys.path.append('/')
 
 app = Flask(__name__)
 
