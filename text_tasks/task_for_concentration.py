@@ -517,3 +517,52 @@ def task_11074():
                  break
     task = f'Собрали {m1} кг {case_item(param[0])}, содержащ{"их" if case_number(param[0]) == 2 else "его"} по массе {per}% {case_item(param[2])}. Когда {"их" if case_number(param[0]) == 2 else "его"} подсушили, {"они" if case_number(param[0]) == 2 else "он"} стал{"и" if case_number(param[0]) == 2 else ""} весить {m2} кг. Каков процент содержания {case_item(param[2])} по массе в {case_item(param[1], "loct")}?'
     return task, answer
+
+def task_12790():
+    '''Генерация аналогичных задач № 12790 с портала https://kuzovkin.info/one_exercise_1/12790
+    Морская вода содержит 5% соли. Сколько килограммов пресной воды нужно добавить к 40 кг морской воды,
+    чтобы содержание соли в смеси составило 2 %?'''
+    _, _, param = parameters()
+    while True:
+        per1, per2 = np.random.randint(1, 20, size=2)
+        m = random.randint(1, 50)
+        if per1 > per2:
+            x = m * (per1 - per2) / per2
+            if x * 1000 % 1000 == 0:
+              answer = int(x)
+              break
+    task = f'{case_title(param[0])} содержит {per1}% {case_item(param[1])}. Сколько килограммов {case_item(param[2])} нужно добавить к {m} кг {case_item(param[0])}, чтобы содержание {case_item(param[1])} в смеси составило {per2}%?'
+    return task, answer
+
+def task_17644():
+    '''Генерация аналогичных задач № 17644 с портала https://kuzovkin.info/one_exercise_1/17644
+    Кусок сплава меди и цинка массой 36кг содержит 45% меди. Какую массу меди следует добавить к этому куску, чтобы получить сплав, содержащий 60% меди?'''
+    item1, item2, _ = parameters()
+    while True:
+        per1, per2 = np.random.randint(10, 90, size=2)
+        m = random.randint(1, 50)
+        if per1 < per2:
+            x = m * (per2 - per1) / (100 - per2)
+            if x * 1000 % 1000 == 0:
+              answer = int(x)
+              break
+            elif x * 1000 % 100 == 0:
+              answer = x
+              break
+    task = f'Кусок сплава {case_item(item1)} и {case_item(item2)} массой {m}кг содержит {per1}% {case_item(item1)}. Какую массу {case_item(item1)} следует добавить к этому куску, чтобы получить сплав, содержащий {per2}% {case_item(item1)}?'
+    return task, answer
+
+def task_17645():
+    '''Генерация аналогичных задач № 17645 с портала https://kuzovkin.info/one_exercise_1/17645
+    В 2 литра 10-процентного раствора уксусной кислоты добавили 8л чистой воды. Определить процентное соотношение уксусной кислоты в полученном растворе.'''
+    _, _, param = parameters(2)
+    while True:
+        m1, m2 = np.random.randint(1, 20, size=2)
+        per = random.randint(5, 40)
+        if m1 < m2:
+            x = m1 * per / (m1 + m2)
+            if x * 1000 % 1000 == 0:
+              answer = int(x)
+              break
+    task = f'В {m1} литр{("а" if m1 in [2, 3, 4]  else "ов") if m1 != 1 else "" } {per}-процентного раствора {case_item(param[0])} добавили {m2}л {case_item(param[1])}. Определить процентное соотношение {case_item(param[0])} в полученном растворе.'
+    return task, answer
