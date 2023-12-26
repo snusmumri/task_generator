@@ -32,10 +32,6 @@ def trigonometry_14174():
 
     return task, answer
 
-task, answer = trigonometry_14174()
-print("Тригонометрическая задача:", task)
-print("Ответ:", answer)
-
 
 
 def trigonometry_14175():
@@ -63,11 +59,6 @@ def trigonometry_14175():
 
     return task, round(answer,2)
 
-task, answer = trigonometry_14175()
-print("Тригонометрическая задача:", task)
-print("Ответ:", answer)
-
-
 
 def trigonometry_14176():
 
@@ -94,10 +85,6 @@ def trigonometry_14176():
 
     return task, round(answer,2)
 
-task, answer = trigonometry_14176()
-print("Тригонометрическая задача:", task)
-print("Ответ:", answer)
-
 
 
 def trigonometry_14177():
@@ -117,11 +104,6 @@ def trigonometry_14177():
             break
 
     return task, answer
-
-
-task, answer = trigonometry_14177()
-print("Тригонометрическая задача:", task)
-print("Ответ:", answer)
 
 
 
@@ -154,10 +136,6 @@ def trigonometry_14178():
 
     return task, answer
 
-task, answer = trigonometry_14178()
-print("Тригонометрическая задача:", task)
-print("Ответ:", answer)
-
 
 
 def trigonometry_14179():
@@ -183,11 +161,6 @@ def trigonometry_14179():
     return task, answer
 
 
-task, answer = trigonometry_14179()
-print("Тригонометрическая задача:", task)
-print("Ответ:", answer)
-
-
 
 def trigonometry_14180():
 
@@ -204,10 +177,6 @@ def trigonometry_14180():
         if abs(answer * 100 - int(answer * 100) )< 0.000001:
             break
     return task, round(answer, 2)
-
-task, answer = trigonometry_14180()
-print("Тригонометрическая задача:", task)
-print("Ответ:", answer)
 
 
 
@@ -227,10 +196,6 @@ def trigonometry_14181():
             break
     return task, round(answer, 2)
 
-task, answer = trigonometry_14181()
-print("Тригонометрическая задача:", task)
-print("Ответ:", answer)
-
 
 
 def trigonometry_14182():
@@ -245,10 +210,6 @@ def trigonometry_14182():
         if abs(answer * 100 - int(answer * 100) )< 0.000001:
             break
     return task, round(answer, 2)
-
-task, answer = trigonometry_14182()
-print("Тригонометрическая задача:", task)
-print("Ответ:", answer)
 
 
 
@@ -269,10 +230,6 @@ def trigonometry_14183():
             break
     return task, round(answer, 2)
 
-task, answer = trigonometry_14183()
-print("Тригонометрическая задача:", task)
-print("Ответ:", answer)
-
 
 
 def trigonometry_14184():
@@ -287,10 +244,6 @@ def trigonometry_14184():
         if abs(answer * 100 - int(answer * 100) )< 0.000001:
             break
     return task, round(answer, 2)
-
-task, answer = trigonometry_14184()
-print("Тригонометрическая задача:", task)
-print("Ответ:", answer)
 
 
 
@@ -319,11 +272,6 @@ def trigonometry_14185():
     return task, answer
 
 
-task, answer = trigonometry_14185()
-print("Тригонометрическая задача:", task)
-print("Ответ:", answer)
-
-
 
 def trigonometry_14186():
 
@@ -348,10 +296,6 @@ def trigonometry_14186():
                break
     
     return task, answer
-
-task, answer = trigonometry_14186()
-print("Тригонометрическая задача:", task)
-print("Ответ:", answer)
 
 
 
@@ -379,10 +323,6 @@ def trigonometry_14187():
     
     return task, answer
 
-task, answer = trigonometry_14187()
-print("Тригонометрическая задача:", task)
-print("Ответ:", answer)
-
 
 
 def trigonometry_14188():
@@ -400,10 +340,6 @@ def trigonometry_14188():
             break
 
     return task, answer
-
-task, answer = trigonometry_14188()
-print("Тригонометрическая задача:", task)
-print("Ответ:", answer)
 
 
 
@@ -439,10 +375,6 @@ def trigonometry_14189():
 
     return task, answer
 
-task, answer = trigonometry_14189()
-print("Тригонометрическая задача:", task)
-print("Ответ:", answer)
-
 
 
 def trigonometry_14190():
@@ -463,10 +395,6 @@ def trigonometry_14190():
             break
 
     return task, answer
-
-task, answer = trigonometry_14190()
-print("Тригонометрическая задача:", task)
-print("Ответ:", answer)
 
 
 
@@ -491,10 +419,6 @@ def trigonometry_14191():
 
     return task, answer
 
-task, answer = trigonometry_14191()
-print("Тригонометрическая задача:", task)
-print("Ответ:", answer)
-
 
 
 def trigonometry_14192():
@@ -514,10 +438,6 @@ def trigonometry_14192():
             break
     return task, round(answer, 2)
 
-task, answer = trigonometry_14192()
-print("Тригонометрическая задача:", task)
-print("Ответ:", answer)
-
 
 
 def trigonometry_14193():
@@ -536,10 +456,6 @@ def trigonometry_14193():
         if abs(answer * 100 - int(answer * 100) )< 0.000001:
             break
     return task, round(answer, 2)
-
-task, answer = trigonometry_14193()
-print("Тригонометрическая задача:", task)
-print("Ответ:", answer)
 
 
 
@@ -561,10 +477,6 @@ def trigonometry_14194():
             break
 
     return task, answer
-
-task, answer = trigonometry_14194()
-print("Тригонометрическая задача:", task)
-print("Ответ:", answer)
 
 
 
@@ -601,10 +513,6 @@ def trigonometry_14195():
 
     return task, answer
 
-task, answer = trigonometry_14195()
-print("Тригонометрическая задача:", task)
-print("Ответ:", answer)
-
 
 
 def trigonometry_14196():
@@ -624,10 +532,6 @@ def trigonometry_14196():
             break
     
     return task, answer
-
-task, answer = trigonometry_14196()
-print("Тригонометрическая задача:", task)
-print("Ответ:", answer)
 
 
 
@@ -653,10 +557,6 @@ def trigonometry_14197():
 
     return task, answer
 
-task, answer = trigonometry_14197()
-print("Тригонометрическая задача:", task)
-print("Ответ:", answer)
-
 
 
 def trigonometry_14198():
@@ -677,10 +577,6 @@ def trigonometry_14198():
 
     return task, answer
 
-task, answer = trigonometry_14198()
-print("Тригонометрическая задача:", task)
-print("Ответ:", answer)
-
 
 
 def trigonometry_14199():
@@ -700,10 +596,6 @@ def trigonometry_14199():
             break
 
     return task, answer
-
-task, answer = trigonometry_14199()
-print("Тригонометрическая задача:", task)
-print("Ответ:", answer)
 
 
 
@@ -735,7 +627,3 @@ def trigonometry_14200():
    
 
     return task, answer
-
-task, answer = trigonometry_14200()
-print("Тригонометрическая задача:", task)
-print("Ответ:", answer)
