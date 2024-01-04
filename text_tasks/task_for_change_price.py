@@ -3,6 +3,8 @@ from random import choice
 import numpy as np
 import pymorphy2
 import math
+from prettytable import PrettyTable
+from math import ceil
 
 # https://pymorphy2.readthedocs.io/en/0.2/user/index.html
 
