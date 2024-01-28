@@ -5,25 +5,8 @@ import pymorphy2
 import matplotlib.pyplot as plt
 from decimal import Decimal
 
-#выбираем правильное склонение слов https://opencorpora.org/dict.php?act=gram
-def case_item(offer, case='gent'):
-  morph = pymorphy2.MorphAnalyzer()
-  if len(offer.split()) < 2:
-    return morph.parse(offer)[0].inflect({case}).word
-  else:
-    list_offer = offer.split()
-    list_morphy = []
-    for i in list_offer:
-      list_morphy.append(morph.parse(i)[0].inflect({case}).word)
-    return ' '.join(list_morphy)
+from .function_for_task import capitalize_word, choosing_declension_form
 
-#пишем слово с заглавной буквы
-def case_title(offer):
-  if len(offer.split()) < 2:
-    return offer.title()
-  else:
-    offer_list = offer.split(' ', 1)
-    return offer_list[0].title() +' '+ offer_list[1]
 
 def task_35629():
     '''Генерация аналогичных задач № 35629 с портала https://kuzovkin.info/one_exercise_1/35629
@@ -51,15 +34,15 @@ def task_35629():
         line1 = ["Месяц и год"]
         line2 = ["Долг", "S"]
         for i in range(1, years+2):
-          line1.append(f'{case_title(next_month)} {2016+i}')
+          line1.append(f'{capitalize_word(next_month)} {2016+i}')
         for j in range(1, years):
           line2.append(f'{k_for_task[j-1]}S')
         line2.append("0")
         table_data = [line1, line2]
         break
-    task = f'''В {case_item(next_month, "loct")} 2017 года был взят кредит в банке на {years} {"года" if years in [3, 4] else "лет"} в размере S млн рублей, где S — целое число. Условия его возврата
+    task = f'''В {choosing_declension_form(next_month, "loct")} 2017 года был взят кредит в банке на {years} {"года" if years in [3, 4] else "лет"} в размере S млн рублей, где S — целое число. Условия его возврата
 таковы: каждый январь долг увеличивается на {per}% по сравнению с концом предыдущего года; — с февраля по {month} каждого
-года необходимо выплатить одним платежом часть долга; — в {case_item(next_month, "loct")} каждого года долг должен составлять часть кредита в соответствии
+года необходимо выплатить одним платежом часть долга; — в {choosing_declension_form(next_month, "loct")} каждого года долг должен составлять часть кредита в соответствии
 со следующей таблицей (см. рис. ниже). Найдите наименьшее значение S, при котором каждая из выплат будет больше {pay} млн рублей.'''
     fig, ax = plt.subplots(figsize=(10, 2))
     if years < 6:
@@ -103,10 +86,10 @@ def task_35630():
           line2.append(f'{current_debt[i]}%')
         table_data = [line1, line2]
         break
-    task = f'''{day} {case_item(month_task[month_start])} был выдан кредит на развитие бизнеса. В таблице представлен график его погашения. Текущий долг
-выражается в процентах от кредита (см. рис. ниже). В конце каждого месяца, начиная с {case_item(month_task[month_start])}, текущий долг
+    task = f'''{day} {choosing_declension_form(month_task[month_start])} был выдан кредит на развитие бизнеса. В таблице представлен график его погашения. Текущий долг
+выражается в процентах от кредита (см. рис. ниже). В конце каждого месяца, начиная с {choosing_declension_form(month_task[month_start])}, текущий долг
 увеличивается на {per}%, а выплаты по погашению кредита должны происходить в первой половине каждого месяца,
-начиная с {case_item(month_task[month_start+1])}. На сколько процентов общая сумма выплат при таких условиях больше суммы самого кредита?'''
+начиная с {choosing_declension_form(month_task[month_start+1])}. На сколько процентов общая сумма выплат при таких условиях больше суммы самого кредита?'''
     fig, ax = plt.subplots(figsize=(10, 2))
     if months < 6:
         plt.rcParams['font.size'] = '8'
@@ -155,15 +138,15 @@ def task_35631():
         line1 = ["Месяц и год"]
         line2 = ["Долг", "S"]
         for i in range(1, years+2):
-          line1.append(f'{case_title(next_month)} {2016+i}')
+          line1.append(f'{capitalize_word(next_month)} {2016+i}')
         for j in range(1, years):
           line2.append(f'{k_for_task[j-1]}S')
         line2.append("0")
         table_data = [line1, line2]
         break
-    task = f'''В {case_item(next_month, "loct")} 2017 года был взят кредит в банке в размере S тыс. рублей, где S — натуральное число, на {years} {"года" if years in [3, 4] else "лет"}. Условия его возврата таковы:
+    task = f'''В {choosing_declension_form(next_month, "loct")} 2017 года был взят кредит в банке в размере S тыс. рублей, где S — натуральное число, на {years} {"года" if years in [3, 4] else "лет"}. Условия его возврата таковы:
 - каждый январь долг увеличивается на {per}% по сравнению с концом предыдущего года; - с февраля по {month} каждого года необходимо
-выплатить одним платежом часть долга; в {case_item(next_month, "loct")} каждого года долг должен составлять часть кредита в соответствии со следующей
+выплатить одним платежом часть долга; в {choosing_declension_form(next_month, "loct")} каждого года долг должен составлять часть кредита в соответствии со следующей
 таблицей (см. рис. ниже). Найдите наименьшее значение S, при котором каждая из выплат будет составлять целое число тысяч рублей.'''
     fig, ax = plt.subplots(figsize=(10, 2))
     if years < 6:
@@ -192,5 +175,5 @@ def task_35633():
           if n > 2 and n * 1000 % 1000 == 0:
             answer = int(n)
             break
-    task = f'В {case_item(next_month, "loct")} планируется взять кредит в банке на сумму {s} млн рублей на некоторый срок (целое число лет). Условия его возврата таковы: — каждый январь долг возрастает на {per}% по сравнению с концом предыдущего года; — с февраля по {month} каждого года необходимо выплатить часть долга; — в {case_item(next_month, "loct")} каждого года долг должен быть на одну и ту же сумму меньше долга на {next_month} предыдущего года. На сколько лет планируется взять кредит, если известно, что общая сумма выплат после его полного погашения составит {pay} млн рублей?'
+    task = f'В {choosing_declension_form(next_month, "loct")} планируется взять кредит в банке на сумму {s} млн рублей на некоторый срок (целое число лет). Условия его возврата таковы: — каждый январь долг возрастает на {per}% по сравнению с концом предыдущего года; — с февраля по {month} каждого года необходимо выплатить часть долга; — в {choosing_declension_form(next_month, "loct")} каждого года долг должен быть на одну и ту же сумму меньше долга на {next_month} предыдущего года. На сколько лет планируется взять кредит, если известно, что общая сумма выплат после его полного погашения составит {pay} млн рублей?'
     return task, answer
