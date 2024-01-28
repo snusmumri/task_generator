@@ -629,34 +629,33 @@ def trigonometry_14200():
     return task, answer
 
 
-
 def trigonometry_14242():
+
     ''' Задание на портале kuzovkin.info № 14242 '''
 
-    def generate_angles(start=-180, end=181, step=10):
-        return range(start, end, step)
-
-    angles = generate_angles()
-    
     while True:
-        num1, num2 = np.random.choice(angles, 2)
+        angles = np.random.randint(-180, 180, 2)
         a = np.random.randint(1, 10)
+        
+        if angles[0] % 15 == 0 or angles[1] % 15 == 0:
+            continue
 
-        task = f"Вычислите: $\\frac{{1}}{{\\cos({num1}^\\circ)}} - {a} \\cdot \\sin({num2}^\\circ)$"
+        task = f"Вычислите: $\\frac{{1}}{{\\cos({angles[0]}^\\circ)}} - {a} \\cdot \\sin({angles[1]}^\\circ)$"
 
-        answer = (1 / np.cos(np.radians(num1))) - (a * np.sin(np.radians(num2)))
-        if abs(answer) in range(0, 10):
+        answer = (1 / np.cos(np.radians(angles[0]))) - (a * np.sin(np.radians(angles[1])))
+        if abs(answer * 10000 - int(answer * 10000) )< 0.000001 and abs(answer)>0.01:
             break
 
-    return task, answer
-
-
+    return task, round(answer, 4)
 
 def trigonometry_14243():
     ''' Задание на портале kuzovkin.info № 14243 '''
 
     while True:
-        angles =np.random.randint(10, 360,3)
+        angles =np.random.randint(10, 360, 3)
+
+        if angles[0] % 15 == 0 or angles[1] % 15 == 0 or angles[2] % 15 == 0:
+            continue
 
         task = f"Вычислите: $\\cos({angles[0]}^\\circ) \\cdot \\cos({angles[1]}^\\circ) \\cdot \\cos({angles[2]}^\\circ)$"
 
@@ -667,23 +666,25 @@ def trigonometry_14243():
     return task, round(answer, 4)
 
 
-
-
 def trigonometry_14244():
     ''' Задание на портале kuzovkin.info № 14244 '''
-    
+
     while True:
         num1, num2, num3 = np.random.randint(1, 10, 3)
         rad = np.random.randint(1, 50)
-        
-        task = f"Вычислите: $\\sin({num1} \\cdot pi/{rad}) \\cdot \\sin({num2} \\cdot pi/{rad}) \\cdot \\sin({num3} \\cdot pi/{rad})$"
+        angle1, angle2, angle3 = num1 * np.pi / rad, num2 * np.pi / rad, num3 * np.pi / rad
 
-        answer = np.sin(num1 * np.pi / rad) * np.sin(num2 * np.pi / rad) * np.cos(num3 * np.pi / rad)
+        if angle1 % np.pi == 0 or angle2 % np.pi == 0 or angle3 % np.pi == 0:
+          continue
 
-        if abs(answer * 100 - int(answer * 100) )< 0.000001:
+        task = f"Вычислите: $\\sin(\\frac{{{num1} \\cdot \\pi}}{{{rad}}}) \\cdot \\sin(\\frac{{{num2} \\cdot \\pi}}{{{rad}}}) \\cdot \\sin(\\frac{{{num3} \\cdot \\pi}}{{{rad}}})$"
+
+        answer = np.sin(angle1) * np.sin(angle2) * np.sin(angle3)
+
+        if abs(answer * 100 - int(answer * 100) )< 0.000001 and abs(answer)>0.01:
             break
-    return task, round(answer, 2)
 
+    return task, round(answer, 4)
 
 
 
@@ -691,7 +692,10 @@ def trigonometry_14245():
     ''' Задание на портале kuzovkin.info № 14245 '''
 
     while True:
-        angles =np.random.randint(10, 360,2)
+        angles =np.random.randint(10, 360, 2)
+
+        if angles[0] % 15 == 0 or angles[1] % 15 == 0:
+            continue
 
         task = f"Преобразуйте в сумму: $\\cos({angles[0]}^\\circ) \\cdot \\cos({angles[1]}^\\circ)$"
 
@@ -702,47 +706,36 @@ def trigonometry_14245():
     return task, round(answer, 4)
 
 
-
-
 def trigonometry_14246():
     ''' Задание на портале kuzovkin.info № 14246 '''
 
-    def generate_angles(start=5, end=361, step=5):
-        return range(start, end, step)
-    
-    angles = generate_angles()
-
     while True:
-        rad1, rad2, rad3, rad4 = np.random.choice(angles,4)
+        angles = np.random.randint(5, 360, 4)
 
-        task = f"Вычислите: $\\tg({rad1}^\\circ) \\cdot \\tg({rad2}^\\circ) \\cdot \\tg({rad3}^\\circ) \\cdot \\tg({rad4}^\\circ)$"
+        task = f"Вычислите: $\\tg({angles[0]}^\\circ) \\cdot \\tg({angles[1]}^\\circ) \\cdot \\tg({angles[2]}^\\circ) \\cdot \\tg({angles[3]}^\\circ)$"
 
-        answer = np.tan(np.radians(rad1)) * np.tan(np.radians(rad2)) * np.tan(np.radians(rad3)) * np.tan(np.radians(rad4))
+        answer = np.tan(np.radians(angles[0])) * np.tan(np.radians(angles[1])) * np.tan(np.radians(angles[2])) * np.tan(np.radians(angles[3]))
 
-        if abs(answer) in range(0, 5):
+        if abs(answer) in range(0, 10) and angles[0] % 30 != 0 and angles[0] % 45 != 0:
             break
 
     return task, answer
-
-
 
 
 def trigonometry_14247():
     ''' Задание на портале kuzovkin.info № 14247 '''
 
     while True:
-        angles =np.random.randint(10, 360, 2)
+        angles = np.random.randint(10, 360, 2)
 
         task = f"Вычислите: $\\tg^2({angles[0]}^\\circ) \\cdot \\tg^2({angles[1]}^\\circ)$"
 
         answer = np.tan(np.radians(angles[0]))**2 * np.tan(np.radians(angles[1]))**2
 
-        if abs(answer) in range(0, 10):
+        if abs(answer) in range(0, 10) and angles[0] % 30 != 0 and angles[0] % 45 != 0:
             break
 
     return task, answer
-
-
 
 
 def trigonometry_14248():
@@ -755,12 +748,10 @@ def trigonometry_14248():
 
         answer = np.cos(np.radians(angles[0])) * np.cos(np.radians(angles[1])) * np.cos(np.radians(angles[2]))
 
-        if abs(answer * 10000 - int(answer * 10000) )< 0.000001 and abs(answer)>0.01:
+        if abs(answer * 10000 - int(answer * 10000) )< 0.000001 and abs(answer)>0.01 and angles[0] % 30 != 0 and angles[0] % 45 != 0:
             break
 
     return task, round(answer, 4)
-
-
 
 
 def trigonometry_14249():
@@ -768,6 +759,9 @@ def trigonometry_14249():
 
     while True:
         angles = np.random.randint(10, 360, 3)
+
+        if angles[0] % 15 == 0 or angles[1] % 15 == 0 or angles[2] % 15 == 0:
+            continue
 
         task = f"Вычислите: $\\sin({angles[0]}^\\circ) \\cdot \\sin({angles[1]}^\\circ) \\cdot \\sin({angles[2]}^\\circ)$"
 
@@ -777,8 +771,6 @@ def trigonometry_14249():
             break
 
     return task, round(answer, 4)
-
-
 
 
 def trigonometry_14250():
@@ -791,31 +783,29 @@ def trigonometry_14250():
 
         answer = np.cos(np.radians(angles[0])) * np.cos(np.radians(angles[1])) * np.cos(np.radians(angles[2]))
 
-        if abs(answer * 10000 - int(answer * 10000) )< 0.000001 and abs(answer)>0.01:
+        if abs(answer * 10000 - int(answer * 10000) )< 0.000001 and abs(answer)>0.01 and angles[0] % 30 != 0 and angles[0] % 45 != 0:
             break
 
     return task, round(answer, 4)
-
-
 
 
 def trigonometry_14252():
     ''' Задание на портале kuzovkin.info № 14252 '''
 
     while True:
-        angles = np.random.randint(1, 30, 6)
+        angles = np.random.randint(2, 30, 6)
+        angle1, angle2, angle3, angle4, angle5 = angles[1] * np.pi / angles[0], angles[2] * np.pi / angles[0], angles[3] * np.pi / angles[0], angles[4] * np.pi / angles[0], angles[5] * np.pi / angles[0]
 
-        task = f"Вычислите: $\\cos({angles[1]} * pi / {angles[0]}) \\cdot \\cos({angles[2]} * pi / {angles[0]}) \\cdot \\cos({angles[3]} * pi / {angles[0]}) \\cdot \\cos({angles[4]} * pi / {angles[0]}) \\cdot \\cos({angles[5]} * pi / {angles[0]})$"
+        if angle1 % np.pi == 0 or angle2 % np.pi == 0 or angle3 % np.pi == 0 or angle4 % np.pi == 0 or angle5 % np.pi == 0:
+            continue
 
-        answer = np.cos(angles[1] * np.pi / angles[0]) * np.cos(angles[2] * np.pi / angles[0]) * np.cos(angles[3] * np.pi / angles[0]) * np.cos(angles[4] * np.pi / angles[0]) * np.cos(angles[5] * np.pi / angles[0])
+        task = f"Вычислите: $\\cos(\\frac{{{angles[1]} \\cdot \\pi}}{{{angles[0]}}}) \\cdot \\cos(\\frac{{{angles[2]} \\cdot \\pi}}{{{angles[0]}}}) \\cdot \\cos(\\frac{{{angles[3]} \\cdot \\pi}}{{{angles[0]}}}) \\cdot \\cos(\\frac{{{angles[4]} \\cdot \\pi}}{{{angles[0]}}}) \\cdot \\cos(\\frac{{{angles[5]} \\cdot \\pi}}{{{angles[0]}}})$"
+        answer = np.cos(angle1) * np.cos(angle2) * np.cos(angle3) * np.cos(angle4) * np.cos(angle5)
 
         if abs(answer * 10000 - int(answer * 10000) )< 0.000001 and abs(answer)>0.01:
             break
 
     return task, round(answer, 4)
-
-
-
 
 
 def trigonometry_14253():
@@ -823,6 +813,9 @@ def trigonometry_14253():
 
     while True:
         angles = np.random.randint(10, 360, 2)
+
+        if angles[0] % 15 == 0 or angles[1] % 15 == 0:
+            continue
 
         task = f"Преобразуйте в сумму: $\\sin({angles[0]}^\\circ) \\cdot \\sin({angles[1]}^\\circ)$"
 
@@ -833,61 +826,41 @@ def trigonometry_14253():
     return task, round(answer, 4)
 
 
-
-
-
 def trigonometry_14257():
     ''' Задание на портале kuzovkin.info № 14257 '''
 
     while True:
         angles =np.random.randint(10, 360, 3)
 
+
         task = f"Вычислите: $\\sin^2({angles[0]}^\\circ) \\cdot \\sin^2({angles[1]}^\\circ) \\cdot \\sin^2({angles[2]}^\\circ)$"
 
         answer = np.sin(np.radians(angles[0]))**2 * np.sin(np.radians(angles[1]))**2 * np.sin(np.radians(angles[2]))**2
 
-        if abs(answer * 10000 - int(answer * 10000) )< 0.000001 and abs(answer)>0.01:
+        if abs(answer * 10000 - int(answer * 10000) )< 0.000001 and abs(answer)>0.01 and angles[0] % 30 != 0 and angles[0] % 45 != 0:
             break
 
     return task, round(answer, 4)
 
 
-
-
-def trigonometry_14259():
+def trigonometry_14259(): # похоже на 14260
     ''' Задание на портале kuzovkin.info № 14259 '''
 
     while True:
         angles = np.random.randint(1, 30, 6)
+        angle1, angle2, angle3, angle4, angle5 = angles[0] * np.pi / angles[1], angles[0] * np.pi / angles[2], angles[3] * np.pi / angles[1], angles[4] * np.pi / angles[5], angles[3] * np.pi / angles[2]
 
-        task = f"Вычислите: $\\sin({angles[0]} * pi / {angles[1]}) \\cdot \\sin({angles[0]} * pi / {angles[2]}) \\cdot \\sin({angles[3]} * pi / {angles[1]}) \\cdot \\sin({angles[4]} * pi / {angles[5]}) \\cdot \\sin({angles[3]} * pi / {angles[2]})$"
+        if angle1 % np.pi == 0 or angle2 % np.pi == 0 or angle3 % np.pi == 0 or angle4 % np.pi == 0 or angle5 % np.pi == 0:
+            continue
 
-        answer = np.sin(angles[0] * np.pi / angles[1]) * np.sin(angles[0] * np.pi / angles[2]) * np.sin(angles[3] * np.pi / angles[1]) * np.sin(angles[4] * np.pi / angles[5]) * np.sin(angles[3] * np.pi / angles[2])
+        task = f"Вычислите: $\\sin(\\frac{{{angles[0]} \\cdot \\pi}}{{{angles[1]}}}) \\cdot \\sin(\\frac{{{angles[0]} \\cdot \\pi}}{{{angles[2]}}}) \\cdot \\sin(\\frac{{{angles[3]} \\cdot \\pi}}{{{angles[1]}}}) \\cdot \\sin(\\frac{{{angles[4]} \\cdot \\pi}}{{{angles[5]}}}) \\cdot \\sin(\\frac{{{angles[3]} \\cdot \\pi}}{{{angles[2]}}})$"
 
-        if abs(answer * 10000 - int(answer * 10000) )< 0.000001 and abs(answer)>0.01:
-            break
-
-    return task, round(answer, 4)
-
-
-
-
-def trigonometry_14260():
-    ''' Задание на портале kuzovkin.info № 14260 '''
-
-    while True:
-        angles = np.random.randint(1, 30, 6)
-
-        task = f"Вычислите: $\\sin({angles[0]} * pi / {angles[1]}) \\cdot \\cos({angles[2]} * pi / {angles[3]}) \\cdot \\cos({angles[4]} * pi / {angles[5]}) \\cdot \\cos({angles[4]} * pi / {angles[3]}) \\cdot \\cos({angles[4]} * pi / {angles[1]})$"
-
-        answer = np.sin(angles[0] * np.pi / angles[1]) * np.cos(angles[2] * np.pi / angles[3]) * np.cos(angles[4] * np.pi / angles[5]) * np.cos(angles[4] * np.pi / angles[3]) * np.cos(angles[4] * np.pi / angles[1])
+        answer = np.sin(angle1) * np.sin(angle2) * np.sin(angle3) * np.sin(angle4) * np.sin(angle5)
 
         if abs(answer * 10000 - int(answer * 10000) )< 0.000001 and abs(answer)>0.01:
             break
 
     return task, round(answer, 4)
-
-
 
 
 def trigonometry_14261():
@@ -895,6 +868,9 @@ def trigonometry_14261():
 
     while True:
         angles = np.random.randint(10, 360, 2)
+
+        if angles[0] % 15 == 0 or angles[1] % 15 == 0:
+            continue
 
         task = f"Преобразуйте в сумму: $\\sin({angles[0]}^\\circ) \\cdot \\cos({angles[1]}^\\circ)$"
 
@@ -905,14 +881,15 @@ def trigonometry_14261():
     return task, round(answer, 4)
 
 
-
-
 def trigonometry_14266():
     ''' Задание на портале kuzovkin.info № 14266 '''
 
     while True:
         angles = np.random.randint(10, 360, 2)
         operation = np.random.choice(['+', '-'])
+
+        if angles[0] % 15 == 0 or angles[1] % 15 == 0:
+            continue
 
         cot_1, cot_2 = np.cos(np.radians(angles[0])) / np.sin(np.radians(angles[0])), np.cos(np.radians(angles[1])) / np.sin(np.radians(angles[1]))
 
@@ -925,7 +902,6 @@ def trigonometry_14266():
     return task, answer
 
 
-
 def trigonometry_14269():
     ''' Задание на портале kuzovkin.info № 14269 '''
 
@@ -933,6 +909,8 @@ def trigonometry_14269():
         angles = np.random.randint(10, 360, 2)
         operation_1 = np.random.choice(['+', '-'])
         operation_2 = np.random.choice(['+', '-'])
+        if angles[0] % 15 == 0 or angles[1] % 15 == 0:
+            continue
 
         num1 = f"np.sin(np.radians({angles[0]})) {operation_1} np.sin(np.radians({angles[1]})"
         num2 = f"np.sin(np.radians({angles[0]})) {operation_2} np.sin(np.radians({angles[1]})"
@@ -946,17 +924,18 @@ def trigonometry_14269():
     return task, answer
 
 
-
-def trigonometry_14274():
+def trigonometry_14274(): # тоже самое что и 14276
     ''' Задание на портале kuzovkin.info № 14274 '''
 
     while True:
-        num = np.random.randint(1, 30, 2)
+        num = np.random.randint(2, 30, 2)
         operation = np.random.choice(['+', '-'])
+        angle1, angle2 = np.pi / num[0], np.pi / num[1]
 
-        task = f"Преобразуйте сумму (или разность) тригонометрических функций в произведение и упростите: $\\cos(pi / {num[0]}) {operation} \\cos(pi / {num[1]})$"
 
-        answer = eval(f"np.cos(np.pi / {num[0]}) {operation} np.cos(np.pi / {num[1]})")
+        task = f"Преобразуйте сумму (или разность) тригонометрических функций в произведение и упростите: $\\cos(\\frac{{\\pi}}{{{num[0]}}}) {operation} \\cos(\\frac{{\\pi}}{{{num[1]}}})$"
+
+        answer = eval(f"np.cos({angle1}) {operation} np.cos({angle2})")
 
         if abs(answer * 10000 - int(answer * 10000) )< 0.000001 and abs(answer)>0.01:
             break
@@ -964,53 +943,39 @@ def trigonometry_14274():
     return task, round(answer, 4)
 
 
-
-def trigonometry_14275():   # тоже самое что и 14278 
+def trigonometry_14275():   # тоже самое что и 14278
     ''' Задание на портале kuzovkin.info № 14275 '''
 
     while True:
-        angle = np.random.randint(-360, 361, 2)
+        angles = np.random.randint(-360, 361, 2)
         operation = np.random.choice(['+', '-'])
 
-        task = f"Преобразуйте сумму (или разность) тригонометрических функций в произведение и упростите: $\\cos({angle[0]}) {operation} \\cos({angle[1]})$"
+        if angles[0] % 15 == 0 or angles[1] % 15 == 0:
+            continue
 
-        answer = eval(f"np.cos(np.radians({angle[0]})) {operation} np.cos(np.radians({angle[1]}))")
+        task = f"Преобразуйте сумму (или разность) тригонометрических функций в произведение и упростите: $\\cos({angles[0]}) {operation} \\cos({angles[1]})$"
+
+        answer = eval(f"np.cos(np.radians({angles[0]})) {operation} np.cos(np.radians({angles[1]}))")
 
         if abs(answer * 10000 - int(answer * 10000) )< 0.000001 and abs(answer)>0.01:
             break
 
     return task, round(answer, 4)
-
-
-
-def trigonometry_14276():
-    ''' Задание на портале kuzovkin.info № 14276 '''
-
-    while True:
-        num = np.random.randint(1, 30, 2)
-        operation = np.random.choice(['+', '-'])
-
-        task = f"Преобразуйте сумму (или разность) тригонометрических функций в произведение и упростите: $\\sin(pi / {num[0]}) {operation} \\sin(pi / {num[1]})$"
-
-        answer = eval(f"np.sin(np.pi / {num[0]}) {operation} np.sin(np.pi / {num[1]})")
-
-        if abs(answer * 10000 - int(answer * 10000) )< 0.000001 and abs(answer)>0.01:
-            break
-
-    return task, round(answer, 4)
-
 
 
 def trigonometry_14277():  # тоже самое что и 14279
     ''' Задание на портале kuzovkin.info № 14277 '''
 
     while True:
-        angle = np.random.randint(-360, 361, 2)
+        angles = np.random.randint(-360, 361, 2)
         operation = np.random.choice(['+', '-'])
 
-        task = f"Преобразуйте сумму (или разность) тригонометрических функций в произведение и упростите: $\\sin({angle[0]}) {operation} \\sin({angle[1]})$"
+        if angles[0] % 15 == 0 or angles[1] % 15 == 0:
+            continue
 
-        answer = eval(f"np.sin(np.radians({angle[0]})) {operation} np.sin(np.radians({angle[1]}))")
+        task = f"Преобразуйте сумму (или разность) тригонометрических функций в произведение и упростите: $\\sin({angles[0]}) {operation} \\sin({angles[1]})$"
+
+        answer = eval(f"np.sin(np.radians({angles[0]})) {operation} np.sin(np.radians({angles[1]}))")
 
         if abs(answer * 10000 - int(answer * 10000) )< 0.000001 and abs(answer)>0.01:
             break
@@ -1018,17 +983,19 @@ def trigonometry_14277():  # тоже самое что и 14279
     return task, round(answer, 4)
 
 
-
 def trigonometry_14280():
     ''' Задание на портале kuzovkin.info № 14280 '''
 
     while True:
-        angle = np.random.randint(-360, 361, 2)
+        angles = np.random.randint(-360, 361, 2)
         operation = np.random.choice(['+', '-'])
 
-        task = f"Преобразуйте сумму (или разность) тригонометрических функций в произведение и упростите: $\\cos({angle[0]}) {operation} \\sin({angle[1]})$"
+        if angles[0] % 15 == 0 or angles[1] % 15 == 0:
+            continue
 
-        answer = eval(f"np.cos(np.radians({angle[0]})) {operation} np.sin(np.radians({angle[1]}))")
+        task = f"Преобразуйте сумму (или разность) тригонометрических функций в произведение и упростите: $\\cos({angles[0]}) {operation} \\sin({angles[1]})$"
+
+        answer = eval(f"np.cos(np.radians({angles[0]})) {operation} np.sin(np.radians({angles[1]}))")
 
         if abs(answer * 10000 - int(answer * 10000) )< 0.000001 and abs(answer)>0.01:
             break
