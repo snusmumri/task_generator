@@ -1,30 +1,20 @@
 import numpy as np
 import random
-from .utils import capitalize_word, find_genus_object, find_number_object, choosing_declension_form
-
-metalls =['золото', 'хром', 'медь', 'алюминий', 'олово', 'марганец', 'серебро', 'никель', 'цинк', 'железо', 'титан', 'бронза']
-gases =['азот', 'углекислый газ', 'кислород', 'аргон', 'неон', 'гелий', 'криптон', 'радон', 'сероводород']
-values_1 =['соль', 'сахар', 'перец', 'сок', 'сироп', 'уксус']
-values_2 =['подсолнечник', 'кукуруза', 'оливок', 'рапса', 'кунжут']
-transports = ['автобус', 'трамвай', 'поезд', 'троллейбус', 'маршрутное такси', 'метро']
-names = ['Гриша', 'Саша', 'Коля', 'Ваня', 'Петя']
-read_value = ['книга', 'журнал', 'комикс', 'сборник', 'произведение']
-acid = ['соляная', 'серная', 'азотная', 'фосфорная', 'уксусная']
+from .utils import choosing_declension_form, capitalize_word, find_number_object, find_genus_object, generate_context, write_numeral_word
 
 
 def task_642():
     '''Генерация аналогичных задач № 642 с портала https://kuzovkin.info/one_exercise_1/642
     Мельхиор − общее название группы сплавов на основе меди, содержащих никель, железо и марганец.
     В мельхиоре содержится 33% никеля, 1% железа и 1% марганца. Сколько процентов меди содержится в сплаве?'''
-    my_list = random.sample(metalls, 4)
-    value, value1, value2, value3 = my_list
+    metal, metal_1, metal_2, metal_3 = random.sample(generate_context('task_generator/text_tasks/context.json', 'metals'), 4)
     while True:
         number, number1, number2 = np.random.randint(1, 95, size=3)
         result = 100 - (number + number1 + number2)
         if  45 < result < 95 and result * 10 % 10 == 0:
             answer = int(result)
             break
-    task = f'Группы сплавов на основе {choosing_declension_form(value)}, содержащих {choosing_declension_form(value1)}, {choosing_declension_form(value2)} и {choosing_declension_form(value3)}. В сплаве содержится {number}% {choosing_declension_form(value1, "gent")}, {number1}% {choosing_declension_form(value2, "gent")} и {number2}% {choosing_declension_form(value3, "gent")}. Сколько процентов {choosing_declension_form(value, "gent")} содержится в сплаве? '
+    task = f'Группы сплавов на основе {choosing_declension_form(metal)}, содержащих {choosing_declension_form(metal_1)}, {choosing_declension_form(metal_2)} и {choosing_declension_form(metal_3)}. В сплаве содержится {number}% {choosing_declension_form(metal_1, "gent")}, {number1}% {choosing_declension_form(metal_2, "gent")} и {number2}% {choosing_declension_form(metal_3, "gent")}. Сколько процентов {choosing_declension_form(metal, "gent")} содержится в сплаве? '
     return task, answer
 
 
@@ -33,8 +23,7 @@ def task_645():
     Воздух состоит из азота (78,09% по объёму), кислорода (20,95%), углекислого газа (0,03%).
     Кроме этих газов, в воздухе содержатся ещё так называемые инертные газы: аргон, неон, гелий, криптон, радон.
     Каково процентное содержание инертных газов в воздухе?'''
-    my_list = random.sample(gases, 8)
-    value, value1, value2, value3, value4, value5, value6, value7 = my_list
+    gas, gas_1, gas_2, gas_3, gas_4, gas_5, gas_6, gas_7 = random.sample(generate_context('task_generator/text_tasks/context.json', 'gases'), 8)
     while True:
         number, number1, number2 = round(np.random.uniform(1, 95), 2), round(np.random.uniform(1, 95), 2), round(np.random.uniform(1, 95), 2)
         if number * 10 % 10 == 0 or number1 * 10 % 10 == 0 or number2 * 10 % 10 == 0:
@@ -43,7 +32,7 @@ def task_645():
         if  0 < result < 95 and len(str(result)) <= 5 and result * 10 % 10 != 0:
             answer = result
             break
-    task = f'Смесь газов состоит из {choosing_declension_form(value)} ({number}% по объёму), {choosing_declension_form(value1)} ({number1}%), {choosing_declension_form(value2)} ({number2}%). Кроме этих газов, содержатся ещё: {value3}, {value4}, {value5}, {value6}, {value7}. Каково процентное содержание этих газов?'
+    task = f'Смесь газов состоит из {choosing_declension_form(gas)} ({number}% по объёму), {choosing_declension_form(gas_1)} ({number1}%), {choosing_declension_form(gas_2)} ({number2}%). Кроме этих газов, содержатся ещё: {gas_3}, {gas_4}, {gas_5}, {gas_6}, {gas_7}. Каково процентное содержание этих газов?'
     return task, answer
 
 
@@ -51,8 +40,7 @@ def task_930():
     '''Генерация аналогичных задач № 930 с портала https://kuzovkin.info/one_exercise_1/930
     При анализе куска угля весом в 7 г обнаружили, что он содержит 5,2 г углерода, 0,5 г водорода, 0,42 г кислорода,
     0,28 г азота, остальное составляет зола. Определить процентное содержание указанных веществ в угле.'''
-    my_list = random.sample(gases, 4)
-    value, value1, value2, value3 = my_list
+    gas, gas_1, gas_2, gas_3 = random.sample(generate_context('task_generator/text_tasks/context.json', 'gases'), 4)
     while True:
         number, number1, number2, number3, number4 = round(np.random.uniform(0, 10), 1),  round(np.random.uniform(0, 10), 1), round(np.random.uniform(0, 10), 2), round(np.random.uniform(0, 10), 2), round(np.random.uniform(0, 10), 1)
         result = number + number1 + number2 + number3 + number4
@@ -61,14 +49,14 @@ def task_930():
             ans, ans1, ans2, ans3 = round(number * 100 / result, 2), round(number1 * 100 / result, 2), round(number2 * 100 / result, 2), round(number3 * 100 / result, 2)
             answer = f'{ans}:{ans1}:{ans2}:{ans3}'
             break
-    task = f'При анализе вещества весом в {result} г обнаружили, что он содержит {number} г {choosing_declension_form(value)}, {number1} г {choosing_declension_form(value1)}, {number2} г {choosing_declension_form(value2)}, {number3} г {choosing_declension_form(value3)}, остальное составляет зола. Определить процентное содержание указанных веществ.'
+    task = f'При анализе вещества весом в {result} г обнаружили, что он содержит {number} г {choosing_declension_form(gas)}, {number1} г {choosing_declension_form(gas_1)}, {number2} г {choosing_declension_form(gas_2)}, {number3} г {choosing_declension_form(gas_3)}, остальное составляет зола. Определить процентное содержание указанных веществ.'
     return task, answer
 
 
 def task_1039():
     '''Генерация аналогичных задач № 1039 с портала https://kuzovkin.info/one_exercise_1/1039
     В растворе массой 280 г содержится 56 г соли. Какова концентрация этого раствора?'''
-    value = np.random.choice(values_1)
+    product = random.sample(generate_context('task_generator/text_tasks/context.json', 'products'), 1)
     while True:
         number, number1 = np.random.randint(1, 1000, size=2)
         if number <= number1:
@@ -77,7 +65,7 @@ def task_1039():
         if  0 < result < 95 and result * 10 % 10 == 0:
             answer = int(result)
             break
-    task = f'В растворе массой {number} г содержится {number1} г {choosing_declension_form(value)}. Какова концентрация этого раствора?'
+    task = f'В растворе массой {number} г содержится {number1} г {choosing_declension_form(product)}. Какова концентрация этого раствора?'
     return task, answer
 
 
@@ -85,7 +73,7 @@ def task_1047():
     '''Генерация аналогичных задач № 1047 с портала https://kuzovkin.info/one_exercise_1/1047
     В семенах подсолнечника нового сорта содержится 49,5% масла.
     Сколько килограммов таких семян надо взять, чтобы в них содержалось 29,7 кг масла?'''
-    value = np.random.choice(values_2)
+    oil = random.sample(generate_context('task_generator/text_tasks/context.json', 'oils'), 1)
     while True:
         number, number1 = np.random.randint(1, 100, size=2)
         if number <= number1:
@@ -94,7 +82,7 @@ def task_1047():
         if  0 < result < 95 and result * 10 % 10 == 0:
             answer = int(result)
             break
-    task = f'В семенах {choosing_declension_form(value)} нового сорта содержится {number}% масла. Сколько килограммов таких семян надо взять, чтобы в них содержалось {number1} кг масла?'
+    task = f'В семенах {choosing_declension_form(oil)} нового сорта содержится {number}% масла. Сколько килограммов таких семян надо взять, чтобы в них содержалось {number1} кг масла?'
     return task, answer
 
 
@@ -116,7 +104,7 @@ def task_621():
     '''Генерация аналогичных задач № 621 с портала https://kuzovkin.info/one_exercise_1/621
     Проезд в маршрутке от станции метро Университет до ГЗ МГУ имени М. В. Ломоносова подорожал с 20 рублей до 25 рублей.
     На сколько процентов повысилась цена проезда?'''
-    value = np.random.choice(transports)
+    transport = random.sample(generate_context('task_generator/text_tasks/context.json', 'transports'), 1)
     while True:
         number, number1 = np.random.randint(10, 100, size=2)
         if number >= number1:
@@ -125,7 +113,7 @@ def task_621():
         if result * 10 % 10 == 0:
             answer = int(result)
             break
-    task = f'Проезд на {choosing_declension_form(value, "loct")} подорожал с {number} рублей до {number1} рублей. На сколько процентов повысилась цена проезда?'
+    task = f'Проезд на {choosing_declension_form(transport, "loct")} подорожал с {number} рублей до {number1} рублей. На сколько процентов повысилась цена проезда?'
     return task, answer
 
 
@@ -147,7 +135,7 @@ def task_626():
 def task_638():
     '''Генерация аналогичных задач № 638 с портала https://kuzovkin.info/one_exercise_1/638
     В голосовании приняли участие 64,3% электората. Сколько процентов электората не пришли на выборы?'''
-    value = np.random.choice(['элеторат', 'жители', 'население', 'люди'])
+    value = np.random.choice(['элеторат', 'жители', 'население'])
     while True:
         number = np.random.randint(1, 100)
         result = 100 - number
@@ -323,14 +311,15 @@ def task_833():
     '''Генерация аналогичных задач № 833 с портала https://kuzovkin.info/one_exercise_1/833
     Мальчик Гриша прочитал в первый день 30% всей книги, во второй − 40% оставшейся части, а в третий − оставшиеся 105 страниц.
     Сколько всего страниц было в книге?'''
-    value, value1 = np.random.choice(names), np.random.choice(read_value)
+    book = random.sample(generate_context('task_generator/text_tasks/context.json', 'books'), 1)
+    name = np.random.choice(['Гриша', 'Коля', 'Ваня'])
     while True:
         number, number1, number2 = np.random.randint(1, 50), np.random.randint(1, 50), np.random.randint(100, 200)
         result = ((((number1 * number2) / (100 - number1) + number2) * number) / (100 - number)) + (number1 * number2) / (100 - number1) + number2
         if result * 10 % 10 == 0:
             answer = int(result)
             break
-    task = f'Мальчик {value} прочитал в первый день {number}% {choosing_declension_form(value1)}, во второй − {number1}% оставшейся части, а в третий − оставшиеся {number2} страниц. Сколько всего страниц было в {choosing_declension_form(value1, "loct")}?'
+    task = f'Мальчик {name} прочитал в первый день {number}% {choosing_declension_form(book)}, во второй − {number1}% оставшейся части, а в третий − оставшиеся {number2} страниц. Сколько всего страниц было в {choosing_declension_form(book, "loct")}?'
     return task, answer
 
 
@@ -445,15 +434,14 @@ def task_4465():
     '''Генерация аналогичных задач № 4465 с портала https://kuzovkin.info/one_exercise_1/4465
     120 г золота сплавили с 80 г серебра.
     Найдите концентрацию золота и серебра в полученном сплаве.'''
-    my_list = random.sample(metalls, 2)
-    value, value1 = my_list
+    metal, metal_1 = random.sample(generate_context('task_generator/text_tasks/context.json', 'metals'), 2)
     while True:
         number, number1 = np.random.randint(10, 300), np.random.randint(10, 100)
         result, result1 = (number / (number + number1)) * 100, (number1 / (number + number1)) * 100
         if result * 10 % 10 == 0 and result1 * 10 % 10 == 0 :
             answer = f'{int(result)}:{int(result1)}'
             break
-    task = f'{number} г {choosing_declension_form(value)} сплавили с {number1} г {choosing_declension_form(value1)}. Найдите концентрацию {choosing_declension_form(value)} и {choosing_declension_form(value1)} в полученном сплаве.'
+    task = f'{number} г {choosing_declension_form(metal)} сплавили с {number1} г {choosing_declension_form(metal_1)}. Найдите концентрацию {choosing_declension_form(metal)} и {choosing_declension_form(metal_1)} в полученном сплаве.'
     return task, answer
 
 
@@ -461,22 +449,22 @@ def task_4468():
     '''Генерация аналогичных задач № 4468 с портала https://kuzovkin.info/one_exercise_1/4468
     Концентрация серной кислоты в растворе составляет 22%.
     Сколько чистой серной кислоты и сколько воды содержится в 150 г раствора?'''
-    value = np.random.choice(acid)
+    acid = random.sample(generate_context('task_generator/text_tasks/context.json', 'acids'), 1)
     while True:
         number, number1 = np.random.randint(1, 95), np.random.randint(10, 500)
         result, result1 = (number / 100) * number1, ((100 - number) / 100) * number1
         if result * 10 % 10 == 0 and result1 * 10 % 10 == 0 :
             answer = f'{int(result)}:{int(result1)}'
             break
-    task = f'Концентрация {choosing_declension_form(value)} кислоты в растворе составляет {number}%. Сколько чистой {choosing_declension_form(value)} кислоты и сколько воды содержится в {number1} г раствора?'
+    task = f'Концентрация {choosing_declension_form(acid)} кислоты в растворе составляет {number}%. Сколько чистой {choosing_declension_form(acid)} кислоты и сколько воды содержится в {number1} г раствора?'
     return task, answer
 
 
 def task_4471():
     '''Генерация аналогичных задач № 4471 с портала https://kuzovkin.info/one_exercise_1/4471
     Сколько воды надо добавить к 30 г соли, чтобы получить пятипроцентный раствор соли?'''
+    product = random.sample(generate_context('task_generator/text_tasks/context.json', 'products'), 1)
     percent = np.random.choice(['пятипроцентный', 'четырехпроцентный', 'десятипроцентный'])
-    value = np.random.choice(values_1)
     while True:
         number = np.random.randint(1, 100)
 
@@ -490,15 +478,15 @@ def task_4471():
         if result * 10 % 10 == 0:
             answer = int(result)
             break
-    task = f'Сколько воды надо добавить к {number} г {choosing_declension_form(value)}, чтобы получить {percent} раствор {choosing_declension_form(value)}?'
+    task = f'Сколько воды надо добавить к {number} г {choosing_declension_form(product)}, чтобы получить {percent} раствор {choosing_declension_form(product)}?'
     return task, answer
 
 
 def task_4474():
     '''Генерация аналогичных задач № 4474 с портала https://kuzovkin.info/one_exercise_1/4474
     Сколько соли надо добавить к 190 г воды, чтобы получить пятипроцентный раствор соли?'''
+    product = random.sample(generate_context('task_generator/text_tasks/context.json', 'products'), 1)
     percent = np.random.choice(['пятипроцентный', 'четырехпроцентный', 'десятипроцентный'])
-    value = np.random.choice(values_1)
     while True:
         number = np.random.randint(100, 500)
 
@@ -512,5 +500,5 @@ def task_4474():
         if result * 10 % 10 == 0:
             answer = int(result)
             break
-    task = f'Сколько {choosing_declension_form(value)} надо добавить к {number} г воды, чтобы получить {percent} раствор {choosing_declension_form(value)}?'
+    task = f'Сколько {choosing_declension_form(product)} надо добавить к {number} г воды, чтобы получить {percent} раствор {choosing_declension_form(product)}?'
     return task, answer
