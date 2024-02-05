@@ -1,6 +1,6 @@
 import numpy as np
 import random
-from .function_for_task import capitalize_word, find_genus_object, find_number_object, choosing_declension_form
+from .utils import capitalize_word, find_genus_object, find_number_object, choosing_declension_form
 
 metalls =['золото', 'хром', 'медь', 'алюминий', 'олово', 'марганец', 'серебро', 'никель', 'цинк', 'железо', 'титан', 'бронза']
 gases =['азот', 'углекислый газ', 'кислород', 'аргон', 'неон', 'гелий', 'криптон', 'радон', 'сероводород']

@@ -1,5 +1,15 @@
 import pymorphy2
+import json
+from sympy import Eq, symbols, solve
+import re
 
+def generate_context(file_json, category):
+  '''Функция из файла-json возвращает список возможных вариантов сюжета для задачи,
+  необходимо передать файл-json и требуемую категорию. Возвращает список'''
+  with open(file_json, 'r', encoding='utf8') as my_file:
+    templates = my_file.read()
+    context = json.loads(templates)
+  return context[category]
 
 def choosing_declension_form(word, case='gent'):
   '''Функция подбирает правильную форму склонения переданного слова, см. https://opencorpora.org/dict.php?act=gram,

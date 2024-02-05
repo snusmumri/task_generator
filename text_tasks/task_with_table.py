@@ -5,7 +5,7 @@ import pymorphy2
 import matplotlib.pyplot as plt
 from decimal import Decimal
 
-from .function_for_task import capitalize_word, choosing_declension_form
+from .utils import capitalize_word, choosing_declension_form
 
 
 def task_35629():
