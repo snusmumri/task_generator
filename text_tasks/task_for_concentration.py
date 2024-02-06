@@ -2,7 +2,6 @@ import random
 import numpy as np
 from .utils import choosing_declension_form, capitalize_word, find_number_object, find_genus_object, generate_context, write_numeral_word
 
-
 def task_2614():
     '''Генерация аналогичных задач № 2614 с портала https://kuzovkin.info/one_exercise_1/2614
     В сплав золота с серебром, содержащий 80 г золота, добавили 100 г золота.

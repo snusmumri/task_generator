@@ -3,22 +3,6 @@ from random import choice
 import numpy as np
 from .utils import capitalize_word, find_genus_object, find_number_object, choosing_declension_form, generate_context
 
-# def generate_context():
-#   '''Функция содержит четыре списка возможных вариантов сюжета для задач,
-#   подбирает случаное значение из списка и выдает четыре случайных парамета item1, item2, item3, item4'''
-#   values = {
-#       'item1': choice(['пиджак', 'свитер', 'куртка', 'пальто', 'кофта', 'пуховик']),
-#       'item2': choice(['брюки', 'сорочка', 'туфли', 'футболка', 'шорты', 'жилет']),
-#       'item3': choice(['доллары', 'рубли', 'евро']),
-#       'item4': choice(['помидоры', 'огурцы', 'редис', 'баклажаны', 'перец', 'яблоки', 'груши'])
-#   }
-#   return values['item1'], values['item2'], values['item3'],values['item4']
-
-
-
-
-
-
 def task_837():
     '''Генерация аналогичных задач № 837 с портала https://kuzovkin.info/one_exercise_1/837
     Пиджак дороже брюк на 25%. На сколько процентов брюки дешевле пиджака?'''

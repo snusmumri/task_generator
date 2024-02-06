@@ -68,3 +68,16 @@ def write_numeral_word(num):
       4: 'вчетверо',
       5: 'впятеро'}
   return collection_numeral[num]
+
+def create_regex_pattern(expression):
+  '''Функция формирует шаблон регулярного выражения'''
+  regex_pattern = re.escape(expression)
+  return regex_pattern
+
+def solves_equation(equation):
+  '''Функция решает уравнение с неизвестной переменной х!'''
+  x = symbols('x', real=True)
+  equation_list = equation.split('=')
+  eq = Eq(eval(equation_list[0]), eval(equation_list[1]))
+  result = solve(eq, x)
+  return result
