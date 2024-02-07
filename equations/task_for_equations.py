@@ -3,7 +3,7 @@ from pytexit import py2tex
 import random
 import re
 
-from .utils import create_regex_pattern, solves_equation
+from task_generator.text_tasks.utils import create_regex_pattern, solves_equation
 
 
 def generation_and_solution_new_equation(sample_equation):
