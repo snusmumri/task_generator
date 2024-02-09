@@ -29,17 +29,18 @@ def get_task(radian, answer_100, target, known):
     return template_task.substitute(goal=target_, known=known_, value=values[target][known], segment=segment_q(radian))
 
 
-def trig_identity(target='cos', known='sin'):
-  '''функция tryg_identity(target, known):
-  аргументы:
-  1)target - что вычислить
-  2)known - что дано
+def trig_identity(target_known='cos-sin'):
+  '''функция trig_identity('target-known'):
+  аргумент:
+   -target - что вычислить
+   -known - что дано
   возможные значения: 'sin', 'cos', 'tg', 'ctg'
 
   возвращает кортеж из
   1.задания вида: Вычислить target α, если known α = ... и α ∈ [..., ...]
   2.ответа в десятичной дроби
   '''
+  target, known = target_known.split('-')
   target_func = {
     'cos': cos,
     'sin': sin,
@@ -48,7 +49,7 @@ def trig_identity(target='cos', known='sin'):
   }.get(target)
 
   if target_func is None:
-    raise Exception(f'unsupported targe function')
+    raise Exception(f'Unsupported target function')
 
   while True:
     radian = random.randint(-20,20)
