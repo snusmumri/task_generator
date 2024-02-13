@@ -7,7 +7,7 @@ def task_642():
     '''Генерация аналогичных задач № 642 с портала https://kuzovkin.info/one_exercise_1/642
     Мельхиор − общее название группы сплавов на основе меди, содержащих никель, железо и марганец.
     В мельхиоре содержится 33% никеля, 1% железа и 1% марганца. Сколько процентов меди содержится в сплаве?'''
-    metal, metal_1, metal_2, metal_3 = random.sample(generate_context('task_generator/text_tasks/context.json', 'metals'), 4)
+    metal, metal_1, metal_2, metal_3 = random.sample(generate_context('./text_tasks/context.json', 'metals'), 4)
     while True:
         number, number1, number2 = np.random.randint(1, 95, size=3)
         result = 100 - (number + number1 + number2)
@@ -23,7 +23,7 @@ def task_645():
     Воздух состоит из азота (78,09% по объёму), кислорода (20,95%), углекислого газа (0,03%).
     Кроме этих газов, в воздухе содержатся ещё так называемые инертные газы: аргон, неон, гелий, криптон, радон.
     Каково процентное содержание инертных газов в воздухе?'''
-    gas, gas_1, gas_2, gas_3, gas_4, gas_5, gas_6, gas_7 = random.sample(generate_context('task_generator/text_tasks/context.json', 'gases'), 8)
+    gas, gas_1, gas_2, gas_3, gas_4, gas_5, gas_6, gas_7 = random.sample(generate_context('./text_tasks/context.json', 'gases'), 8)
     while True:
         number, number1, number2 = round(np.random.uniform(1, 95), 2), round(np.random.uniform(1, 95), 2), round(np.random.uniform(1, 95), 2)
         if number * 10 % 10 == 0 or number1 * 10 % 10 == 0 or number2 * 10 % 10 == 0:
@@ -40,7 +40,7 @@ def task_930():
     '''Генерация аналогичных задач № 930 с портала https://kuzovkin.info/one_exercise_1/930
     При анализе куска угля весом в 7 г обнаружили, что он содержит 5,2 г углерода, 0,5 г водорода, 0,42 г кислорода,
     0,28 г азота, остальное составляет зола. Определить процентное содержание указанных веществ в угле.'''
-    gas, gas_1, gas_2, gas_3 = random.sample(generate_context('task_generator/text_tasks/context.json', 'gases'), 4)
+    gas, gas_1, gas_2, gas_3 = random.sample(generate_context('./text_tasks/context.json', 'gases'), 4)
     while True:
         number, number1, number2, number3, number4 = round(np.random.uniform(0, 10), 1),  round(np.random.uniform(0, 10), 1), round(np.random.uniform(0, 10), 2), round(np.random.uniform(0, 10), 2), round(np.random.uniform(0, 10), 1)
         result = number + number1 + number2 + number3 + number4
@@ -56,7 +56,7 @@ def task_930():
 def task_1039():
     '''Генерация аналогичных задач № 1039 с портала https://kuzovkin.info/one_exercise_1/1039
     В растворе массой 280 г содержится 56 г соли. Какова концентрация этого раствора?'''
-    product = np.random.choice(generate_context('task_generator/text_tasks/context.json', 'products'))
+    product = np.random.choice(generate_context('./text_tasks/context.json', 'products'))
     while True:
         number, number1 = np.random.randint(1, 1000, size=2)
         if number <= number1:
@@ -73,7 +73,7 @@ def task_1047():
     '''Генерация аналогичных задач № 1047 с портала https://kuzovkin.info/one_exercise_1/1047
     В семенах подсолнечника нового сорта содержится 49,5% масла.
     Сколько килограммов таких семян надо взять, чтобы в них содержалось 29,7 кг масла?'''
-    oil = np.random.choice(generate_context('task_generator/text_tasks/context.json', 'oils'))
+    oil = np.random.choice(generate_context('./text_tasks/context.json', 'oils'))
     while True:
         number, number1 = np.random.randint(1, 100, size=2)
         if number <= number1:
@@ -104,7 +104,7 @@ def task_621():
     '''Генерация аналогичных задач № 621 с портала https://kuzovkin.info/one_exercise_1/621
     Проезд в маршрутке от станции метро Университет до ГЗ МГУ имени М. В. Ломоносова подорожал с 20 рублей до 25 рублей.
     На сколько процентов повысилась цена проезда?'''
-    transport = np.random.choice(generate_context('task_generator/text_tasks/context.json', 'transports'))
+    transport = np.random.choice(generate_context('./text_tasks/context.json', 'transports'))
     while True:
         number, number1 = np.random.randint(10, 100, size=2)
         if number >= number1:
@@ -311,7 +311,7 @@ def task_833():
     '''Генерация аналогичных задач № 833 с портала https://kuzovkin.info/one_exercise_1/833
     Мальчик Гриша прочитал в первый день 30% всей книги, во второй − 40% оставшейся части, а в третий − оставшиеся 105 страниц.
     Сколько всего страниц было в книге?'''
-    book = np.random.choice(generate_context('task_generator/text_tasks/context.json', 'books'))
+    book = np.random.choice(generate_context('./text_tasks/context.json', 'books'))
     name = np.random.choice(['Гриша', 'Коля', 'Ваня'])
     while True:
         number, number1, number2 = np.random.randint(1, 50), np.random.randint(1, 50), np.random.randint(100, 200)
@@ -434,7 +434,7 @@ def task_4465():
     '''Генерация аналогичных задач № 4465 с портала https://kuzovkin.info/one_exercise_1/4465
     120 г золота сплавили с 80 г серебра.
     Найдите концентрацию золота и серебра в полученном сплаве.'''
-    metal, metal_1 = random.sample(generate_context('task_generator/text_tasks/context.json', 'metals'), 2)
+    metal, metal_1 = random.sample(generate_context('./text_tasks/context.json', 'metals'), 2)
     while True:
         number, number1 = np.random.randint(10, 300), np.random.randint(10, 100)
         result, result1 = (number / (number + number1)) * 100, (number1 / (number + number1)) * 100
@@ -449,7 +449,7 @@ def task_4468():
     '''Генерация аналогичных задач № 4468 с портала https://kuzovkin.info/one_exercise_1/4468
     Концентрация серной кислоты в растворе составляет 22%.
     Сколько чистой серной кислоты и сколько воды содержится в 150 г раствора?'''
-    acid = np.random.choice(generate_context('task_generator/text_tasks/context.json', 'acids'))
+    acid = np.random.choice(generate_context('./text_tasks/context.json', 'acids'))
     while True:
         number, number1 = np.random.randint(1, 95), np.random.randint(10, 500)
         result, result1 = (number / 100) * number1, ((100 - number) / 100) * number1
@@ -463,7 +463,7 @@ def task_4468():
 def task_4471():
     '''Генерация аналогичных задач № 4471 с портала https://kuzovkin.info/one_exercise_1/4471
     Сколько воды надо добавить к 30 г соли, чтобы получить пятипроцентный раствор соли?'''
-    product = np.random.choice(generate_context('task_generator/text_tasks/context.json', 'products'))
+    product = np.random.choice(generate_context('./text_tasks/context.json', 'products'))
     percent = np.random.choice(['пятипроцентный', 'четырехпроцентный', 'десятипроцентный'])
     while True:
         number = np.random.randint(1, 100)
@@ -485,7 +485,7 @@ def task_4471():
 def task_4474():
     '''Генерация аналогичных задач № 4474 с портала https://kuzovkin.info/one_exercise_1/4474
     Сколько соли надо добавить к 190 г воды, чтобы получить пятипроцентный раствор соли?'''
-    product = np.random.choice(generate_context('task_generator/text_tasks/context.json', 'products'))
+    product = np.random.choice(generate_context('./text_tasks/context.json', 'products'))
     percent = np.random.choice(['пятипроцентный', 'четырехпроцентный', 'десятипроцентный'])
     while True:
         number = np.random.randint(100, 500)
@@ -534,7 +534,7 @@ def task_4497():
     '''Генерация аналогичных задач № 4497 с портала https://kuzovkin.info/one_exercise_1/4497
     В первом квартале доля рынка, занимаемая товарами отечественных производителей, увеличилась с 20% до 25% процентов, а во втором − с 25% до 30%.
     На сколько процентов увеличилась отечественная доля рынка во 2 квартале?'''
-    product = np.random.choice(generate_context('task_generator/text_tasks/context.json', 'goods'))
+    product = np.random.choice(generate_context('./text_tasks/context.json', 'goods'))
     while True:
         number, number1, number2 = np.random.randint(1, 95, size=3)
         if number >= number1 or number1 >= number2:
@@ -551,7 +551,7 @@ def task_4498():
     '''Генерация аналогичных задач № 4498 с портала https://kuzovkin.info/one_exercise_1/4498
     В первом квартале доля рынка, занимаемая товарами отечественных производителей, увеличилась с 20% до 25% процентов, а во втором − с 25% до 30%.
     В каком квартале увеличение было более значительным(в ответ написать разность процентов между первым и вторым)?'''
-    product = np.random.choice(generate_context('task_generator/text_tasks/context.json', 'goods'))
+    product = np.random.choice(generate_context('./text_tasks/context.json', 'goods'))
     while True:
         number, number1, number2 = np.random.randint(1, 95, size=3)
         if number >= number1 or number1 >= number2:
@@ -601,7 +601,7 @@ def task_4510():
 def task_4512():
     '''Генерация аналогичных задач № 4512 с портала https://kuzovkin.info/one_exercise_1/4512
     Сплав меди, цинка и олова содержит 20% меди и 45% цинка. Сколько в этом сплаве олова?'''
-    metal, metal_1, metal_2 = random.sample(generate_context('task_generator/text_tasks/context.json', 'metals'), 3)
+    metal, metal_1, metal_2 = random.sample(generate_context('./text_tasks/context.json', 'metals'), 3)
     while True:
         number, number1 = np.random.randint(10, 100, size=2)
         if number + number1 >= 100:
@@ -620,7 +620,7 @@ def task_4517():
     Дюралюминий − самый прочный сплав среди сплавов на основе алюминия.
     Кроме алюминия, дюралюминий содержит медь (1,4%), магний (0,4%), марганец (1%), кремний (0,5%), цинк (7%), железо (1,8%) и титан (0,35%).
     Сколько в таком сплаве процентов алюминия?'''
-    metal, metal_1, metal_2, metal_3, metal_4, metal_5, metal_6, metal_7 = random.sample(generate_context('task_generator/text_tasks/context.json', 'metals'), 8)
+    metal, metal_1, metal_2, metal_3, metal_4, metal_5, metal_6, metal_7 = random.sample(generate_context('./text_tasks/context.json', 'metals'), 8)
     while True:
         number, number1, number2, number3, number4, number5, number6 = np.round(np.random.uniform(0, 10, size=7), 2)
         numbers_list = [number, number1, number2, number3, number4, number5 ,number6]

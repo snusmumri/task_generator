@@ -6,7 +6,7 @@ def task_2614():
     '''Генерация аналогичных задач № 2614 с портала https://kuzovkin.info/one_exercise_1/2614
     В сплав золота с серебром, содержащий 80 г золота, добавили 100 г золота.
     В результате содержание золота в сплаве увеличилось на 20 %. Сколько граммов серебра в сплаве?'''
-    metal_1, metal_2 = random.sample(generate_context('task_generator/text_tasks/context.json', 'metals'), 2)
+    metal_1, metal_2 = random.sample(generate_context('./text_tasks/context.json', 'metals'), 2)
     while True:
         weight, weight1 = np.random.randint(10, 999, size=2)
         percent = random.randint(1, 99)
@@ -19,7 +19,7 @@ def task_2614():
 def task_4767():
     '''Генерация аналогичных задач № 4767 с портала https://kuzovkin.info/one_exercise_1/4767
     Морская вода содержит 8% (по весу) соли. Сколько килограммов пресной воды нужно добавить к 30 кг морской воды, чтобы содержание соли в последней составило 5%?'''
-    options = random.sample(generate_context('task_generator/text_tasks/context.json', 'liquids'), 1)[0]
+    options = random.sample(generate_context('./text_tasks/context.json', 'liquids'), 1)[0]
     while True:
         percent1, percent2 = np.random.randint(2, 15, size=2)
         weight = random.randint(5, 15)
@@ -33,7 +33,7 @@ def task_4767():
 def task_4770():
     '''Генерация аналогичных задач № 4770 с портала https://kuzovkin.info/one_exercise_1/4770
     Сколько килограммов воды нужно выпарить из 0,5 т целлюлозной массы, содержащей 85% воды, чтобы получить массу с содержанием 75% воды?'''
-    options = random.sample(generate_context('task_generator/text_tasks/context.json', 'liquids'), 1)[0]
+    options = random.sample(generate_context('./text_tasks/context.json', 'liquids'), 1)[0]
     while True:
         weight = random.randint(100, 2000)
         percent1, percent2 = np.random.randint(30, 90, size=2)
@@ -47,7 +47,7 @@ def task_4770():
 def task_4772():
     '''Генерация аналогичных задач № 4772 с портала https://kuzovkin.info/one_exercise_1/4772
     Свежие грибы содержат по весу 90% воды, а сухие − 12% воды. Сколько получится сухих грибов из 22 кг свежих?'''
-    options = random.sample(generate_context('task_generator/text_tasks/context.json', 'vegetables'), 1)[0]
+    options = random.sample(generate_context('./text_tasks/context.json', 'vegetables'), 1)[0]
     while True:
         weight1 = random.randint(10, 100)
         percent1, percent2 = np.random.randint(10, 95, size=2)
@@ -65,7 +65,7 @@ def task_4773():
     '''Генерация аналогичных задач № 4773 с портала https://kuzovkin.info/one_exercise_1/4773
     Кусок сплава меди и цинка массой 36 кг содержит 45% меди.
     Какую массу меди следует добавить к этому куску, чтобы получить сплав, содержащий 60% меди?'''
-    metal_1, metal_2 = random.sample(generate_context('task_generator/text_tasks/context.json', 'metals'), 2)
+    metal_1, metal_2 = random.sample(generate_context('./text_tasks/context.json', 'metals'), 2)
     while True:
         weight = random.randint(10, 100)
         percent1, percent2 = np.random.randint(10, 95, size=2)
@@ -82,7 +82,7 @@ def task_4773():
 def task_4774():
     '''Генерация аналогичных задач № 4774 с портала https://kuzovkin.info/one_exercise_1/4774
     В 2 литра 10-процентного раствора уксусной кислоты добавили 8 л чистой воды. Определите процентное содержание уксусной кислоты в полученном растворе.'''
-    options = random.sample(generate_context('task_generator/text_tasks/context.json', 'chemical_solution'), 1)[0]
+    options = random.sample(generate_context('./text_tasks/context.json', 'chemical_solution'), 1)[0]
     while True:
         percent = random.randint(5, 40)
         weight1, weight2 = np.random.randint(2, 20, size=2)
@@ -99,7 +99,7 @@ def task_4774():
 def task_4778():
     '''Генерация аналогичных задач № 4778 с портала https://kuzovkin.info/one_exercise_1/4778
     В 5 кг сплава олова и цинка содержится 80% цинка. Сколько кг олова надо добавить к сплаву, чтобы процентное содержание цинка стало вдвое меньше?'''
-    metal_1, metal_2 = random.sample(generate_context('task_generator/text_tasks/context.json', 'metals'), 2)
+    metal_1, metal_2 = random.sample(generate_context('./text_tasks/context.json', 'metals'), 2)
     while True:
         weight = random.randint(2, 20)
         percent = random.randint(60, 90)
@@ -114,7 +114,7 @@ def task_4778():
 def task_4780():
     '''Генерация аналогичных задач № 4780 с портала https://kuzovkin.info/one_exercise_1/4780
     Морская вода содержит 5% соли по массе. Сколько килограммов пресной воды нужно добавить к 30 кг морской воды, чтобы она содержала 1,5% по массе?'''
-    options = random.sample(generate_context('task_generator/text_tasks/context.json', 'liquids'), 1)[0]
+    options = random.sample(generate_context('./text_tasks/context.json', 'liquids'), 1)[0]
     while True:
         percent1 = round (random.random(), 1) + random.randint(1, 30)
         percent2 = round (random.random(), 1) + random.randint(1, 30)
@@ -129,7 +129,7 @@ def task_4780():
 def task_4782():
     '''Генерация аналогичных задач № 4782 с портала https://kuzovkin.info/one_exercise_1/4782
     Из 10 кг свежих фруктов получают 3,5 кг сушёных фруктов, содержащих 20% воды. Каково процентное содержание воды в свежих фруктах?'''
-    options = random.sample(generate_context('task_generator/text_tasks/context.json', 'vegetables'), 1)[0]
+    options = random.sample(generate_context('./text_tasks/context.json', 'vegetables'), 1)[0]
     while True:
         percent = random.randint(5, 30)
         weight1 = round (random.random(), 1) + random.randint(5,30)
@@ -158,7 +158,7 @@ def task_4784():
 def task_4787():
     '''Генерация аналогичных задач № 4787 с портала https://kuzovkin.info/one_exercise_1/4787
     Какое количество 8%-го раствора соли надо взять, чтобы его можно было развести чистой водой до получения 100 г 3%-го раствора соли?'''
-    options = random.sample(generate_context('task_generator/text_tasks/context.json', 'chemical_solution'), 1)[0]
+    options = random.sample(generate_context('./text_tasks/context.json', 'chemical_solution'), 1)[0]
     while True:
         percent1, percent2 = np.random.randint(1, 20, size=2)
         weight = random.randint(50, 999)
@@ -176,7 +176,7 @@ def task_4788():
     '''Генерация аналогичных задач № 4788 с портала https://kuzovkin.info/one_exercise_1/4788
     Морская вода содержит 5% соли. Сколько килограммов воды надо выпарить из 80 кг морской воды,
     чтобы концентрация соли в ней увеличилась до 20%?'''
-    options = random.sample(generate_context('task_generator/text_tasks/context.json', 'liquids'), 1)[0]
+    options = random.sample(generate_context('./text_tasks/context.json', 'liquids'), 1)[0]
     while True:
         percent1, percent2 = np.random.randint(2, 60, size=2)
         weight = random.randint(20, 100)
@@ -190,7 +190,7 @@ def task_4788():
 def task_4789():
     '''Генерация аналогичных задач № 4789 с портала https://kuzovkin.info/one_exercise_1/4789
     Сколько воды надо выпарить из 350 г 42%-го раствора соли, чтобы получить 60%-ый раствор?'''
-    options = random.sample(generate_context('task_generator/text_tasks/context.json', 'chemical_solution'), 1)[0]
+    options = random.sample(generate_context('./text_tasks/context.json', 'chemical_solution'), 1)[0]
     while True:
         percent1, percent2 = np.random.randint(10, 80, size=2)
         weight = random.randint(100, 999)
@@ -205,7 +205,7 @@ def task_6488():
     '''Генерация аналогичных задач № 6488 с портала https://kuzovkin.info/one_exercise_1/6488
     В сплав меди и цинка, содержащий 5 кг цинка, добавили 15 кг цинка, после чего содержание цинка в сплаве повысилось на 30 %.
     Какова первоначальная масса сплава, если известно, что в нем меди было больше, чем цинка?'''
-    metal_1, metal_2 = random.sample(generate_context('task_generator/text_tasks/context.json', 'metals'), 2)
+    metal_1, metal_2 = random.sample(generate_context('./text_tasks/context.json', 'metals'), 2)
     while True:
         weight1, weight2 = np.random.randint(1, 100, size=2)
         percent = random.randint(1,98)
@@ -222,7 +222,7 @@ def task_6488():
 def task_6489():
     '''Генерация аналогичных задач № 6489 с портала https://kuzovkin.info/one_exercise_1/6489
     Cлиток сплава меди и цинка массой 36 кг содержит 45% меди. Какую массу меди надо добавить к этому куску, чтобы плученный сплав содержал 60% меди?'''
-    metal_1, metal_2 = random.sample(generate_context('task_generator/text_tasks/context.json', 'metals'), 2)
+    metal_1, metal_2 = random.sample(generate_context('./text_tasks/context.json', 'metals'), 2)
     while True:
         percent1, percent2 = np.random.randint(10, 80, size=2)
         weight = random.randint(1,80)
@@ -239,7 +239,7 @@ def task_6489():
 def task_9479():
     '''Генерация аналогичных задач № 9479 с портала https://kuzovkin.info/one_exercise_1/9479
     Сплав олова с медью весом 12 кг содержит 45% меди. Сколько чистого олова надо добавить, чтобы получить сплав, содержащий 40% меди?'''
-    metal_1, metal_2 = random.sample(generate_context('task_generator/text_tasks/context.json', 'metals'), 2)
+    metal_1, metal_2 = random.sample(generate_context('./text_tasks/context.json', 'metals'), 2)
     while True:
         percent1, percent2 = np.random.randint(10, 80, size=2)
         weight = random.randint(1,80)
@@ -256,7 +256,7 @@ def task_9479():
 def task_9481():
     '''Генерация аналогичных задач № 9481 с портала https://kuzovkin.info/one_exercise_1/9481
     Свежие грибы содержат по массе 90% воды, а сухие − 20%. Сколько надо собрать свежих грибов, чтобы из них получить 4,5 кг сухих грибов?'''
-    options = random.sample(generate_context('task_generator/text_tasks/context.json', 'vegetables'), 1)[0]
+    options = random.sample(generate_context('./text_tasks/context.json', 'vegetables'), 1)[0]
     while True:
         percent1, percent2 = np.random.randint(10, 90, size=2)
         weight = random.randint(1,20)
@@ -270,7 +270,7 @@ def task_9481():
 def task_9486():
     '''Генерация аналогичных задач № 9486 с портала https://kuzovkin.info/one_exercise_1/9486
     В 4 кг сплава меди и олова содержится 40% олова. Сколько кг олова надо добавить к этому сплаву, чтобы его процентное содержание в новом сплаве стало равно 70%?'''
-    metal_1, metal_2 = random.sample(generate_context('task_generator/text_tasks/context.json', 'metals'), 2)
+    metal_1, metal_2 = random.sample(generate_context('./text_tasks/context.json', 'metals'), 2)
     while True:
         percent1, percent2 = np.random.randint(10, 90, size=2)
         weight = random.randint(1,20)
@@ -284,7 +284,7 @@ def task_9486():
 def task_9487():
     '''Генерация аналогичных задач № 9487 с портала https://kuzovkin.info/one_exercise_1/9487
     К 40% раствору серной кислоты добавили 50 г чистой серной кислоты, после чего концентрация раствора стала равна 60%. Найдите первоначальный вес раствора.'''
-    options = random.sample(generate_context('task_generator/text_tasks/context.json', 'chemical_solution'), 1)[0]
+    options = random.sample(generate_context('./text_tasks/context.json', 'chemical_solution'), 1)[0]
     while True:
         percent1, percent2 = np.random.randint(10, 90, size=2)
         if (percent1+10) < percent2:
@@ -300,7 +300,7 @@ def task_9491():
     '''Генерация аналогичных задач № 9491 с портала https://kuzovkin.info/one_exercise_1/9491
     Собрали 100 кг грибов. Оказалось, что их влажность 99%. Когда их подсушили, то влажность снизилась до 98%.
     Какой стала масса этих грибов после того, как их подсушили?'''
-    options = random.sample(generate_context('task_generator/text_tasks/context.json', 'vegetables'), 1)[0]
+    options = random.sample(generate_context('./text_tasks/context.json', 'vegetables'), 1)[0]
     while True:
         percent1, percent2 = np.random.randint(80, 99, size=2)
         weight = random.randint(10,200)
@@ -315,7 +315,7 @@ def task_9495():
     '''Генерация аналогичных задач № 9495 с портала https://kuzovkin.info/one_exercise_1/9495
     Только что добытый каменный уголь содержит 2% воды, а после двухнедельного пребывания на воздухе он содержит 20% воды.
     На сколько кг увеличилась масса добытой тонны угля после того, как он две недели полежал на воздухе?'''
-    options = random.sample(generate_context('task_generator/text_tasks/context.json', 'mineral'), 1)[0]
+    options = random.sample(generate_context('./text_tasks/context.json', 'mineral'), 1)[0]
     while True:
         percent1, percent2 = np.random.randint(2, 40, size=2)
         weight = random.randint(1000,4999)
@@ -329,7 +329,7 @@ def task_9495():
 def task_9496():
     '''Генерация аналогичных задач № 9496 с портала https://kuzovkin.info/one_exercise_1/9496
     Виноград содержит 91% влаги, а изюм − 7%. Сколько килограммов винограда требуется для получения 21 килограмма изюма?'''
-    options = random.sample(generate_context('task_generator/text_tasks/context.json', 'vegetables'), 1)[0]
+    options = random.sample(generate_context('./text_tasks/context.json', 'vegetables'), 1)[0]
     while True:
         percent1, percent2 = np.random.randint(2, 99, size=2)
         weight = random.randint(1, 30)
@@ -344,7 +344,7 @@ def task_11036():
     '''Генерация аналогичных задач № 11036 с портала https://kuzovkin.info/one_exercise_1/11036
     Из 38 т сырья второго сорта, содержащего 25% примесей, после очистки получается 30 т сырья первого сорта.
     Каков процент примесей в сырье первого сорта?'''
-    options = random.sample(generate_context('task_generator/text_tasks/context.json', 'grade'), 1)[0]
+    options = random.sample(generate_context('./text_tasks/context.json', 'grade'), 1)[0]
     while True:
         weight1, weight2 = np.random.randint(20, 80, size=2)
         if weight1 > weight2:
@@ -359,7 +359,7 @@ def task_11036():
 def task_11037():
     '''Генерация аналогичных задач № 11037 с портала https://kuzovkin.info/one_exercise_1/11037
     Сколько килограммов сухарей с влажностью 15% можно получить из 255 кг хлеба с влажностью 45%?'''
-    options = random.sample(generate_context('task_generator/text_tasks/context.json', 'dried_food'), 1)[0]
+    options = random.sample(generate_context('./text_tasks/context.json', 'dried_food'), 1)[0]
     while True:
          percent1, percent2 = np.random.randint(10, 60, size=2)
          if percent1+10 < percent2:
@@ -375,7 +375,7 @@ def task_11066():
     '''Генерация аналогичных задач № 11066 с портала https://kuzovkin.info/one_exercise_1/11066
     Имеется 200 г сплава, содержащего золото и серебро. Золото составляет 40% сплава.
     Сколько граммов серебра надо добавить к этому сплаву, чтобы новый сплав содержал 80% серебра?'''
-    metal_1, metal_2 = random.sample(generate_context('task_generator/text_tasks/context.json', 'metals'), 2)
+    metal_1, metal_2 = random.sample(generate_context('./text_tasks/context.json', 'metals'), 2)
     while True:
          percent1, percent2 = np.random.randint(20, 70, size=2)
          if percent1 + percent2 > 100:
@@ -391,7 +391,7 @@ def task_11070():
     '''Генерация аналогичных задач № 11070 с портала https://kuzovkin.info/one_exercise_1/11070
     К 5 кг сплава олова и цинка добавили 4 кг олова. Найдите процентное содержание цинка в первоначальном сплаве,
     если в новом сплаве цинка стало в 2 раза меньше, чем олова.'''
-    metal_1, metal_2 = random.sample(generate_context('task_generator/text_tasks/context.json', 'metals'), 2)
+    metal_1, metal_2 = random.sample(generate_context('./text_tasks/context.json', 'metals'), 2)
     while True:
       weight1, weight2 = np.random.randint(1, 20, size=2)
       multipl = random.randint(2, 10)
@@ -406,7 +406,7 @@ def task_11074():
     '''Генерация аналогичных задач № 11074 с портала https://kuzovkin.info/one_exercise_1/11074
     Собрали 42 кг свежих грибов, содержащих по массе 95% воды. Когда их подсушили, они стали весить 3 кг.
     Каков процент содержания воды по массе в сухих грибах?'''
-    options = random.sample(generate_context('task_generator/text_tasks/context.json', 'vegetables'), 1)[0]
+    options = random.sample(generate_context('./text_tasks/context.json', 'vegetables'), 1)[0]
     while True:
          weight1, weight2 = np.random.randint(1, 70, size=2)
          if weight1 > weight2+20:
@@ -422,7 +422,7 @@ def task_12790():
     '''Генерация аналогичных задач № 12790 с портала https://kuzovkin.info/one_exercise_1/12790
     Морская вода содержит 5% соли. Сколько килограммов пресной воды нужно добавить к 40 кг морской воды,
     чтобы содержание соли в смеси составило 2 %?'''
-    options = random.sample(generate_context('task_generator/text_tasks/context.json', 'liquids'), 1)[0]
+    options = random.sample(generate_context('./text_tasks/context.json', 'liquids'), 1)[0]
     while True:
         percent1, percent2 = np.random.randint(1, 20, size=2)
         weight = random.randint(1, 50)
@@ -438,7 +438,7 @@ def task_17644():
     '''Генерация аналогичных задач № 17644 с портала https://kuzovkin.info/one_exercise_1/17644
     Кусок сплава меди и цинка массой 36кг содержит 45% меди. Какую массу меди следует добавить к этому куску,
     чтобы получить сплав, содержащий 60% меди?'''
-    metal_1, metal_2 = random.sample(generate_context('task_generator/text_tasks/context.json', 'metals'), 2)
+    metal_1, metal_2 = random.sample(generate_context('./text_tasks/context.json', 'metals'), 2)
     while True:
         percent1, percent2 = np.random.randint(10, 90, size=2)
         weight = random.randint(1, 50)
@@ -457,7 +457,7 @@ def task_17645():
     '''Генерация аналогичных задач № 17645 с портала https://kuzovkin.info/one_exercise_1/17645
     В 2 литра 10-процентного раствора уксусной кислоты добавили 8л чистой воды.
     Определить процентное соотношение уксусной кислоты в полученном растворе.'''
-    options = random.sample(generate_context('task_generator/text_tasks/context.json', 'chemical_solution'), 1)[0]
+    options = random.sample(generate_context('./text_tasks/context.json', 'chemical_solution'), 1)[0]
     while True:
         weight1, weight2 = np.random.randint(1, 20, size=2)
         percent = random.randint(5, 40)
