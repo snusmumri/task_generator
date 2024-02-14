@@ -2,6 +2,8 @@ import pymorphy2
 import json
 from sympy import Eq, symbols, solve
 import re
+from fractions import Fraction
+from sympy import frac
 
 def generate_context(file_json, category):
   '''Функция из файла-json возвращает список возможных вариантов сюжета для задачи,
@@ -81,3 +83,12 @@ def solves_equation(equation):
   eq = Eq(eval(equation_list[0]), eval(equation_list[1]))
   result = solve(eq, x)
   return result
+
+def fraction_latex_format(result):
+    '''Функция выводит число в дробь в стиле LaTeX и расчитывает все его целые значения, если таковы имеются'''
+    fraction = Fraction(result).limit_denominator()
+    if fraction.denominator == 1:
+        return f'${fraction.numerator}$'
+    else:
+        whole_part, remainder = divmod(fraction.numerator, fraction.denominator)
+        return f'${whole_part}\\frac{{{remainder}}}{{{fraction.denominator}}}$'
