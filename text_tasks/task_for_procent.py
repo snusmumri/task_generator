@@ -1,5 +1,6 @@
 import numpy as np
 import random
+from math import log
 from .utils import choosing_declension_form, capitalize_word, find_number_object, find_genus_object, generate_context, write_numeral_word, fraction_latex_format
 
 
@@ -1120,4 +1121,574 @@ def task_4622():
             answer = result
             break
     task = f'Переведите проценты в десятичную дробь: {number}%'
+    return task, answer
+
+
+def task_4623():
+    '''Генерация аналогичных задач № 4623 с портала https://kuzovkin.info/one_exercise_1/4623
+    Переведите проценты в десятичную дробь: 0,875%'''
+    while True:
+        number = round(np.random.uniform(0, 1), 3)
+        if number % 1 == 0:
+          continue
+        result = number / 100
+        if result % 1 != 0 and len(str(result)) <= 8:
+            answer = result
+            break
+    task = f'Переведите проценты в десятичную дробь: {number}%'
+    return task, answer
+
+
+def task_4624():
+    '''Генерация аналогичных задач № 4624 с портала https://kuzovkin.info/one_exercise_1/4624
+    Переведите дроби в проценты: 0,04'''
+    while True:
+        number = round(np.random.uniform(0, 1), 3)
+        result = number * 100
+        if result % 1 != 0 and len(str(result)) <= 5:
+            answer = result
+            break
+        elif result % 1 == 0:
+            answer = int(result)
+            break
+    task = f'Переведите дроби в проценты: {number}'
+    return task, answer
+
+
+
+def task_4625():
+    '''Генерация аналогичных задач № 4625 с портала https://kuzovkin.info/one_exercise_1/4625
+    Переведите дроби в проценты: 0,32'''
+    while True:
+        number = round(np.random.uniform(0, 1), 3)
+        result = number * 100
+        if result % 1 != 0 and len(str(result)) <= 5:
+            answer = result
+            break
+        elif result % 1 == 0:
+            answer = int(result)
+            break
+    task = f'Переведите дроби в проценты: {number}'
+    return task, answer
+
+
+
+def task_4635():
+    '''Генерация аналогичных задач № 4635 с портала https://kuzovkin.info/one_exercise_1/4635
+    Переведите дроби в проценты: 1,2234'''
+    while True:
+        number = round(np.random.uniform(1, 5), 5)
+        result = number * 100
+        if result % 1 != 0 and len(str(result)) <= 6:
+            answer = result
+            break
+        elif result % 1 == 0:
+            answer = int(result)
+            break
+    task = f'Переведите дроби в проценты: {number}'
+    return task, answer
+
+
+
+def task_4639():
+    '''Генерация аналогичных задач № 4639 с портала https://kuzovkin.info/one_exercise_1/4639
+    Переведите дроби в проценты: 3,57'''
+    while True:
+        number = round(np.random.uniform(1, 10), 3)
+        result = number * 100
+        if result % 1 != 0 and len(str(result)) <= 5:
+            answer = result
+            break
+        elif result % 1 == 0:
+            answer = int(result)
+            break
+    task = f'Переведите дроби в проценты: {number}'
+    return task, answer
+
+
+def task_4647():
+    '''Генерация аналогичных задач № 4647 с портала https://kuzovkin.info/one_exercise_1/4647
+    Переведите дроби в проценты: 0,0777'''
+    while True:
+        number = round(np.random.uniform(0, 1), 4)
+        result = number * 100
+        if result % 1 != 0 and len(str(result)) <= 6:
+            answer = result
+            break
+        elif result % 1 == 0:
+            answer = int(result)
+            break
+    task = f'Переведите дроби в проценты: {number}'
+    return task, answer
+
+
+def task_4651():
+    '''Генерация аналогичных задач № 4651 с портала https://kuzovkin.info/one_exercise_1/4651
+    Переведите дроби в проценты: 9/20'''
+    while True:
+        number, number_1 = np.random.randint(1, 50, size=2)
+        if number >= number_1:
+            continue
+        result = (number / number_1) * 100
+        if result % 1 != 0 and len(str(result)) <= 5:
+            answer = result
+            break
+        elif result % 1 == 0:
+            answer = int(result)
+            break
+    task = f'Переведите дроби в проценты: $\\frac{{{number}}}{{{number_1}}}$'
+    return task, answer
+
+
+def task_4659():
+    '''Генерация аналогичных задач № 4659 с портала https://kuzovkin.info/one_exercise_1/4659
+    Переведите дроби в проценты: 2/3'''
+    while True:
+        number, number_1 = np.random.randint(1, 50, size=2)
+        if number >= number_1:
+            continue
+        result = (number / number_1) * 100
+        if result % 1 != 0 and len(str(result)) <= 5:
+            answer = result
+            break
+        elif result % 1 == 0:
+            answer = int(result)
+            break
+    task = f'Переведите дроби в проценты: $\\frac{{{number}}}{{{number_1}}}$'
+    return task, answer
+
+
+def task_4660():
+    '''Генерация аналогичных задач № 4660 с портала https://kuzovkin.info/one_exercise_1/4660
+    Переведите дроби в проценты: 1/10'''
+    while True:
+        number, number_1 = np.random.randint(1, 50, size=2)
+        if number >= number_1:
+            continue
+        result = (number / number_1) * 100
+        if result % 1 != 0 and len(str(result)) <= 5:
+            answer = result
+            break
+        elif result % 1 == 0:
+            answer = int(result)
+            break
+    task = f'Переведите дроби в проценты: $\\frac{{{number}}}{{{number_1}}}$'
+    return task, answer
+
+
+def task_4666():
+    '''Генерация аналогичных задач № 4666 с портала https://kuzovkin.info/one_exercise_1/4666
+    Переведите дроби в проценты: 1/20'''
+    while True:
+        number, number_1 = np.random.randint(1, 50, size=2)
+        if number >= number_1:
+            continue
+        result = (number / number_1) * 100
+        if result % 1 != 0 and len(str(result)) <= 5:
+            answer = result
+            break
+        elif result % 1 == 0:
+            answer = int(result)
+            break
+    task = f'Переведите дроби в проценты: $\\frac{{{number}}}{{{number_1}}}$'
+    return task, answer
+
+
+def task_4671():
+    '''Генерация аналогичных задач № 4671 с портала https://kuzovkin.info/one_exercise_1/4671
+    По данным N-ского горкомстата по сравнению с предыдущим годом товарооборот организаций,
+    осуществляющих торговую деятельность, увеличился на 53% и составил 902 млн. рублей.
+    На какую сумму увеличился товарооборот?'''
+    product = np.random.choice(generate_context('./text_tasks/context.json', 'goods'))
+    while True:
+        percent, money = np.random.randint(1, 100), np.random.randint(100, 1000)
+        result = (money / (1 + percent / 100)) * (percent / 100)
+        if result % 1 != 0 and len(str(result)) <= 6:
+            answer = result
+            break
+        elif result % 1 == 0:
+            answer = int(result)
+            break
+    task = f'По данным N-ского горкомстата по сравнению с предыдущим годом товарооборот организаций, осуществляющих продажу {choosing_declension_form(product)} товаров, увеличился на {percent}% и составил {money} млн. рублей. На какую сумму увеличился товарооборот?'
+    return task, answer
+
+
+
+def task_4674():
+    '''Генерация аналогичных задач № 4674 с портала https://kuzovkin.info/one_exercise_1/4674
+    Мальчик Гриша прочитал 138 страниц, что составляет 23% числа всех страниц в книге. Сколько страниц в книге?'''
+    book = np.random.choice(generate_context('./text_tasks/context.json', 'books'))
+    while True:
+        percent, pages = np.random.randint(20, 100), np.random.randint(100, 300)
+        if pages % 100 // 10 == 1:
+            continue
+        result = (pages * 100) / percent
+        if result % 1 == 0:
+            answer = int(result)
+            break
+    task = f'Мальчик Гриша прочитал {pages} страниц{"у" if pages % 10 == 1 else "ы" if pages % 10 in [2, 3, 4] else ""}, что составляет {percent}% числа всех страниц в {choosing_declension_form(book, "loct")}. Сколько страниц в {choosing_declension_form(book, "loct")}?'
+    return task, answer
+
+
+def task_4684():
+    '''Генерация аналогичных задач № 4684 с портала https://kuzovkin.info/one_exercise_1/4684
+    В избирательном округе 25000 избирателей. В голосовании приняли участие 13000 избирателей.
+    Какой процент избирателей участвовал в голосовании?'''
+    value = np.random.choice(['избирателей', 'человек'])
+    while True:
+        total, people = np.random.randint(10000, 100000, size=2)
+        if people >= total:
+            continue
+        result = (people * 100) / total
+        if result % 1 == 0:
+            answer = int(result)
+            break
+    task = f'В избирательном округе {total} {value}. В голосовании приняли участие {people} {value}. Какой процент {value} участвовал в голосовании?'
+    return task, answer
+
+
+def task_4685():
+    '''Генерация аналогичных задач № 4685 с портала https://kuzovkin.info/one_exercise_1/4685
+    Из 30000 жителей города 6900 − дети. Какой процент всего населения составляют дети?'''
+    value = np.random.choice(generate_context('./text_tasks/context.json', 'people'))
+    while True:
+        total, person = np.random.randint(1000, 100000, size=2)
+        if person >= total:
+            continue
+        result = (person * 100) / total
+        if result % 1 == 0:
+            answer = int(result)
+            break
+    task = f'Из {total} жителей города {person} − {value}. Какой процент всего населения составляют {value}?'
+    return task, answer
+
+
+def task_4694():
+    '''Генерация аналогичных задач № 4694 с портала https://kuzovkin.info/one_exercise_1/4694
+    Имеются два раствора соли массой 80 г и 120 г. В первом растворе содержится 12 г соли, а во втором − 15 г.
+    Найдите концентрацию каждого из этих растворов. Найдите концентрацию раствора, полученного при смешивании двух данных растворов.'''
+    product = np.random.choice(generate_context('./text_tasks/context.json', 'products'))
+    while True:
+        weight, weight_1 = np.random.randint(50, 500, size=2)
+        gram, gram_1 = np.random.randint(1, 50, size=2)
+        result, result_1 = (gram * 100) / weight, (gram_1 * 100) / weight_1
+        total_result = ((gram + gram_1) * 100) / (weight + weight_1)
+        if len(str(result)) <= 6 and len(str(result_1)) <= 6 and len(str(total_result)) <= 6:
+            if result % 1 == 0:
+                result = int(result)
+            if result_1 % 1 == 0:
+                result_1 = int(result_1)
+            if total_result % 1 == 0:
+                total_result = int(total_result)
+                answer = f'{result};{result_1};{total_result}'
+                break
+    task = f'Имеются два раствора {choosing_declension_form(product)} массой {weight} г и {weight_1} г. В первом растворе содержится {gram} г {choosing_declension_form(product)}, а во втором − {gram_1} г. Найдите концентрацию каждого из этих растворов. Найдите концентрацию раствора, полученного при смешивании двух данных растворов.'
+    return task, answer
+
+
+
+def task_4696():
+    '''Генерация аналогичных задач № 4696 с портала https://kuzovkin.info/one_exercise_1/4696
+    Смешали 200 г 10%-ного сахарного сиропа и 300 г 20%-ного сахарного сиропа. Найдите концентрацию полученной смеси.'''
+    taste = np.random.choice(generate_context('./text_tasks/context.json', 'tastes'))
+    while True:
+        weight, weight_1 = np.random.randint(100, 1000, size=2)
+        percent, percent_1 = np.random.randint(10, 50, size=2)
+        if percent == percent_1:
+            continue
+        result = (((weight * (percent / 100) ) + (weight_1 * (percent_1 / 100))) / (weight + weight_1)) * 100
+        if result % 1 != 0 and len(str(result)) <= 6:
+            answer = result
+            break
+        elif result % 1 == 0:
+            answer = int(result)
+            break
+    task = f'Смешали {weight} г {percent}%-ного {choosing_declension_form(taste, "ablt")} сиропа и {weight_1} г {percent_1}%-ного {choosing_declension_form(taste, "ablt")} сиропа. Найдите концентрацию полученной смеси'
+    return task, answer
+
+
+def task_4697():
+    '''Генерация аналогичных задач № 4697 с портала https://kuzovkin.info/one_exercise_1/4697
+    К 200 г 15%-го раствора вещества добавили 300 г 40%-го раствора того же вещества. Какова концентрация полученной смеси?'''
+    while True:
+        weight, weight_1 = np.random.randint(100, 1000, size=2)
+        percent, percent_1 = np.random.randint(10, 50, size=2)
+        if percent == percent_1:
+            continue
+        result = (((weight * (percent / 100) ) + (weight_1 * (percent_1 / 100))) / (weight + weight_1)) * 100
+        if result % 1 != 0 and len(str(result)) <= 6:
+            answer = result
+            break
+        elif result % 1 == 0:
+            answer = int(result)
+            break
+    task = f'К {weight} г {percent}%-го раствора вещества добавили {weight_1} г {percent_1}%-го раствора того же вещества. Какова концентрация полученной смеси?'
+    return task, answer
+
+
+def task_4698():
+    '''Генерация аналогичных задач № 4698 с портала https://kuzovkin.info/one_exercise_1/4698
+    К 500 г 12%-го раствора соли добавили 300 г 8%-ного раствора соли. Какова концентрация полученной смеси?'''
+    product = np.random.choice(generate_context('./text_tasks/context.json', 'products'))
+    while True:
+        weight, weight_1 = np.random.randint(100, 1000, size=2)
+        percent, percent_1 = np.random.randint(10, 50, size=2)
+        if percent == percent_1:
+            continue
+        result = (((weight * (percent / 100) ) + (weight_1 * (percent_1 / 100))) / (weight + weight_1)) * 100
+        if result % 1 != 0 and len(str(result)) <= 6:
+            answer = result
+            break
+        elif result % 1 == 0:
+            answer = int(result)
+            break
+    task = f'К {weight} г {percent}%-го раствора {choosing_declension_form(product)} добавили {weight_1} г {percent_1}%-ного раствора {choosing_declension_form(product)}. Какова концентрация полученной смеси?'
+    return task, answer
+
+
+
+def task_4699():
+    '''Генерация аналогичных задач № 4699 с портала https://kuzovkin.info/one_exercise_1/4699
+    Смешали три раствора некоторого вещества: 500 г 12%-го раствора, 200 г 15%-го раствора и 300 г 6%-го раствора.
+    Какова концентрация полученной смеси?'''
+    while True:
+        weight, weight_1, weight_2 = np.random.randint(100, 1000, size=3)
+        percent, percent_1, percent_2 = np.random.randint(10, 50, size=3)
+        if percent == percent_1 or percent_1 == percent_2 or percent == percent_2:
+            continue
+        result = (((weight * (percent / 100) ) + (weight_1 * (percent_1 / 100)) + (weight_2 * (percent_2 / 100))) / (weight + weight_1 + weight_2)) * 100
+        if result % 1 != 0 and len(str(result)) <= 6:
+            answer = result
+            break
+        elif result % 1 == 0:
+            answer = int(result)
+            break
+    task = f'Смешали три раствора некоторого вещества: {weight} г {percent}%-го раствора, {weight_1} г {percent_1}%-го раствора и {weight_2} г {percent_2}%-го раствора. Какова концентрация полученной смеси?'
+    return task, answer
+
+
+
+def task_4700():
+    '''Генерация аналогичных задач № 4700 с портала https://kuzovkin.info/one_exercise_1/4700
+    Смешали три раствора некоторого вещества: 200 г однопроцентного раствора, 300 г двухпроцентного раствора и 300 г трёхпроцентного раствора.
+    Какова концентрация полученной смеси?'''
+    percent, percent_1, percent_2 = random.sample(generate_context('./text_tasks/context.json', 'percents'), 3)
+    percent_list = [percent, percent_1, percent_2]
+    for i in range(len(percent_list)):
+        if percent_list[i] == "однопроцентный":
+            percent_list[i] = 1
+        elif percent_list[i] == "двухпроцентный":
+            percent_list[i] = 2
+        elif percent_list[i] == "трехпроцентный":
+            percent_list[i] = 3
+        elif percent_list[i] == "четырехпроцентный":
+            percent_list[i] = 4
+        else:
+            percent_list[i] = 5
+    while True:
+        weight, weight_1, weight_2 = np.random.randint(100, 1000, size=3)
+        result = ((((weight * percent_list[0]) / 100) + ((weight_1 * percent_list[1]) / 100) + ((weight_2 * percent_list[2]) / 100)) / (weight + weight_1 + weight_2)) * 100
+        if result % 1 != 0 and len(str(result)) <= 6:
+            answer = result
+            break
+        elif result % 1 == 0:
+            answer = int(result)
+            break
+    task = f'Смешали три раствора некоторого вещества: {weight} г {choosing_declension_form(percent, "accs")} раствора, {weight_1} г {choosing_declension_form(percent_1, "accs")} раствора и {weight_2} г {choosing_declension_form(percent_2, "accs")} раствора. Какова концентрация полученной смеси?'
+    return task, answer
+
+
+def task_4702():
+    '''Генерация аналогичных задач № 4702 с портала https://kuzovkin.info/one_exercise_1/4702
+    На сколько процентов изменится площадь прямоугольника, если одну его сторону увеличить на 10%, а другую − уменьшить на 10%'''
+    while True:
+        percent, percent_1 = np.random.randint(10, 100, size=2)
+        result = ((1 + percent/100) * (1 - percent_1/100) - 1) * 100
+        if result % 1 != 0 and len(str(result)) <= 6:
+            if result < 0:
+                answer = f'уменьшится на {abs(result)}'
+                break
+            else:
+                answer = f'увеличится на {result}'
+                break
+        elif result % 1 == 0:
+            if result < 0:
+                answer = f'уменьшится на {int(abs(result))}'
+                break
+            else:
+                answer = f'увеличится на {int(result)}'
+                break
+    task = f'На сколько процентов изменится площадь прямоугольника, если одну его сторону увеличить на {percent}%, а другую − уменьшить на {percent_1}%'
+    return task, answer
+
+
+def task_4703():
+    '''Генерация аналогичных задач № 4703 с портала https://kuzovkin.info/one_exercise_1/4703
+    В первую поездку автомобиль израсходовал 10% бензина, имеющегося в баке, затем во вторую поездку − 25% остатка.
+    После этого в баке осталось на 13 л меньше, чем было первоначально. Сколько литров бензина было в баке первоначально?'''
+    while True:
+        percent, percent_1 = np.random.randint(10, 70, size=2)
+        weight = np.random.randint(1, 50)
+        result = weight / (((percent_1 / 100) * (1 - percent / 100)) + (percent / 100))
+        if result % 1 != 0 and len(str(result)) <= 6:
+            answer = result
+            break
+        elif result % 1 == 0:
+            answer = int(result)
+            break
+    task = f'В первую поездку автомобиль израсходовал {percent}% бензина, имеющегося в баке, затем во вторую поездку − {percent_1}% остатка. После этого в баке осталось на {weight} л меньше, чем было первоначально. Сколько литров бензина было в баке первоначально?'
+    return task, answer
+
+
+def task_4704():
+    '''Генерация аналогичных задач № 4704 с портала https://kuzovkin.info/one_exercise_1/4704
+    В библиотеке имеются книги на английском, французском и немецком языках.
+    Английские книги составляют 36% всех книг на иностранных языках, французские − 75% английских, а остальные 185 книг − немецкие.
+    Сколько книг на иностранных языках в библиотеке?'''
+    lang, lang_1, lang_2 = random.sample(generate_context('./text_tasks/context.json', 'language'), 3)
+    while True:
+        percent, percent_1 = np.random.randint(10, 100, size=2)
+        books = np.random.randint(10, 500)
+        result = books / (1 - ((percent / 100) + (percent / 100 * percent_1 / 100)))
+        if result % 1 == 0 and 0 < result:
+            answer = int(result)
+            break
+    task = f'В библиотеке имеются книги на {choosing_declension_form(lang, "loct")}, {choosing_declension_form(lang_1, "loct")} и {choosing_declension_form(lang_2, "loct")} языках. Книги на {choosing_declension_form(lang, "loct")} составляют {percent}% всех книг на иностранных языках, {lang_1} язык − {percent_1}% книг на {choosing_declension_form(lang, "loct")}, а остальные {books} книги на {choosing_declension_form(lang_2, "loct")}. Сколько книг на иностранных языках в библиотеке?'
+    return task, answer
+
+
+def task_4714():
+    '''Генерация аналогичных задач № 4714 с портала https://kuzovkin.info/one_exercise_1/4714
+    Брюки на 20% дешевле пиджака и на 20% дороже рубашки. На сколько процентов пиджак дороже рубашки?'''
+    cloth, cloth_1, cloth_2 = random.sample(generate_context('./text_tasks/context.json', 'clothes'), 3)
+    while True:
+        percent, percent_1 = np.random.randint(10, 100, size=2)
+        result = ((1 + percent_1 / 100) / (1 - percent / 100) - 1) * 100
+        if result % 1 == 0 and 0 < result < 100:
+            answer = int(result)
+            break
+    task = f'{cloth.capitalize()} на {percent}% дешевле {choosing_declension_form(cloth_1)} и на {percent_1}% дороже {choosing_declension_form(cloth_2)}. На сколько процентов {cloth_1} дороже {choosing_declension_form(cloth_2)}?'
+    return task, answer
+
+
+def task_4727():
+    '''Генерация аналогичных задач № 4727 с портала https://kuzovkin.info/one_exercise_1/4727
+    Цена на товар два раза увеличилась на 10%. На сколько процентов увеличилась цена по сравнению с первоначальной?'''
+    value = np.random.choice(['два', 'три', 'четыре'])
+    while True:
+        percent = np.random.randint(1, 100)
+        if value == 'два':
+            result = ((1 + percent / 100) ** 2 - 1) * 100
+        elif value == 'четыре':
+            result = ((1 + percent / 100) ** 4 - 1) * 100
+        else:
+            result = ((1 + percent / 100) ** 3 - 1) * 100
+
+        if result % 1 != 0 and len(str(result)) <= 6:
+            answer = result
+            break
+        elif result % 1 == 0:
+            answer = int(result)
+            break
+    task = f'Цена на товар {value} раза увеличилась на {percent}%. На сколько процентов увеличилась цена по сравнению с первоначальной?'
+    return task, answer
+
+
+def task_4729():
+    '''Генерация аналогичных задач № 4729 с портала https://kuzovkin.info/one_exercise_1/4729
+    Население города N в среднем увеличивается на 2% в год. На сколько процентов увеличится население за три года?'''
+    value = np.random.choice(['два', 'три', 'четыре'])
+    while True:
+        percent = np.random.randint(1, 100)
+        if value == 'два':
+            result = ((1 + percent / 100) ** 2 - 1) * 100
+        elif value == 'четыре':
+            result = ((1 + percent / 100) ** 4 - 1) * 100
+        else:
+            result = ((1 + percent / 100) ** 3 - 1) * 100
+
+        if result % 1 != 0 and len(str(result)) <= 6:
+            answer = result
+            break
+        elif result % 1 == 0:
+            answer = int(result)
+            break
+    task = f'Население города N в среднем увеличивается на {percent}% в год. На сколько процентов увеличится население за {value} года?'
+    return task, answer
+
+
+def task_4732():
+    '''Генерация аналогичных задач № 4732 с портала https://kuzovkin.info/one_exercise_1/4732
+    В связи с поступлением новой коллекции одежды цена на старую коллекцию снизилась сначала на 10%, а потом ещё на 30%.
+    На сколько процентов снизилась цена по сравнению с первоначальной?'''
+    while True:
+        percent, percent_1 = np.random.randint(10, 100, size=2)
+        result = 100 - ((100 - percent) * (100 - percent_1) / 100)
+        if result % 1 == 0:
+            answer = int(result)
+            break
+    task = f'В связи с поступлением новой коллекции одежды цена на старую коллекцию снизилась сначала на {percent}%, а потом ещё на {percent_1}%. На сколько процентов снизилась цена по сравнению с первоначальной?'
+    return task, answer
+
+
+def task_4739():
+    '''Генерация аналогичных задач № 4739 с портала https://kuzovkin.info/one_exercise_1/4739
+    Вкладчик вложил деньги в банк на 3 года под 20% годовых с капитализацией. На сколько процентов увеличится вклад по итогам трёх лет?'''
+    while True:
+        percent, year = np.random.randint(10, 100), np.random.randint(3, 10)
+        result = ((1 + percent / 100)**year - 1) * 100
+        if result % 1 != 0 and len(str(result)) <= 6:
+            answer = result
+            break
+        elif result % 1 == 0:
+            answer = int(result)
+            break
+    task = f'Вкладчик вложил деньги в банк на {year} {"года" if 2 <= year <= 4 else "лет"} под {percent}% годовых с капитализацией. На сколько процентов увеличится вклад по окончанию срока?'
+    return task, answer
+
+
+
+def task_4740():
+    '''Генерация аналогичных задач № 4740 с портала https://kuzovkin.info/one_exercise_1/4740
+    Вкладчик вложил деньги в банк на вклад «До востребования» под 4% годовых.
+    За сколько лет сумма вклада увеличится в два раза? При решении данной задачи можете использовать калькулятор.'''
+    while True:
+        percent = np.random.randint(3, 20)
+        result =  -(-log(2) / log(1 + percent / 100) // 1)
+        if result % 1 == 0:
+            answer = int(result)
+            break
+    task = f'Вкладчик вложил деньги в банк на вклад «До востребования» под {percent}% годовых. За сколько лет сумма вклада увеличится в два раза?'
+    return task, answer
+
+
+def task_4744():
+    '''Генерация аналогичных задач № 4744 с портала https://kuzovkin.info/one_exercise_1/4744
+    Акционер компании “Математика Forever” решил уберечь деньги во время финансового кризиса и вложить их в какой-нибудь надёжный банк.
+    Он выбрал ММБ − Московский Математический Банк (там работают только математики, так что банк очень надёжный).
+    В ММБ есть много видов вкладов, но наш акционер остановил свой выбор на двух.
+    А) Вклад на два года, 12% годовых, проценты выплачиваются в конце срока.
+    Б) Вклад на два года, 11% годовых, проценты выплачиваются в конце каждого года и причисляются к сумме вклада (капитализация).
+    Какую прибыль получит наш акционер, если положит 1000000000 рублей на второй вклад?'''
+    value = np.random.choice(["второй", "первый"])
+    while True:
+        percent, percent_1 = np.random.randint(10, 20, size=2)
+        if percent <= percent_1:
+            continue
+        money = np.random.randint(100000, 10000000)
+        if money % 1000 != 0:
+            continue
+
+        if value == "первый":
+            result_A = ((money / 100) * percent) * 2
+            if result_A % 1 == 0:
+                answer = int(result_A)
+                break
+        else:
+            result_B = money * (1 + percent_1 / 100) ** 2 - money
+            if result_B % 1 == 0:
+                answer = int(result_B)
+                break
+
+    task = f'Акционер компании решил вложить деньги в банк. В банке есть много видов вкладов, но акционер остановил свой выбор на двух. А) Вклад на два года, {percent}% годовых, проценты выплачиваются в конце срока. Б) Вклад на два года, {percent_1}% годовых, проценты выплачиваются в конце каждого года и причисляются к сумме вклада (капитализация). Какую прибыль получит наш акционер, если положит {money} рублей на {value} вклад?'
     return task, answer
