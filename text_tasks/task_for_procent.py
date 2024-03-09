@@ -2045,3 +2045,417 @@ def task_8410():
             break
     task = f'Найдите: {number}% от {number_1}'
     return task, answer
+
+
+def task_8412():
+    '''Генерация аналогичных задач № 8412 с портала https://kuzovkin.info/one_exercise_1/8412
+    Найдите: 150% от 342'''
+    while True:
+        number, number_1 = np.random.randint(100, 1000, size=2)
+        if number % 100 == 0:
+            continue
+        result = number_1 * (number / 100)
+        if result % 1 == 0:
+            answer = int(result)
+            break
+    task = f'Найдите: {number}% от {number_1}'
+    return task, answer
+
+
+
+def task_8416():
+    '''Генерация аналогичных задач № 8416 с портала https://kuzovkin.info/one_exercise_1/8416
+    Найдите: 100,01% от 200'''
+    while True:
+        number, number_1 = round(np.random.uniform(100, 1000), 2), np.random.randint(100, 1000)
+        if number % 1 == 0:
+            continue
+        result = number_1 * (number / 100)
+        if result % 1 != 0 and len(str(result)) <= 6:
+            answer = result
+            break
+        elif result % 1 == 0:
+            answer = int(result)
+            break
+    task = f'Найдите: {number}% от {number_1}'
+    return task, answer
+
+
+def task_8419():
+    '''Генерация аналогичных задач № 8419 с портала https://kuzovkin.info/one_exercise_1/8419
+    Найдите: 8% от 1250'''
+    while True:
+        number, number_1 = np.random.randint(1, 100), np.random.randint(1000, 10000)
+        if number % 1000 == 0:
+            continue
+        result = number_1 * (number / 100)
+        if result % 1 != 0 and len(str(result)) <= 6:
+            answer = result
+            break
+        elif result % 1 == 0:
+            answer = int(result)
+            break
+    task = f'Найдите: {number}% от {number_1}'
+    return task, answer
+
+
+def task_8433():
+    '''Генерация аналогичных задач № 8433 с портала https://kuzovkin.info/one_exercise_1/8433
+    Найдите целое, если 3% равны 15'''
+    while True:
+        number, number1 = np.random.randint(1, 100, size=2)
+        if number == number1:
+          continue
+        result = number1 / (number / 100)
+        if result % 1 == 0:
+            answer = int(result)
+            break
+    task = f'Найдите целое, если {number}% равны {number1}'
+    return task, answer
+
+
+def task_8437():
+    '''Генерация аналогичных задач № 8437 с портала https://kuzovkin.info/one_exercise_1/8437
+    Найдите целое, если 20% равны 140'''
+    while True:
+        number, number1 = np.random.randint(1, 100), np.random.randint(100, 1000)
+        result = number1 / (number / 100)
+        if result % 1 == 0:
+            answer = int(result)
+            break
+    task = f'Найдите целое, если {number}% равны {number1}'
+    return task, answer
+
+
+
+def task_8445():
+    '''Генерация аналогичных задач № 8445 с портала https://kuzovkin.info/one_exercise_1/8445
+    Найдите целое, если 9,9% равны 396'''
+    while True:
+        number, number1 = round(np.random.uniform(1, 100),2), np.random.randint(100, 1000)
+        if number % 1 == 0:
+            continue
+        result = number1 / (number / 100)
+        if result % 1 != 0 and len(str(result)) <= 6:
+            answer = result
+            break
+        elif result % 1 == 0:
+            answer = int(result)
+            break
+    task = f'Найдите целое, если {number}% равны {number1}'
+    return task, answer
+
+
+def task_8450():
+    '''Генерация аналогичных задач № 8450 с портала https://kuzovkin.info/one_exercise_1/8450
+    Найдите целое, если 2 2/3 % равны 16'''
+    while True:
+        number, number1, number2 = np.random.randint(1, 20, size=3)
+        number3 = np.random.randint(1, 100)
+        if number1 >= number2:
+          continue
+        fract = number + (number1 / number2)
+        result = number3 / (fract / 100)
+        if result % 1 != 0 and len(str(result)) <= 6:
+            answer = fraction_latex_format(result)
+            break
+    task = f'Найдите целое, если ${number}\\frac{{{number1}}}{{{number2}}}$% равны {number3}'
+    return task, answer
+
+
+def task_8451():
+    '''Генерация аналогичных задач № 8451 с портала https://kuzovkin.info/one_exercise_1/8451
+    Найдите целое, если 14 1/7 % равны 7 8/13'''
+    while True:
+        number, number1, number2 = np.random.randint(1, 20, size=3)
+        number3, number4, number5 = np.random.randint(1, 20, size=3)
+        if number1 >= number2 or number4 >= number5:
+          continue
+        fract = number + (number1 / number2)
+        fract1 = number3 + (number4 / number5)
+        result = fract1 / (fract / 100)
+        if result % 1 != 0 and len(str(result)) <= 6:
+            answer = fraction_latex_format(result)
+            break
+    task = f'Найдите целое, если ${number}\\frac{{{number1}}}{{{number2}}}$% равны ${number3}\\frac{{{number4}}}{{{number5}}}$'
+    return task, answer
+
+
+
+def task_8462():
+    '''Генерация аналогичных задач № 8462 с портала https://kuzovkin.info/one_exercise_1/8462
+    В библиотеке 20000 книг, из них 1500 книг – это словари для перевода с одного языка на другой,
+    из них 75 книг – это англо-русские и русско-английские словари.
+    Сколько процентов от всех книг в библиотеке составляют словари?'''
+    while True:
+        book, book_1, book_2 = np.random.randint(10000, 50000), np.random.randint(1000, 10000), np.random.randint(50, 1000)
+        result = (book_1 / book) * 100
+        if result % 1 != 0 and len(str(result)) <= 6:
+            answer = result
+            break
+        elif result % 1 == 0:
+            answer = int(result)
+            break
+    task = f'В библиотеке {book} книг, из них {book_1} книг – это словари для перевода с одного языка на другой, из них {book_2} книг – это англо-русские и русско-английские словари. Сколько процентов от всех книг в библиотеке составляют словари?'
+    return task, answer
+
+
+def task_8469():
+    '''Генерация аналогичных задач № 8469 с портала https://kuzovkin.info/one_exercise_1/8469
+    Переведите проценты в десятичную дробь: 2%'''
+    while True:
+        number = np.random.randint(1, 100)
+        result = number / 100
+        if len(str(result)) <= 6:
+            answer = result
+            break
+    task = f'Переведите проценты в десятичную дробь: {number}%'
+    return task, answer
+
+
+def task_8470():
+    '''Генерация аналогичных задач № 8470 с портала https://kuzovkin.info/one_exercise_1/8470
+    Переведите проценты в десятичную дробь: 75%'''
+    while True:
+        number = np.random.randint(1, 100)
+        result = number / 100
+        if len(str(result)) <= 6:
+            answer = result
+            break
+    task = f'Переведите проценты в десятичную дробь: {number}%'
+    return task, answer
+
+
+def task_8473():
+    '''Генерация аналогичных задач № 8473 с портала https://kuzovkin.info/one_exercise_1/8473
+    Переведите проценты в десятичную дробь: 1,7%'''
+    while True:
+        number = round(np.random.uniform(0,10),1)
+        if number % 1 == 0:
+            continue
+        result = number / 100
+        if len(str(result)) <= 6:
+            answer = result
+            break
+    task = f'Переведите проценты в десятичную дробь: {number}%'
+    return task, answer
+
+
+def task_8475():
+    '''Генерация аналогичных задач № 8475 с портала https://kuzovkin.info/one_exercise_1/8475
+    Переведите проценты в десятичную дробь: 0,03%'''
+    while True:
+        number = round(np.random.uniform(0,1),2)
+        if number % 1 == 0:
+            continue
+        result = number / 100
+        if len(str(result)) <= 6:
+            answer = result
+            break
+    task = f'Переведите проценты в десятичную дробь: {number}%'
+    return task, answer
+
+
+def task_8484():
+    '''Генерация аналогичных задач № 8484 с портала https://kuzovkin.info/one_exercise_1/8484
+    Переведите проценты в десятичную дробь: 0,03%'''
+    while True:
+        number = round(np.random.uniform(100,1000),1)
+        if number % 1 == 0:
+            continue
+        result = number / 100
+        if len(str(result)) <= 6:
+            answer = result
+            break
+    task = f'Переведите проценты в десятичную дробь: {number}%'
+    return task, answer
+
+
+def task_8487():
+    '''Генерация аналогичных задач № 8487 с портала https://kuzovkin.info/one_exercise_1/8487
+    Переведите проценты в десятичную дробь: 1 2/3%'''
+    while True:
+        number, number_1, number_2 = np.random.randint(1, 10, size=3)
+        if number_1 >= number_2:
+            continue
+        result = (number + (number_1 / number_2)) / 100
+        if len(str(result)) <= 6:
+            answer = result
+            break
+    task = f'Переведите проценты в десятичную дробь: ${number}\\frac{{{number_1}}}{{{number_2}}}$%'
+    return task, answer
+
+
+def task_8488():
+    '''Генерация аналогичных задач № 8488 с портала https://kuzovkin.info/one_exercise_1/8488
+    Переведите проценты в десятичную дробь: 66 2/3%'''
+    while True:
+        number, number_1, number_2 = np.random.randint(1, 100, size=3)
+        if number_1 >= number_2:
+            continue
+        result = (number + (number_1 / number_2)) / 100
+        if len(str(result)) <= 6:
+            answer = result
+            break
+    task = f'Переведите проценты в десятичную дробь: ${number}\\frac{{{number_1}}}{{{number_2}}}$%'
+    return task, answer
+
+
+
+def task_8492():
+    '''Генерация аналогичных задач № 8492 с портала https://kuzovkin.info/one_exercise_1/8492
+    Переведите проценты в десятичную дробь: 2,34%'''
+    while True:
+        number = round(np.random.uniform(0,10),2)
+        if number % 1 == 0:
+            continue
+        result = number / 100
+        if len(str(result)) <= 6:
+            answer = result
+            break
+    task = f'Переведите проценты в десятичную дробь: {number}%'
+    return task, answer
+
+
+
+def task_8500():
+    '''Генерация аналогичных задач № 8500 с портала https://kuzovkin.info/one_exercise_1/8500
+    Переведите дроби в проценты: 0,1'''
+    while True:
+        number = round(np.random.uniform(0,10),1)
+        if number % 1 == 0:
+            continue
+        result = number * 100
+        if result % 1 == 0:
+            answer = int(result)
+            break
+    task = f'Переведите дроби в проценты: {number}'
+    return task, answer
+
+
+def task_8501():
+    '''Генерация аналогичных задач № 8501 с портала https://kuzovkin.info/one_exercise_1/8501
+    Переведите дроби в проценты: 0,25'''
+    while True:
+        number = round(np.random.uniform(0,10),2)
+        if number % 1 == 0:
+            continue
+        result = number * 100
+        if result % 1 == 0:
+            answer = int(result)
+            break
+    task = f'Переведите дроби в проценты: {number}'
+    return task, answer
+
+
+def task_8502():
+    '''Генерация аналогичных задач № 8502 с портала https://kuzovkin.info/one_exercise_1/8502
+    Переведите дроби в проценты: 0,4'''
+    while True:
+        number = round(np.random.uniform(0,10),2)
+        if number % 1 == 0:
+            continue
+        result = number * 100
+        if result % 1 == 0:
+            answer = int(result)
+            break
+    task = f'Переведите дроби в проценты: {number}'
+    return task, answer
+
+
+def task_8506():
+    '''Генерация аналогичных задач № 8506 с портала https://kuzovkin.info/one_exercise_1/8506
+    Переведите дроби в проценты: 0,0005'''
+    while True:
+        number = round(np.random.uniform(0,1),4)
+        if number % 1 == 0:
+            continue
+        result = number * 100
+        if result % 1 != 0 and len(str(result)) <= 6:
+            answer = result
+            break
+    task = f'Переведите дроби в проценты: {number}'
+    return task, answer
+
+
+
+def task_8512():
+    '''Генерация аналогичных задач № 8512 с портала https://kuzovkin.info/one_exercise_1/8512
+    Переведите дроби в проценты: 1,23'''
+    while True:
+        number = round(np.random.uniform(1,100),2)
+        if number % 1 == 0:
+            continue
+        result = number * 100
+        if result % 1 == 0:
+            answer = int(result)
+            break
+    task = f'Переведите дроби в проценты: {number}'
+    return task, answer
+
+
+def task_8515():
+    '''Генерация аналогичных задач № 8515 с портала https://kuzovkin.info/one_exercise_1/8515
+    Переведите дроби в проценты: 1,8'''
+    while True:
+        number = round(np.random.uniform(1,100),2)
+        if number % 1 == 0:
+            continue
+        result = number * 100
+        if result % 1 == 0:
+            answer = int(result)
+            break
+    task = f'Переведите дроби в проценты: {number}'
+    return task, answer
+
+
+def task_8539():
+    '''Генерация аналогичных задач № 8539 с портала https://kuzovkin.info/one_exercise_1/8539
+    Переведите дроби в проценты: 3/4'''
+    while True:
+        number, number_1 = np.random.randint(1, 10, size=2)
+        if number >= number_1:
+            continue
+        result = (number / number_1) * 100
+        if result % 1 == 0:
+            answer = int(result)
+            break
+    task = f'Переведите дроби в проценты: \\frac{{{number}}}{{{number_1}}}$'
+    return task, answer
+
+
+def task_8542():
+    '''Генерация аналогичных задач № 8542 с портала https://kuzovkin.info/one_exercise_1/8542
+    Банк начисляет ежегодно 9% от вложенной суммы. Сколько рублей будет начислено через год на вклад 450000 рублей?'''
+    while True:
+        percent, money = np.random.randint(5, 15), np.random.randint(100000, 1000000)
+        if money % 1000 != 0:
+            continue
+        year = np.random.choice(["год", "два года", "три года"])
+        if year == "год":
+            result = money * (1 + percent / 100)
+        elif year == "два года":
+            result = money * (1 + percent / 100)**2
+        else:
+            result = money * (1 + percent / 100)**3
+        if result % 1 == 0:
+            answer = int(result)
+            break
+    task = f'Банк начисляет ежегодно {percent}% от вложенной суммы. Сколько рублей будет начислено через {year} на вклад {money} рублей?'
+    return task, answer
+
+
+def task_8544():
+    '''Генерация аналогичных задач № 8542 с портала https://kuzovkin.info/one_exercise_1/8542
+    Продавец купил товар по цене 1100 рублей за единицу товара и планирует получить при продаже прибыль 15%. По какой цене он должен продавать товар?'''
+    while True:
+        thing = np.random.choice(generate_context('./text_tasks/context.json', 'things'))
+        if thing == generate_context('task_generator/text_tasks/context.json', 'things')[4]:
+            continue
+        percent, money = np.random.randint(10, 60), np.random.randint(1000, 10000)
+        result = (money * (percent / 100)) + money
+        if result % 1 == 0:
+            answer = int(result)
+            break
+    task = f'Продавец купил {choosing_declension_form(thing, "accs")} по цене {money} рублей за единицу {choosing_declension_form(thing)} и планирует получить при продаже прибыль {percent}%. По какой цене он должен продавать {choosing_declension_form(thing, "accs")}?'
+    return task, answer
