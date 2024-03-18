@@ -16,7 +16,11 @@ def task_642():
             answer = int(result)
             break
     task = f'Группы сплавов на основе {choosing_declension_form(metal)}, содержащих {choosing_declension_form(metal_1)}, {choosing_declension_form(metal_2)} и {choosing_declension_form(metal_3)}. В сплаве содержится {number}% {choosing_declension_form(metal_1, "gent")}, {number1}% {choosing_declension_form(metal_2, "gent")} и {number2}% {choosing_declension_form(metal_3, "gent")}. Сколько процентов {choosing_declension_form(metal, "gent")} содержится в сплаве? '
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
+
 
 
 def task_645():
@@ -34,7 +38,11 @@ def task_645():
             answer = result
             break
     task = f'Смесь газов состоит из {choosing_declension_form(gas)} ({number}% по объёму), {choosing_declension_form(gas_1)} ({number1}%), {choosing_declension_form(gas_2)} ({number2}%). Кроме этих газов, содержатся ещё: {gas_3}, {gas_4}, {gas_5}, {gas_6}, {gas_7}. Каково процентное содержание этих газов?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
+
 
 
 def task_930():
@@ -51,7 +59,11 @@ def task_930():
             answer = f'{ans}:{ans1}:{ans2}:{ans3}'
             break
     task = f'При анализе вещества весом в {result} г обнаружили, что он содержит {number} г {choosing_declension_form(gas)}, {number1} г {choosing_declension_form(gas_1)}, {number2} г {choosing_declension_form(gas_2)}, {number3} г {choosing_declension_form(gas_3)}, остальное составляет зола. Определить процентное содержание указанных веществ.'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
+
 
 
 def task_1039():
@@ -67,7 +79,11 @@ def task_1039():
             answer = int(result)
             break
     task = f'В растворе массой {number} г содержится {number1} г {choosing_declension_form(product)}. Какова концентрация этого раствора?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
+
 
 
 def task_1047():
@@ -84,7 +100,11 @@ def task_1047():
             answer = int(result)
             break
     task = f'В семенах {choosing_declension_form(oil)} нового сорта содержится {number}% масла. Сколько килограммов таких семян надо взять, чтобы в них содержалось {number1} кг масла?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
+
 
 
 def task_611():
@@ -98,7 +118,11 @@ def task_611():
             answer = int(result)
             break
     task = f'Оптовая цена товара на складе {number} р. Торговая надбавка в магазине составляет {number1}%. Сколько стоит этот товар в магазине?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
+
 
 
 def task_621():
@@ -115,7 +139,11 @@ def task_621():
             answer = int(result)
             break
     task = f'Проезд на {choosing_declension_form(transport, "loct")} подорожал с {number} рублей до {number1} рублей. На сколько процентов повысилась цена проезда?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
+
 
 
 def task_626():
@@ -130,7 +158,10 @@ def task_626():
             answer = int(result)
             break
     task = f'Цена на товар повысилась на {number}% и составила {number1} рубля. Найдите первоначальную цену товара'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_638():
@@ -144,7 +175,10 @@ def task_638():
             answer = int(result)
             break
     task = f'В голосовании приняли участие {number}% {choosing_declension_form(value)}. Сколько процентов {choosing_declension_form(value)} не пришли на выборы?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_647():
@@ -159,7 +193,10 @@ def task_647():
             answer = int(result)
             break
     task = f'Найдите число, {number}% которого на {number1} больше {number2}% его.'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_659():
@@ -172,7 +209,10 @@ def task_659():
             answer = int(result)
             break
     task = f'Найдите: {number}% от {number1}'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_661():
@@ -187,7 +227,10 @@ def task_661():
             answer = result
             break
     task = f'Найдите: {number}% от {number1}'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_673():
@@ -202,7 +245,10 @@ def task_673():
             answer = result
             break
     task = f'Найдите: {number}% от {number1}'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_682():
@@ -217,7 +263,10 @@ def task_682():
             answer = int(result)
             break
     task = f'Найдите целое, если {number}% равны {number1}'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_722():
@@ -232,7 +281,10 @@ def task_722():
             answer = result
             break
     task = f'Переведите проценты в десятичную дробь: {number}%'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_757():
@@ -247,7 +299,10 @@ def task_757():
             answer = result
             break
     task = f'Переведите дроби в проценты: {number}'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_760():
@@ -262,7 +317,10 @@ def task_760():
             answer = result
             break
     task = f'Переведите дроби в проценты: {number}'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_763():
@@ -277,7 +335,10 @@ def task_763():
             answer = result
             break
     task = f'Переведите дроби в проценты: {number}'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_781():
@@ -290,7 +351,10 @@ def task_781():
             answer = result
             break
     task = f'Переведите дроби в проценты: $\\frac{{{number}}}{{{number1}}}$'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_794():
@@ -305,7 +369,10 @@ def task_794():
             answer = int(result)
             break
     task = f'В избирательном округе {number} {choosing_declension_form(value)}. На выборы пришли {number1}% {choosing_declension_form(value)}. Сколько человек приняли участие в голосовании?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_833():
@@ -321,7 +388,10 @@ def task_833():
             answer = int(result)
             break
     task = f'Мальчик {name} прочитал в первый день {number}% {choosing_declension_form(book)}, во второй − {number1}% оставшейся части, а в третий − оставшиеся {number2} страниц. Сколько всего страниц было в {choosing_declension_form(book, "loct")}?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_851():
@@ -337,10 +407,16 @@ def task_851():
     task = f'Цена на {choosing_declension_form(value, "accs")} сначала увеличилась на {number}% процент, а потом уменьшилась на {number1}%. На сколько процентов и в какую сторону изменилась цена {choosing_declension_form(value)} по сравнению с первоначальной?'
     if result < 0:
         answer = f'уменьшилась на {abs(result)}'
-        return task, answer
+        return {
+      "condition": task,
+      "answer": answer
+    }
     else:
         answer = f'увеличилась на {result}'
-        return task, answer
+        return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_855():
@@ -363,10 +439,16 @@ def task_855():
     task = f'Цена на проезд {value} раза увеличилась на {number}%. На сколько процентов увеличилась цена по сравнению с первоначальной?'
     if result * 10 % 10 == 0:
         answer = int(result)
-        return task, answer
+        return {
+      "condition": task,
+      "answer": answer
+    }
     else:
         answer = result
-        return task, answer
+        return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_870():
@@ -394,7 +476,10 @@ def task_870():
             answer = int(result)
             break
     task = f'Акционер решил уберечь деньги и вложить их в банк. Где вклад на {value} года, {number}% годовых, проценты выплачиваются в конце срока. Какую прибыль получит акционер, если положит {number1} рублей?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_918():
@@ -411,7 +496,10 @@ def task_918():
             answer = int(result)
             break
     task = f'Колхоз засеял {choosing_declension_form(value, "ablt")} {number} га, что составляет {number1}% всего участка, намеченного под {choosing_declension_form(value, "accs")}. Определить размеры этого участка.'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_925():
@@ -428,7 +516,10 @@ def task_925():
             answer = result
             break
     task = f'Военные специалисты считали, что продвижение вперёд с боями на {number} км в сутки является пределом. Войска показали невиданно стремительный темп наступления с боями по {number1} км в сутки. На сколько процентов были превзойдены войском нормы, считавшиеся предельными?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4465():
@@ -443,7 +534,10 @@ def task_4465():
             answer = f'{int(result)}:{int(result1)}'
             break
     task = f'{number} г {choosing_declension_form(metal)} сплавили с {number1} г {choosing_declension_form(metal_1)}. Найдите концентрацию {choosing_declension_form(metal)} и {choosing_declension_form(metal_1)} в полученном сплаве.'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4468():
@@ -458,7 +552,10 @@ def task_4468():
             answer = f'{int(result)}:{int(result1)}'
             break
     task = f'Концентрация {choosing_declension_form(acid)} кислоты в растворе составляет {number}%. Сколько чистой {choosing_declension_form(acid)} кислоты и сколько воды содержится в {number1} г раствора?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4471():
@@ -480,7 +577,10 @@ def task_4471():
             answer = int(result)
             break
     task = f'Сколько воды надо добавить к {number} г {choosing_declension_form(product)}, чтобы получить {percent} раствор {choosing_declension_form(product)}?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4474():
@@ -502,7 +602,10 @@ def task_4474():
             answer = int(result)
             break
     task = f'Сколько {choosing_declension_form(product)} надо добавить к {number} г воды, чтобы получить {percent} раствор {choosing_declension_form(product)}?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4488():
@@ -525,7 +628,10 @@ def task_4488():
             answer = int(result)
             break
     task = f'Стоимость {choosing_declension_form(value)} с учётом {percent} скидки по дисконтной карте составила {number} рубля. Сколько рублей пришлось бы заплатить за {choosing_declension_form(value, "accs")} при отсутствии дисконтной карты?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4497():
@@ -542,7 +648,10 @@ def task_4497():
             answer = int(result)
             break
     task = f'В первом квартале доля рынка, занимаемая {choosing_declension_form(product, "ablt")} товарами, увеличилась с {number}% до {number1}% процентов, а во втором − с {number1}% до {number2}%. На сколько процентов увеличилась доля рынка во 2 квартале?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4498():
@@ -559,7 +668,10 @@ def task_4498():
             answer = int(result)
             break
     task = f'В первом квартале доля рынка, занимаемая {choosing_declension_form(product, "ablt")} товарами, увеличилась с {number}% до {number1}% процентов, а во втором − с {number1}% до {number2}%. В каком квартале увеличение было более значительным(в ответ написать разность процентов между первым и вторым)?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4501():
@@ -577,7 +689,10 @@ def task_4501():
             answer = int(result)
             break
     task = f'{product.capitalize()} при сушки теряет {percent}% своего веса. Сколько килограммов {choosing_declension_form(product)} нужно взять, чтобы получить {number} кг сушеного?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4510():
@@ -593,7 +708,10 @@ def task_4510():
             answer = int(result)
             break
     task = f'{value.capitalize()} проехали {number}% пути на поезде и {number1}% пути на автобусе. Какую часть пути осталось пройти {choosing_declension_form(value, "datv")}?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4512():
@@ -609,8 +727,10 @@ def task_4512():
             answer = int(result)
             break
     task = f'Сплав {choosing_declension_form(metal)}, {choosing_declension_form(metal_1)} и {choosing_declension_form(metal_2)} содержит {number}% {choosing_declension_form(metal)} и {number1}% {choosing_declension_form(metal_1)}. Сколько в этом сплаве {choosing_declension_form(metal_2)}?'
-    return task, answer
-
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_4517():
     '''Генерация аналогичных задач № 4517 с портала https://kuzovkin.info/one_exercise_1/4517
@@ -630,8 +750,10 @@ def task_4517():
             answer = result
             break
     task = f'Сплав, кроме {choosing_declension_form(metal)}, содержит {choosing_declension_form(metal_1, "accs")} ({number}%), {choosing_declension_form(metal_2, "accs")} ({number1}%), {choosing_declension_form(metal_3, "accs")} ({number2}%), {choosing_declension_form(metal_4, "accs")} ({number3}%), {choosing_declension_form(metal_5, "accs")} ({number4}%), {choosing_declension_form(metal_6, "accs")} ({number5}%) и {choosing_declension_form(metal_7, "accs")} ({number6}%). Сколько в таком сплаве процентов {choosing_declension_form(metal)}?'
-    return task, answer
-
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_4521():
     '''Генерация аналогичных задач № 4521 с портала https://kuzovkin.info/one_exercise_1/4521
@@ -655,7 +777,10 @@ def task_4521():
         answer = f'{hours}:{minutes}:{seconds}'
         break
     task = f'Который теперь час, если остающаяся часть суток равна {number}% протекшей части?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4526():
@@ -670,7 +795,10 @@ def task_4526():
             answer = result
             break
     task = f'Найдите: {number}% от {number1}'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4535():
@@ -685,7 +813,10 @@ def task_4535():
             answer = result
             break
     task = f'Найдите: {number}% от {number1}'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4542():
@@ -700,7 +831,10 @@ def task_4542():
             answer = result
             break
     task = f'Найдите: {number}% от {number1}'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4543():
@@ -715,7 +849,10 @@ def task_4543():
             answer = result
             break
     task = f'Найдите: {number}% от {number1}'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4547():
@@ -730,7 +867,10 @@ def task_4547():
             answer = result
             break
     task = f'Найдите: {number}% от {number1}'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4551():
@@ -745,7 +885,10 @@ def task_4551():
             answer = result
             break
     task = f'Найдите: {number}% от {number1}'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4556():
@@ -758,7 +901,10 @@ def task_4556():
             answer = int(result)
             break
     task = f'Найдите целое, если {number}% равны {number1}'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4557():
@@ -771,7 +917,10 @@ def task_4557():
             answer = int(result)
             break
     task = f'Найдите целое, если {number}% равны {number1}'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4559():
@@ -784,7 +933,10 @@ def task_4559():
             answer = int(result)
             break
     task = f'Найдите целое, если {number}% равны {number1}'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4562():
@@ -797,7 +949,10 @@ def task_4562():
             answer = int(result)
             break
     task = f'Найдите целое, если {number}% равны {number1}'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4564():
@@ -812,7 +967,10 @@ def task_4564():
             answer = int(result)
             break
     task = f'Найдите целое, если {number}% равны {number1}'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4565():
@@ -827,7 +985,10 @@ def task_4565():
             answer = int(result)
             break
     task = f'Найдите целое, если {number}% равны {number1}'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4566():
@@ -842,7 +1003,10 @@ def task_4566():
             answer = int(result)
             break
     task = f'Найдите целое, если {number}% равны {number1}'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4568():
@@ -857,7 +1021,10 @@ def task_4568():
             answer = int(result)
             break
     task = f'Найдите целое, если {number}% равны {number1}'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4571():
@@ -872,7 +1039,10 @@ def task_4571():
             answer = int(result)
             break
     task = f'Найдите целое, если {number}% равны {number1}'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4574():
@@ -887,8 +1057,10 @@ def task_4574():
             answer = int(result)
             break
     task = f'Найдите целое, если {number}% равны {number1}'
-    return task, answer
-
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_4575():
     '''Генерация аналогичных задач № 4575 с портала https://kuzovkin.info/one_exercise_1/4575
@@ -902,7 +1074,10 @@ def task_4575():
             answer = int(result)
             break
     task = f'Найдите целое, если {number}% равны {number1}'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4576():
@@ -919,7 +1094,10 @@ def task_4576():
             answer = fraction_latex_format(result)
             break
     task = f'Найдите целое, если {number}% равны ${number1}\\frac{{{number2}}}{{{number3}}}$'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4579():
@@ -934,7 +1112,10 @@ def task_4579():
             answer = int(result)
             break
     task = f'Найдите целое, если {number}% равны {number1}'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4581():
@@ -949,7 +1130,10 @@ def task_4581():
             answer = int(result)
             break
     task = f'Найдите целое, если {number}% равны {number1}'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4583():
@@ -968,7 +1152,10 @@ def task_4583():
             answer = int(result)
             break
     task = f'В библиотеке {book} книг. Книги на русском языке составляют {percent}% всех книг, из них {percent_1}% − {value}. Сколько {choosing_declension_form(value)} на русском языке в библиотеке?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4587():
@@ -985,7 +1172,10 @@ def task_4587():
             answer = int(result)
             break
     task = f'За год число {choosing_declension_form(value)} в библиотеке увеличилось на {percent}% и стало равным {book}. Сколько {choosing_declension_form(value)} было в библиотеке в прошлом году?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4592():
@@ -1003,7 +1193,10 @@ def task_4592():
             answer = f'{result}:{result_1}'
             break
     task = f'Из вещества получается {percent}% {choosing_declension_form(product)} и {percent_1}% {choosing_declension_form(product_1)}, остальное – потери. Сколько {choosing_declension_form(product)} и {choosing_declension_form(product_1)} получится из {tone} т вещества?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4603():
@@ -1018,7 +1211,10 @@ def task_4603():
             answer = result
             break
     task = f'Переведите проценты в десятичную дробь: {number}'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4604():
@@ -1031,7 +1227,10 @@ def task_4604():
             answer = result
             break
     task = f'Переведите проценты в десятичную дробь: {number}%'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4607():
@@ -1047,7 +1246,10 @@ def task_4607():
             answer = result
             break
     task = f'Переведите проценты в десятичную дробь: {number}%'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4608():
@@ -1063,7 +1265,10 @@ def task_4608():
             answer = result
             break
     task = f'Переведите проценты в десятичную дробь: {number}%'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4612():
@@ -1078,7 +1283,10 @@ def task_4612():
             answer = result
             break
     task = f'Переведите проценты в десятичную дробь: ${number}\\frac{{{number1}}}{{{number2}}}$%'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4615():
@@ -1093,7 +1301,10 @@ def task_4615():
             answer = result
             break
     task = f'Переведите проценты в десятичную дробь: $\\frac{{{number}}}{{{number1}}}$%'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4620():
@@ -1108,7 +1319,10 @@ def task_4620():
             answer = result
             break
     task = f'Переведите проценты в десятичную дробь: {number}%'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4622():
@@ -1121,7 +1335,10 @@ def task_4622():
             answer = result
             break
     task = f'Переведите проценты в десятичную дробь: {number}%'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4623():
@@ -1136,7 +1353,10 @@ def task_4623():
             answer = result
             break
     task = f'Переведите проценты в десятичную дробь: {number}%'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4624():
@@ -1152,7 +1372,10 @@ def task_4624():
             answer = int(result)
             break
     task = f'Переведите дроби в проценты: {number}'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 
@@ -1169,7 +1392,10 @@ def task_4625():
             answer = int(result)
             break
     task = f'Переведите дроби в проценты: {number}'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 
@@ -1186,7 +1412,10 @@ def task_4635():
             answer = int(result)
             break
     task = f'Переведите дроби в проценты: {number}'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 
@@ -1203,7 +1432,10 @@ def task_4639():
             answer = int(result)
             break
     task = f'Переведите дроби в проценты: {number}'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4647():
@@ -1219,7 +1451,10 @@ def task_4647():
             answer = int(result)
             break
     task = f'Переведите дроби в проценты: {number}'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4651():
@@ -1237,7 +1472,10 @@ def task_4651():
             answer = int(result)
             break
     task = f'Переведите дроби в проценты: $\\frac{{{number}}}{{{number_1}}}$'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4659():
@@ -1255,7 +1493,10 @@ def task_4659():
             answer = int(result)
             break
     task = f'Переведите дроби в проценты: $\\frac{{{number}}}{{{number_1}}}$'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4660():
@@ -1273,7 +1514,10 @@ def task_4660():
             answer = int(result)
             break
     task = f'Переведите дроби в проценты: $\\frac{{{number}}}{{{number_1}}}$'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4666():
@@ -1291,8 +1535,10 @@ def task_4666():
             answer = int(result)
             break
     task = f'Переведите дроби в проценты: $\\frac{{{number}}}{{{number_1}}}$'
-    return task, answer
-
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_4671():
     '''Генерация аналогичных задач № 4671 с портала https://kuzovkin.info/one_exercise_1/4671
@@ -1310,7 +1556,10 @@ def task_4671():
             answer = int(result)
             break
     task = f'По данным N-ского горкомстата по сравнению с предыдущим годом товарооборот организаций, осуществляющих продажу {choosing_declension_form(product)} товаров, увеличился на {percent}% и составил {money} млн. рублей. На какую сумму увеличился товарооборот?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 
@@ -1327,7 +1576,10 @@ def task_4674():
             answer = int(result)
             break
     task = f'Мальчик Гриша прочитал {pages} страниц{"у" if pages % 10 == 1 else "ы" if pages % 10 in [2, 3, 4] else ""}, что составляет {percent}% числа всех страниц в {choosing_declension_form(book, "loct")}. Сколько страниц в {choosing_declension_form(book, "loct")}?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4684():
@@ -1344,7 +1596,10 @@ def task_4684():
             answer = int(result)
             break
     task = f'В избирательном округе {total} {value}. В голосовании приняли участие {people} {value}. Какой процент {value} участвовал в голосовании?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4685():
@@ -1360,7 +1615,10 @@ def task_4685():
             answer = int(result)
             break
     task = f'Из {total} жителей города {person} − {value}. Какой процент всего населения составляют {value}?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4694():
@@ -1383,7 +1641,10 @@ def task_4694():
                 answer = f'{result};{result_1};{total_result}'
                 break
     task = f'Имеются два раствора {choosing_declension_form(product)} массой {weight} г и {weight_1} г. В первом растворе содержится {gram} г {choosing_declension_form(product)}, а во втором − {gram_1} г. Найдите концентрацию каждого из этих растворов. Найдите концентрацию раствора, полученного при смешивании двух данных растворов.'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 
@@ -1404,7 +1665,10 @@ def task_4696():
             answer = int(result)
             break
     task = f'Смешали {weight} г {percent}%-ного {choosing_declension_form(taste, "ablt")} сиропа и {weight_1} г {percent_1}%-ного {choosing_declension_form(taste, "ablt")} сиропа. Найдите концентрацию полученной смеси'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4697():
@@ -1423,7 +1687,10 @@ def task_4697():
             answer = int(result)
             break
     task = f'К {weight} г {percent}%-го раствора вещества добавили {weight_1} г {percent_1}%-го раствора того же вещества. Какова концентрация полученной смеси?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4698():
@@ -1443,7 +1710,10 @@ def task_4698():
             answer = int(result)
             break
     task = f'К {weight} г {percent}%-го раствора {choosing_declension_form(product)} добавили {weight_1} г {percent_1}%-ного раствора {choosing_declension_form(product)}. Какова концентрация полученной смеси?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 
@@ -1464,7 +1734,10 @@ def task_4699():
             answer = int(result)
             break
     task = f'Смешали три раствора некоторого вещества: {weight} г {percent}%-го раствора, {weight_1} г {percent_1}%-го раствора и {weight_2} г {percent_2}%-го раствора. Какова концентрация полученной смеси?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 
@@ -1495,7 +1768,10 @@ def task_4700():
             answer = int(result)
             break
     task = f'Смешали три раствора некоторого вещества: {weight} г {choosing_declension_form(percent, "accs")} раствора, {weight_1} г {choosing_declension_form(percent_1, "accs")} раствора и {weight_2} г {choosing_declension_form(percent_2, "accs")} раствора. Какова концентрация полученной смеси?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4702():
@@ -1519,7 +1795,10 @@ def task_4702():
                 answer = f'увеличится на {int(result)}'
                 break
     task = f'На сколько процентов изменится площадь прямоугольника, если одну его сторону увеличить на {percent}%, а другую − уменьшить на {percent_1}%'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4703():
@@ -1537,7 +1816,10 @@ def task_4703():
             answer = int(result)
             break
     task = f'В первую поездку автомобиль израсходовал {percent}% бензина, имеющегося в баке, затем во вторую поездку − {percent_1}% остатка. После этого в баке осталось на {weight} л меньше, чем было первоначально. Сколько литров бензина было в баке первоначально?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4704():
@@ -1554,7 +1836,10 @@ def task_4704():
             answer = int(result)
             break
     task = f'В библиотеке имеются книги на {choosing_declension_form(lang, "loct")}, {choosing_declension_form(lang_1, "loct")} и {choosing_declension_form(lang_2, "loct")} языках. Книги на {choosing_declension_form(lang, "loct")} составляют {percent}% всех книг на иностранных языках, {lang_1} язык − {percent_1}% книг на {choosing_declension_form(lang, "loct")}, а остальные {books} книги на {choosing_declension_form(lang_2, "loct")}. Сколько книг на иностранных языках в библиотеке?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4714():
@@ -1568,7 +1853,10 @@ def task_4714():
             answer = int(result)
             break
     task = f'{cloth.capitalize()} на {percent}% дешевле {choosing_declension_form(cloth_1)} и на {percent_1}% дороже {choosing_declension_form(cloth_2)}. На сколько процентов {cloth_1} дороже {choosing_declension_form(cloth_2)}?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4727():
@@ -1591,7 +1879,10 @@ def task_4727():
             answer = int(result)
             break
     task = f'Цена на товар {value} раза увеличилась на {percent}%. На сколько процентов увеличилась цена по сравнению с первоначальной?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4729():
@@ -1614,7 +1905,10 @@ def task_4729():
             answer = int(result)
             break
     task = f'Население города N в среднем увеличивается на {percent}% в год. На сколько процентов увеличится население за {value} года?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4732():
@@ -1628,7 +1922,10 @@ def task_4732():
             answer = int(result)
             break
     task = f'В связи с поступлением новой коллекции одежды цена на старую коллекцию снизилась сначала на {percent}%, а потом ещё на {percent_1}%. На сколько процентов снизилась цена по сравнению с первоначальной?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4739():
@@ -1644,7 +1941,10 @@ def task_4739():
             answer = int(result)
             break
     task = f'Вкладчик вложил деньги в банк на {year} {"года" if 2 <= year <= 4 else "лет"} под {percent}% годовых с капитализацией. На сколько процентов увеличится вклад по окончанию срока?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 
@@ -1659,7 +1959,10 @@ def task_4740():
             answer = int(result)
             break
     task = f'Вкладчик вложил деньги в банк на вклад «До востребования» под {percent}% годовых. За сколько лет сумма вклада увеличится в два раза?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4744():
@@ -1691,7 +1994,10 @@ def task_4744():
                 break
 
     task = f'Акционер компании решил вложить деньги в банк. В банке есть много видов вкладов, но акционер остановил свой выбор на двух. А) Вклад на два года, {percent}% годовых, проценты выплачиваются в конце срока. Б) Вклад на два года, {percent_1}% годовых, проценты выплачиваются в конце каждого года и причисляются к сумме вклада (капитализация). Какую прибыль получит наш акционер, если положит {money} рублей на {value} вклад?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4760():
@@ -1711,7 +2017,10 @@ def task_4760():
             answer = int(result)
             break
     task = f'В течение года завод дважды увеличивал выпуск {choosing_declension_form(thing)} на одно и то же число процентов. Найдите это число процентов, если известно, что в начале года завод ежемесячно выпускал {number} изделий, а в конце года стал ежемесячно выпускать {number_1} изделий.'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4761():
@@ -1729,7 +2038,10 @@ def task_4761():
             answer = int(result)
             break
     task = f'Цена на {choosing_declension_form(thing, "accs")} снижена на {percent}%, а зарплата дважды увеличивалась на {percent_1}%. На сколько процентов больше можно купить {choosing_declension_form(thing)} после снижения цен и повышения зарплаты?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 
@@ -1749,7 +2061,10 @@ def task_4790():
             answer = int(result)
             break
     task = f'За досрочное выполнение пахоты правление колхоза постановило премировать бригаду в размере {percent}% от числа выработанных трудодней. Сколько трудодней надо прибавить колхознику, который выработал по наряду {days} трудодня?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_4792():
@@ -1785,7 +2100,10 @@ def task_4792():
                 answer = f'{result_1};{result_2};{result_3}'
                 break
     task = f'$\\frac{{{enemy_t}}}{{{enemy_t_1}}}$ вражеских танков, участвовавших в бою, было уничтожено нашей штурмовой авиацией; {destroy_t} танка было уничтожено нашей противотанковой артиллерией; {percent}% вражеских танков было повреждено связками гранат; остальные {go_t} вражеских танков повернули обратно. Определить: какой процент составляют танки, уничтоженные нашей штурмовой авиацией? противотанковой артиллерией? повернули обратно?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_8337():
@@ -1804,7 +2122,10 @@ def task_8337():
             answer = int(result)
             break
     task = f'{weight} кг {choosing_declension_form(product)} растворили в {weight_1} л воды. Какова концентрация полученного раствора? Известно, что масса одного литра воды равна 1 кг.'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_8351():
@@ -1824,7 +2145,10 @@ def task_8351():
             answer = int(result)
             break
     task = f'Сколько {choosing_declension_form(product)} надо добавить к {weight} г воды, чтобы получить {percent} раствор {choosing_declension_form(product)}?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_8364():
@@ -1842,7 +2166,10 @@ def task_8364():
             answer = int(result)
             break
     task = f'Вкладчик положил в банк некоторую сумму под {percent}% годовых. Через год проценты по вкладу составили {money} {currency}. Какую сумму вкладчик положил в банк?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_8370():
@@ -1860,7 +2187,10 @@ def task_8370():
             answer = int(result)
             break
     task = f'Предприниматель взял в банке кредит в размере {money} {currency} под {percent}% годовых. Какую сумму он должен вернуть банку через год?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_8386():
@@ -1873,7 +2203,10 @@ def task_8386():
             answer = int(result)
             break
     task = f'Найдите целое, если {number}% равны {number_1}'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_8388():
@@ -1891,7 +2224,10 @@ def task_8388():
             answer = int(result)
             break
     task = f'Товар стоит {money} рублей. Цена на {choosing_declension_form(thing, "accs")} увеличилась сначала на {percent}%, а потом ещё на {percent_1}% от новой цены. На сколько процентов увеличилась цена {choosing_declension_form(thing)} по сравнению с первоначальной?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_8393():
@@ -1907,7 +2243,10 @@ def task_8393():
             answer = f'{result};{result_1};{result_2}'
             break
     task = f'Композит − это сплав {choosing_declension_form(metal)} с {choosing_declension_form(metal_1, "ablt")}. Первый композит содержит {percent}% {choosing_declension_form(metal_1)}, второй композит − {percent_1}% {choosing_declension_form(metal_1)}, а третий композит содержит {percent_2}% {choosing_declension_form(metal_1)}. В каждом случае определите, сколько процентов {choosing_declension_form(metal)} содержится в сплаве.'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_8395():
@@ -1928,7 +2267,10 @@ def task_8395():
             answer = result
             break
     task = f'Группа сплавов на основе {choosing_declension_form(metal)}, содержащих {metal_1}, {metal_2}, {metal_3}, а также микродобавки редкоземельных элементов (лантан, церий, самарий и др.) Сплав содержит {percent}% {choosing_declension_form(metal)}, {percent_1}% {choosing_declension_form(metal_2)}, {percent_2}% {choosing_declension_form(metal_3)} и {other_perc}% РЗЭ. Сколько процентов {choosing_declension_form(metal_1)} содержится в таком сплаве?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_8398():
@@ -1941,7 +2283,10 @@ def task_8398():
             answer = int(result)
             break
     task = f'Найдите число, если известно, что после прибавления к нему {number}% его получится {number_1}.'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_8402():
@@ -1956,7 +2301,10 @@ def task_8402():
             answer = result
             break
     task = f'Найдите: {number}% от {number_1}'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_8404():
@@ -1971,7 +2319,10 @@ def task_8404():
             answer = result
             break
     task = f'Найдите: {number}% от {number_1}'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_8406():
@@ -1986,7 +2337,10 @@ def task_8406():
             answer = result
             break
     task = f'Найдите: {number}% от {number_1}'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_8407():
@@ -2001,7 +2355,10 @@ def task_8407():
             answer = result
             break
     task = f'Найдите: {number}% от {number_1}'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_8408():
@@ -2014,7 +2371,10 @@ def task_8408():
             answer = int(result)
             break
     task = f'Найдите: {number}% от {number_1}'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_8409():
@@ -2029,7 +2389,10 @@ def task_8409():
             answer = result
             break
     task = f'Найдите: {number}% от {number_1}'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_8410():
@@ -2044,7 +2407,10 @@ def task_8410():
             answer = result
             break
     task = f'Найдите: {number}% от {number_1}'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_8412():
@@ -2059,7 +2425,10 @@ def task_8412():
             answer = int(result)
             break
     task = f'Найдите: {number}% от {number_1}'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 
@@ -2078,7 +2447,10 @@ def task_8416():
             answer = int(result)
             break
     task = f'Найдите: {number}% от {number_1}'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_8419():
@@ -2096,7 +2468,10 @@ def task_8419():
             answer = int(result)
             break
     task = f'Найдите: {number}% от {number_1}'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_8433():
@@ -2111,7 +2486,10 @@ def task_8433():
             answer = int(result)
             break
     task = f'Найдите целое, если {number}% равны {number1}'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_8437():
@@ -2124,7 +2502,10 @@ def task_8437():
             answer = int(result)
             break
     task = f'Найдите целое, если {number}% равны {number1}'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 
@@ -2143,7 +2524,10 @@ def task_8445():
             answer = int(result)
             break
     task = f'Найдите целое, если {number}% равны {number1}'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_8450():
@@ -2160,7 +2544,10 @@ def task_8450():
             answer = fraction_latex_format(result)
             break
     task = f'Найдите целое, если ${number}\\frac{{{number1}}}{{{number2}}}$% равны {number3}'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_8451():
@@ -2178,7 +2565,10 @@ def task_8451():
             answer = fraction_latex_format(result)
             break
     task = f'Найдите целое, если ${number}\\frac{{{number1}}}{{{number2}}}$% равны ${number3}\\frac{{{number4}}}{{{number5}}}$'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 
@@ -2197,7 +2587,10 @@ def task_8462():
             answer = int(result)
             break
     task = f'В библиотеке {book} книг, из них {book_1} книг – это словари для перевода с одного языка на другой, из них {book_2} книг – это англо-русские и русско-английские словари. Сколько процентов от всех книг в библиотеке составляют словари?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_8469():
@@ -2210,7 +2603,10 @@ def task_8469():
             answer = result
             break
     task = f'Переведите проценты в десятичную дробь: {number}%'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_8470():
@@ -2223,7 +2619,10 @@ def task_8470():
             answer = result
             break
     task = f'Переведите проценты в десятичную дробь: {number}%'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_8473():
@@ -2238,7 +2637,10 @@ def task_8473():
             answer = result
             break
     task = f'Переведите проценты в десятичную дробь: {number}%'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_8475():
@@ -2253,7 +2655,10 @@ def task_8475():
             answer = result
             break
     task = f'Переведите проценты в десятичную дробь: {number}%'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_8484():
@@ -2268,7 +2673,10 @@ def task_8484():
             answer = result
             break
     task = f'Переведите проценты в десятичную дробь: {number}%'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_8487():
@@ -2283,7 +2691,10 @@ def task_8487():
             answer = result
             break
     task = f'Переведите проценты в десятичную дробь: ${number}\\frac{{{number_1}}}{{{number_2}}}$%'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_8488():
@@ -2298,7 +2709,10 @@ def task_8488():
             answer = result
             break
     task = f'Переведите проценты в десятичную дробь: ${number}\\frac{{{number_1}}}{{{number_2}}}$%'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 
@@ -2314,7 +2728,10 @@ def task_8492():
             answer = result
             break
     task = f'Переведите проценты в десятичную дробь: {number}%'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 
@@ -2330,7 +2747,10 @@ def task_8500():
             answer = int(result)
             break
     task = f'Переведите дроби в проценты: {number}'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_8501():
@@ -2345,7 +2765,10 @@ def task_8501():
             answer = int(result)
             break
     task = f'Переведите дроби в проценты: {number}'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_8502():
@@ -2360,7 +2783,10 @@ def task_8502():
             answer = int(result)
             break
     task = f'Переведите дроби в проценты: {number}'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_8506():
@@ -2375,7 +2801,10 @@ def task_8506():
             answer = result
             break
     task = f'Переведите дроби в проценты: {number}'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 
@@ -2391,7 +2820,10 @@ def task_8512():
             answer = int(result)
             break
     task = f'Переведите дроби в проценты: {number}'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_8515():
@@ -2406,7 +2838,10 @@ def task_8515():
             answer = int(result)
             break
     task = f'Переведите дроби в проценты: {number}'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_8539():
@@ -2421,7 +2856,10 @@ def task_8539():
             answer = int(result)
             break
     task = f'Переведите дроби в проценты: \\frac{{{number}}}{{{number_1}}}$'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_8542():
@@ -2442,7 +2880,10 @@ def task_8542():
             answer = int(result)
             break
     task = f'Банк начисляет ежегодно {percent}% от вложенной суммы. Сколько рублей будет начислено через {year} на вклад {money} рублей?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_8544():
@@ -2450,7 +2891,7 @@ def task_8544():
     Продавец купил товар по цене 1100 рублей за единицу товара и планирует получить при продаже прибыль 15%. По какой цене он должен продавать товар?'''
     while True:
         thing = np.random.choice(generate_context('./text_tasks/context.json', 'things'))
-        if thing == generate_context('task_generator/text_tasks/context.json', 'things')[4]:
+        if thing == generate_context('./text_tasks/context.json', 'things')[4]:
             continue
         percent, money = np.random.randint(10, 60), np.random.randint(1000, 10000)
         result = (money * (percent / 100)) + money
@@ -2458,4 +2899,7 @@ def task_8544():
             answer = int(result)
             break
     task = f'Продавец купил {choosing_declension_form(thing, "accs")} по цене {money} рублей за единицу {choosing_declension_form(thing)} и планирует получить при продаже прибыль {percent}%. По какой цене он должен продавать {choosing_declension_form(thing, "accs")}?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
