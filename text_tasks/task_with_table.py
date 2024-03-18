@@ -48,8 +48,8 @@ def task_35629():
     # plt.text(0.0, 0.7, task, fontsize=8)
     ax.table(cellText=table_data, loc='center', cellLoc='center', cellColours=[['#D3D3D3' for i in range(1, years+3)], ['#E0FFFF' for i in range(1, years+3)]])
     ax.axis('off')
-    plt.savefig('TABLE/table_35629.png')
-    # plt.show()
+    # plt.savefig('TABLE/table_35629.png')
+    plt.show()
     return {
       "condition": task,
       "answer": answer
@@ -95,8 +95,8 @@ def task_35630():
     # plt.text(0.0, 0.7, task, fontsize=8)
     ax.table(cellText=table_data, loc='center', cellLoc='center', cellColours=[['#D3D3D3' for i in range(1, months+3)], ['#E0FFFF' for i in range(1, months+3)]])
     ax.axis('off')
-    plt.savefig('TABLE/table_35630.png')
-    # plt.show()
+    # plt.savefig('TABLE/table_35630.png')
+    plt.show()
     return {
       "condition": task,
       "answer": answer
@@ -154,8 +154,8 @@ def task_35631():
     # plt.text(0.0, 0.7, task, fontsize=8)
     ax.table(cellText=table_data, loc='center', cellLoc='center', cellColours=[['#D3D3D3' for i in range(1, years+3)], ['#E0FFFF' for i in range(1, years+3)]])
     ax.axis('off')
-    plt.savefig('TABLE/table_35631.png')
-    # plt.show()
+    # plt.savefig('TABLE/table_35631.png')
+    plt.show()
     return {
       "condition": task,
       "answer": answer
