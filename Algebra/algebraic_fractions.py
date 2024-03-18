@@ -18,7 +18,10 @@ def task_1554():
       if a>b:
         if abs(answer*1000 - int(answer*1000)) < 0.000001:
           break
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_1555():
     '''Задача №1555 с портала https://kuzovkin.info/one_exercise_1/1555 '''
@@ -30,7 +33,10 @@ def task_1555():
       if a>b and a*b!=0:
         if abs(answer*1000 - int(answer*1000)) < 0.000001:
           break
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_1581():
     '''Задача №1581 с портала https://kuzovkin.info/one_exercise_1/1581 '''
@@ -41,7 +47,10 @@ def task_1581():
       answer = r'\frac{'+latex(UnevaluatedExpr(1))+'}{'+latex(UnevaluatedExpr(k))+'}'
       if k:
         break
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_1583():
     '''Задача №1583 с портала https://kuzovkin.info/one_exercise_1/1583 и аналогичная 1'''
@@ -53,7 +62,10 @@ def task_1583():
       answer = r'\( {'+latex(UnevaluatedExpr(whole_path))+'} \\frac{'+latex(UnevaluatedExpr(1))+'}{'+latex(UnevaluatedExpr(k))+'} \)'
       if k:
         break
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_1584():
     '''Задача №1584 с портала https://kuzovkin.info/one_exercise_1/1584 '''
@@ -65,7 +77,10 @@ def task_1584():
       answer = Fraction(result).limit_denominator()
       if a<b and a%b!=0:
         break
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_1588():
     '''Задача №1588 с портала https://kuzovkin.info/one_exercise_1/1588 '''
@@ -73,10 +88,13 @@ def task_1588():
       k = np.random.randint(1, 26)/10
       x, y = symbols('x y')
       task = r'Надйите значение дроби \( \frac{'+latex(x+y)+'}{'+latex(x)+'} \), если \( \\frac{'+latex(x)+'}{'+latex(y)+'}{'+str('=')+'}{'+latex(UnevaluatedExpr(k))+'} \)'
-      answer = 1+pow(k, -1)
+      answer = int(1+pow(k, -1))
       if pow(k, -1)==int(pow(k, -1)):
         break
-    return task, int(answer)
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_1591():
     '''Задача №1591 с портала https://kuzovkin.info/one_exercise_1/1591 '''
@@ -87,7 +105,10 @@ def task_1591():
       answer = k-2.5
       if k:
         break
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_1596():
     '''Задача №1596 с портала https://kuzovkin.info/one_exercise_1/1596 '''
@@ -99,7 +120,10 @@ def task_1596():
       answer = Fraction(result).limit_denominator()
       if k:
         break
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_1785():
     '''Задача №1785 с портала https://kuzovkin.info/one_exercise_1/1785 '''
@@ -112,10 +136,13 @@ def task_1785():
       if a!=b and b!=k:
         if abs(answer*1000 - int(answer*1000)) < 0.000001:
           break
-    return task, round(answer, 5)
+    return {
+      "condition": task,
+      "answer": round(answer, 5)
+    }
 
 def task_1883():
-    '''Задача №1883 с портала https://kuzovkin.info/one_exercise_1/1883 '''
+    '''Задача №1883 с портала https://kuzovkin.info/one_exercise_1/1883'''
     while True:
       a, b, m, n, f, h = np.random.randint(2, 10, size=6)
       c = symbols('c')
@@ -125,7 +152,10 @@ def task_1883():
       if check == n:
         if abs(answer*1000 - int(answer*1000)) < 0.000001:
           break
-    return task, round(answer, 5)
+    return {
+      "condition": task,
+      "answer": round(answer, 5)
+    }
 
 def task_1947():
     '''Задача №1947 с портала https://kuzovkin.info/one_exercise_1/1947 '''
@@ -137,7 +167,10 @@ def task_1947():
       if k%b==0 and a%n==0:
         if abs(answer*1000 - int(answer*1000)) < 0.000001 and answer<=1000 and answer>=-1000:
           break
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_1967():
     '''Задача №1967 с портала https://kuzovkin.info/one_exercise_1/1967 '''
@@ -148,7 +181,10 @@ def task_1967():
       answer = -(n/k)
       if n%k==0 and n!=k and a!=b:
         break
-    return task, int(answer)
+    return {
+      "condition": task,
+      "answer": int(answer)
+    }
 
 def task_5492():
     '''Задача №5492 с портала https://kuzovkin.info/one_exercise_1/5492 '''
@@ -162,7 +198,10 @@ def task_5492():
       if c!=n and f*pow(c, 2)!=int(f*pow(c, 2)) and f*pow(n, 2)!=int(f*pow(n, 2)):
         if check==int(check) and answer!=0:
           break
-    return task, int(answer)
+    return {
+      "condition": task,
+      "answer": int(answer)
+    }
 
 def task_5493():
     '''Задача №5493 с портала https://kuzovkin.info/one_exercise_1/5493 '''
@@ -176,7 +215,10 @@ def task_5493():
       if a!=b and m!=n:
         if abs(answer*1000 - int(answer*1000)) < 0.000001:
           break
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_5494():
     '''Задача №5494 с портала https://kuzovkin.info/one_exercise_1/5494 '''
@@ -190,7 +232,10 @@ def task_5494():
       if m!=n and k!=f:
         if abs(answer*1000 - int(answer*1000)) < 0.000001:
           break
-    return task, int(answer)
+    return {
+      "condition": task,
+      "answer": int(answer)
+    }
 
 def task_5475():
     '''Задача №5475 с портала https://kuzovkin.info/one_exercise_1/5475 '''
@@ -204,7 +249,10 @@ def task_5475():
       if a!=b!=k and m!=n!=k:
         if answer==int(answer) and answer!=0:
           break
-    return task, int(answer)
+    return {
+      "condition": task,
+      "answer": int(answer)
+    }
 
 def task_5459():
     '''Задача №5459 с портала https://kuzovkin.info/one_exercise_1/5459 '''
@@ -216,7 +264,10 @@ def task_5459():
       if k<n and m!=1 and n%k!=0:
         if abs(answer*1000 - int(answer*1000)) < 0.000001:
           break
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_5460():
     '''Задача №5460 с портала https://kuzovkin.info/one_exercise_1/5460 '''
@@ -228,7 +279,10 @@ def task_5460():
       if k<n:
         if abs(answer*1000 - int(answer*1000)) < 0.000001:
           break
-    return task, round(answer, 5)
+    return {
+      "condition": task,
+      "answer": round(answer, 5)
+    }
 
 def task_5462():
     '''Задача №5462 с портала https://kuzovkin.info/one_exercise_1/5462 '''
@@ -241,7 +295,10 @@ def task_5462():
       if a!=b:
         if abs(answer*1000 - int(answer*1000)) < 0.000001 or answer==int(answer):
           break
-    return task, round(answer, 5)
+    return {
+      "condition": task,
+      "answer": round(answer, 5)
+    }
 
 def task_5465():
     '''Задача №5465 с портала https://kuzovkin.info/one_exercise_1/5465 '''
@@ -253,7 +310,10 @@ def task_5465():
       if k!=m and c!=d:
         if answer!=0:
           break
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_5449():
     '''Задача №5449 с портала https://kuzovkin.info/one_exercise_1/5449 '''
@@ -265,7 +325,10 @@ def task_5449():
       if m%k==0 or abs(answer*1000 - int(answer*1000)) < 0.000001:
         if a!=b and k!=m:
           break
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_5450():
     '''Задача №5450 с портала https://kuzovkin.info/one_exercise_1/5450 и аналогичная 5451 '''
@@ -277,7 +340,10 @@ def task_5450():
       if abs(answer*1000 - int(answer*1000)) < 0.000001 or answer==int(answer):
         if a!=b and k!=m:
           break
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_5452():
     '''Задача №5452 с портала https://kuzovkin.info/one_exercise_1/5452 '''
@@ -289,7 +355,10 @@ def task_5452():
       if m%k==0 or abs(answer*1000 - int(answer*1000)) < 0.000001:
         if a!=b and k!=m:
           break
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_5496():
     '''Задача №5496 с портала https://kuzovkin.info/one_exercise_1/5496 '''
@@ -301,7 +370,10 @@ def task_5496():
       if a!=b and m%c==0 and n%d==0:
         if abs(answer*1000 - int(answer*1000)) < 0.000001 or answer==int(answer):
           break
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_5838():
     '''Задача №5838 с портала https://kuzovkin.info/one_exercise_1/5838 '''
@@ -312,7 +384,10 @@ def task_5838():
       answer = r'\( -\frac{'+latex(UnevaluatedExpr(k))+'}{'+latex(UnevaluatedExpr(b))+'} \)'
       if k<b:
         break
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_5853():
@@ -325,7 +400,10 @@ def task_5853():
       if abs(answer*1000 - int(answer*1000)) < 0.000001 or answer==int(answer):
         if a!=b:
           break
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_5854():
@@ -337,7 +415,10 @@ def task_5854():
       answer = -k
       if x!=y:
         break
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_11915():
@@ -349,7 +430,10 @@ def task_11915():
       answer = k
       if k!=a!=b:
         break
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_11947():
@@ -366,7 +450,10 @@ def task_11947():
         if check_1==pow(a, 2) and check_2==a:
           if abs(answer*1000 - int(answer*1000)) < 0.000001:
             break
-    return task, round(answer, 5)
+    return {
+      "condition": task,
+      "answer": round(answer, 5)
+    }
 
 
 def task_11997():
@@ -380,7 +467,10 @@ def task_11997():
       if abs(answer*1000 - int(answer*1000)) < 0.000001 and k!=1 and n!=1:
         if a!=x!=y and a%k==0 and b%n==0:
           break
-    return task, int(answer)
+    return {
+      "condition": task,
+      "answer": int(answer)
+    }
 
 
 def task_16072():
@@ -393,7 +483,10 @@ def task_16072():
       if abs(answer*1000 - int(answer*1000)) < 0.000001 or abs(int(answer*1000) - answer*1000) < 0.000001:
         if x!=y!=z and pow(y+z-x, 2)!=0:
           break
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_16075():
     '''Задача №16075 с портала https://kuzovkin.info/one_exercise_1/16075 '''
@@ -406,7 +499,10 @@ def task_16075():
       if abs(answer*1000 - int(answer*1000)) < 0.000001 or abs(int(answer*1000) - answer*1000) < 0.000001:
         if c>a and c>b and c>d:
           break
-    return task, round(answer, 5)
+    return {
+      "condition": task,
+      "answer": round(answer, 5)
+    }
 
 def task_16080():
     '''Задача №16080 с портала https://kuzovkin.info/one_exercise_1/16080 '''
@@ -421,4 +517,7 @@ def task_16080():
       answer = k
       if a!=m and a<10:
         break
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }

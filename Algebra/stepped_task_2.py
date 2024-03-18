@@ -98,4 +98,7 @@ def transformation_task(string):
         if answer<=10000 and answer>=-1000:
           break
 
-  return task_show, round(answer, 5)
+  return {
+      "condition": task_show,
+      "answer": round(answer, 5)
+    }

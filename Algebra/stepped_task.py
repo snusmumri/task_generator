@@ -17,7 +17,10 @@ def task_14784():
       if d<a and a<b:
         if abs(int(answer*1000) - answer*1000)  < 0.000001:
           break
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_14785():
@@ -31,7 +34,10 @@ def task_14785():
       answer = x / b
       if abs(answer*1000 - int(answer*1000)) < 0.0001 and int(a)!=a:
          break
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_14809():
@@ -43,7 +49,10 @@ def task_14809():
       answer = a*pow(b, m) + b*pow(a, n)
       if a != b:
          break
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_14814():
@@ -57,7 +66,10 @@ def task_14814():
       answer = pow(a, n)*b + c*pow(0.1, m)
       if answer < 2000:
          break
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_14815():
@@ -75,7 +87,10 @@ def task_14815():
       if a<b:
         if abs(int(summand*1000) - summand*1000) < 0.000001:
           break
-    return task, round(answer, 5)
+    return {
+      "condition": task,
+      "answer": round(answer, 5)
+    }
 
 
 def task_14816():
@@ -95,7 +110,10 @@ def task_14816():
         if abs(int(summand_2*1000) - summand_2*1000) < 0.000001:
           if abs(int(summand_1*1000) - summand_1*1000) < 0.000001:
             break
-    return task, round(answer, 5)
+    return {
+      "condition": task,
+      "answer": round(answer, 5)
+    }
 
 
 def task_14817():
@@ -116,7 +134,10 @@ def task_14817():
       if a<b and c<b:
         if abs(int(result*1000) - result*1000) < 0.000001:
           break
-    return task, int(answer)
+    return {
+      "condition": task,
+      "answer": int(answer)
+    }
 
 
 def task_14819():
@@ -128,7 +149,10 @@ def task_14819():
       answer = - (fractions.Fraction(pow(-a, m), b)) - fractions.Fraction(pow(c, n), d)
       if m == n:
         break
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_14836():
@@ -140,7 +164,10 @@ def task_14836():
       answer = pow(a, m) + pow(b, n) + pow(c, k)
       if a!=b or a!=c or c!=b:
         break
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_14839():
@@ -152,7 +179,10 @@ def task_14839():
       answer = pow(a, m) - pow(b, n) + pow(c, k) + pow(d, f)
       if a!=b or a!=c or c!=b:
         break
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_14841():
@@ -166,7 +196,10 @@ def task_14841():
         if n!=k and n!=f:
           if k!=f:
             break
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_14842():
@@ -178,7 +211,10 @@ def task_14842():
       answer = pow(a, m) + pow(b, n) - pow(c, k) - pow(d, x)*pow(e, y)
       if d!=e:
         break
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_15021():
@@ -191,7 +227,10 @@ def task_15021():
       if abs(int(answer*1000) - answer*1000) < 0.000001:
         if answer < 1000:
           break
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_15024():
@@ -204,7 +243,10 @@ def task_15024():
       if m>(n+k):
         if answer < 1000:
           break
-    return task, round(answer)
+    return {
+      "condition": task,
+      "answer": round(answer)
+    }
 
 
 def task_15025():
@@ -217,7 +259,10 @@ def task_15025():
       if m+n-k < 4:
         if abs(int(answer*1000) - answer*1000) < 0.000001:
           break
-    return task, round(answer, 5)
+    return {
+      "condition": task,
+      "answer": round(answer, 5)
+    }
 
 
 def task_15026():
@@ -232,7 +277,10 @@ def task_15026():
         if m+n > k:
           if abs(int(answer*1000) - answer*1000) < 0.000001:
             break
-    return task, float(answer)
+    return {
+      "condition": task,
+      "answer": float(answer)
+    }
 
 
 def task_15046():
@@ -246,4 +294,7 @@ def task_15046():
       answer = pow(pow(a, m), n)
       if answer < 1500:
         break
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }

@@ -42,7 +42,10 @@ def take_derivatives_in_point(prototype):
             if ask(Q.integer(answer*10000)) is True and abs(answer)<10000:
                 break
     answer_float = float(answer)
-    return task, answer_float
+    return {
+      "condition": task,
+      "answer": answer_float
+    }
 
 '''Задача № 13274 c портала https://kuzovkin.info/one_exercise_1/13274
  Выписать производную в заданной точке (точках) x0:
@@ -352,7 +355,10 @@ def find_extremes(prototype):
         note = r'если решений нет, тогда в ответе пишем 0'
     task = text + str(latex(substituted_eq)) + '\)' + ', ' + note
     answer = [float(number) for number in critical_points]
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 prototype_3034 = "k*x**2 + m*x + n"
 
@@ -495,7 +501,10 @@ def determine_max_min_values(prototype):
     note_interval = r'на отрезке' + ' ' + '\(' + str(latex(interval)) + '\)'
     task = text + str(latex(substituted_eq)) + '\)' + ', ' + note_interval
     answer = float(result)
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def determine_max_min_values_mod(prototype):
     '''данная функция находит наибольшее и наименьшее
@@ -529,7 +538,10 @@ def determine_max_min_values_mod(prototype):
             break
     task = text + str(latex(substituted_eq)) + '\)' + ', ' + note_interval
     answer = float(result)
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def determine_max_min_values_trig(prototype):
     '''данная функция находит наибольшее и наименьшее
@@ -587,7 +599,10 @@ def determine_max_min_values_trig(prototype):
     note_interval = r'на отрезке' + ' ' + '\(' + str(latex(interval)) + '\)'
     task = text + str(latex(substituted_eq)) + '\)' + ', ' + note_interval
     answer = float(result)
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 prototype_3093 = "(C1/C2)*(x**C3) - C4*x"
 # обычная функция

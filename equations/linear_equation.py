@@ -270,4 +270,7 @@ def x_equation_generator_with_parser(equation_to_solve):
   '''Функция для создания линейного уравнения, которая обращается внутри себя к парсеру для вывода уравнения'''
   prep_equation, answer = generate_values_and_recieve_answer(equation_to_solve)
   task = parse_and_generate_task(prep_equation)
-  return task, answer
+  return {
+      "condition": task,
+      "answer": answer
+    }
