@@ -1,3 +1,4 @@
+from fractions import Fraction
 import numpy as np
 import random
 from math import log
@@ -2902,4 +2903,107 @@ def task_8544():
     return {
       "condition": task,
       "answer": answer
+    }
+
+
+def task_9327():
+    """
+    Генерация аналогичных задач № 9327 с портала https://kuzovkin.info/one_exercise_1/9327
+    Переведите проценты в десятичную дробь: 87,5%
+    """
+    while True:
+        random_percent = round(np.random.uniform(1, 100), 2)
+        if random_percent % 1 == 0:
+            continue
+        answer = random_percent / 100
+        if answer % 0.0001 == 0:
+            break
+    task = f"Переведите проценты в десятичную дробь: {random_percent}%"
+    return {
+        "condition": task,
+        "answer": answer
+    }
+
+
+def task_9346():
+    """
+    Генерация аналогичных задач № 9346 с портала https://kuzovkin.info/one_exercise_1/9346
+    Переведите дроби в проценты: 1,451
+    """
+    while True:
+        random_fraction = round(np.random.uniform(0.01, 1.6), 3)
+        if random_fraction % 1 == 0:
+            continue
+        answer = random_fraction * 100
+        if answer % 0.1 == 0:
+            break
+    task = f"Переведите дроби в проценты: {random_fraction}"
+    return {
+        "condition": task,
+        "answer": answer
+    }
+
+
+def task_9350():
+    """
+    Генерация аналогичных задач № 9350 с портала https://kuzovkin.info/one_exercise_1/9350
+    Переведите дроби в проценты: 2
+    """
+    while True:
+        random_fraction = round(np.random.uniform(1, 10), 1)
+        if random_fraction % 1 == 0:
+            continue
+        result = random_fraction * 100
+        if result % 1 == 0:
+            answer = int(result)
+            break
+    task = f"Переведите дроби в проценты: {random_fraction}"
+    return {
+        "condition": task,
+        "answer": answer
+    }
+
+
+def task_9351():
+    """
+    Генерация аналогичных задач № 9351 с портала https://kuzovkin.info/one_exercise_1/9351
+    Переведите дроби в проценты: 10
+    """
+    while True:
+        random_fraction = round(np.random.uniform(10, 100), 1)
+        if random_fraction % 1 == 0:
+            continue
+        result = random_fraction * 100
+        if result % 1 == 0:
+            answer = int(result)
+            break
+    task = f"Переведите дроби в проценты: {random_fraction}"
+    return {
+        "condition": task,
+        "answer": answer
+    }
+
+
+def task_9356():
+    """
+    Генерация аналогичных задач № 9356 с портала https://kuzovkin.info/one_exercise_1/9356
+    Переведите дроби в проценты: 1/4
+    """
+    while True:
+        random_fraction = round(np.random.uniform(0.01, 0.99), 2)
+        fraction = Fraction(random_fraction).limit_denominator()
+        result = random_fraction * 100
+        if result % 1 == 0:
+            answer = int(result)
+            break
+    task = (
+        r"Переведите дроби в проценты: \(\frac{"
+        + f"{fraction.numerator}"
+        + r"}{"
+        + f"{fraction.denominator}"
+        + r"}\)"
+    )
+    return {
+        "condition": task,
+        "answer": answer
     }
