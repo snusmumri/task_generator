@@ -17,6 +17,7 @@ import matplotlib.pyplot as plt
 import re
 import time
 
+
 def graph_derivative_function_task_14():
     n_1 = random.randint(20, 30)
     x_start = random.randint(-9, -6)
@@ -101,7 +102,11 @@ def graph_derivative_function_task_14():
     plt.show()
     task = r'На рисунке изображён график производной функции f(x). На оси абсцисс отмечены восемь точек: x1, x2, x3, ..., x8. Сколько из этих точек лежит на промежутках возрастания функции f(x)?'
     answer = number
-    return task, answer
+    return {
+        "condition": task,
+        "answer": answer
+    }
+
 
 def graph_function_task_16_task_24():
     n_1 = random.randint(20, 30)
@@ -175,7 +180,11 @@ def graph_function_task_16_task_24():
     plt.show()
     task = r'На рисунке изображен график функции и отмечены точки x1, x2, x3, x4.' + text
     answer = key
-    return task, answer
+    return {
+        "condition": task,
+        "answer": answer
+    }
+
 
 def graph_function_task_17_task_36():
     n_1 = random.randint(20, 30)
@@ -259,4 +268,7 @@ def graph_function_task_17_task_36():
     plt.show()
     task = text
     answer = count
-    return task, answer
+    return {
+        "condition": task,
+        "answer": answer
+    }

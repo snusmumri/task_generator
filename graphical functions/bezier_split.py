@@ -154,4 +154,7 @@ def graph_derivative_function_task_33_task_34():
     plt.show()
     task = r'Функция определена и непрерывна на полуинтервале' + ' ' + '\(' + str(latex(latex_interval)) + '\).' + r' На рисунке изображен график её производной.' + text + r' В ответе укажите сумму целых точек, входящих в эти промежутки.'
     answer = number
-    return task, answer
+    return {
+        "condition": task,
+        "answer": answer
+    }

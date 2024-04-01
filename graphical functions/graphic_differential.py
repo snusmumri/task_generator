@@ -97,5 +97,7 @@ def plot_graph_function_sixth_degree_and_draw_tangent_to_graph_at_point():
     plt.show()
     task = r'Найдите значение производной функции f(x) в точке ' + r"\(x_0 \)"
     answer = float(k)
-    return task, answer
-
+    return {
+        "condition": task,
+        "answer": answer
+    }

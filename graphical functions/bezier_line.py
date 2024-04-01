@@ -108,4 +108,7 @@ def plot_curve_bezier_and_line():
     plt.show()
     task = r'Найдите значение производной функции f(x) в точке ' + r"\(x_0 \)"
     answer = float(k)
-    return task, answer
+    return {
+        "condition": task,
+        "answer": answer
+    }

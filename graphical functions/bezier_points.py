@@ -203,4 +203,7 @@ def plot_bezier_total_number_extremes_or_number_max_or_number_min_or_increasing_
     plt.show()
     task = r'На рисунке изображен график производной функции f(x), определенной на интервале' + ' ' + '\(' + str(latex(latex_interval)) + '\).' + text
     answer = number
-    return task, answer
+    return {
+        "condition": task,
+        "answer": answer
+    }
