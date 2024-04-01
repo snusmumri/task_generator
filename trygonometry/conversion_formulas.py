@@ -2,13 +2,14 @@ import math
 import random
 import numpy as np
 
+
 def trigonometry_14174():
 
     ''' Задание на портале kuzovkin.info № 14174 '''
 
     def generate_angles(start=-360, end=361, step=15):
         return range(start, end, step)
-    
+
     angles = generate_angles()
 
     while True:
@@ -30,8 +31,10 @@ def trigonometry_14174():
         except (ValueError, OverflowError):
             continue
 
-    return task, answer
-
+    return {
+        "condition": task,
+        "answer": answer
+    }
 
 
 def trigonometry_14175():
@@ -42,7 +45,6 @@ def trigonometry_14175():
         return range(start, end, step)
 
     angles = generate_angles()
-    
 
     while True:
         num = random.choice(angles)
@@ -57,7 +59,10 @@ def trigonometry_14175():
         except (ValueError, ZeroDivisionError):
             continue
 
-    return task, round(answer,2)
+    return {
+        "condition": task,
+        "answer": round(answer, 2)
+    }
 
 
 def trigonometry_14176():
@@ -68,7 +73,6 @@ def trigonometry_14176():
         return range(start, end, step)
 
     angles = generate_angles()
-    
 
     while True:
         num = random.choice(angles)
@@ -83,8 +87,10 @@ def trigonometry_14176():
         except (ValueError, ZeroDivisionError):
             continue
 
-    return task, round(answer,2)
-
+    return {
+        "condition": task,
+        "answer": round(answer, 2)
+    }
 
 
 def trigonometry_14177():
@@ -103,8 +109,10 @@ def trigonometry_14177():
         if answer == 1 or answer == -1 or answer == 0 and rad1 % 15 == 0 and rad2 % 15 == 0 and rad3 % 15 == 0:
             break
 
-    return task, answer
-
+    return {
+        "condition": task,
+        "answer": answer
+    }
 
 
 def trigonometry_14178():
@@ -127,15 +135,15 @@ def trigonometry_14178():
         
         task = f"Вычислите: $\\frac{{\\cos({a}^\\circ) \\cdot \\cos({b}^\\circ) - \\cos({c}^\\circ) \\cdot \\cos({d}^\\circ)}}{{\\cos({e}^\\circ) \\cdot \\cos({f}^\\circ) + \\cos({g}^\\circ) \\cdot \\cos({h}^\\circ)}}$"
 
-    
         answer = num1 / num2
 
         if abs(answer) in range(0,2):
             break
-   
 
-    return task, answer
-
+    return {
+        "condition": task,
+        "answer": answer
+    }
 
 
 def trigonometry_14179():
@@ -158,7 +166,10 @@ def trigonometry_14179():
         except (ZeroDivisionError, ValueError):
             continue
 
-    return task, answer
+    return {
+        "condition": task,
+        "answer": answer
+    }
 
 
 
@@ -176,8 +187,10 @@ def trigonometry_14180():
         answer = math.cos(math.radians(num))
         if abs(answer * 100 - int(answer * 100) )< 0.000001:
             break
-    return task, round(answer, 2)
-
+    return {
+        "condition": task,
+        "answer": round(answer, 2)
+    }
 
 
 def trigonometry_14181():
@@ -194,8 +207,10 @@ def trigonometry_14181():
         answer = math.sin(math.radians(num))
         if abs(answer * 100 - int(answer * 100) )< 0.000001:
             break
-    return task, round(answer, 2)
-
+    return {
+        "condition": task,
+        "answer": round(answer, 2)
+    }
 
 
 def trigonometry_14182():
@@ -209,8 +224,10 @@ def trigonometry_14182():
         answer = math.sin(rad)
         if abs(answer * 100 - int(answer * 100) )< 0.000001:
             break
-    return task, round(answer, 2)
-
+    return {
+        "condition": task,
+        "answer": round(answer, 2)
+    }
 
 
 def trigonometry_14183():
@@ -228,8 +245,10 @@ def trigonometry_14183():
         answer = math.tan(math.radians(num))
         if -1 <= answer <= 1:
             break
-    return task, round(answer, 2)
-
+    return {
+        "condition": task,
+        "answer": round(answer, 2)
+    }
 
 
 def trigonometry_14184():
@@ -243,8 +262,10 @@ def trigonometry_14184():
         answer = math.cos(rad)
         if abs(answer * 100 - int(answer * 100) )< 0.000001:
             break
-    return task, round(answer, 2)
-
+    return {
+        "condition": task,
+        "answer": round(answer, 2)
+    }
 
 
 def trigonometry_14185():
@@ -268,9 +289,11 @@ def trigonometry_14185():
 
            if abs(answer) == 0.5 or abs(answer) == 1 or answer == 0:
                break
-    
-    return task, answer
 
+    return {
+        "condition": task,
+        "answer": answer
+    }
 
 
 def trigonometry_14186():
@@ -294,9 +317,11 @@ def trigonometry_14186():
 
            if abs(answer) == 0.5 or abs(answer) == 1 or answer == 0:
                break
-    
-    return task, answer
 
+    return {
+        "condition": task,
+        "answer": answer
+    }
 
 
 def trigonometry_14187():
@@ -320,9 +345,11 @@ def trigonometry_14187():
 
            if abs(answer) == 0.5 or abs(answer) == 1 or answer == 0:
                break
-    
-    return task, answer
 
+    return {
+        "condition": task,
+        "answer": answer
+    }
 
 
 def trigonometry_14188():
@@ -339,8 +366,10 @@ def trigonometry_14188():
         if abs(answer*100 - int(answer*100) < 0.000001):
             break
 
-    return task, answer
-
+    return {
+        "condition": task,
+        "answer": answer
+    }
 
 
 def trigonometry_14189():
@@ -373,8 +402,10 @@ def trigonometry_14189():
         if abs(answer) in range(0,10):
             break
 
-    return task, answer
-
+    return {
+        "condition": task,
+        "answer": answer
+    }
 
 
 def trigonometry_14190():
@@ -394,8 +425,10 @@ def trigonometry_14190():
         if abs(answer) in range(0,10):
             break
 
-    return task, answer
-
+    return {
+        "condition": task,
+        "answer": answer
+    }
 
 
 def trigonometry_14191():
@@ -417,8 +450,10 @@ def trigonometry_14191():
         if abs(answer) in range(0,10):
             break
 
-    return task, answer
-
+    return {
+        "condition": task,
+        "answer": answer
+    }
 
 
 def trigonometry_14192():
@@ -436,8 +471,10 @@ def trigonometry_14192():
         answer = np.sin(np.radians(num))
         if abs(answer * 100 - int(answer * 100) )< 0.000001:
             break
-    return task, round(answer, 2)
-
+    return {
+        "condition": task,
+        "answer": round(answer, 2)
+    }
 
 
 def trigonometry_14193():
@@ -455,8 +492,10 @@ def trigonometry_14193():
         answer = np.cos(np.radians(num))
         if abs(answer * 100 - int(answer * 100) )< 0.000001:
             break
-    return task, round(answer, 2)
-
+    return {
+        "condition": task,
+        "answer": round(answer, 2)
+    }
 
 
 def trigonometry_14194():
@@ -476,8 +515,10 @@ def trigonometry_14194():
         if abs(answer) in range(0,2):
             break
 
-    return task, answer
-
+    return {
+        "condition": task,
+        "answer": answer
+    }
 
 
 def trigonometry_14195():
@@ -511,8 +552,10 @@ def trigonometry_14195():
         if abs(answer) in [0, 1]:
             break
 
-    return task, answer
-
+    return {
+        "condition": task,
+        "answer": answer
+    }
 
 
 def trigonometry_14196():
@@ -530,9 +573,11 @@ def trigonometry_14196():
 
         if abs(answer) in range(0, 2):
             break
-    
-    return task, answer
 
+    return {
+        "condition": task,
+        "answer": answer
+    }
 
 
 def trigonometry_14197():
@@ -555,8 +600,10 @@ def trigonometry_14197():
         if abs(answer) in range(0,2):
             break
 
-    return task, answer
-
+    return {
+        "condition": task,
+        "answer": answer
+    }
 
 
 def trigonometry_14198():
@@ -575,8 +622,10 @@ def trigonometry_14198():
         if abs(answer) in range(0, 2):
             break
 
-    return task, answer
-
+    return {
+        "condition": task,
+        "answer": answer
+    }
 
 
 def trigonometry_14199():
@@ -595,8 +644,10 @@ def trigonometry_14199():
         if abs(answer) in [1.5, 2.5]:
             break
 
-    return task, answer
-
+    return {
+        "condition": task,
+        "answer": answer
+    }
 
 
 def trigonometry_14200():
@@ -619,14 +670,15 @@ def trigonometry_14200():
         
         task = f"Вычислите: $\\frac{{\\sin({a}^\\circ) \\cdot \\cos({b}^\\circ) - \\sin({c}^\\circ) \\cdot \\sin({d}^\\circ)}}{{\\cos({e}^\\circ) \\cdot \\cos({f}^\\circ) - \\cos({g}^\\circ) \\cdot \\cos({h}^\\circ)}}$"
 
-    
         answer = num1 / num2
 
         if abs(answer) in range(0,2):
             break
-   
 
-    return task, answer
+    return {
+        "condition": task,
+        "answer": answer
+    }
 
 
 def trigonometry_14242():
@@ -646,7 +698,11 @@ def trigonometry_14242():
         if abs(answer * 10000 - int(answer * 10000) )< 0.000001 and abs(answer)>0.01:
             break
 
-    return task, round(answer, 4)
+    return {
+        "condition": task,
+        "answer": round(answer, 4)
+    }
+
 
 def trigonometry_14243():
     ''' Задание на портале kuzovkin.info № 14243 '''
@@ -663,7 +719,10 @@ def trigonometry_14243():
         if abs(answer * 10000 - int(answer * 10000) )< 0.000001 and abs(answer)>0.01:
             break
 
-    return task, round(answer, 4)
+    return {
+        "condition": task,
+        "answer": round(answer, 4)
+    }
 
 
 def trigonometry_14244():
@@ -684,8 +743,10 @@ def trigonometry_14244():
         if abs(answer * 100 - int(answer * 100) )< 0.000001 and abs(answer)>0.01:
             break
 
-    return task, round(answer, 4)
-
+    return {
+        "condition": task,
+        "answer": round(answer, 4)
+    }
 
 
 def trigonometry_14245():
@@ -703,7 +764,10 @@ def trigonometry_14245():
         if abs(answer * 10000 - int(answer * 10000) )< 0.000001 and abs(answer)>0.01:
             break
 
-    return task, round(answer, 4)
+    return {
+        "condition": task,
+        "answer": round(answer, 4)
+    }
 
 
 def trigonometry_14246():
@@ -719,7 +783,10 @@ def trigonometry_14246():
         if abs(answer) in range(0, 10) and angles[0] % 30 != 0 and angles[0] % 45 != 0:
             break
 
-    return task, answer
+    return {
+        "condition": task,
+        "answer": answer
+    }
 
 
 def trigonometry_14247():
@@ -735,7 +802,10 @@ def trigonometry_14247():
         if abs(answer) in range(0, 10) and angles[0] % 30 != 0 and angles[0] % 45 != 0:
             break
 
-    return task, answer
+    return {
+        "condition": task,
+        "answer": answer
+    }
 
 
 def trigonometry_14248():
@@ -751,7 +821,10 @@ def trigonometry_14248():
         if abs(answer * 10000 - int(answer * 10000) )< 0.000001 and abs(answer)>0.01 and angles[0] % 30 != 0 and angles[0] % 45 != 0:
             break
 
-    return task, round(answer, 4)
+    return {
+        "condition": task,
+        "answer": round(answer, 4)
+    }
 
 
 def trigonometry_14249():
@@ -770,7 +843,10 @@ def trigonometry_14249():
         if abs(answer * 10000 - int(answer * 10000) )< 0.000001 and abs(answer)>0.01:
             break
 
-    return task, round(answer, 4)
+    return {
+        "condition": task,
+        "answer": round(answer, 4)
+    }
 
 
 def trigonometry_14250():
@@ -786,7 +862,10 @@ def trigonometry_14250():
         if abs(answer * 10000 - int(answer * 10000) )< 0.000001 and abs(answer)>0.01 and angles[0] % 30 != 0 and angles[0] % 45 != 0:
             break
 
-    return task, round(answer, 4)
+    return {
+        "condition": task,
+        "answer": round(answer, 4)
+    }
 
 
 def trigonometry_14252():
@@ -805,7 +884,10 @@ def trigonometry_14252():
         if abs(answer * 10000 - int(answer * 10000) )< 0.000001 and abs(answer)>0.01:
             break
 
-    return task, round(answer, 4)
+    return {
+        "condition": task,
+        "answer": round(answer, 4)
+    }
 
 
 def trigonometry_14253():
@@ -823,7 +905,10 @@ def trigonometry_14253():
         if abs(answer * 10000 - int(answer * 10000) )< 0.000001 and abs(answer)>0.01:
             break
 
-    return task, round(answer, 4)
+    return {
+        "condition": task,
+        "answer": round(answer, 4)
+    }
 
 
 def trigonometry_14257():
@@ -840,7 +925,10 @@ def trigonometry_14257():
         if abs(answer * 10000 - int(answer * 10000) )< 0.000001 and abs(answer)>0.01 and angles[0] % 30 != 0 and angles[0] % 45 != 0:
             break
 
-    return task, round(answer, 4)
+    return {
+        "condition": task,
+        "answer": round(answer, 4)
+    }
 
 
 def trigonometry_14259(): # похоже на 14260
@@ -860,7 +948,10 @@ def trigonometry_14259(): # похоже на 14260
         if abs(answer * 10000 - int(answer * 10000) )< 0.000001 and abs(answer)>0.01:
             break
 
-    return task, round(answer, 4)
+    return {
+        "condition": task,
+        "answer": round(answer, 4)
+    }
 
 
 def trigonometry_14261():
@@ -878,7 +969,10 @@ def trigonometry_14261():
         if abs(answer * 10000 - int(answer * 10000) )< 0.000001 and abs(answer)>0.01:
             break
 
-    return task, round(answer, 4)
+    return {
+        "condition": task,
+        "answer": round(answer, 4)
+    }
 
 
 def trigonometry_14266():
@@ -899,7 +993,10 @@ def trigonometry_14266():
         if abs(answer) in range(1, 10):
             break
 
-    return task, answer
+    return {
+        "condition": task,
+        "answer": answer
+    }
 
 
 def trigonometry_14269():
@@ -921,7 +1018,10 @@ def trigonometry_14269():
         if abs(answer) in range(1, 10):
             break
 
-    return task, answer
+    return {
+        "condition": task,
+        "answer": answer
+    }
 
 
 def trigonometry_14274(): # тоже самое что и 14276
@@ -940,7 +1040,10 @@ def trigonometry_14274(): # тоже самое что и 14276
         if abs(answer * 10000 - int(answer * 10000) )< 0.000001 and abs(answer)>0.01:
             break
 
-    return task, round(answer, 4)
+    return {
+        "condition": task,
+        "answer": round(answer, 4)
+    }
 
 
 def trigonometry_14275():   # тоже самое что и 14278
@@ -960,7 +1063,10 @@ def trigonometry_14275():   # тоже самое что и 14278
         if abs(answer * 10000 - int(answer * 10000) )< 0.000001 and abs(answer)>0.01:
             break
 
-    return task, round(answer, 4)
+    return {
+        "condition": task,
+        "answer": round(answer, 4)
+    }
 
 
 def trigonometry_14277():  # тоже самое что и 14279
@@ -980,7 +1086,10 @@ def trigonometry_14277():  # тоже самое что и 14279
         if abs(answer * 10000 - int(answer * 10000) )< 0.000001 and abs(answer)>0.01:
             break
 
-    return task, round(answer, 4)
+    return {
+        "condition": task,
+        "answer": round(answer, 4)
+    }
 
 
 def trigonometry_14280():
@@ -1000,4 +1109,7 @@ def trigonometry_14280():
         if abs(answer * 10000 - int(answer * 10000) )< 0.000001 and abs(answer)>0.01:
             break
 
-    return task, round(answer, 4)
+    return {
+        "condition": task,
+        "answer": round(answer, 4)
+    }
