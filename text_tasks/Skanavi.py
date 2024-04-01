@@ -1,9 +1,10 @@
 from pprint import pprint
 from random import randint, choice
 
-from task_generator.text_tasks.input_parameters import input_parameters_work, morph, correct_word, gent_pers, start_title
-from task_generator.text_tasks.task_solutions import solution_task_13135, solution_task_13137, solution_task_13140, \
-    solution_task_13170, solution_task_13185, solution_task_13195, solution_task_13292, solution_task_13328
+from text_tasks.input_parameters import input_parameters_work, morph, correct_word, gent_pers, start_title
+from text_tasks.task_solutions import (solution_task_13135, solution_task_13137, solution_task_13140,
+                                       solution_task_13170, solution_task_13185, solution_task_13195,
+                                       solution_task_13292, solution_task_13328)
 
 
 def task_13021():
