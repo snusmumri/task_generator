@@ -146,7 +146,6 @@ def task_621():
     }
 
 
-
 def task_626():
     '''Генерация аналогичных задач № 626 с портала https://kuzovkin.info/one_exercise_1/626
     Цена на товар повысилась на 15% и составила 2944 рубля. Найдите первоначальную цену товара'''
@@ -409,15 +408,15 @@ def task_851():
     if result < 0:
         answer = f'уменьшилась на {abs(result)}'
         return {
-      "condition": task,
-      "answer": answer
-    }
+            "condition": task,
+            "answer": answer
+        }
     else:
         answer = f'увеличилась на {result}'
         return {
-      "condition": task,
-      "answer": answer
-    }
+            "condition": task,
+            "answer": answer
+        }
 
 
 def task_855():
@@ -441,15 +440,15 @@ def task_855():
     if result * 10 % 10 == 0:
         answer = int(result)
         return {
-      "condition": task,
-      "answer": answer
-    }
+            "condition": task,
+            "answer": answer
+        }
     else:
         answer = result
         return {
-      "condition": task,
-      "answer": answer
-    }
+            "condition": task,
+            "answer": answer
+        }
 
 
 def task_870():
@@ -1063,6 +1062,7 @@ def task_4574():
       "answer": answer
     }
 
+
 def task_4575():
     '''Генерация аналогичных задач № 4575 с портала https://kuzovkin.info/one_exercise_1/4575
     Найдите целое, если 5,7% равны 57'''
@@ -1379,7 +1379,6 @@ def task_4624():
     }
 
 
-
 def task_4625():
     '''Генерация аналогичных задач № 4625 с портала https://kuzovkin.info/one_exercise_1/4625
     Переведите дроби в проценты: 0,32'''
@@ -1399,7 +1398,6 @@ def task_4625():
     }
 
 
-
 def task_4635():
     '''Генерация аналогичных задач № 4635 с портала https://kuzovkin.info/one_exercise_1/4635
     Переведите дроби в проценты: 1,2234'''
@@ -1417,7 +1415,6 @@ def task_4635():
       "condition": task,
       "answer": answer
     }
-
 
 
 def task_4639():
@@ -1563,7 +1560,6 @@ def task_4671():
     }
 
 
-
 def task_4674():
     '''Генерация аналогичных задач № 4674 с портала https://kuzovkin.info/one_exercise_1/4674
     Мальчик Гриша прочитал 138 страниц, что составляет 23% числа всех страниц в книге. Сколько страниц в книге?'''
@@ -1648,7 +1644,6 @@ def task_4694():
     }
 
 
-
 def task_4696():
     '''Генерация аналогичных задач № 4696 с портала https://kuzovkin.info/one_exercise_1/4696
     Смешали 200 г 10%-ного сахарного сиропа и 300 г 20%-ного сахарного сиропа. Найдите концентрацию полученной смеси.'''
@@ -1717,7 +1712,6 @@ def task_4698():
     }
 
 
-
 def task_4699():
     '''Генерация аналогичных задач № 4699 с портала https://kuzovkin.info/one_exercise_1/4699
     Смешали три раствора некоторого вещества: 500 г 12%-го раствора, 200 г 15%-го раствора и 300 г 6%-го раствора.
@@ -1739,7 +1733,6 @@ def task_4699():
       "condition": task,
       "answer": answer
     }
-
 
 
 def task_4700():
@@ -2432,7 +2425,6 @@ def task_8412():
     }
 
 
-
 def task_8416():
     '''Генерация аналогичных задач № 8416 с портала https://kuzovkin.info/one_exercise_1/8416
     Найдите: 100,01% от 200'''
@@ -2509,7 +2501,6 @@ def task_8437():
     }
 
 
-
 def task_8445():
     '''Генерация аналогичных задач № 8445 с портала https://kuzovkin.info/one_exercise_1/8445
     Найдите целое, если 9,9% равны 396'''
@@ -2570,7 +2561,6 @@ def task_8451():
       "condition": task,
       "answer": answer
     }
-
 
 
 def task_8462():

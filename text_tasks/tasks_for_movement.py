@@ -32,5 +32,10 @@ def task_940():
             time2 += time1
             answer = 1 / (1 / time1 - 1 / time2)
         # answer = str((Fraction(1, time1) - Fraction(1, time2)) ** (-1) / 2)
-    return answer, f"Из двух диаметрально противоположных точек {place} одновременно {direction} {action}и два {pers}а. " \
-                   f"Первый {action1} полный круг за {time1} мин, второй - за {time2} мин. Через какое время они первый раз встретятся?"
+
+    return {
+        "condition": f"Из двух диаметрально противоположных точек {place} одновременно {direction} {action}и два "
+                     f"{pers}а. Первый {action1} полный круг за {time1} мин, второй - за {time2} мин. Через какое "
+                     f"время они первый раз встретятся?",
+        "answer": answer
+    }
