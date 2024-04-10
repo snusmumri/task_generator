@@ -53,10 +53,7 @@ def generate_values_and_recieve_answer(equation_to_solve):
     answer = find_answer(splitted_eq)
     if answer or str(answer) == '0':
         break
-  return {
-    "condition": equation_to_solve_after_parse,
-    "answer": answer
-  }
+  return equation_to_solve_after_parse, answer
 
 
 # Парсер уравнений
