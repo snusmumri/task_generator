@@ -16,6 +16,8 @@ from sympy import *
 import matplotlib.pyplot as plt
 import re
 import time
+from utilities.converting import save_to_base64
+
 
 def plot_bezier_total_number_extremes_or_number_max_or_number_min_or_increasing_sum_whole_points():
     n_1 = random.randint(20, 30)
@@ -200,10 +202,12 @@ def plot_bezier_total_number_extremes_or_number_max_or_number_min_or_increasing_
     ax.set_xlim(x_start - 1, x_end + 2)
     ax.set_ylim(min(points[1]) - 1, max(points[1]) + 1)
     plt.legend(labels=["y = f'(x)"])
-    plt.show()
+    plt_base64 = save_to_base64(plt)
+    plt.close()
     task = r'На рисунке изображен график производной функции f(x), определенной на интервале' + ' ' + '\(' + str(latex(latex_interval)) + '\).' + text
     answer = number
     return {
         "condition": task,
-        "answer": answer
-    }
+        "answer": answer,
+        "image": plt_base64,
+        }

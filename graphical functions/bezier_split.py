@@ -16,6 +16,8 @@ from sympy import *
 import matplotlib.pyplot as plt
 import re
 import time
+from utilities.converting import save_to_base64
+
 
 def graph_derivative_function_task_33_task_34():
     n_1 = random.randint(20, 30)
@@ -151,10 +153,12 @@ def graph_derivative_function_task_33_task_34():
     ax.set_xlim(x_start - 1, x_end + 2)
     ax.set_ylim(min(points[1]) - 1, max(points[1]) + 1)
     plt.legend(labels=["y = f'(x)"])
-    plt.show()
+    plt_base64 = save_to_base64(plt)
+    plt.close()
     task = r'Функция определена и непрерывна на полуинтервале' + ' ' + '\(' + str(latex(latex_interval)) + '\).' + r' На рисунке изображен график её производной.' + text + r' В ответе укажите сумму целых точек, входящих в эти промежутки.'
     answer = number
     return {
         "condition": task,
-        "answer": answer
-    }
+        "answer": answer,
+        "image": plt_base64,
+        }
