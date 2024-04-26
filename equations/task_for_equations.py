@@ -3,8 +3,8 @@ from pytexit import py2tex
 import random
 import re
 
-from task_generator.text_tasks.utils import create_regex_pattern, solves_equation
-
+# from task_generator.text_tasks.utils import create_regex_pattern, solves_equation
+from text_tasks.utils import create_regex_pattern, solves_equation
 
 def generation_and_solution_new_equation(sample_equation):
   '''Функция генерирует уравнение с неивестной х! исходя из образца путем подстановки новых коэффициентов и решает это уравнение.

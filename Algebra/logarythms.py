@@ -289,7 +289,9 @@ def logarithmic_identity_with_multiplication():  # 10
         coefficient = random.randint(2, 6)
         argument_first *= coefficient
         argument_second = Fraction(1, coefficient)
-        answer = argument_first * argument_second
+        answer = float(argument_first * argument_second)
+        if answer % 1 == 0:
+            answer = int(answer)
 
     task = f"Вычислите: ${{{base_first}}}^{{log_{{{base_first}}}({{{argument_first}}})}} ⋅ {{{base_second}}}^{{log_{{{base_second}}}({{{argument_second}}})}}$"
     return {

@@ -2906,7 +2906,9 @@ def task_9327():
         if random_percent % 1 == 0:
             continue
         answer = random_percent / 100
-        if answer % 0.0001 == 0:
+        if len(str(answer).split('.')[1]) <= 4:
+            if answer % 1 == 0:
+                answer = int(answer)
             break
     task = f"Переведите проценты в десятичную дробь: {random_percent}%"
     return {
@@ -2925,7 +2927,9 @@ def task_9346():
         if random_fraction % 1 == 0:
             continue
         answer = random_fraction * 100
-        if answer % 0.1 == 0:
+        if len(str(answer).split('.')[1]) <= 2:
+            if answer == int(answer):
+                answer = int(answer)
             break
     task = f"Переведите дроби в проценты: {random_fraction}"
     return {

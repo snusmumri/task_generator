@@ -243,10 +243,10 @@ def task_5492():
         f = np.random.randint(1, 7)/10
         a, b = symbols('a b')
         task = r'Найдите значение дроби: \( \frac{'+latex(UnevaluatedExpr(k*c*a))+('+')+latex(UnevaluatedExpr(k*n*b))+'}{'+latex(UnevaluatedExpr(f*pow(c, 2))*UnevaluatedExpr(pow(a, 2)))+('-')+latex(UnevaluatedExpr(f*pow(n, 2))*UnevaluatedExpr(pow(b, 2)))+'} \), если \(' +latex(a-2*b)+str('=')+latex(UnevaluatedExpr(m))+str(',')+latex(a+2*b)+str('\u2260')+latex(UnevaluatedExpr(0))+ '\)'
-        answer = k/(f*m)
+        answer = float(k/(f*m))
         check = k % f
         if c != n and f*pow(c, 2) != int(f*pow(c, 2)) and f*pow(n, 2) != int(f*pow(n, 2)):
-            if check == int(check) and answer != 0 and len(str(answer % 1)) < 6:
+            if check == int(check) and answer != 0 and len(str(answer).split('.')[1]) <= 6:
                 if answer % 1 == 0:
                     answer = int(answer)
                 break
@@ -265,8 +265,8 @@ def task_5493():
             d = np.random.randint(1, 100)/100
             x, y = symbols('x y')
             task = r'Найдите значение дроби: \( \frac{'+latex(UnevaluatedExpr(a*m*pow(x, 2)))+('-')+latex(UnevaluatedExpr(a*n*x*y))+'}{'+latex(UnevaluatedExpr(b*m*x*y))+('-')+latex(UnevaluatedExpr(b*n*pow(y, 2)))+'} \) при \(' +latex(x)+str('=')+latex(UnevaluatedExpr(c))+str(',')+latex(y)+str('=')+latex(UnevaluatedExpr(d))+ '\)'
-            answer = (a*c)/(b*d)
-            if len(str(answer % 1)) < 6:
+            answer = float((a*c)/(b*d))
+            if len(str(answer).split('.')[1]) <= 6:
                 if answer % 1 == 0:
                     answer = int(answer)
                 break
@@ -284,12 +284,11 @@ def task_5494():
         y = np.random.randint(1, 10)/10
         a, b = symbols('a b')
         task = r'Найдите значение дроби: \( \frac{'+latex(UnevaluatedExpr(f*pow(m, 2))*UnevaluatedExpr(pow(a, 3)))+('-')+latex(UnevaluatedExpr(f*pow(n, 2)*a*pow(b, 2)))+'}{'+latex(UnevaluatedExpr(k*n*pow(b, 2)))+('-')+latex(UnevaluatedExpr(k*m*a*b))+'} \), при \(' +latex(a)+str('=')+latex(UnevaluatedExpr(x))+str(',')+latex(b)+str('=')+latex(UnevaluatedExpr(y))+ '\)'
-        answer = -(x*f*(m*x+n*y))/(k*y)
-        if m != n and k != f:
-            if len(str(answer % 1)) < 6:
-                if answer % 1 == 0:
-                    answer = int(answer)
-                break
+        answer = float(-(x*f*(m*x+n*y))/(k*y))
+        if m != n and k != f and len(str(answer).split('.')[1]) <= 6:
+            if answer % 1 == 0:
+                answer = int(answer)
+            break
     return {
       "condition": task,
       "answer": answer
@@ -307,6 +306,8 @@ def task_5475():
             den = m*pow(k, 2)+n
             answer = num/den
             if answer % 1 == 0 and answer != 0:
+                if answer % 1 == 0:
+                    answer = int(answer)
                 break
     return {
       "condition": task,
@@ -321,8 +322,8 @@ def task_5459():
         if k < n and m != 1 and n % k != 0:
             x, y = symbols('x y')
             task = r'Зная, что \( \frac{'+latex(x)+'}{'+latex(y)+'} {'+str('=')+'} \\frac{'+latex(UnevaluatedExpr(k))+'}{'+latex(UnevaluatedExpr(n))+'} \), найдите значение выражения: \( \\frac{'+latex(y)+'}{'+latex(UnevaluatedExpr(m)*UnevaluatedExpr(x))+'} \)'
-            answer = n/(m*k)
-            if len(str(answer % 1)) < 6:
+            answer = float(n/(m*k))
+            if len(str(answer).split('.')[1]) <= 6:
                 if answer % 1 == 0:
                     answer = int(answer)
                 break
@@ -339,8 +340,8 @@ def task_5460():
         if k < n:
             x, y = symbols('x y')
             task = r'Зная, что \( \frac{'+latex(x)+'}{'+latex(y)+'} {'+str('=')+'} \\frac{'+latex(UnevaluatedExpr(k))+'}{'+latex(UnevaluatedExpr(n))+'} \), найдите значение выражения: \( \\frac{'+latex(x-y)+'}{'+latex(y)+'} \)'
-            answer = k/n-1
-            if len(str(answer % 1)) < 6:
+            answer = float(k/n-1)
+            if len(str(answer).split('.')[1]) <= 6:
                 if answer % 1 == 0:
                     answer = int(answer)
                 break
@@ -358,8 +359,8 @@ def task_5462():
             k = np.random.randint(1, 10)/10
             x, y = symbols('x y')
             task = r'Найдите значение дроби: \( \frac{'+latex(UnevaluatedExpr(a)*UnevaluatedExpr(x))+('-')+latex(UnevaluatedExpr(b)*UnevaluatedExpr(y))+'}{'+latex(y)+'}\), если \( \\frac{'+latex(x)+'}{'+latex(y)+'}{'+str('=')+'}{'+latex(UnevaluatedExpr(k))+'} \)'
-            answer = a*k-b
-            if len(str(answer % 1)) < 6:
+            answer = float(a*k-b)
+            if len(str(answer).split('.')[1]) <= 6:
                 if answer % 1 == 0:
                     answer = int(answer)
                 break
@@ -376,8 +377,8 @@ def task_5465():
         if k != m and c != d:
             a, b = symbols('a b')
             task = r'Зная, что \( \frac{'+latex(a)+('+')+latex(UnevaluatedExpr(m*b))+'}{'+latex(b)+'} {'+str('=')+'} {'+latex(UnevaluatedExpr(k))+'} \), найдите значение выражения: \( \\frac{'+latex(UnevaluatedExpr(c*a))+('+')+latex(UnevaluatedExpr(d*b))+'}{'+latex(b)+'} \)'
-            answer = c*(k-m)+d
-            if answer != 0 and len(str(answer % 1)) < 6:
+            answer = float(c*(k-m)+d)
+            if answer != 0 and len(str(answer).split('.')[1]) <= 6:
                 if answer % 1 == 0:
                     answer = int(answer)
                 break
@@ -394,8 +395,8 @@ def task_5449():
         if m % k == 0 and a != b and k != m:
             x, y = symbols('x y')
             task = r'Зная, что \( \{'+latex(UnevaluatedExpr(k*a*x))+('-')+latex(UnevaluatedExpr(k*b*y))+'} {'+str('=')+'} {'+latex(UnevaluatedExpr(m))+'} \), найдите значение выражения: \( \{'+latex(UnevaluatedExpr(a*x))+('-')+latex(UnevaluatedExpr(b*y))+'} \)'
-            answer = m/k
-            if len(str(answer % 1)) < 6:
+            answer = float(m/k)
+            if len(str(answer).split('.')[1]) <= 6:
                 if answer % 1 == 0:
                     answer = int(answer)
                 break
@@ -412,8 +413,8 @@ def task_5450():
         if a != b and k != m:
             x, y = symbols('x y')
             task = r'Зная, что \( {'+latex(UnevaluatedExpr(k*a*x))+('-')+latex(UnevaluatedExpr(k*b*y))+'} {'+str('=')+'} {'+latex(UnevaluatedExpr(m))+'} \), найдите значение выражения: \( \\frac{'+latex(UnevaluatedExpr(f))+'}{'+latex(UnevaluatedExpr(a*x))+('-')+latex(UnevaluatedExpr(b*y))+'} \)'
-            answer = (f*k)/m
-            if len(str(answer % 1)) < 6:
+            answer = float((f*k)/m)
+            if len(str(answer).split('.')[1]) <= 6:
                 if answer % 1 == 0:
                     answer = int(answer)
                 break
@@ -430,8 +431,8 @@ def task_5452():
         if m % k == 0 and a != b and k != m:
             x, y = symbols('x y')
             task = r'Зная, что \( {'+latex(UnevaluatedExpr(k*a*x))+('-')+latex(UnevaluatedExpr(k*b*y))+'} {'+str('=')+'} {'+latex(UnevaluatedExpr(m))+'} \), найдите значение выражения: \( ({'+latex(UnevaluatedExpr(pow(b, 2)*pow(y, 2)))+('-')+latex(UnevaluatedExpr(2*a*b*x*y))+('+')+latex(UnevaluatedExpr(pow(a, 2)*pow(b, 2)))+'}){'+str('\cdot')+'}{'+latex(UnevaluatedExpr(f))+'} \)'
-            answer = pow(m/k, 2)*f
-            if len(str(answer % 1)) < 6:
+            answer = float(pow(m/k, 2)*f)
+            if len(str(answer).split('.')[1]) <= 6:
                 if answer % 1 == 0:
                     answer = int(answer)
                 break
@@ -448,8 +449,8 @@ def task_5496():
         if a != b and m % c == 0 and n % d == 0:
             k, l = symbols('k l')
             task = r'Найдите значение дроби: \( \frac{'+latex(UnevaluatedExpr(m*a)*UnevaluatedExpr(k*l))+('-')+latex(UnevaluatedExpr(m*b)*UnevaluatedExpr(pow(k, 2)))+'}{'+latex(UnevaluatedExpr(n*b)*UnevaluatedExpr(k*l))+('-')+latex(UnevaluatedExpr(n*a)*UnevaluatedExpr(pow(l, 2)))+'}\), при \( {'+latex(k)+'}{'+str('=')+'}\\frac{'+latex(UnevaluatedExpr(1))+'}{'+latex(UnevaluatedExpr(c))+'}{'+str(';')+'}{'+latex(l)+'}{'+str('=')+'}\\frac{'+latex(UnevaluatedExpr(1))+'}{'+latex(UnevaluatedExpr(d))+'} \)'
-            answer = -(m*d)/(c*n)
-            if len(str(answer % 1)) < 6:
+            answer = float(-(m*d)/(c*n))
+            if len(str(answer).split('.')[1]) <= 6:
                 if answer % 1 == 0:
                     answer = int(answer)
                 break
@@ -481,8 +482,8 @@ def task_5853():
         if a != b:
             x, y, p = symbols('x y p')
             task = r'Упростите выражение: \( \frac{'+latex(UnevaluatedExpr(a*p))+('-')+latex(pow(p, 2))+'}{'+latex(y)+('-')+latex(x)+'} {'+str(':')+'} \\frac{'+latex(UnevaluatedExpr(a*k*p))+('-')+latex(UnevaluatedExpr(b*k*pow(p, 2)))+'}{'+latex(x-y)+'} \)'
-            answer = -1/k
-            if len(str(answer % 1)) < 6:
+            answer = float(-1/k)
+            if len(str(answer).split('.')[1]) <= 6:
                 if answer % 1 == 0:
                     answer = int(answer)
                 break
@@ -499,8 +500,8 @@ def task_5854():
         if x != y:
             a, b, q = symbols('a b q')
             task = r'Упростите выражение: \( \frac{'+latex(a)+('-')+latex(b)+'}{'+latex(UnevaluatedExpr(x*q))+('-')+latex(pow(q, 2))+'} {'+str('\cdot')+'} \\frac{'+latex(UnevaluatedExpr(k*x*q))+('-')+latex(UnevaluatedExpr(k*y*pow(q, 2)))+'}{'+latex(b)+('-')+latex(a)+'} \)'
-            answer = -k
-            if len(str(answer % 1)) < 6:
+            answer = float(-k)
+            if len(str(answer).split('.')[1]) <= 6:
                 if answer % 1 == 0:
                     answer = int(answer)
                 break
@@ -517,8 +518,8 @@ def task_11915():
         if k != a != b:
             p = symbols('p')
             task = r'Выполните сложение алгебраических дробей: \( \frac{'+latex(UnevaluatedExpr(k*a))+'}{'+latex(UnevaluatedExpr(a))+('+')+latex(UnevaluatedExpr(b*p))+'} {'+str('+')+'} \\frac{'+latex(UnevaluatedExpr(k*b*p))+'}{'+latex(UnevaluatedExpr(a))+('+')+latex(UnevaluatedExpr(b*p))+'} \)'
-            answer = k
-            if len(str(answer % 1)) < 6:
+            answer = float(k)
+            if len(str(answer).split('.')[1]) <= 6:
                 if answer % 1 == 0:
                     answer = int(answer)
                 break
@@ -536,8 +537,8 @@ def task_11947():
         if a != x != y and m_ != int(m_) and m_ != 0 and pow(x, 2)+y == pow(a, 2) and 2*x-1 == a:
             m = symbols('m')
             task = r'Упростите и найдите значение выражения: \( \frac{'+latex(UnevaluatedExpr(pow(m-x, 2)))+'}{'+latex(pow(m, 3))+('+')+latex(UnevaluatedExpr(pow(a, 3)))+'} {'+str('+')+'} \\frac{'+latex(UnevaluatedExpr(y))+('-')+latex(m)+'}{'+latex(pow(m, 3))+('+')+latex(UnevaluatedExpr(pow(a, 3)))+'} \), при \( {'+latex(m)+('=')+latex(UnevaluatedExpr(m_))+'} \)'
-            answer = 1/(m_+a)
-            if len(str(answer % 1)) < 6:
+            answer = float(1/(m_+a))
+            if len(str(answer).split('.')[1]) <= 6:
                 if answer % 1 == 0:
                     answer = int(answer)
                 break
@@ -555,12 +556,11 @@ def task_11997():
             c = 3*a
             x, y = symbols('x y')
             task = r'Упростите выражение и найдите его значение: \( \frac{'+latex(UnevaluatedExpr(c*x))+('+')+latex(UnevaluatedExpr(b*y))+'}{'+latex(UnevaluatedExpr(a*pow(x, 2)*y))+'} {'+str('-')+'} \\frac{'+latex(UnevaluatedExpr(b*y))+('-')+latex(UnevaluatedExpr(a*x))+'}{'+latex(UnevaluatedExpr(b*x*pow(y, 2)))+'} \), при \( {'+latex(x)+'}{'+str('=')+'}\\frac{'+latex(UnevaluatedExpr(1))+'}{'+latex(UnevaluatedExpr(k))+'}{'+str(';')+'}{'+latex(y)+'}{'+str('=')+'}\\frac{'+latex(UnevaluatedExpr(1))+'}{'+latex(UnevaluatedExpr(n))+'} \)'
-            answer = (pow(a*(1/k+b*(1/n)) ,2))/(a*b*(pow(1/k, 2))*(pow(1/n, 2)))
-            if a != x != y:
-                if len(str(answer % 1)) < 6:
-                    if answer % 1 == 0:
-                        answer = int(answer)
-                    break
+            answer = float(pow(a*(1/k+b*(1/n)) ,2))/(a*b*(pow(1/k, 2))*(pow(1/n, 2)))
+            if a != x != y and len(str(answer).split('.')[1]) <= 6:
+                if answer % 1 == 0:
+                    answer = int(answer)
+                break
     return {
       "condition": task,
       "answer": answer
@@ -574,8 +574,8 @@ def task_16072():
         if x != y != z and pow(y + z - x, 2) != 0:
             a, b, c = symbols('a b c')
             task = r'Упростите выражение и найдите его значение: \( ((\frac{'+latex(UnevaluatedExpr(1))+'}{'+latex(a)+'} {'+str('+')+'} \\frac{'+latex(UnevaluatedExpr(1))+'}{'+latex(b+c)+'}) {'+str(':')+'} (\\frac{'+latex(UnevaluatedExpr(1))+'}{'+latex(a)+'} {'+str('-')+'} \\frac{'+latex(UnevaluatedExpr(1))+'}{'+latex(b+c)+'})) {'+str(':')+'} ({'+latex(UnevaluatedExpr(1))+'}{'+str('+')+'} \\frac{'+latex(pow(b, 2))+('+')+latex(pow(c, 2))+('-')+latex(pow(a, 2))+'}{'+latex(2*b*c)+'}) \), при \( {'+latex(a)+'}{'+str('=')+'} {'+latex(UnevaluatedExpr(x))+'}{'+str(';')+'}{'+latex(b)+'}{'+str('=')+'}{'+latex(UnevaluatedExpr(y))+'}{'+str(';')+'}{'+latex(c)+'}{'+str('=')+'}{'+latex(UnevaluatedExpr(z))+'} \)'
-            answer = (2*y*z)/pow(y+z-x, 2)
-            if len(str(answer % 1)) < 6:
+            answer = float((2*y*z)/pow(y+z-x, 2))
+            if len(str(answer).split('.')[1]) <= 6:
                 if answer % 1 == 0:
                     answer = int(answer)
                 break
@@ -593,8 +593,8 @@ def task_16075():
             x_ = np.random.randint(1, 15)/10
             x = symbols('x')
             task = r'Упростите выражение и найдите его значение: \( ({'+latex(pow(x, 2))+('+')+latex(UnevaluatedExpr(a*x))+('-')+'} \\frac{'+latex(UnevaluatedExpr(c*x))+('-')+latex(UnevaluatedExpr(a))+'}{'+latex(UnevaluatedExpr(b*x))+('+')+latex(UnevaluatedExpr(d))+'}) {'+str(':')+'} ({'+latex(x)+('+')+latex(UnevaluatedExpr(d))+('-')+'} \\frac{'+latex(UnevaluatedExpr(a*pow(x, 2)))+('+')+latex(x)+('+')+latex(UnevaluatedExpr(a))+'}{'+latex(UnevaluatedExpr(b*x))+('+')+latex(UnevaluatedExpr(d))+'}) \), при \( {'+latex(x)+'}{'+str('=')+'}{'+latex(UnevaluatedExpr(x_))+'} \)'
-            answer = b*x_-a
-            if len(str(answer % 1)) < 6:
+            answer = float(b*x_-a)
+            if len(str(answer).split('.')[1]) <= 6:
                 if answer % 1 == 0:
                     answer = int(answer)
                 break
@@ -615,8 +615,8 @@ def task_16080():
             f = 4*b
             t = symbols('t')
             task = r'Упростите выражение: \( {(\frac{'+latex(UnevaluatedExpr(1))+'}{'+latex(pow(t, 2))+('+')+latex(UnevaluatedExpr(b*t))+('+')+latex(UnevaluatedExpr(a))+'} {'+str('+')+'} \\frac{'+latex(UnevaluatedExpr(2*t))+'}{'+latex(pow(t, 2))+('+')+latex(UnevaluatedExpr(c*t))+('+')+latex(UnevaluatedExpr(b))+'} {'+str('+')+'} \\frac{'+latex(UnevaluatedExpr(1))+'}{'+latex(pow(t, 2))+('+')+latex(UnevaluatedExpr(m*t))+('+')+latex(UnevaluatedExpr(n))+'})}^{'+latex(UnevaluatedExpr(2))+'} {'+str('\cdot')+'} \\frac{'+latex(pow(UnevaluatedExpr(t-b), 2))+('+')+latex(UnevaluatedExpr(f*t))+'}{'+latex(UnevaluatedExpr(k))+'} \)'
-            answer = k
-            if len(str(answer % 1)) < 6:
+            answer = float(k)
+            if len(str(answer).split('.')[1]) <= 6:
                 if answer % 1 == 0:
                     answer = int(answer)
                 break
