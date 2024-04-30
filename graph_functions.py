@@ -8,7 +8,7 @@ from sympy.abc import x, y
 from utilities.converting import save_to_base64
 
 def function_graph(x_coord, y_coord, x_points, y_points, point_A=[], lim=[[-9, 9], [-9, 9]], dash=[], trigonometry=False, color=['orange', 'blue']):
-    """Функция стоит график(и) по переданным параметрам"""
+    """Функция строит график(и) по переданным параметрам"""
     fig = plt.figure()
     ax = plt.axes()
     fig.add_axes(ax)
@@ -252,7 +252,12 @@ def single_parabola_1():
         return answer, task, paint, solution
 
     answer, task, paint, solution = function_result()
-    return answer, task, paint, solution
+    return {
+        "condition": task,
+        "answer": answer,
+        "image": paint,
+        "solution": solution
+    }
 
 
 # Задача 4 https://math-ege.sdamgia.ru/problem?id=562061
@@ -584,6 +589,10 @@ def giperbola_3():
         return answer, task, paint, solution
 
     answer, task, paint, solution = function_result()
+    if answer % 1 == 0:
+        answer = int(answer)
+    else:
+        answer = float(answer)
     return {
         "condition": task,
         "answer": answer,

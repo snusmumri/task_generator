@@ -6,6 +6,7 @@ import re
 # from task_generator.text_tasks.utils import create_regex_pattern, solves_equation
 from text_tasks.utils import create_regex_pattern, solves_equation
 
+
 def generation_and_solution_new_equation(sample_equation):
   '''Функция генерирует уравнение с неивестной х! исходя из образца путем подстановки новых коэффициентов и решает это уравнение.
   Если в образце есть квадратный трехчлен, который раскладывается на линейные множители, и эти множители присутствуют в образце,
@@ -60,10 +61,21 @@ def generation_and_solution_new_equation(sample_equation):
                     tex_multiplier='',
                     simplify_fractions =True)
   task = f'Решите уравнение: {latex_string}'
+  answer = ""
+  for position, value in enumerate(result):
+      numerator = value.p
+      denominator = value.q
+      if denominator == 1:
+          answer += ((r"\(" + f"{numerator}") + "\)")
+      else:
+          answer += ((((r"\(\frac{" + f"{numerator}") + "}{") + f"{denominator}") + r"}\)")
+      if position < len(result) - 1:
+          answer += ", "
   return {
       "condition": task,
-      "answer": result
+      "answer": answer
     }
+
 
 '''Генерация аналогичных задач № 2295 с портала https://kuzovkin.info/zadachi/?read_text_from_string=2295
     Решите уравнение: (x**2−3)/2−6*x=5'''

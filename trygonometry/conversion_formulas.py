@@ -500,24 +500,23 @@ def trigonometry_14193():
 
 def trigonometry_14194():
 
-    ''' Задание на портале kuzovkin.info № 14194 '''
+    """Задание на портале https://kuzovkin.info/one_exercise_1/14194"""
 
     while True:
-        num1, num2 = np.random.randint(-20, 20, 2)
-        if num2 == 0:
+        num1, num2 = np.random.randint(-40, 40, 2)
+        if num2<2:
             continue
-        rad = num1 * np.pi / num2
-        task = f"Вычислите c помощью формул приведения: $\\ctg\\left(\\frac{{{num1}^\\circ\\pi}}{{{num2}}}\\right)$"
-        a, b = np.cos(rad), np.sin(rad)
-        if b == 0:
+        try:
+            answer = 1 / math.tan(num1 * math.pi / num2)
+        except ZeroDivisionError:
             continue
-        answer = a / b
-        if abs(answer) in range(0,2):
+        task = f"Вычислите c помощью формул приведения: $\\ctg\\left(\\frac{{{int(num1)}\pi}}{{{int(num2)}}}\\right)$"
+        if round(answer,3)==1 or round(answer,3)==0 or round(answer,3)==-1:
             break
 
     return {
         "condition": task,
-        "answer": answer
+        "answer": int(round(answer,3))
     }
 
 
@@ -976,26 +975,27 @@ def trigonometry_14261():
 
 
 def trigonometry_14266():
-    ''' Задание на портале kuzovkin.info № 14266 '''
+    """Задание на портале kuzovkin.info № 14266"""
 
     while True:
         angles = np.random.randint(10, 360, 2)
         operation = np.random.choice(['+', '-'])
 
-        if angles[0] % 15 == 0 or angles[1] % 15 == 0:
+        if angles[0] == angles[1]:
             continue
-
-        cot_1, cot_2 = np.cos(np.radians(angles[0])) / np.sin(np.radians(angles[0])), np.cos(np.radians(angles[1])) / np.sin(np.radians(angles[1]))
-
+        try:
+            cot_1, cot_2 = np.cos(np.radians(angles[0])) / np.sin(np.radians(angles[0])), np.cos(np.radians(angles[1])) / np.sin(np.radians(angles[1]))
+        except ZeroDivisionError:
+            continue
         task = f"Преобразуйте сумму (или разность) тригонометрических функций в произведение и упростите: $\\ctg({angles[0]}^\\circ) {operation} \\ctg({angles[1]}^\\circ)$"
-
         answer = eval(f"cot_1 {operation} cot_2")
-        if abs(answer) in range(1, 10):
+        if round(answer, 3) == 1 or round(answer, 3) == 0 or round(answer, 3) == -1:
+            print(answer)
             break
 
     return {
         "condition": task,
-        "answer": answer
+        "answer":  int(round(answer,3))
     }
 
 

@@ -1,10 +1,6 @@
-import random
 import numpy as np
-import math
-import fractions
 from sympy import *
 import matplotlib.pyplot as plt
-import re
 from utilities.converting import save_to_base64
 
 

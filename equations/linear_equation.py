@@ -273,8 +273,14 @@ def parse_and_generate_task(equation_to_solve):
 
 def x_equation_generator_with_parser(equation_to_solve):
   '''Функция для создания линейного уравнения, которая обращается внутри себя к парсеру для вывода уравнения'''
-  prep_equation, answer = generate_values_and_recieve_answer(equation_to_solve)
-  task = parse_and_generate_task(prep_equation)
+  while True:
+    prep_equation, answer = generate_values_and_recieve_answer(equation_to_solve)
+    task = parse_and_generate_task(prep_equation)
+    answer = float(answer)
+    if len(str(answer).split('.')[1]) <= 6:
+      if answer % 1 == 0:
+        answer = int(answer)
+        break
   return {
       "condition": task,
       "answer": answer
