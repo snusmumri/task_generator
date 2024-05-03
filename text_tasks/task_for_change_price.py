@@ -17,7 +17,10 @@ def task_837():
           answer = result
           break
     task = f'{capitalize_word(cloth_1)} дороже {choosing_declension_form(cloth_2)} на {percent}%. На сколько процентов {cloth_2} дешевле {choosing_declension_form(cloth_1)}?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_838():
     '''Генерация аналогичных задач № 838 с портала https://kuzovkin.info/one_exercise_1/838
@@ -33,7 +36,10 @@ def task_838():
           answer = result
           break
     task = f'{capitalize_word(cloth_1)} дороже {choosing_declension_form(cloth_2)} на {percent}%. На сколько процентов {cloth_2} дешевле {choosing_declension_form(cloth_1)}?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_850():
     '''Генерация аналогичных задач № 850 с портала https://kuzovkin.info/one_exercise_1/850
@@ -50,7 +56,10 @@ def task_850():
           answer = f'{"увеличилась" if result < 0 else "уменьшилась"} на {abs(result)}%'
           break
     task = f'Цена на {choosing_declension_form(cloth, "accs")} сначала увеличилась на {percent1}% процентов, а потом уменьшилась на {percent2}%. На сколько процентов и в какую сторону изменилась цена {choosing_declension_form(cloth)} по сравнению с первоначальной?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_863():
     '''Генерация аналогичных задач № 863 с портала https://kuzovkin.info/one_exercise_1/863
@@ -70,7 +79,10 @@ def task_863():
             answer = f'одинаково'
             break
     task = f'В двух магазинах были одинаковые цены. В одном магазине их сначала понизили на {percent11}%, а потом повысили на {percent12}%, а в другом − сначала повысили на {percent21}%, а потом понизили на {percent22}%. В каком из магазинов выгоднее покупать товар?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_873():
     '''Генерация аналогичных задач № 873 с портала https://kuzovkin.info/one_exercise_1/873
@@ -90,7 +102,10 @@ def task_873():
             answer = f'цена не изменилась'
             break
     task = f'Цена на {choosing_declension_form(cloth, "accs")} сначала два раза увеличилась на {percent1}%, а потом уменьшилась на {percent2}%. Как и на сколько процентов изменилась цена {choosing_declension_form(cloth)} по сравнению с первоначальной?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_876():
     '''Генерация аналогичных задач № 873 с портала https://kuzovkin.info/one_exercise_1/876
@@ -110,7 +125,10 @@ def task_876():
             answer = f'цена не изменилась'
             break
     task = f'Цена на {choosing_declension_form(cloth, "accs")} выросла на {percent1}%, потом упала на {percent2}%, потом опять упала на {percent3}%. Как и на сколько процентов изменилась цена {choosing_declension_form(cloth)} по сравнению с первоначальной?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_4483():
     '''Генерация аналогичных задач № 4483 с портала https://kuzovkin.info/one_exercise_1/4483
@@ -121,7 +139,10 @@ def task_4483():
         answer = result
         break
     task = f'Цена товара увеличилась на {percent}%. Сколько процентов составляет новая цена от старой?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_4503():
     '''Генерация аналогичных задач № 4503 с портала https://kuzovkin.info/one_exercise_1/4503
@@ -136,7 +157,10 @@ def task_4503():
             answer = int(result)
             break
     task = f'Дисконтная карточка в магазине «Marks&Spencer» даёт мне скидку {percent}%. Цена {choosing_declension_form(cloth)} с учётом скидки составила {price} рубл{"я" if price % 10 in [2, 3, 4] else "ей"}. Сколько сто{"ит" if find_number_object(cloth) == 1 else "ят"} {cloth} без скидки?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_4689():
     '''Генерация аналогичных задач № 4689 с портала https://kuzovkin.info/one_exercise_1/4689
@@ -154,7 +178,10 @@ def task_4689():
               answer = result
               break
     task = f'Вкладчик положил в банк {contr} {choosing_declension_form(money)}. Проценты по вкладу составили {profit} {choosing_declension_form(money)}. Какова доходность вклада?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_4713():
     '''Генерация аналогичных задач № 4713 с портала https://kuzovkin.info/one_exercise_1/4713
@@ -170,7 +197,10 @@ def task_4713():
             answer = result
             break
     task = f'{capitalize_word(cloth_1)} дороже {choosing_declension_form(cloth_2)} на {percent}%. На сколько процентов {cloth_2} дешевле {choosing_declension_form(cloth_1)}?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_4751():
     '''Генерация аналогичных задач № 4751 с портала https://kuzovkin.info/one_exercise_1/4751
@@ -184,7 +214,10 @@ def task_4751():
             answer = int(result)
             break
     task = f'Цена на {choosing_declension_form(cloth, "accs")} была снижена на {percent}%. На сколько процентов надо теперь её повысить, чтобы получить первоначальную цену?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_8362():
     '''Генерация аналогичных задач № 8362 с портала https://kuzovkin.info/one_exercise_1/8362
@@ -200,7 +233,10 @@ def task_8362():
               answer = int(result)
               break
     task = f'{capitalize_word(cloth)} сто{"ит" if find_number_object(cloth) == 1 else "ят"} {price} рублей. В связи с поступлением новой коллекции {cloth} продают со скидкой {percent}%. Сколько сто{"ит" if find_number_object(cloth) == 1 else "ят"} {cloth} с учётом скидки?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_4490():
     '''Генерация аналогичных задач № 4490 с портала https://kuzovkin.info/one_exercise_1/4490
@@ -218,7 +254,10 @@ def task_4490():
               answer = result
               break
     task = f'Вкладчик положил {contrib} рублей в банк под {percent}% годовых. Какая сумма будет у него на счету через {period if period !=1 else ""}{"год" if period == 1 else " года"}?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_4673():
     '''Генерация аналогичных задач № 4673 с портала https://kuzovkin.info/one_exercise_1/4673
@@ -232,7 +271,10 @@ def task_4673():
             answer = int(result)
             break
     task = f'Цена на {choosing_declension_form(cloth, "accs")} понизилась на {int(percent) if percent*10%10==0 else percent}% и составила {int(cost) if cost*10%10==0 else cost} рубля. Найдите первоначальную цену {choosing_declension_form(cloth)}?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_8559():
     '''Генерация аналогичных задач № 8559 с портала https://kuzovkin.info/one_exercise_1/8559
@@ -246,7 +288,10 @@ def task_8559():
               answer = int(result)
               break
     task = f'Цена {choosing_declension_form(cloth)} повысилась с {price1} рублей до {price2} рублей. На сколько процентов была повышена цена {choosing_declension_form(cloth)}?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_8548():
     '''Генерация аналогичных задач № 8548 с портала https://kuzovkin.info/one_exercise_1/8548
@@ -260,7 +305,10 @@ def task_8548():
             answer = int(result)
             break
     task = f'Цена на {choosing_declension_form(cloth, "accs")} была повышена на {percent}% и составила {price} рубля. Сколько рублей стоил{"и" if find_number_object(cloth) == 2 else "o" if find_genus_object(cloth)== 3 else "a" if find_genus_object(cloth)== 2 else ""} {cloth} до повышения цены?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_4727():
     '''Генерация аналогичных задач № 4727 с портала https://kuzovkin.info/one_exercise_1/4727
@@ -276,7 +324,10 @@ def task_4727():
           answer = result
           break
     task = f'Цена на {choosing_declension_form(cloth, "accs")} два раза увеличилась на {percent}%. На сколько процентов увеличилась цена по сравнению с первоначальной?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_4717():
     '''Генерация аналогичных задач № 4717 с портала https://kuzovkin.info/one_exercise_1/4717
@@ -293,7 +344,10 @@ def task_4717():
             answer = abs(result)
             break
     task = f'Цена на {choosing_declension_form(cloth, "accs")} сначала снизилась на {percent1}%, потом снизилась ещё на {percent2}%, а потом увеличилась на {percent3}%. На сколько процентов изменилась цена {choosing_declension_form(cloth)} по сравнению с первоначальной?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_9213():
     '''Генерация аналогичных задач № 9213 с портала https://kuzovkin.info/one_exercise_1/9213
@@ -307,7 +361,10 @@ def task_9213():
             answer = int(result)
             break
     task = f'Цена на {choosing_declension_form(cloth, "accs")} повысилась на {percent}% и составила {price} рублей. Найдите первоначальную цену {choosing_declension_form(cloth)}.'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_9198():
     '''Генерация аналогичных задач № 9198 с портала https://kuzovkin.info/one_exercise_1/9198
@@ -321,7 +378,10 @@ def task_9198():
             answer = int(result)
             break
     task = f'Цена на {choosing_declension_form(cloth, "accs")} повысилась на {percent}% и стала равна {price} рубля. Сколько стоил{"и" if find_number_object(cloth)==2 else "" if find_genus_object(cloth)==1 else "a" if find_genus_object(cloth)==2 else "о"} {cloth} до повышения цены?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_9445():
     '''Генерация аналогичных задач № 9445 с портала https://kuzovkin.info/one_exercise_1/9445
@@ -343,7 +403,10 @@ def task_9445():
           answer = f'в первом {"увеличилась" if result1 > 0 else "уменьшилась"} на {abs(int(result1)) if result1*1000%1000==0 else abs(result1)}%, во втором {"увеличилась" if result2 > 0 else "уменьшилась"} на {abs(int(result2)) if result2*1000%1000==0 else abs(result2)}%'
           break
     task = f'В двух магазинах были одинаковые цены. В одном магазине их сначала понизили на {percent11}%, а потом повысили на {percent12}%, а в другом − сначала повысили на {percent21}%, а потом понизили на {percent22}%. Как изменились цены в этих магазинах по сравнению с первоначальной?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_9460():
     '''Генерация аналогичных задач № 9460 с портала https://kuzovkin.info/one_exercise_1/9460
@@ -362,7 +425,10 @@ def task_9460():
             answer = f'цена не изменилась'
             break
     task = f'Цена на {choosing_declension_form(cloth, "accs")} два раза упала на {percent1}%, а потом два раза выросла на {percent2}%. Как и на сколько процентов изменилась цена {choosing_declension_form(cloth)} по сравнению с первоначальной?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_9461():
     '''Генерация аналогичных задач № 9461 с портала https://kuzovkin.info/one_exercise_1/9461
@@ -382,7 +448,10 @@ def task_9461():
             answer = f'цена не изменилась'
             break
     task = f'Цена на {choosing_declension_form(cloth, "accs")} сначала выросла на {percent1}%, потом упала на {percent2}%, потом выросла на {percent3}%, а потом упала на {percent4}%. Как и на сколько процентов изменилась цена {choosing_declension_form(cloth)} по сравнению с первоначальной?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_9463():
     '''Генерация аналогичных задач № 9463 с портала https://kuzovkin.info/one_exercise_1/9463
@@ -398,7 +467,10 @@ def task_9463():
           answer = result
           break
     task = f'Цена на {choosing_declension_form(cloth, "accs")} была повышена на {percent}%. На сколько процентов надо теперь её снизить, чтобы получить первоначальную цену?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_11011():
     '''Генерация аналогичных задач № 11011 с портала https://kuzovkin.info/one_exercise_1/11011
@@ -418,7 +490,10 @@ def task_11011():
             answer = f'цена не изменилась'
             break
     task = f'Цена на {choosing_declension_form(cloth, "accs")} увеличилась на {percent1}%, потом уменьшилась на {percent2}%, потом увеличилась на {percent3}%, далее уменьшилась на {percent4}%, и наконец увеличилась на {percent5}%. На сколько процентов и в какую сторону изменилась цена по сравнению с первоначальной?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_11010():
     '''Генерация аналогичных задач № 11010 с портала https://kuzovkin.info/one_exercise_1/11010
@@ -436,7 +511,10 @@ def task_11010():
               answer = result
               break
     task = f'Цена на {choosing_declension_form(cloth, "accs")} увеличилась на {percent1}%, потом ещё на {percent2}%, а потом упала на {percent3}%. Сколько сто{"ит" if find_number_object(cloth) == 1 else "ят"} теперь {cloth}, если первоначально {"они" if find_number_object(cloth) == 2 else "он" if find_genus_object(cloth)==1 else "она" if find_genus_object(cloth)==2 else "оно"} стоил{"и" if find_number_object(cloth) == 2 else "" if find_genus_object(cloth)==1 else "а" if find_genus_object(cloth)==2 else "о"} {price} рублей?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_10790():
     '''Генерация аналогичных задач № 10790 с портала https://kuzovkin.info/one_exercise_1/10790
@@ -451,7 +529,10 @@ def task_10790():
               answer = int(result)
               break
     task = f'Цена на {choosing_declension_form(cloth, "accs")} понизилась на {percent}% и составила {price} рубл{"я" if price%10 in [2, 3, 4] else "ей"}. Найдите первоначальную цену {choosing_declension_form(cloth)}.'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_10776():
     '''Генерация аналогичных задач № 10776 с портала https://kuzovkin.info/one_exercise_1/10776
@@ -469,7 +550,10 @@ def task_10776():
               answer = result
               break
     task = f'{capitalize_word(cloth)} сто{"ит" if find_number_object(cloth)==1 else "ят"} {price} рублей. В магазине проводят распродажу со скидкой {percent}%. Сколько сто{"ит" if find_number_object(cloth)==1 else "ят"} {cloth} на распродаже?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_9477():
     '''Генерация аналогичных задач № 9477 с портала https://kuzovkin.info/one_exercise_1/9477
@@ -487,7 +571,10 @@ def task_9477():
               answer = result
               break
     task = f'Цена на {choosing_declension_form(cloth, "accs")} в течение месяца упала сначала на {percent1}%, а затем на {percent2}% и составила {price} рубл{"я" if price%10 in [2, 3, 4] else "ей"}. Найдите исходную цену {choosing_declension_form(cloth)}.'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_9476():
     '''Генерация аналогичных задач № 9476 с портала https://kuzovkin.info/one_exercise_1/9476
@@ -505,7 +592,10 @@ def task_9476():
               answer = result
               break
     task = f'Цена {choosing_declension_form(cloth)} сначала поднялась на {percent1}%, потом уменьшилась на {percent2}%, далее увеличилась на {percent3}% и стала равна {price} рубл{"я" if price%10 in [2, 3, 4] else "ей"}. Найдите первоначальную цену {choosing_declension_form(cloth)}.'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_11051():
     '''Генерация аналогичных задач № 11051 с портала https://kuzovkin.info/one_exercise_1/11051
@@ -521,7 +611,10 @@ def task_11051():
             answer = result
             break
     task = f'Цена на {choosing_declension_form(cloth, "accs")} была снижена дважды − сначала на {percent1}%, а потом ещё на {percent2}%. Каков общий процент снижения цены?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_11056():
     '''Генерация аналогичных задач № 11056 с портала https://kuzovkin.info/one_exercise_1/11056
@@ -539,7 +632,10 @@ def task_11056():
               answer = result
               break
     task = f'Цена {choosing_declension_form(cloth)} поднялась сначала на {percent1}%, потом ещё на {percent2}% и стала равна {price} рубл{"я" if price%10 in [2, 3, 4] else "ей"}. Найдите первоначальную цену {choosing_declension_form(cloth)}.'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_11059():
     '''Генерация аналогичных задач № 11059 с портала https://kuzovkin.info/one_exercise_1/11059
@@ -557,7 +653,10 @@ def task_11059():
               answer = result
               break
     task = f'Цена на {choosing_declension_form(cloth, "accs")} в течение месяца упала сначала на {percent1}%, а потом увеличилась на {percent2}% и составила {price} рубл{"я" if price%10 in [2, 3, 4] else "ей"}. Найдите первоначальную цену {choosing_declension_form(cloth)}.'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_12793():
     '''Генерация аналогичных задач № 12793 с портала https://kuzovkin.info/one_exercise_1/12793
@@ -576,7 +675,10 @@ def task_12793():
             answer = result
             break
     task = f'Первоначально цена на {choosing_declension_form(cloth, "accs")} была повышена на {percent1}%, затем 2 раза понижалась на одинаковое число процентов. В результате конечная цена оказалась на {percent2}% меньше первоначальной. На сколько процентов производилось двукратное снижение цены?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_12794():
     '''Генерация аналогичных задач № 12794 с портала https://kuzovkin.info/one_exercise_1/12794
@@ -590,7 +692,10 @@ def task_12794():
               answer = f'{int(result) if result*1000%1000==0 else result}%'
               break
     task = f'Первый банк дает {percent1}% годовых, а второй - {percent2}%. Вкладчик часть своих денег положил в первый банк, а остальные - во второй. Через 2 года суммарное число вложенных денег увеличилось на {percent3}%. Какую долю своих денег положил вкладчик в первый банк?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_35687():
     '''Генерация аналогичных задач № 35687 с портала https://kuzovkin.info/one_exercise_1/35687
@@ -607,7 +712,10 @@ def task_35687():
             answer = round(result, 1)
             break
     task = f'Магазин увеличил цену {choosing_declension_form(cloth)} в {multipl} раз. Однако по результатам проверки антимонопольная служба предписала вернуть прежнюю цену. На сколько процентов придётся снизить цену? Ответ подать в процентах, округлить до десятых'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_35690():
     '''Генерация аналогичных задач № 35690 с портала https://kuzovkin.info/one_exercise_1/35690
@@ -624,7 +732,10 @@ def task_35690():
             answer = int(round(result, 0))
             break
     task = f'В начале мая цена на {choosing_declension_form(fruit, "accs")} повысилась на {percent}%, а в начале июня понизилась на {percent}%. На сколько процентов цена {choosing_declension_form(fruit)} в июне после понижения стала ниже, чем цена {choosing_declension_form(fruit)} в мае до повышения? Ответ подать в процентах, округлить до целого'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_35702():
     '''Генерация аналогичных задач № 35702 с портала https://kuzovkin.info/one_exercise_1/35702
@@ -638,7 +749,10 @@ def task_35702():
             answer = int(result)
             break
     task = f'Цена на {choosing_declension_form(cloth, "accs")} была повышена на {percent}% и составила {price} рублей. Сколько рублей стоил{"и" if find_number_object(cloth) == 2 else "" if find_genus_object(cloth)==1 else "а" if find_genus_object(cloth)==2 else "о"} {cloth} до повышения цены?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_35703():
     '''Генерация аналогичных задач № 35703 с портала https://kuzovkin.info/one_exercise_1/35703
@@ -655,4 +769,7 @@ def task_35703():
               answer = result
               break
     task = f'{capitalize_word(cloth)} стоил{"и" if find_number_object(cloth) == 2 else "" if find_genus_object(cloth)==1 else "а" if find_genus_object(cloth)==2 else "о"} {price1} рубл{"я" if price1%10 in [2, 3, 4] else "ей"}. После снижения цены {"они" if find_number_object(cloth)==2 else "он" if find_genus_object(cloth)==1 else "она" if find_genus_object(cloth)==2 else "оно"} стал{"и" if find_number_object(cloth) == 2 else "" if find_genus_object(cloth)==1 else "а" if find_genus_object(cloth)==2 else "о"} стоить {price2} рубл{"я" if price2%10 in [2, 3, 4] else "ей"}. На сколько процентов была снижена цена на {choosing_declension_form(cloth, "accs")}?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }

@@ -16,7 +16,10 @@ def random_logarythm():
     degree_of_logarithm = base_of_logarythm**answer
     task = r'Вычислите: \(log_{'+ str(base_of_logarythm)+"}{"+str(degree_of_logarithm)+"} \)"
 
-  return task, answer
+  return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def logarithm_with_fractions():  # 1
@@ -31,7 +34,10 @@ def logarithm_with_fractions():  # 1
         numerator = 1
         denominator = base ** abs(answer)
         task = f"Вычислите: $\\log_{{{base}}}{{\\frac{{{numerator}}}{{{denominator}}}}}$"
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def logarithm_fractions():  # 2
@@ -64,7 +70,10 @@ def logarithm_fractions():  # 2
 
     task = f"Вычислите: $\\log_{{{formatted_base}}}{{{formatted_argument}}}$"
 
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def logarithm_summ():  # 3
@@ -99,7 +108,10 @@ def logarithm_summ():  # 3
             selected_pair = (selected_pair[1], selected_pair[0])
 
     task = f"Вычислите: $\\log_{{{base}}}{{{selected_pair[0]}}} + \\log_{{{base}}}{{{selected_pair[1]}}}$"
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def logarithm_difference():  # 4
@@ -116,7 +128,10 @@ def logarithm_difference():  # 4
         num1 = argument.numerator * coefficient
         num2 = argument.denominator * coefficient
     task = f"Вычислите: $\\log_{{{base}}}{{{num1}}} - \\log_{{{base}}}{{{num2}}}$"
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def logarithm_summ_with_coefficient():  # 5
@@ -133,7 +148,10 @@ def logarithm_summ_with_coefficient():  # 5
         degree_arg = random.randint(2, 6)
         task = f"Вычислите: $log_{{{base}}}({{{argument ** degree}}}) + {degree}log_{{{base}}}\\frac{{{base ** degree_arg}}}{{{argument}}}$"
         answer = round(degree * round(math.log(base ** degree_arg, base)))
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def logarithm_difference_with_coefficient():  # 6
@@ -151,7 +169,10 @@ def logarithm_difference_with_coefficient():  # 6
         argument = argument[0] * coefficient, argument[1] * coefficient
         task = f"Вычислите: $log_{{{base}}}({{{argument[0]}}}) - {int(argument[1] ** 0.5)}log_{{{base}}}({{{int(argument[1] ** 0.5)}}})$"
 
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def logarithm_difference_summ():  # 7
@@ -177,7 +198,10 @@ def logarithm_difference_summ():  # 7
         num2 = num2 // gcd
         num3 = num2 * gcd
         task = f"Вычислите: $log_{{{base}}}({{{num1}}}) - log_{{{base}}}({{{num2}}}) + log_{{{base}}}({{{num3}}}) $"
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def logarithm_of_logarithm():  # 8
@@ -226,7 +250,10 @@ def logarithm_of_logarithm():  # 8
             base_first_formatted = f"\\sqrt[{root}]{{{base_first}}}"
         task = f"Вычислите: $\\log_{{{base_first_formatted}}}\\left(\\log_{{{base_second_formatted}}}{{{argument_second_formatted}}}\\right)$"
 
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def logarithmic_identity():  # 9
@@ -243,7 +270,10 @@ def logarithmic_identity():  # 9
             base = random.choice([[0.1, 0.15, 0.125, 0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8,
                                    0.9]])
         task = f"Вычислите: ${{{base}}}^{{log_{{{base}}}({{{answer}}})}}$"
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def logarithmic_identity_with_multiplication():  # 10
@@ -259,10 +289,15 @@ def logarithmic_identity_with_multiplication():  # 10
         coefficient = random.randint(2, 6)
         argument_first *= coefficient
         argument_second = Fraction(1, coefficient)
-        answer = argument_first * argument_second
+        answer = float(argument_first * argument_second)
+        if answer % 1 == 0:
+            answer = int(answer)
 
     task = f"Вычислите: ${{{base_first}}}^{{log_{{{base_first}}}({{{argument_first}}})}} ⋅ {{{base_second}}}^{{log_{{{base_second}}}({{{argument_second}}})}}$"
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def logarithmic_identity_with_difference():  # 11
@@ -289,7 +324,10 @@ def logarithmic_identity_with_difference():  # 11
         argument_second = random.randint(2, 50)
         answer = argument_first - argument_second
     task = f"Вычислите: $({{{base_first}}})^{{log_{{{base_first}}}({{{argument_first}}})}} - {{{base_second}}}^{{log_{{{base_second}}}({{{argument_second}}})}}$"
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def simple_calculation_logarithms():  # 12
@@ -339,7 +377,10 @@ def simple_calculation_logarithms():  # 12
 
     task = f"Вычислите: $\\log_{{{part_first}}}{{{part_second}}}$"
 
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def simple_logarithm_with_root():  # 13
@@ -400,7 +441,10 @@ def simple_logarithm_with_root():  # 13
         task = f"Вычислите: $log_{{\\frac{{\\sqrt{{{base.numerator}}}}}{{{{{round(base.denominator ** 0.5)}}}}}}}{{\\frac{{{{{(base.denominator ** degree)}}}}}{{{{{base.numerator ** degree}}}}}}}$"
     else:
         task = f"Вычислите: $log_{{\\frac{{\\sqrt{{{base.numerator}}}}}{{{{{round(base.denominator ** 0.5)}}}}}}}{{\\frac{{{{{(base.numerator ** degree)}}}}}{{{{{base.denominator ** degree}}}}}}}$"
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def simplification_logarithms_with_equal_base():  # 14
@@ -447,7 +491,10 @@ def simplification_logarithms_with_equal_base():  # 14
             answer = round(argument ** degree)
             task = f"Упростите: ${{{base}}}^{{ {degree} \\log_{{{base}}}{{{argument}}}}}$"
 
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def simplification_logarithms():  # 15
@@ -489,7 +536,10 @@ def simplification_logarithms():  # 15
             x = base ** random.randint(2, 4)
             answer = round(argument ** round(math.log(x, base)))
             task = f"Упростите: ${{{x}}}^{{log_{{{base}}}{{{argument}}}}}$"
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def simplification_logarithm_power_with_coefficient():  # 16
@@ -509,7 +559,10 @@ def simplification_logarithm_power_with_coefficient():  # 16
         answer = argument ** (k * (degree_first / degree_second))
 
     task = f"Упростите: ${{{x}}}^{{ {{{k}}}\\log_{{{base}}}{{{argument}}}}}$"
-    return task, round(answer)
+    return {
+      "condition": task,
+      "answer": round(answer)
+    }
 
 
 def logarithm_sum():  # 17
@@ -553,7 +606,10 @@ def logarithm_sum():  # 17
 
     if answer == int(answer):
         answer = int(answer)
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def logarithms_simplification_in_degree_with_multiplication():  # 18
@@ -584,7 +640,10 @@ def logarithms_simplification_in_degree_with_multiplication():  # 18
         argument_second = base_first ** degree
         base_second = argument_first ** degree
     task = f"Упростите: ${{{answer}}}^{{log_{{{base_first}}}{{{argument_first}}}⋅log_{{{base_second}}}{{{argument_second}}}}}$"
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def simplification_logarithm_degree():  # 19
@@ -622,7 +681,10 @@ def simplification_logarithm_degree():  # 19
     if answer == int(answer):
         answer = int(answer)
 
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def logarithms_simplification_in_degree_with_summ():  # 20
@@ -639,7 +701,10 @@ def logarithms_simplification_in_degree_with_summ():  # 20
         argument_second = random.randint(1, 20)
         answer = round(argument_first ** 0.5 * argument_second)
     task = f"Упростите: ${{{base}}}^{{log_{{{base ** 2}}}{{{argument_first}}}+log_{{{base}}}{{{argument_second}}}}}$"
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def simplification_expression():  # 21
@@ -668,7 +733,10 @@ def simplification_expression():  # 21
             num1_formatted = f"\\frac{{{num1.numerator}}}{{{num1.denominator}}}"
 
     task = f"Упростите: ${{{num1_formatted}}} \\left({{{num2}}} + {{{x}}}^{{\\left(\\log_{{{base_first}}}{{{argument_first}}}\\right)^{{\\log_{{{base_second}}}{{{argument_second}}}}}}}\\right)$"
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def simplification_logarithm_power():  # 22
@@ -700,7 +768,10 @@ def simplification_logarithm_power():  # 22
             base = random.randint(2, 10)
             answer = base ** k
     task = f"Упростите: ${{{x}}}^{{\\frac{{\\large{k}}}{{\\large\\log_{{{base ** degree}}}{{{argument}}}}}}}$"
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def root_expression():  # 23
@@ -722,7 +793,10 @@ def root_expression():  # 23
         argument = under_root * before_root ** 2
         answer = (1 / number) ** (1 / root_main)
     task = f"Вычислите: $\\sqrt[{{{root_main}}}]{{({{{base_first ** 2}}}^{{\\frac{{1}}{{\\log_{{{round(x1 ** 0.5)}}}{base_first}}}}}+ (\\sqrt{{{argument}}})^{{log_{{{x2}}}({{{before_root}}}\\sqrt{{{under_root}}})}})^{{-1}}}}$ "
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def successive_product_logarithms():  # 24
@@ -745,7 +819,10 @@ def successive_product_logarithms():  # 24
 
     if int(answer) == answer:
         answer = int(answer)
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def ratio_logarithm_expressions():  # 25
@@ -784,7 +861,10 @@ def ratio_logarithm_expressions():  # 25
 
     task = f"Вычислите: $\\frac{{{{{part_first}}} - {{{part_second}}} - {{{part_third}}} }} {{ {{{part_fourth}}}}}$"
 
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def expression_different_actions_logarithms():  # 26 / 33
@@ -814,7 +894,10 @@ def expression_different_actions_logarithms():  # 26 / 33
         num_second = random.randint(2, 9)
         answer = x1 ** (math.log(argument_first, base_first)) + x2
     task = f"Вычислите: ${{{argument_first}}}^{{\\frac{{1}}{{\\log_{{{x1}}}{{{base_first}}}}}}} - \\log_{{{base_second}}}{{\\log_{{{base_third}}}{{\\sqrt[{{{first_root}}}]{{\\sqrt[{{{second_root}}}]{{{argument_third}}}}}}} + {{{num_first}}}^{{\\lg{{{num_second}}}}} - {{{num_second}}}^{{\\lg{{{num_first}}}}}}}$"
-    return task, round(answer)
+    return {
+      "condition": task,
+      "answer": round(answer)
+    }
 
 
 def difference_ratios_logarithms():  # 27 / 29
@@ -864,7 +947,10 @@ def difference_ratios_logarithms():  # 27 / 29
                 y = random.randint(2, 9)
             task = f"Вычислите: $\\frac{{\\log_{{{x}}}{{{x ** 3 * y}}}}}{{\\log_{{{(y)}}}{{{x}}}}} - \\frac{{\\log_{{{x}}}{{{x ** 2 * y}}}}}{{\\log_{{{x * y}}}{{{x}}}}}$"
     answer = situation
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def difference_logarithm_and_successive_product():  # 28
@@ -896,7 +982,10 @@ def difference_logarithm_and_successive_product():  # 28
         task = f"Вычислить: $\\log_{{{base_first}}}{{{argument_first}}} -\\log_{{{base_first_in_product}}}{{{base_first_in_product + d1}}}⋅\\log_{{{base_first_in_product + d1}}}{{{base_first_in_product + d1 + d2}}}⋅\\log_{{{base_first_in_product + d1 + d2}}}{{{base_first_in_product + d1 + d2 + d3}}}⋅\\log_{{{base_first_in_product + d1 + d2 + d3}}}{{{argument_last}}}$"
         if int(answer) == answer:
             answer = int(answer)
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def expression_with_logarithms():  # 30
     '''
@@ -919,7 +1008,10 @@ def expression_with_logarithms():  # 30
         answer = num + argument_second ** 2 * argument_first
 
     task = f"Упростить: $({{{num ** 4}}}^{{\\frac{{1}}{{4}} - \\frac{{1}}{{2}}\\log_{{{num ** 2}}}{{{argument_first}}}}} + {{{num2 ** 2}}}^{{log_{{{num2 ** 3}}}{{{argument_second ** 3}}}}})\\cdot{{{x}}}^{{log_{{{base_third}}}{{{argument_third}}}}}$"
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def sum_numbers_with_logarithms_in_exponent():  # 31
@@ -950,7 +1042,10 @@ def sum_numbers_with_logarithms_in_exponent():  # 31
             (math.log(x2, base_second))) + argument_third ** (k * (math.log(x3, base_third)))
     answer = round(answer)
     task = f"Упростить ${{{x1}}}^{{\\frac{{1}}{{\\log_{{{argument_first}}}{{{base_first}}}}}}} + {{{x2}}}^{{\\log_{{{base_second}}}{{{argument_second}}}}} + {{{x3}}}^{{\\frac{{{k}}}{{\\log_{{{argument_third}}}{{{base_third}}}}}}}$"
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def ratio_of_logarithm_expressions():  # 32
@@ -989,7 +1084,10 @@ def ratio_of_logarithm_expressions():  # 32
 
     task = f"Вычислите: $\\frac{{{{{part_first}}} + {{{part_second}}} - {{{part_third}}} }} {{ {{{part_fourth}}}}}$"
 
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def evaluating_large_logarithm_expression():  # 34
@@ -1023,7 +1121,10 @@ def evaluating_large_logarithm_expression():  # 34
         argument_last = random.randint(2, 6)
         answer = round(math.log(argument_first * argument_second / random_sqrt, base)) * argument_last
     task = f"Вычислить: $(\\log_{{{base}}}{{{argument_first}}} + {{{num_first}}}\\log_{{{base_second}}}{{{argument_second}}} - {{{num_second}}}\\log_{{{base}}}{{{{{argument_third_part_one}}} \\sqrt{{{argument_third_part_two}}}}}) \\cdot {{{num_third}}}^{{\\frac{{\\log_{{{base}}}{{{argument_last}}}}}{{\\log_{{{base}}}{{{num_third}}}}}}}$"
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def root_sum():  # 35
@@ -1040,7 +1141,10 @@ def root_sum():  # 35
         base_second = random.randint(2, 9)
     answer = math.sqrt(pair[0] ** 2 + pair[1] ** 2)
     task = f"Упрости $\\sqrt{{{{{base_first ** 2}^{{\\frac{{1}}{{\\log_{{{pair[0]}}}{base_first}}}}} + {{{base_second ** 2}}}^{{\\frac{{1}}{{\\log_{{{pair[1]}}}{{{base_second}}}}}}}}}}}$"
-    return task, round(answer)
+    return {
+      "condition": task,
+      "answer": round(answer)
+    }
 
 
 def ratio_and_multiplication_of_logarithm_expressions():  # 36
@@ -1095,4 +1199,7 @@ def ratio_and_multiplication_of_logarithm_expressions():  # 36
     answer = tmp2
     task = f"Упростить: $\\frac{{{{{part_first}}}\\cdot{{{part_second}}}}}{{{{{part_third}}}}}$"
 
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }

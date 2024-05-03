@@ -15,7 +15,10 @@ def task_2908():
       if b%2==0 and a==pow(b/2, 2)+c:
         if b/2<c:
           break
-    return task, int(answer)
+    return {
+      "condition": task,
+      "answer": int(answer)
+    }
 
 def task_2922():
     '''Задача №2922 с портала https://kuzovkin.info/one_exercise_1/2922 и аналогичные 2924, 6798'''
@@ -27,34 +30,49 @@ def task_2922():
       answer = pow(b, 1/n)
       if b<=5000:
         break
-    return task, int(answer)
+    return {
+      "condition": task,
+      "answer": int(answer)
+    }
 
 def task_2963():
     '''Задача №2963 с портала https://kuzovkin.info/one_exercise_1/2963'''
     while True:
-      a, b, c = np.random.randint(1, 10, size=3)
-      num_ = pow(b, 2)*c
-      task = r'Вычислить: \( \frac{'+latex(sqrt(UnevaluatedExpr(num_)))+'}{'+latex((UnevaluatedExpr(a)+sqrt(UnevaluatedExpr(b)))*(sqrt(UnevaluatedExpr(b*c))-sqrt(UnevaluatedExpr(c))))+'} \)'
-      answer = (pow(num_, 1/2))/((a+pow(b, 1/2))*(pow(b*c, 1/2)-pow(c, 1/2)))
-      if a!=b!=c:
-        if b!=1 and c!=1:
-          if abs(int(answer*1000) - answer*1000) < 0.000001:
+        a, b, c = np.random.randint(1, 10, size=3)
+        num_ = pow(b, 2)*c
+        task = r'Вычислить: \( \frac{'+latex(sqrt(UnevaluatedExpr(num_)))+'}{'+latex((UnevaluatedExpr(a)+sqrt(UnevaluatedExpr(b)))*(sqrt(UnevaluatedExpr(b*c))-sqrt(UnevaluatedExpr(c))))+'} \)'
+        answer = (pow(num_, 1/2))/((a+pow(b, 1/2))*(pow(b*c, 1/2)-pow(c, 1/2)))
+        if a != b != c and b != 1 and c != 1 and len(str(answer).split('.')[1]) <= 6:
+            if answer % 1 == 0:
+                answer = int(answer)
             break
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
+
 
 def task_2967():
-    '''Задача №2967 с портала https://kuzovkin.info/one_exercise_1/2967'''
+    """Задача №2967 с портала https://kuzovkin.info/one_exercise_1/2967"""
     while True:
-      b = np.random.randint(1, 9)
-      a = random.randint(2, 9)
-      while sqrt(a) == int(a):
+        b = np.random.randint(1, 9)
         a = random.randint(2, 9)
-      task = r'Вычислить: \( \frac{'+latex(sqrt(UnevaluatedExpr(a))-UnevaluatedExpr(b))+'}{'+latex(sqrt(UnevaluatedExpr(a))+UnevaluatedExpr(b))+'}+\\frac{'+latex(sqrt(UnevaluatedExpr(a))+UnevaluatedExpr(b))+'}{'+latex(sqrt(UnevaluatedExpr(a))-UnevaluatedExpr(b))+'} \)'
-      answer = (pow(a, 1/2)-b)/(pow(a, 1/2)+b) + (pow(a, 1/2)+b)/(pow(a, 1/2)-b)
-      if a!=b:
-        if abs(int(answer*1000) - answer*1000) < 0.000001:
-          break
-    return task, int(answer)
+        while sqrt(a) == int(a):
+            a = random.randint(2, 9)
+        task = r'Вычислить: \( \frac{'+latex(sqrt(UnevaluatedExpr(a))-UnevaluatedExpr(b))+'}{'+latex(sqrt(UnevaluatedExpr(a))+UnevaluatedExpr(b))+'}+\\frac{'+latex(sqrt(UnevaluatedExpr(a))+UnevaluatedExpr(b))+'}{'+latex(sqrt(UnevaluatedExpr(a))-UnevaluatedExpr(b))+'} \)'
+        try:
+            answer = (pow(a, 1 / 2) - b) / (pow(a, 1 / 2) + b) + (pow(a, 1 / 2) + b) / (pow(a, 1 / 2) - b)
+        except ZeroDivisionError:
+            continue
+        if len(str(answer).split('.')[1]) <= 6 and a != b:
+            if answer % 1 == 0:
+                answer = int(answer)
+            break
+    return {
+      "condition": task,
+      "answer": answer
+    }
+
 
 def task_3012():
     '''Задача №3012 с портала https://kuzovkin.info/one_exercise_1/3012'''
@@ -67,20 +85,29 @@ def task_3012():
       answer = pow(c, m/n)
       if m>n and m%n==1:
         break
-    return task, round(answer, 5)
+    return {
+      "condition": task,
+      "answer": round(answer, 5)
+    }
+
 
 def task_3013():
-    '''Задача №3013 с портала https://kuzovkin.info/one_exercise_1/3013'''
+    """Задача №3013 с портала https://kuzovkin.info/one_exercise_1/3013"""
     while True:
-      a = np.random.randint(2, 10)
-      m, n = np.random.randint(2, 5, size=2)
-      b = pow(a, n)
-      task = r'Вычислить: \(' + latex(pow(UnevaluatedExpr(-b), UnevaluatedExpr(m)/UnevaluatedExpr(n))) + '\)'
-      result = pow(-a, m)
-      answer = Fraction(result).limit_denominator()
-      if m<n and n%m==1:
-        break
-    return task, answer
+        a = np.random.randint(2, 10)
+        m, n = np.random.randint(2, 5, size=2)
+        b = pow(a, n)
+        task = r'Вычислить: \(' + latex(pow(UnevaluatedExpr(-b), UnevaluatedExpr(m)/UnevaluatedExpr(n))) + '\)'
+        result = pow(-a, m)
+        answer = float(Fraction(result).limit_denominator())
+        if m < n and n % m == 1 and len(str(answer).split('.')[1]) <= 6:
+            if answer % 1 == 0:
+                answer = int(answer)
+            break
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_6500():
     '''Задача №6500 с портала https://kuzovkin.info/one_exercise_1/6500'''
@@ -96,7 +123,10 @@ def task_6500():
           task = task_1
       if a!=b:
         break
-    return task, int(answer)
+    return {
+      "condition": task,
+      "answer": int(answer)
+    }
 
 def task_6509():
     '''Задача №6509 с портала https://kuzovkin.info/one_exercise_1/6509'''
@@ -108,27 +138,34 @@ def task_6509():
       answer = pow(a_, 1/n)
       if n%2==1:
         break
-    return task, int(answer)
+    return {
+      "condition": task,
+      "answer": int(answer)
+    }
 
 def task_6696():
     '''Задача №6696 с портала https://kuzovkin.info/one_exercise_1/6696'''
     while True:
-      a = np.random.randint(2, 6)
-      n, m, k, p = np.random.randint(2, 6, size=4)
-      a_ = pow(a, p)
-      b_ = pow(a, n)
-      c_ = pow(a, k)
-      task = r'Извлечь корень: \( \frac{1}{'+latex(UnevaluatedExpr(a))+'}\sqrt['+str(m)+']{'+str(b_)+'} {'+str('\cdot')+'} \\frac{1}{'+latex(UnevaluatedExpr(a_))+'}\sqrt['+str(m)+']{'+str(c_)+'} \)'
-      task_1 = r'Извлечь корень: \( \frac{1}{'+latex(UnevaluatedExpr(a))+'}\sqrt{'+str(b_)+'} {'+str('\cdot')+'} \\frac{1}{'+latex(UnevaluatedExpr(a_))+'}\sqrt{'+str(c_)+'} \)'
-      step = -1+n/m-p+k/m
-      result = pow(a, step)
-      if m == 2:
-          task = task_1
-      answer = Fraction(result).limit_denominator()
-      if m!=n!=k!=p:
-        if (n+k)%m==0:
-          break
-    return task, answer
+        a = np.random.randint(2, 6)
+        n, m, k, p = np.random.randint(2, 6, size=4)
+        a_ = pow(a, p)
+        b_ = pow(a, n)
+        c_ = pow(a, k)
+        task = r'Извлечь корень: \( \frac{1}{'+latex(UnevaluatedExpr(a))+'}\sqrt['+str(m)+']{'+str(b_)+'} {'+str('\cdot')+'} \\frac{1}{'+latex(UnevaluatedExpr(a_))+'}\sqrt['+str(m)+']{'+str(c_)+'} \)'
+        task_1 = r'Извлечь корень: \( \frac{1}{'+latex(UnevaluatedExpr(a))+'}\sqrt{'+str(b_)+'} {'+str('\cdot')+'} \\frac{1}{'+latex(UnevaluatedExpr(a_))+'}\sqrt{'+str(c_)+'} \)'
+        step = -1+n/m-p+k/m
+        result = pow(a, step)
+        if m == 2:
+            task = task_1
+        answer = float(Fraction(result).limit_denominator())
+        if m != n != k != p and (n+k) % m == 0 and len(str(answer).split('.')[1]) <= 6:
+            if answer % 1 == 0:
+                answer = int(answer)
+            break
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_6729():
     '''Задача №6729 с портала https://kuzovkin.info/one_exercise_1/6729 и аналогичная '''
@@ -139,24 +176,33 @@ def task_6729():
       if a%b==0 and a!=b:
         if abs(int(answer*1000) - answer*1000) < 0.000001:
           break
-    return task, int(answer)
+    return {
+      "condition": task,
+      "answer": int(answer)
+    }
+
 
 def task_6700():
-    '''Задача №6700 с портала https://kuzovkin.info/one_exercise_1/6700'''
+    """Задача №6700 с портала https://kuzovkin.info/one_exercise_1/6700"""
     while True:
-      a, b, c, d, p, q = np.random.randint(2, 9, size=6)
-      n = np.random.randint(2, 6)
-      b_ = pow(b, n)
-      c_ = pow(c, n)
-      task = r'Произвести действия с корнями: \( (\sqrt['+str(n)+']{'+str(a)+'} {'+str('-')+str(p)+'} \sqrt['+str(n)+']{'+str(b_*a)+'} {'+str('+')+str(q)+'} \sqrt['+str(n)+']{'+str(c_*a)+'}){'+str('\cdot')+'}{'+str(d)+'}\sqrt['+str(n)+']{\\frac{1}{'+latex(UnevaluatedExpr(a))+'}} \)'
-      task_1 = r'Произвести действия с корнями: \( (\sqrt{'+str(a)+'} {'+str('-')+str(p)+'} \sqrt{'+str(b_*a)+'} {'+str('+')+str(q)+'} \sqrt{'+str(c_*a)+'}){'+str('\cdot')+'}{'+str(d)+'}\sqrt{\\frac{1}{'+latex(UnevaluatedExpr(a))+'}} \)'
-      if n == 2:
-          task = task_1
-      answer = (1-p*b+q*c)*d
-      if a!=b!=c:
-        if p!=q!=d:
-          break
-    return task, answer
+        a, b, c, d, p, q = np.random.randint(2, 9, size=6)
+        n = np.random.randint(2, 6)
+        b_ = pow(b, n)
+        c_ = pow(c, n)
+        task = r'Произвести действия с корнями: \( (\sqrt['+str(n)+']{'+str(a)+'} {'+str('-')+str(p)+'} \sqrt['+str(n)+']{'+str(b_*a)+'} {'+str('+')+str(q)+'} \sqrt['+str(n)+']{'+str(c_*a)+'}){'+str('\cdot')+'}{'+str(d)+'}\sqrt['+str(n)+']{\\frac{1}{'+latex(UnevaluatedExpr(a))+'}} \)'
+        task_1 = r'Произвести действия с корнями: \( (\sqrt{'+str(a)+'} {'+str('-')+str(p)+'} \sqrt{'+str(b_*a)+'} {'+str('+')+str(q)+'} \sqrt{'+str(c_*a)+'}){'+str('\cdot')+'}{'+str(d)+'}\sqrt{\\frac{1}{'+latex(UnevaluatedExpr(a))+'}} \)'
+        if n == 2:
+            task = task_1
+        answer = float((1-p*b+q*c)*d)
+        if a != b != c and p != q != d and len(str(answer).split('.')[1]) <= 6:
+            if answer % 1 == 0:
+                answer = int(answer)
+            break
+    return {
+      "condition": task,
+      "answer": answer
+    }
+
 
 def task_6730():
     '''Задача №6730 с портала https://kuzovkin.info/one_exercise_1/6730'''
@@ -171,19 +217,29 @@ def task_6730():
       answer = a
       if b/c==pow(a, n):
         break
-    return task, int(answer)
+    return {
+      "condition": task,
+      "answer": int(answer)
+    }
+
 
 def task_6884():
-    '''Задача №6884 с портала https://kuzovkin.info/one_exercise_1/6884 и аналогичная 13135'''
+    """Задача №6884 с портала https://kuzovkin.info/one_exercise_1/6884 и аналогичная 13135"""
     while True:
-      a, n, m = np.random.randint(1, 6, size=3)
-      b = pow(a, n)
-      frac = fractions.Fraction(m, n)
-      task = r'Вычислить: \('+ latex(pow(UnevaluatedExpr(b), UnevaluatedExpr(frac))) +'\)'
-      answer = pow(a, m)
-      if m<n and a!=1:
-        break
-    return task, answer
+        a, n, m = np.random.randint(1, 6, size=3)
+        b = pow(a, n)
+        frac = fractions.Fraction(m, n)
+        task = r'Вычислить: \('+ latex(pow(UnevaluatedExpr(b), UnevaluatedExpr(frac))) +'\)'
+        answer = float(pow(a, m))
+        if m < n and a != 1 and len(str(answer).split('.')[1]) <= 4:
+            if answer % 1 == 0:
+                answer = int(answer)
+            break
+    return {
+      "condition": task,
+      "answer": answer
+    }
+
 
 def task_6887():
     '''Задача №6887 с портала https://kuzovkin.info/one_exercise_1/6887'''
@@ -199,23 +255,33 @@ def task_6887():
       if a!=b:
         if abs(int(answer*1000) - answer*1000) < 0.000001:
           break
-    return task, round(answer, 5)
+    return {
+      "condition": task,
+      "answer": round(answer, 5)
+    }
+
 
 def task_6827():
-    '''Задача №6827 с портала https://kuzovkin.info/one_exercise_1/6827'''
+    """Задача №6827 с портала https://kuzovkin.info/one_exercise_1/6827"""
     while True:
-      a, b = np.random.randint(2, 6, size=2)
-      while sqrt(b) == int(b):
-        b = random.randint(2, 6)
-      c = pow(a, 2)
-      d = pow(b, 2)
-      e = a*b
-      f = c+b+e
-      task = r'Вычислить: \('+ latex(sqrt(UnevaluatedExpr(f)+UnevaluatedExpr(e)*sqrt(UnevaluatedExpr(d)+sqrt(UnevaluatedExpr(c)+UnevaluatedExpr(2*b)*sqrt(UnevaluatedExpr(b))))))+latex(-sqrt(UnevaluatedExpr(b)))+'\)'
-      answer = a
-      if a!=b:
-        break
-    return task, answer
+        a, b = np.random.randint(2, 6, size=2)
+        while sqrt(b) == int(b):
+            b = random.randint(2, 6)
+        c = pow(a, 2)
+        d = pow(b, 2)
+        e = a*b
+        f = c+b+e
+        task = r'Вычислить: \('+ latex(sqrt(UnevaluatedExpr(f)+UnevaluatedExpr(e)*sqrt(UnevaluatedExpr(d)+sqrt(UnevaluatedExpr(c)+UnevaluatedExpr(2*b)*sqrt(UnevaluatedExpr(b))))))+latex(-sqrt(UnevaluatedExpr(b)))+'\)'
+        answer = float(a)
+        if a != b and len(str(answer).split('.')[1]) <= 6:
+            if answer % 1 == 0:
+                answer = int(answer)
+            break
+    return {
+      "condition": task,
+      "answer": answer
+    }
+
 
 def task_6888():
     '''Задача №6888 с портала https://kuzovkin.info/one_exercise_1/6888'''
@@ -233,7 +299,10 @@ def task_6888():
       if a<b and m<n:
         if abs(int(answer*1000) - answer*1000) < 0.000001:
           break
-    return task, round(answer, 5)
+    return {
+      "condition": task,
+      "answer": round(answer, 5)
+    }
 
 def task_12799():
     '''Задача №12799 с портала https://kuzovkin.info/one_exercise_1/12799 '''
@@ -244,36 +313,51 @@ def task_12799():
       answer = a*b
       if a!=b:
         break
-    return task, int(answer)
+    return {
+      "condition": task,
+      "answer": int(answer)
+    }
+
 
 def task_13134():
-    '''Задача №13134 с портала https://kuzovkin.info/one_exercise_1/13134 '''
+    """Задача №13134 с портала https://kuzovkin.info/one_exercise_1/13134"""
     while True:
-      m, k, n, l = np.random.randint(2, 12, size=4)
-      a = pow(m, 2) - k
-      b = k-l
-      c = pow(n, 2) - l
-      while sqrt(k) == int(k) or sqrt(l) == int(l):
-        k, l = random.randint(2, 14, size=2)
-      task = r'Вычислить: \( \frac{'+latex(UnevaluatedExpr(a))+'}{'+latex(m)+latex(-sqrt(k))+'}{'+str('-')+'}\\frac{'+latex(UnevaluatedExpr(b))+'}{'+latex(sqrt(k))+latex(-sqrt(l))+'}{'+str('-')+'}\\frac{'+latex(UnevaluatedExpr(c))+'}{'+latex(UnevaluatedExpr(n)+sqrt(UnevaluatedExpr(l)))+'}\)'
-      answer = m-n
-      if k-l!=0 and a>0 and b>0 and c>0:
-        break
-    return task, answer
+        m, k, n, l = np.random.randint(2, 12, size=4)
+        a = pow(m, 2) - k
+        b = k-l
+        c = pow(n, 2) - l
+        while sqrt(k) == int(k) or sqrt(l) == int(l):
+            k, l = random.randint(2, 14, size=2)
+        task = r'Вычислить: \( \frac{'+latex(UnevaluatedExpr(a))+'}{'+latex(m)+latex(-sqrt(k))+'}{'+str('-')+'}\\frac{'+latex(UnevaluatedExpr(b))+'}{'+latex(sqrt(k))+latex(-sqrt(l))+'}{'+str('-')+'}\\frac{'+latex(UnevaluatedExpr(c))+'}{'+latex(UnevaluatedExpr(n)+sqrt(UnevaluatedExpr(l)))+'}\)'
+        answer = float(m - n)
+        if k - l != 0 and a > 0 and b > 0 and c > 0 and len(str(answer).split('.')[1]) <= 6:
+            if answer % 1 == 0:
+                answer = int(answer)
+            break
+    return {
+      "condition": task,
+      "answer": answer
+    }
+
 
 def task_13135():
-    '''Задача №13135 с портала https://kuzovkin.info/one_exercise_1/13135 '''
+    """Задача №13135 с портала https://kuzovkin.info/one_exercise_1/13135"""
     while True:
-      a, b, c = np.random.randint(2, 12, size=3)
-      d = np.random.randint(1, 40)
-      check = pow(c, 2) - pow(b, 2)*a
-      while sqrt(a) == int(a):
-        a = random.randint(2, 12)
-      task = r'Вычислить: \( \frac{'+latex(UnevaluatedExpr(d))+'}{'+latex(UnevaluatedExpr(c)+UnevaluatedExpr(b))+latex(sqrt(UnevaluatedExpr(a)))+'}{'+str('+')+'}\\frac{'+latex(UnevaluatedExpr(d))+'}{'+latex(UnevaluatedExpr(c))+latex(-UnevaluatedExpr(b)*sqrt(UnevaluatedExpr(a)))+'} \)'
-      answer = 2*c*d
-      if check == 1:
-        break
-    return task, answer
+        a, b, c = np.random.randint(2, 12, size=3)
+        d = np.random.randint(1, 40)
+        check = pow(c, 2) - pow(b, 2)*a
+        while sqrt(a) == int(a):
+            a = random.randint(2, 12)
+        task = r'Вычислить: \( \frac{'+latex(UnevaluatedExpr(d))+'}{'+latex(UnevaluatedExpr(c)+UnevaluatedExpr(b))+latex(sqrt(UnevaluatedExpr(a)))+'}{'+str('+')+'}\\frac{'+latex(UnevaluatedExpr(d))+'}{'+latex(UnevaluatedExpr(c))+latex(-UnevaluatedExpr(b)*sqrt(UnevaluatedExpr(a)))+'} \)'
+        answer = float(2 * c * d)
+        if check == 1 and len(str(answer).split('.')[1]) <= 6:
+            if answer % 1 == 0:
+                answer = int(answer)
+            break
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_13191():
     '''Задача №13191 с портала https://kuzovkin.info/one_exercise_1/13191'''
@@ -284,56 +368,76 @@ def task_13191():
       answer = a
       if answer:
         break
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
+
 
 def task_13192():
-    '''Задача №13192 с портала https://kuzovkin.info/one_exercise_1/13192'''
+    """Задача №13192 с портала https://kuzovkin.info/one_exercise_1/13192"""
     while True:
-      a = np.random.randint(2, 6)
-      m, n = np.random.randint(2, 6, size=2)
-      b = pow(a, n)
-      frac = fractions.Fraction(m, n)
-      task = r'Вычислить: \('+ latex(pow(UnevaluatedExpr(b), -m/n)) +'\)'
-      result = fractions.Fraction(1, pow(a, m))
-      answer = Fraction(result).limit_denominator()
-      if m<n:
-        if abs(frac*1000 - int(frac*1000)) < 0.000001:
-          break
-    return task, answer
+        a = np.random.randint(2, 6)
+        m, n = np.random.randint(2, 6, size=2)
+        b = pow(a, n)
+        frac = fractions.Fraction(m, n)
+        task = r'Вычислить: \('+ latex(pow(UnevaluatedExpr(b), -m/n)) +'\)'
+        result = fractions.Fraction(1, pow(a, m))
+        answer = float(Fraction(result).limit_denominator())
+        if m < n and  and len(str(float(frac)).split('.')[1]) <= 6:
+            if answer % 1 == 0:
+                answer = int(answer)
+            break
+    return {
+      "condition": task,
+      "answer": answer
+    }
+
 
 def task_13193():
-    '''Задача №13193 с портала https://kuzovkin.info/one_exercise_1/13193'''
+    """Задача №13193 с портала https://kuzovkin.info/one_exercise_1/13193"""
     while True:
-      a, b, c = np.random.randint(2, 5, size=3)
-      m, n, k, p = np.random.randint(1, 5, size=4)
-      a_ = pow(a, n)
-      b_ = pow(b, k)
-      c_ = pow(c, p)
-      frac_1 = fractions.Fraction(m, n)
-      frac_2 = fractions.Fraction(1, k)
-      frac_3 = fractions.Fraction(1, p)
-      task = r'Вычислить: \('+ latex(pow(UnevaluatedExpr(a_), UnevaluatedExpr(frac_1))-pow(UnevaluatedExpr(b_), UnevaluatedExpr(frac_2))+pow(UnevaluatedExpr(c_), UnevaluatedExpr(frac_3))) +'\)'
-      answer = pow(a, m)-b+c
-      if m<n and k!=1 and p!=1 and n!=1:
-        break
-    return task, answer
+        a, b, c = np.random.randint(2, 5, size=3)
+        m, n, k, p = np.random.randint(1, 5, size=4)
+        a_ = pow(a, n)
+        b_ = pow(b, k)
+        c_ = pow(c, p)
+        frac_1 = fractions.Fraction(m, n)
+        frac_2 = fractions.Fraction(1, k)
+        frac_3 = fractions.Fraction(1, p)
+        task = r'Вычислить: \('+ latex(pow(UnevaluatedExpr(a_), UnevaluatedExpr(frac_1))-pow(UnevaluatedExpr(b_), UnevaluatedExpr(frac_2))+pow(UnevaluatedExpr(c_), UnevaluatedExpr(frac_3))) +'\)'
+        answer = float(pow(a, m) - b + c)
+        if m < n and k != 1 and p != 1 and n != 1 and len(str(answer).split('.')[1]) <= 6:
+            if answer % 1 == 0:
+                answer = int(answer)
+            break
+    return {
+      "condition": task,
+      "answer": answer
+    }
+
 
 def task_13194():
-    '''Задача №13194 с портала https://kuzovkin.info/one_exercise_1/13194'''
+    """Задача №13194 с портала https://kuzovkin.info/one_exercise_1/13194"""
     while True:
-      a, b, c = np.random.randint(2, 5, size=3)
-      m, n, k, p = np.random.randint(2, 5, size=4)
-      a_ = pow(a, k)
-      b_ = fractions.Fraction(1, pow(b, n))
-      c_ = fractions.Fraction(1, c)
-      frac_1 = fractions.Fraction(1, k)
-      frac_2 = fractions.Fraction(m, n)
-      task = r'Вычислить: \('+latex(pow(UnevaluatedExpr(a_), 1/k)+(pow(UnevaluatedExpr(b_), -m/n))-pow(UnevaluatedExpr(c_), -p))+'\)'
-      answer = a+pow(b, m)-pow(c, p)
-      if m<n:
-        if abs(frac_1*1000 - int(frac_1*1000)) < 0.000001 and abs(frac_2*1000 - int(frac_2*1000)) < 0.000001:
-          break
-    return task, answer
+        a, b, c = np.random.randint(2, 5, size=3)
+        m, n, k, p = np.random.randint(2, 5, size=4)
+        a_ = pow(a, k)
+        b_ = fractions.Fraction(1, pow(b, n))
+        c_ = fractions.Fraction(1, c)
+        frac_1 = fractions.Fraction(1, k)
+        frac_2 = fractions.Fraction(m, n)
+        task = r'Вычислить: \('+latex(pow(UnevaluatedExpr(a_), 1/k)+(pow(UnevaluatedExpr(b_), -m/n))-pow(UnevaluatedExpr(c_), -p))+'\)'
+        answer = float(a + pow(b, m) - pow(c, p))
+        if m < n and len(str(float(frac_1)).split('.')[1]) <= 6 and len(str(float(frac_2)).split('.')[1]) <= 6:
+            if answer % 1 == 0:
+                answer = int(answer)
+            break
+    return {
+      "condition": task,
+      "answer": answer
+    }
+
 
 def task_16768():
     '''Задача №16768 с портала https://kuzovkin.info/one_exercise_1/16768 '''
@@ -347,20 +451,32 @@ def task_16768():
       answer = 1
       if a>b:
         break
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
+
 
 def task_16885():
-    '''Задача №16885 с портала https://kuzovkin.info/one_exercise_1/16885 '''
+    """Задача №16885 с портала https://kuzovkin.info/one_exercise_1/16885"""
     while True:
-      a, b = np.random.randint(2, 6, size=2)
-      while sqrt(b) == int(b):
-        b = random.randint(2, 6, size=2)
-      task = r'Вычислить: \('+ latex(sqrt(UnevaluatedExpr(a)+sqrt(UnevaluatedExpr(b))))+latex(sqrt(UnevaluatedExpr(a)+sqrt(UnevaluatedExpr(a)+sqrt(UnevaluatedExpr(b)))))+latex(sqrt(a+sqrt(UnevaluatedExpr(a)+sqrt(UnevaluatedExpr(a)+sqrt(UnevaluatedExpr(b))))))+latex(sqrt(a-sqrt(UnevaluatedExpr(a)+sqrt(UnevaluatedExpr(a)+sqrt(UnevaluatedExpr(b))))))+'\)'
-      answer = sqrt(pow(a, 2)-b)
-      if answer == int(answer):
-        if answer!=0:
-          break
-    return task, answer
+        a, b = np.random.randint(2, 6, size=2)
+        while sqrt(b) == int(b):
+            b = random.randint(2, 6, size=2)
+        task = r'Вычислить: \('+ latex(sqrt(UnevaluatedExpr(a)+sqrt(UnevaluatedExpr(b))))+latex(sqrt(UnevaluatedExpr(a)+sqrt(UnevaluatedExpr(a)+sqrt(UnevaluatedExpr(b)))))+latex(sqrt(a+sqrt(UnevaluatedExpr(a)+sqrt(UnevaluatedExpr(a)+sqrt(UnevaluatedExpr(b))))))+latex(sqrt(a-sqrt(UnevaluatedExpr(a)+sqrt(UnevaluatedExpr(a)+sqrt(UnevaluatedExpr(b))))))+'\)'
+        try:
+            answer = math.sqrt(pow(a, 2)-b)
+        except ValueError:
+            continue
+        if answer != 0 and len(str(answer).split('.')[1]) <= 6:
+            if answer % 1 == 0:
+                answer = int(answer)
+            break
+    return {
+      "condition": task,
+      "answer": answer
+    }
+
 
 def task_16902():
     '''Задача №16902 с портала https://kuzovkin.info/one_exercise_1/16902 '''
@@ -373,7 +489,10 @@ def task_16902():
       if answer>0:
         if answer == int(answer):
           break
-    return task, int(answer)
+    return {
+      "condition": task,
+      "answer": int(answer)
+    }
 
 def task_16907():
     '''Задача №16907 с портала https://kuzovkin.info/one_exercise_1/16907 '''
@@ -386,7 +505,10 @@ def task_16907():
       if answer>0 and a!=b:
         if answer == int(answer):
           break
-    return task, int(answer)
+    return {
+      "condition": task,
+      "answer": int(answer)
+    }
 
 def task_16906():
     '''Задача №16906 с портала https://kuzovkin.info/one_exercise_1/16906 '''
@@ -400,7 +522,10 @@ def task_16906():
       if answer>0 and a>b:
         if answer == int(answer):
           break
-    return task, int(answer)
+    return {
+      "condition": task,
+      "answer": int(answer)
+    }
 
 def task_16949():
     '''Задача №16949 с портала https://kuzovkin.info/one_exercise_1/16949 '''
@@ -414,7 +539,10 @@ def task_16949():
       answer = 1/y
       if math.isfinite(answer) and y!=3:
         break
-    return task, float(answer)
+    return {
+      "condition": task,
+      "answer": float(answer)
+    }
 
 def task_16905():
     '''Задача №16905 с портала https://kuzovkin.info/one_exercise_1/16905 '''
@@ -428,7 +556,10 @@ def task_16905():
       if abs(z*1000 - int(z*1000)) < 0.000001:
         if answer == int(answer):
           break
-    return task, int(answer)
+    return {
+      "condition": task,
+      "answer": int(answer)
+    }
 
 def task_16990():
     '''Задача №16990 с портала https://kuzovkin.info/one_exercise_1/16990 '''
@@ -446,7 +577,10 @@ def task_16990():
       if m!=n and pow(b, m)==c*b+e*a and m!=2 and n!=2:
         if abs(answer*1000 - int(answer*1000)) < 0.000001:
           break
-    return task, float(answer)
+    return {
+      "condition": task,
+      "answer": float(answer)
+    }
 
 def task_16887():
     '''Задача №16887 с портала https://kuzovkin.info/one_exercise_1/16887 '''
@@ -460,37 +594,48 @@ def task_16887():
       answer = 1
       if n%2==0 and a!=b:
         break
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_17084():
-    '''Задача №17084 с портала https://kuzovkin.info/one_exercise_1/17084 '''
+    """Задача №17084 с портала https://kuzovkin.info/one_exercise_1/17084"""
     while True:
-      a, k = np.random.randint(2, 6, size=2)
-      while sqrt(a) == int(a):
-        a = random.randint(2, 6)
-      b = pow(k, 3)+3*k*a
-      c = 3*pow(k, 2)+a
-      result = pow(pow(b, 2)-pow(c, 2)*a, 1/3)
-      task = r'Проверить справедливость равенств: \( \sqrt['+str('3')+']{'+latex(UnevaluatedExpr(b))+('+')+latex(UnevaluatedExpr(c)*sqrt(UnevaluatedExpr(a)))+'}{'+str('\cdot')+'}('+latex(UnevaluatedExpr(k))+latex(-sqrt(UnevaluatedExpr(a)))+'){'+str('=')+'}{'+latex(UnevaluatedExpr(int(result)))+'} \)'
-      answer = r'Верное равенство'
-      if result == int(result):
-        if result !=0:
-          break
-    return task, answer
+        a, k = np.random.randint(2, 6, size=2)
+        while sqrt(a) == int(a):
+            a = random.randint(2, 6)
+        b = pow(k, 3) + 3 * k * a
+        c = 3 * pow(k, 2) + a
+        result = pow(pow(b, 2)-pow(c, 2) * a, 1/3)
+        if np.isnan(result):
+            continue
+        task = r'Проверить справедливость равенств: \( \sqrt['+str('3')+']{'+latex(UnevaluatedExpr(b))+('+')+latex(UnevaluatedExpr(c)*sqrt(UnevaluatedExpr(a)))+'}{'+str('\cdot')+'}('+latex(UnevaluatedExpr(k))+latex(-sqrt(UnevaluatedExpr(a)))+'){'+str('=')+'}{'+latex(UnevaluatedExpr(int(result)))+'} \)'
+        answer = r'Верное равенство'
+        if result == int(result) and result != 0:
+            break
+    return {
+      "condition": task,
+      "answer": answer
+    }
+
 
 def task_17086():
-    '''Задача №17086 с портала https://kuzovkin.info/one_exercise_1/17086 '''
+    """Задача №17086 с портала https://kuzovkin.info/one_exercise_1/17086"""
     while True:
-      a, b = np.random.randint(2, 5, size=2)
-      c = a+b
-      d = a*b
-      k = pow(a, 2)*c
-      f = pow(a, 4)*b+1
-      task = r'Проверить справедливость равенств: \( \frac{\sqrt{'+latex(UnevaluatedExpr(c))+('-')+latex(UnevaluatedExpr(a)*sqrt(UnevaluatedExpr(d)))+'}({'+latex(UnevaluatedExpr(c))+('+')+latex(UnevaluatedExpr(a)*sqrt(UnevaluatedExpr(d)))+'})({'+latex(UnevaluatedExpr(f))+('-')+latex(UnevaluatedExpr(k)*sqrt(UnevaluatedExpr(d)))+'})}{{'+latex(sqrt(UnevaluatedExpr(pow(b, 3))))+'}{'+('-')+latex(UnevaluatedExpr(3)*sqrt(UnevaluatedExpr(pow(b, 2)*a)))+'}{'+('+')+latex(UnevaluatedExpr(3)*sqrt(UnevaluatedExpr(pow(a, 2)*b)))+'}{'+('+')+latex(sqrt(UnevaluatedExpr(pow(a, 3))))+'}} {'+str('=')+'} {'+latex(UnevaluatedExpr(1))+'} \)'
-      answer = r'Верное равенство'
-      if sqrt(d)!=int(d):
-        break
-    return task, answer
+        a, b = np.random.randint(2, 5, size=2)
+        c = a+b
+        d = a*b
+        k = pow(a, 2)*c
+        f = pow(a, 4)*b+1
+        task = r'Проверить справедливость равенств: \( \frac{\sqrt{'+latex(UnevaluatedExpr(c))+('-')+latex(UnevaluatedExpr(a)*sqrt(UnevaluatedExpr(d)))+'}({'+latex(UnevaluatedExpr(c))+('+')+latex(UnevaluatedExpr(a)*sqrt(UnevaluatedExpr(d)))+'})({'+latex(UnevaluatedExpr(f))+('-')+latex(UnevaluatedExpr(k)*sqrt(UnevaluatedExpr(d)))+'})}{{'+latex(sqrt(UnevaluatedExpr(pow(b, 3))))+'}{'+('-')+latex(UnevaluatedExpr(3)*sqrt(UnevaluatedExpr(pow(b, 2)*a)))+'}{'+('+')+latex(UnevaluatedExpr(3)*sqrt(UnevaluatedExpr(pow(a, 2)*b)))+'}{'+('+')+latex(sqrt(UnevaluatedExpr(pow(a, 3))))+'}} {'+str('=')+'} {'+latex(UnevaluatedExpr(1))+'} \)'
+        answer = r'Верное равенство'
+        if sqrt(d) != int(d):
+            break
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_17108():
     '''Задача №17108 с портала https://kuzovkin.info/one_exercise_1/17108 '''
@@ -502,7 +647,10 @@ def task_17108():
       answer = r'Верное равенство'
       if b<c:
         break
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_17144():
     '''Задача №17144 с портала https://kuzovkin.info/one_exercise_1/17144 и аналогичные 17145, 46770, 46771 '''
@@ -514,36 +662,50 @@ def task_17144():
       answer = r'Верное равенство'
       if sqrt(c)!=int(c):
         break
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
+
 
 def task_46736():
-    '''Задача №46736 с портала https://kuzovkin.info/one_exercise_1/46736 '''
+    """Задача №46736 с портала https://kuzovkin.info/one_exercise_1/46736"""
     while True:
-      a, b, c = np.random.randint(2, 10, size=3)
-      d = pow(c, 2)-pow(b, 2)*a
-      task = r'Найдите значение выражения: \( {(\sqrt{'+latex(UnevaluatedExpr(c))+('+')+latex(UnevaluatedExpr(b)*sqrt(UnevaluatedExpr(a)))+'}{'+str('-')+'} \\sqrt{'+latex(UnevaluatedExpr(c))+('-')+latex(UnevaluatedExpr(b)*sqrt(UnevaluatedExpr(a)))+'})}^{'+latex(UnevaluatedExpr(2))+'} \)'
-      answer = 2*c-2*sqrt(d)
-      if c>b and sqrt(a)!=int(a):
-        if sqrt(d)==int(d):
-          break
-    return task, answer
+        a, b, c = np.random.randint(2, 10, size=3)
+        d = pow(c, 2)-pow(b, 2)*a
+        task = r'Найдите значение выражения: \( {(\sqrt{'+latex(UnevaluatedExpr(c))+('+')+latex(UnevaluatedExpr(b)*sqrt(UnevaluatedExpr(a)))+'}{'+str('-')+'} \\sqrt{'+latex(UnevaluatedExpr(c))+('-')+latex(UnevaluatedExpr(b)*sqrt(UnevaluatedExpr(a)))+'})}^{'+latex(UnevaluatedExpr(2))+'} \)'
+        answer = 2*c-2*sqrt(d)
+        if c > b and sqrt(a) != int(a) and sqrt(d) == int(d):
+            if answer % 1 == 0:
+                answer = int(answer)
+            break
+    return {
+      "condition": task,
+      "answer": answer
+    }
+
 
 def task_46737():
-    '''Задача №46737 с портала https://kuzovkin.info/one_exercise_1/46737 '''
+    """Задача №46737 с портала https://kuzovkin.info/one_exercise_1/46737"""
     while True:
-      a, b = np.random.randint(2, 20, size=2)
-      n = np.random.randint(3, 9)
-      m = n/2
-      while sqrt(a) == int(a):
-        a = np.random.randint(2, 20)
-      c = pow(b, 2)+a
-      d = 2*b
-      task = r'Найдите значение выражения: \( {(\sqrt['+str(int(m))+']{'+latex(UnevaluatedExpr(b))+('-')+latex(sqrt(UnevaluatedExpr(a)))+'} {'+str('\cdot')+'} \\sqrt['+str(n)+']{'+latex(UnevaluatedExpr(c))+('+')+latex(UnevaluatedExpr(d)*sqrt(UnevaluatedExpr(a)))+'})}^{'+latex(UnevaluatedExpr(int(m)))+'} \)'
-      answer = sqrt(pow(c, 2)-pow(d, 2)*a)
-      if answer == int(answer):
-        if n%2==0 and a>b:
-          break
-    return task, answer
+        a, b = np.random.randint(2, 20, size=2)
+        n = np.random.randint(3, 9)
+        m = n / 2
+        while sqrt(a) == int(a):
+            a = np.random.randint(2, 20)
+        c = pow(b, 2) + a
+        d = 2 * b
+        task = r'Найдите значение выражения: \( {(\sqrt['+str(int(m))+']{'+latex(UnevaluatedExpr(b))+('-')+latex(sqrt(UnevaluatedExpr(a)))+'} {'+str('\cdot')+'} \\sqrt['+str(n)+']{'+latex(UnevaluatedExpr(c))+('+')+latex(UnevaluatedExpr(d)*sqrt(UnevaluatedExpr(a)))+'})}^{'+latex(UnevaluatedExpr(int(m)))+'} \)'
+        answer = math.sqrt(pow(c, 2)-pow(d, 2) * a)
+        if answer == int(answer) and n % 2 == 0 and a > b:
+            if answer % 1 == 0:
+                answer = int(answer)
+            break
+    return {
+      "condition": task,
+      "answer": answer
+    }
+
 
 def task_46756():
     '''Задача №46756 с портала https://kuzovkin.info/one_exercise_1/46756 '''
@@ -556,26 +718,35 @@ def task_46756():
       if answer>0:
         if answer == int(answer):
           break
-    return task, int(answer)
+    return {
+      "condition": task,
+      "answer": int(answer)
+    }
+
 
 def task_46766():
-    '''Задача №46766 с портала https://kuzovkin.info/one_exercise_1/46766 '''
+    """Задача №46766 с портала https://kuzovkin.info/one_exercise_1/46766"""
     while True:
-      a, b = np.random.randint(2, 16, size=2)
-      while sqrt(a) == int(a):
-        a = random.randint(2, 16)
-      k, m, n, e, g, h = np.random.randint(1, 9, size=6)
-      p = e*(a-pow(k, 2))
-      q = g*(a-pow(m, 2))
-      f = h*(pow(n, 2)-a)
-      check_1 = e+g-h
-      check_2 = e*k-g*m+h*n
-      task = r'Найдите значение выражения: \( (\frac{'+latex(UnevaluatedExpr(p))+'}{'+latex(sqrt(UnevaluatedExpr(a)))+('+')+latex(UnevaluatedExpr(k))+'}{'+str('+')+'} \\frac{'+latex(UnevaluatedExpr(q))+'}{'+latex(sqrt(UnevaluatedExpr(a)))+('-')+latex(UnevaluatedExpr(m))+'}{'+str('-')+'} \\frac{'+latex(UnevaluatedExpr(f))+'}{'+latex(UnevaluatedExpr(n))+('-')+latex(sqrt(UnevaluatedExpr(a)))+'}) {'+str('*')+'} ({'+latex(sqrt(UnevaluatedExpr(a)))+('+')+latex(UnevaluatedExpr(b))+'}) \)'
-      answer = a-pow(b, 2)
-      if a!=b and p>0 and q>0 and f>0:
-        if check_1 == 1 and check_2 == b:
-          break
-    return task, answer
+        a, b = np.random.randint(2, 16, size=2)
+        while sqrt(a) == int(a):
+            a = random.randint(2, 16)
+        k, m, n, e, g, h = np.random.randint(1, 9, size=6)
+        p = e*(a-pow(k, 2))
+        q = g*(a-pow(m, 2))
+        f = h*(pow(n, 2)-a)
+        check_1 = e+g-h
+        check_2 = e*k-g*m+h*n
+        task = r'Найдите значение выражения: \( (\frac{'+latex(UnevaluatedExpr(p))+'}{'+latex(sqrt(UnevaluatedExpr(a)))+('+')+latex(UnevaluatedExpr(k))+'}{'+str('+')+'} \\frac{'+latex(UnevaluatedExpr(q))+'}{'+latex(sqrt(UnevaluatedExpr(a)))+('-')+latex(UnevaluatedExpr(m))+'}{'+str('-')+'} \\frac{'+latex(UnevaluatedExpr(f))+'}{'+latex(UnevaluatedExpr(n))+('-')+latex(sqrt(UnevaluatedExpr(a)))+'}) {'+str('*')+'} ({'+latex(sqrt(UnevaluatedExpr(a)))+('+')+latex(UnevaluatedExpr(b))+'}) \)'
+        answer = a-pow(b, 2)
+        if a != b and p > 0 and q > 0 and f > 0 and check_1 == 1 and check_2 == b:
+            if answer % 1 == 0:
+                answer = int(answer)
+            break
+    return {
+      "condition": task,
+      "answer": answer
+    }
+
 
 def task_46768():
     '''Задача №46768 с портала https://kuzovkin.info/one_exercise_1/46768 '''
@@ -590,7 +761,10 @@ def task_46768():
       answer = 1
       if sqrt(m)!=int(m):
         break
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_46772():
     '''Задача №46772 с портала https://kuzovkin.info/one_exercise_1/46772 '''
@@ -604,4 +778,7 @@ def task_46772():
       if sqrt(d)!=int(d):
         if a!=b:
           break
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }

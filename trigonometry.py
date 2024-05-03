@@ -24,7 +24,11 @@ def cos_of_diff_in_degrees():
         f"\cos({x}^0 - {y}^0) = "
         f"\cos{x - y}^0 = {answer}\)"
     )
-    return answer, task, solution
+    return {
+        "condition": task,
+        "answer": answer,
+        "solution": solution
+    }
 
 
 def sin_of_summ_in_degrees():
@@ -46,7 +50,11 @@ def sin_of_summ_in_degrees():
         f"\sin({x}^0 + {y}^0) = "
         f"\sin{x + y}^0 = {answer}\)"
     )
-    return answer, task, solution
+    return {
+        "condition": task,
+        "answer": answer,
+        "solution": solution
+    }
 
 
 def cos_of_sum_in_degrees():
@@ -68,7 +76,11 @@ def cos_of_sum_in_degrees():
         f"\cos({x}^0 + {y}^0) = "
         f"\cos{x + y}^0 = {answer}\)"
     )
-    return answer, task, solution
+    return {
+        "condition": task,
+        "answer": answer,
+        "solution": solution
+    }
 
 
 def sin_of_diff_in_degrees():
@@ -93,7 +105,11 @@ def sin_of_diff_in_degrees():
         f"\sin({x}^0 - {y}^0) = "
         f"\sin{x - y}^0 = {answer}\)"
     )
-    return answer, task, solution
+    return {
+        "condition": task,
+        "answer": answer,
+        "solution": solution
+    }
 
 
 def cos_of_diff_with_pi():
@@ -116,4 +132,7 @@ def cos_of_diff_with_pi():
             f"\)")
     answer = f"{round(math.cos(math.pi / fraction), 1):g}"
 
-    return answer, task
+    return {
+        "condition": task,
+        "answer": answer,
+    }

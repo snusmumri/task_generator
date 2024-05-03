@@ -10,12 +10,9 @@ Original file is located at
 import random
 import bezier
 import numpy as np
-import math
-import fractions
-from sympy import *
 import matplotlib.pyplot as plt
-import re
-import time
+from utilities.converting import save_to_base64
+
 
 def graph_derivative_function_task_14():
     n_1 = random.randint(20, 30)
@@ -98,10 +95,16 @@ def graph_derivative_function_task_14():
     plt.plot([x8, x8], [y8, 0], ':', color='red')
     plt.text(x8, 0, 'x\u2088', ha='center', va='bottom')
     plt.legend(labels=["y = f'(x)"])
-    plt.show()
+    plt_base64 = save_to_base64(plt)
+    plt.close()
     task = r'На рисунке изображён график производной функции f(x). На оси абсцисс отмечены восемь точек: x1, x2, x3, ..., x8. Сколько из этих точек лежит на промежутках возрастания функции f(x)?'
     answer = number
-    return task, answer
+    return {
+        "condition": task,
+        "answer": answer,
+        "image": plt_base64,
+        }
+
 
 def graph_function_task_16_task_24():
     n_1 = random.randint(20, 30)
@@ -172,10 +175,16 @@ def graph_function_task_16_task_24():
     plt.plot([x4, x4], [y4, 0], ':', color='red')
     plt.text(x4, 0, 'x\u2084', ha='center', va='bottom')
     plt.legend(labels=["y = f(x)"])
-    plt.show()
+    plt_base64 = save_to_base64(plt)
+    plt.close()
     task = r'На рисунке изображен график функции и отмечены точки x1, x2, x3, x4.' + text
     answer = key
-    return task, answer
+    return {
+        "condition": task,
+        "answer": answer,
+        "image": plt_base64,
+        }
+
 
 def graph_function_task_17_task_36():
     n_1 = random.randint(20, 30)
@@ -256,7 +265,12 @@ def graph_function_task_17_task_36():
     plt.plot([x6, x6], [y6, 0], ':', color='red')
     plt.text(x6, 0, 'x\u2086', ha='center', va='bottom')
     plt.legend(labels=["y = f(x)"])
-    plt.show()
+    plt_base64 = save_to_base64(plt)
+    plt.close()
     task = text
     answer = count
-    return task, answer
+    return {
+        "condition": task,
+        "answer": answer,
+        "image": plt_base64,
+        }

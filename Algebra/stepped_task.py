@@ -17,7 +17,10 @@ def task_14784():
       if d<a and a<b:
         if abs(int(answer*1000) - answer*1000)  < 0.000001:
           break
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_14785():
@@ -31,7 +34,10 @@ def task_14785():
       answer = x / b
       if abs(answer*1000 - int(answer*1000)) < 0.0001 and int(a)!=a:
          break
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_14809():
@@ -43,7 +49,10 @@ def task_14809():
       answer = a*pow(b, m) + b*pow(a, n)
       if a != b:
          break
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_14814():
@@ -57,7 +66,10 @@ def task_14814():
       answer = pow(a, n)*b + c*pow(0.1, m)
       if answer < 2000:
          break
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_14815():
@@ -75,7 +87,10 @@ def task_14815():
       if a<b:
         if abs(int(summand*1000) - summand*1000) < 0.000001:
           break
-    return task, round(answer, 5)
+    return {
+      "condition": task,
+      "answer": round(answer, 5)
+    }
 
 
 def task_14816():
@@ -95,7 +110,10 @@ def task_14816():
         if abs(int(summand_2*1000) - summand_2*1000) < 0.000001:
           if abs(int(summand_1*1000) - summand_1*1000) < 0.000001:
             break
-    return task, round(answer, 5)
+    return {
+      "condition": task,
+      "answer": round(answer, 5)
+    }
 
 
 def task_14817():
@@ -116,69 +134,89 @@ def task_14817():
       if a<b and c<b:
         if abs(int(result*1000) - result*1000) < 0.000001:
           break
-    return task, int(answer)
+    return {
+      "condition": task,
+      "answer": int(answer)
+    }
 
 
 def task_14819():
-    '''Задача №14819 с портала https://kuzovkin.info/one_exercise_1/14819 и аналогичные 14820, 14821, 14822'''
+    """Задача №14819 с портала https://kuzovkin.info/one_exercise_1/14819 и аналогичные 14820, 14821, 14822"""
     while True:
-      a, b, c, d = np.random.randint(2, 10, size=4)
-      m, n = np.random.randint(2, 5, size=2)
-      task = r'Вычислите: \(' + latex(pow(UnevaluatedExpr(-a), m)/b) + '-' + latex(pow(UnevaluatedExpr(c), n)/d) + '\)'
-      answer = - (fractions.Fraction(pow(-a, m), b)) - fractions.Fraction(pow(c, n), d)
-      if m == n:
-        break
-    return task, answer
+        a, b, c, d = np.random.randint(2, 10, size=4)
+        m, n = np.random.randint(2, 5, size=2)
+        task = r'Вычислите: \(' + latex(pow(UnevaluatedExpr(-a), m)/b) + '-' + latex(pow(UnevaluatedExpr(c), n)/d) + '\)'
+        answer = float(- (fractions.Fraction(pow(-a, m), b)) - fractions.Fraction(pow(c, n), d))
+        if m == n and len(str(answer).split('.')[1]) <= 6:
+          if answer % 1 == 0:
+              answer = int(answer)
+          break
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_14836():
-    '''Задача №14836 с портала https://kuzovkin.info/one_exercise_1/14836 и аналогичные 14837, 14838'''
+    """Задача №14836 с портала https://kuzovkin.info/one_exercise_1/14836 и аналогичные 14837, 14838"""
     while True:
-      a, b, c = np.random.randint(-1, 2, size=3)
-      m, n, k = np.random.randint(2, 70, size=3)
-      task = r'Вычислите: \(' +latex(pow(UnevaluatedExpr(a), m))+ '+' +latex(pow(UnevaluatedExpr(b), n))+ '+' +latex(pow(UnevaluatedExpr(c), k))+ '\)'
-      answer = pow(a, m) + pow(b, n) + pow(c, k)
-      if a!=b or a!=c or c!=b:
-        break
-    return task, answer
+        a, b, c = np.random.randint(-1, 2, size=3)
+        m, n, k = np.random.randint(2, 70, size=3)
+        task = r'Вычислите: \(' +latex(pow(UnevaluatedExpr(a), m))+ '+' +latex(pow(UnevaluatedExpr(b), n))+ '+' +latex(pow(UnevaluatedExpr(c), k))+ '\)'
+        answer = int(pow(a, m) + pow(b, n) + pow(c, k))
+        if a != b or a != c or c != b:
+            break
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_14839():
-    '''Задача №14839 с портала https://kuzovkin.info/one_exercise_1/14839 и аналогичная 14840'''
+    """Задача №14839 с портала https://kuzovkin.info/one_exercise_1/14839 и аналогичная 14840"""
     while True:
-      a, b, c, d = np.random.randint(-1, 2, size=4)
-      m, n, k, f = np.random.randint(2, 503, size=4)
-      task = r'Вычислите: \(' +latex(pow(UnevaluatedExpr(a), m))+ '-' +latex(pow(UnevaluatedExpr(b), n))+ '+' +latex(pow(UnevaluatedExpr(c), k))+ '+' +latex(pow(UnevaluatedExpr(d), f)) + '\)'
-      answer = pow(a, m) - pow(b, n) + pow(c, k) + pow(d, f)
-      if a!=b or a!=c or c!=b:
-        break
-    return task, answer
+        a, b, c, d = np.random.randint(-1, 2, size=4)
+        m, n, k, f = np.random.randint(2, 503, size=4)
+        task = r'Вычислите: \(' +latex(pow(UnevaluatedExpr(a), m))+ '-' +latex(pow(UnevaluatedExpr(b), n))+ '+' +latex(pow(UnevaluatedExpr(c), k))+ '+' +latex(pow(UnevaluatedExpr(d), f)) + '\)'
+        answer = int(pow(a, m) - pow(b, n) + pow(c, k) + pow(d, f))
+        if a != b or a != c or c != b:
+            break
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_14841():
-    '''Задача №14841 с портала https://kuzovkin.info/one_exercise_1/14841'''
+    """Задача №14841 с портала https://kuzovkin.info/one_exercise_1/14841"""
     while True:
-      a = -1
-      m, n, k, f = np.random.randint(2, 10, size=4)
-      task = r'Вычислите: \(' + latex(pow(UnevaluatedExpr(a), m)-pow(UnevaluatedExpr(a), n)-pow(UnevaluatedExpr(a), k)-pow(UnevaluatedExpr(a), f)) + '\)'
-      answer = pow(a, m) - pow(a, n) - pow(a, k) - pow(a, f)
-      if m!=n and m!=k and m!=f:
-        if n!=k and n!=f:
-          if k!=f:
-            break
-    return task, answer
+        a = -1
+        m, n, k, f = np.random.randint(2, 10, size=4)
+        task = r'Вычислите: \(' + latex(pow(UnevaluatedExpr(a), m)-pow(UnevaluatedExpr(a), n)-pow(UnevaluatedExpr(a), k)-pow(UnevaluatedExpr(a), f)) + '\)'
+        answer = int(pow(a, m) - pow(a, n) - pow(a, k) - pow(a, f))
+        if m != n and m != k and m != f:
+            if n != k and n != f:
+                if k != f:
+                    break
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_14842():
-    '''Задача №14842 с портала https://kuzovkin.info/one_exercise_1/14842'''
+    """Задача №14842 с портала https://kuzovkin.info/one_exercise_1/14842"""
     while True:
-      a, b, c, d, e = np.random.randint(-1, 1, size=5)
-      m, n, k, x, y = np.random.randint(2, 30, size=5)
-      task = r'Вычислите: \(' +latex(pow(UnevaluatedExpr(a), m)+pow(UnevaluatedExpr(b), n)-(pow(UnevaluatedExpr(c), k))-(pow(UnevaluatedExpr(d), x))*(pow(UnevaluatedExpr(e), y)))+ '\)'
-      answer = pow(a, m) + pow(b, n) - pow(c, k) - pow(d, x)*pow(e, y)
-      if d!=e:
-        break
-    return task, answer
+        a, b, c, d, e = np.random.randint(-1, 1, size=5)
+        m, n, k, x, y = np.random.randint(2, 30, size=5)
+        task = r'Вычислите: \(' +latex(pow(UnevaluatedExpr(a), m)+pow(UnevaluatedExpr(b), n)-(pow(UnevaluatedExpr(c), k))-(pow(UnevaluatedExpr(d), x))*(pow(UnevaluatedExpr(e), y)))+ '\)'
+        answer = int(pow(a, m) + pow(b, n) - pow(c, k) - pow(d, x)*pow(e, y))
+        if d != e:
+            break
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_15021():
@@ -191,7 +229,10 @@ def task_15021():
       if abs(int(answer*1000) - answer*1000) < 0.000001:
         if answer < 1000:
           break
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 
 def task_15024():
@@ -204,7 +245,10 @@ def task_15024():
       if m>(n+k):
         if answer < 1000:
           break
-    return task, round(answer)
+    return {
+      "condition": task,
+      "answer": round(answer)
+    }
 
 
 def task_15025():
@@ -217,33 +261,45 @@ def task_15025():
       if m+n-k < 4:
         if abs(int(answer*1000) - answer*1000) < 0.000001:
           break
-    return task, round(answer, 5)
+    return {
+      "condition": task,
+      "answer": round(answer, 5)
+    }
 
 
 def task_15026():
-    '''Задача №15026 с портала https://kuzovkin.info/one_exercise_1/15026 и аналогичные 15028'''
+    """Задача №15026 с портала https://kuzovkin.info/one_exercise_1/15026 и аналогичные 15028"""
     while True:
-      a, b = np.random.randint(1, 9, size=2)
-      m, n, k = np.random.randint(1, 15, size=3)
-      frac = fractions.Fraction(a, b)
-      task = r'Вычислите: \( \frac{'+latex(pow(UnevaluatedExpr(frac), UnevaluatedExpr(m))*pow(UnevaluatedExpr(frac), UnevaluatedExpr(n)))+'}{'+latex(pow(UnevaluatedExpr(frac), UnevaluatedExpr(k)))+'} \)'
-      answer = pow(frac, m)*pow(frac, n)/pow(frac, k)
-      if a<b:
-        if m+n > k:
-          if abs(int(answer*1000) - answer*1000) < 0.000001:
-            break
-    return task, float(answer)
+        a, b = np.random.randint(1, 9, size=2)
+        m, n, k = np.random.randint(1, 15, size=3)
+        frac = fractions.Fraction(a, b)
+        task = r'Вычислите: \( \frac{'+latex(pow(UnevaluatedExpr(frac), UnevaluatedExpr(m))*pow(UnevaluatedExpr(frac), UnevaluatedExpr(n)))+'}{'+latex(pow(UnevaluatedExpr(frac), UnevaluatedExpr(k)))+'} \)'
+        try:
+          answer = pow(frac, m)*pow(frac, n)/pow(frac, k)
+        except ZeroDivisionError:
+            continue
+        if a<b:
+            if m+n > k:
+                if abs(int(answer*1000) - answer*1000) < 0.000001:
+                    break
+    return {
+      "condition": task,
+      "answer": float(answer)
+    }
 
 
 def task_15046():
-    '''Задача №15046 с портала https://kuzovkin.info/one_exercise_1/15046 и аналогичные 15047, 15048, 15049'''
+    """Задача №15046 с портала https://kuzovkin.info/one_exercise_1/15046 и аналогичные 15047, 15048, 15049"""
     while True:
-      a = np.random.randint(2, 10)
-      m, n= np.random.randint(2, 5, size=2)
-      x_1 = pow(UnevaluatedExpr(a), UnevaluatedExpr(m))
-      x_2 = pow(UnevaluatedExpr(x_1), UnevaluatedExpr(n))
-      task = r'Вычислите: \(' +latex(x_2)+ '\)'
-      answer = pow(pow(a, m), n)
-      if answer < 1500:
-        break
-    return task, answer
+        a = np.random.randint(2, 10)
+        m, n= np.random.randint(2, 5, size=2)
+        x_1 = pow(UnevaluatedExpr(a), UnevaluatedExpr(m))
+        x_2 = pow(UnevaluatedExpr(x_1), UnevaluatedExpr(n))
+        task = r'Вычислите: \(' +latex(x_2)+ '\)'
+        answer = int(pow(pow(a, m), n))
+        if answer < 1500:
+            break
+    return {
+      "condition": task,
+      "answer": answer
+    }

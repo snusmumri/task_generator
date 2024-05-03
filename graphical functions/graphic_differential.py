@@ -1,10 +1,8 @@
-import random
 import numpy as np
-import math
-import fractions
 from sympy import *
 import matplotlib.pyplot as plt
-import re
+from utilities.converting import save_to_base64
+
 
 def plot_graph_function_sixth_degree_and_draw_tangent_to_graph_at_point():
     x = Symbol('x')
@@ -94,8 +92,12 @@ def plot_graph_function_sixth_degree_and_draw_tangent_to_graph_at_point():
     plt.text(x0, 0, "x\u2092", ha='center', va='bottom')
     plt.title('')
     plt.legend()
-    plt.show()
+    plt_base64 = save_to_base64(plt)
+    plt.close()
     task = r'Найдите значение производной функции f(x) в точке ' + r"\(x_0 \)"
     answer = float(k)
-    return task, answer
-
+    return {
+        "condition": task,
+        "answer": answer,
+        "image": plt_base64,
+        }

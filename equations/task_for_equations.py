@@ -59,7 +59,22 @@ def generation_and_solution_new_equation(sample_equation):
                     simplify_multipliers=False,
                     tex_multiplier='',
                     simplify_fractions =True)
-  return f'Решите уравнение: {latex_string}', result
+  task = f'Решите уравнение: {latex_string}'
+  answer = ""
+  for position, value in enumerate(result):
+      numerator = value.p
+      denominator = value.q
+      if denominator == 1:
+          answer += ((r"\(" + f"{numerator}") + "\)")
+      else:
+          answer += ((((r"\(\frac{" + f"{numerator}") + "}{") + f"{denominator}") + r"}\)")
+      if position < len(result) - 1:
+          answer += ", "
+  return {
+      "condition": task,
+      "answer": answer
+    }
+
 
 '''Генерация аналогичных задач № 2295 с портала https://kuzovkin.info/zadachi/?read_text_from_string=2295
     Решите уравнение: (x**2−3)/2−6*x=5'''

@@ -19,7 +19,10 @@ def quadratic_equation_16639():
             f'({n}\\cdot x{"+" if n1 >= 0 else "-"} {abs(n1)})\\cdot ' \
             f'({p}\\cdot x{"+" if p1 >= 0 else "-"} {abs(p1)})\\)'
 
-    return answer, equal
+    return {
+        "condition": equal,
+        "answer": answer
+    }
 
 
 def equation_17524():
@@ -30,8 +33,11 @@ def equation_17524():
         b = randint(1, 10)
     descr = b ** 2 - 4 * y * k
     answer = f'x = {-b / 2}' if descr == 0 else (f'x1 = {(-b + math.sqrt(descr)) / 2}', f'x2 = {(-b - math.sqrt(descr)) / 2}')
-    return answer, f'Решить уравнение: \( \lg \left ( {z ** y}*\sqrt[{k}]' + "{" + str(z) + '^{x^{2}' \
-                   + f'{"+" if b >= 0 else "-"}{abs(b)}' + "x}} \right )=0 \)"
+    return {
+        "condition": f'Решить уравнение: \( \lg \left ( {z ** y}*\sqrt[{k}]' + "{" + str(z) + '^{x^{2}'
+                     + f'{"+" if b >= 0 else "-"}{abs(b)}' + "x}} \right )=0 \)",
+        "answer": answer
+    }
 
 
 def equation_16616():
@@ -42,8 +48,11 @@ def equation_16616():
   while (a + b - c - d) == 0:
       a, b, c, d = (choice(data) for _ in range(4))
   answer = str(Fraction((c * d - a * b), (a + b - c - d)))
-  return answer, f'\((x{"+" if a >= 0 else "-"}{abs(a)})\cdot (x{"+" if b >= 0 else "-"}{abs(b)})-' \
-                  f'(x{"+" if c >= 0 else "-"}{abs(c)})\cdot (x{"+" if d >= 0 else "-"}{abs(d)})=0\)'
+  return {
+      "condition": f'\((x{"+" if a >= 0 else "-"}{abs(a)})\cdot (x{"+" if b >= 0 else "-"}{abs(b)})-' 
+                   f'(x{"+" if c >= 0 else "-"}{abs(c)})\cdot (x{"+" if d >= 0 else "-"}{abs(d)})=0\)',
+      "answer": answer
+  }
 
 
 def equation_10244():
@@ -51,4 +60,8 @@ def equation_10244():
     Найдите значение выражени: (2,6−1,04):0,24⋅0,8"""
     a, b, c, d = (round(uniform(0.1, 5), 2) for _ in range(4))
     answer = round(((a - b) / c * d), 2)
-    return answer, f'Найдите значение выражения, округленное до 2 цифры после запятой: \(\left ( {a}-{b}' + r"\right" + f'):{c}\cdot {d}\)'
+    return {
+        "condition": f'Найдите значение выражения, округленное до 2 цифры после запятой: \(\left ( {a}-{b}' + r"\right"
+                     + f'):{c}\cdot {d}\)',
+        "answer": answer
+    }

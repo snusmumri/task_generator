@@ -270,4 +270,3 @@ def solution_task_13328():
                 x = (-b + discr) / 2
                 if x > 0:
                     return s, delta_s, k, x
-

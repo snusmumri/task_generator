@@ -10,12 +10,11 @@ Original file is located at
 import random
 import bezier
 import numpy as np
-import math
-import fractions
 from sympy import *
 import matplotlib.pyplot as plt
-import re
 import time
+from utilities.converting import save_to_base64
+
 
 def plot_curve_bezier_and_line():
     x = Symbol('x')
@@ -105,7 +104,12 @@ def plot_curve_bezier_and_line():
     plt.text(x0, 0, "x\u2092", ha='center', va='bottom')
     plt.title('')
     plt.legend(labels=["y = f(x)"])
-    plt.show()
+    plt_base64 = save_to_base64(plt)
+    plt.close()
     task = r'Найдите значение производной функции f(x) в точке ' + r"\(x_0 \)"
     answer = float(k)
-    return task, answer
+    return {
+        "condition": task,
+        "answer": answer,
+        "image": plt_base64,
+        }

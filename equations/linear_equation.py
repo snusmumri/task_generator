@@ -3,6 +3,7 @@ import random
 from sympy import *
 import re
 
+
 # Функция для вывода ответа
 def find_answer(splitted_eq):
   x = symbols('x')
@@ -15,6 +16,7 @@ def find_answer(splitted_eq):
       return round(answer[0], 2)
   return False
 
+
 # Функция создания обыкновенной дроби
 def create_fraction():
   n = random.randrange(-30, 30)
@@ -22,6 +24,7 @@ def create_fraction():
   while n == 0 or abs(n) == m or abs(n) % m == 0:
     n = random.randrange(-30, 30)
   return fractions.Fraction(n, m)
+
 
 # Новый генератор значений (немного увеличила его за счет добавления блока генерации дробей)
 def generate_values_and_recieve_answer(equation_to_solve):
@@ -51,6 +54,7 @@ def generate_values_and_recieve_answer(equation_to_solve):
     if answer or str(answer) == '0':
         break
   return equation_to_solve_after_parse, answer
+
 
 # Парсер уравнений
 def parse_and_generate_task(equation_to_solve):
@@ -266,8 +270,18 @@ def parse_and_generate_task(equation_to_solve):
 
   return final_string
 
+
 def x_equation_generator_with_parser(equation_to_solve):
   '''Функция для создания линейного уравнения, которая обращается внутри себя к парсеру для вывода уравнения'''
-  prep_equation, answer = generate_values_and_recieve_answer(equation_to_solve)
-  task = parse_and_generate_task(prep_equation)
-  return task, answer
+  while True:
+    prep_equation, answer = generate_values_and_recieve_answer(equation_to_solve)
+    task = parse_and_generate_task(prep_equation)
+    answer = float(answer)
+    if len(str(answer).split('.')[1]) <= 6:
+      if answer % 1 == 0:
+        answer = int(answer)
+        break
+  return {
+      "condition": task,
+      "answer": answer
+    }

@@ -21,8 +21,11 @@ def task_9515():
         answer = 1 / (1 / time1 + 1 / time2 + 1 / time3)
         if int(answer) - answer == 0:
             break
-    return f"{start_title(pers1)} может {task} за {time1} ч, {pers2} может {task} за {time2} ч, {pers3} - за {time3} ч. " \
-           f"За какое время они втроем могут {task}?", answer
+    return {
+        "condition": f"{start_title(pers1)} может {task} за {time1} ч, {pers2} может {task} за {time2} ч, {pers3} - "
+                     f"за {time3} ч. За какое время они втроем могут {task}?",
+        "answer": answer
+    }
 
 
 def task_9517():
@@ -38,8 +41,11 @@ def task_9517():
         answer = time1 * time2 / (time2 - time1)
         if int(answer) - answer == 0:
             break
-    return f"{start_title(pers1)} и {pers2} могут {task} за {time1} мин, а 1 {pers1} - за {time2} мин. За сколько минут " \
-           f"может {task} {pers2}?", answer
+    return {
+        "condition": f"{start_title(pers1)} и {pers2} могут {task} за {time1} мин, а 1 {pers1} - за {time2} мин. За "
+                     f"сколько минут может {task} {pers2}?",
+        "answer": answer
+    }
 
 
 def task_11101():
@@ -60,8 +66,11 @@ def task_11101():
         if int(answer) - answer == 0:
             break
 
-    return f"{start_title(pers1)}, {pers2} и {pers3} вместе могут {task} за {time1} ч. {pers1} может {task} за {time2} ч, " \
-           f"а {pers2} – за {time3} ч. За сколько часов это сделает {pers3}?", answer
+    return {
+        "condition": f"{start_title(pers1)}, {pers2} и {pers3} вместе могут {task} за {time1} ч. {pers1} может {task} "
+                     f"за {time2} ч, а {pers2} – за {time3} ч. За сколько часов это сделает {pers3}?",
+        "answer": answer
+    }
 
 
 def task_11108():
@@ -76,8 +85,11 @@ def task_11108():
         answer = 2 / (1 / time1 + 1 / time2 + 1 / time3)
         if int(answer) - answer == 0:
             break
-    return f"{start_title(pers1)} и {pers2} могут {task} за {time1} ч. {pers2} и {pers3} могут {task} за {time2} ч, " \
-           f"а {pers1} и {pers3} - за {time3} ч. За какое время они могут {task}, работая вместе?", answer
+    return {
+        "condition": f"{start_title(pers1)} и {pers2} могут {task} за {time1} ч. {pers2} и {pers3} могут {task} за "
+                     f"{time2} ч, а {pers1} и {pers3} - за {time3} ч. За какое время они могут {task}, работая вместе?",
+        "answer": answer
+    }
 
 
 def task_936():
@@ -93,9 +105,12 @@ def task_936():
     time2 = time1 * randint(1, 10)
     # получаем ответ
     answer = time1 + (time2 - time1) / 2
-    return f"{start_title(pers1)} и {pers2} должны {task}. Каждый из них способен сделать это за {time2} ч. " \
-           f"Через {time1} ч после того, как {pers1} начал делать это в одиночку, к нему присоединился {pers2}, " \
-           f"и они закончили вместе. За сколько часов задача была выполнена?", answer
+    return {
+        "condition": f"{start_title(pers1)} и {pers2} должны {task}. Каждый из них способен сделать это за {time2} ч. "
+                     f"Через {time1} ч после того, как {pers1} начал делать это в одиночку, к нему присоединился "
+                     f"{pers2}, и они закончили вместе. За сколько часов задача была выполнена?",
+        "answer": answer
+    }
 
 
 def task_2610():
@@ -119,9 +134,12 @@ def task_2610():
         (t, 'За сколько дней он выполнит задачу'),
         (v, 'Сколько раз в день он должен был делать это по плану')
     ])
-    return f"{start_title(pers)} должен {task1} {int(s)} {word1} - по несколько в день. Когда он приступил к работе, оказалось, " \
-           f"что он может {task1} на {x} {word2} больше запланированного количества в день " \
-           f"и завершить процесс на {y} {correct_word('день', y)} раньше срока. {question}?", answer
+    return {
+        "condition": f"{start_title(pers)} должен {task1} {int(s)} {word1} - по несколько в день. Когда он приступил "
+                     f"к работе, оказалось, что он может {task1} на {x} {word2} больше запланированного количества в "
+                     f"день и завершить процесс на {y} {correct_word('день', y)} раньше срока. {question}?",
+        "answer": answer
+    }
 
 
 def task_17612():
@@ -144,9 +162,12 @@ def task_17612():
     answer = v + x
     # делаем множественное число
     task1, (word1, word2) = correct_word(key=task, values=(10, x))
-    return f"{start_title(pers)} должен был за {t} {correct_word('день', t)} {task1} несколько {word1}. " \
-           f"Перевыполняя ежедневную норму на {x} {word2}, он закончил на {y} " \
-           f"{correct_word('день', y)} раньше срока. Сколько раз в день он делал поставленную задачу?", answer
+    return {
+        "condition": f"{start_title(pers)} должен был за {t} {correct_word('день', t)} {task1} несколько {word1}. "
+                     f"Перевыполняя ежедневную норму на {x} {word2}, он закончил на {y} {correct_word('день', y)} "
+                     f"раньше срока. Сколько раз в день он делал поставленную задачу?",
+        "answer": answer
+    }
 
 
 def task_17610():
@@ -164,12 +185,18 @@ def task_17610():
     t1 = t2 + x
     if pers1 == pers2:
         [pers_gent] = gent_pers((pers1,))
-        return f"Два {pers_gent}, работая одновременно, могут {task} за {t} ч. Первый {pers1} " \
-               f"затратит на эту работу на {x} ч больше, чем второй {pers2}. За какое время могут {task} каждый из них, " \
-               f"работая отдельно?", (t1, t2)
-    return f"{start_title(pers1)} и {pers2}, работая одновременно, могут {task} за {t} ч. Один {pers1} " \
-           f"затратит на эту работу на {x} ч больше, чем {pers2}. За какое время могут {task} каждый из них, " \
-           f"работая отдельно?", (t1, t2)
+        return {
+            "condition": f"Два {pers_gent}, работая одновременно, могут {task} за {t} ч. Первый {pers1} затратит на "
+                         f"эту работу на {x} ч больше, чем второй {pers2}. За какое время могут {task} каждый из них, "
+                         f"работая отдельно?",
+            "answer": (t1, t2)
+        }
+    return {
+        "condition": f"{start_title(pers1)} и {pers2}, работая одновременно, могут {task} за {t} ч. Один {pers1} "
+                     f"затратит на эту работу на {x} ч больше, чем {pers2}. За какое время могут {task} каждый из них, "
+                     f"работая отдельно?",
+        "answer": (t1, t2)
+    }
 
 
 def task_17613():
@@ -196,9 +223,12 @@ def task_17613():
     # делаем множественное число
     task1, (word1, word2) = correct_word(key=task, values=(x, 5))
 
-    return f"После усовершенствования технологии {pers} теперь может {task1} за час на {x} {word1} больше, " \
-           f"чем прежде. Поэтому за {t1} ч работы он начал выполнять {k} прежней {t2}-часовой нормы. " \
-           f"Сколько {word2} в час теперь может {task1} {pers}?", answer
+    return {
+        "condition": f"После усовершенствования технологии {pers} теперь может {task1} за час на {x} {word1} больше, "
+                     f"чем прежде. Поэтому за {t1} ч работы он начал выполнять {k} прежней {t2}-часовой нормы. "
+                     f"Сколько {word2} в час теперь может {task1} {pers}?",
+        "answer": answer
+    }
 
 
 def task_17583():
@@ -218,9 +248,13 @@ def task_17583():
     # делаем множественное число
     task1, (word1, word2, word3, word4) = correct_word(key=task, values=(s1, x, s2, 10))
     # task1, word3, word4 = correct_word(key=task, values=(s2, 10))
-    return f"{start_title(pers1)} должен {task1} {s1} {word1}, a {pers2} - {s2} {word3}. Первый может {task1} в день " \
-           f"на {x} {word2} больше, чем второй, и закончить на {y} {correct_word('день', y)} раньше, чем второй. " \
-           f"По сколько {word4} в день может {task1} каждый из них?", (v1, v2)
+    return {
+        "condition": f"{start_title(pers1)} должен {task1} {s1} {word1}, a {pers2} - {s2} {word3}. Первый может "
+                     f"{task1} в день на {x} {word2} больше, чем второй, и закончить на {y} "
+                     f"{correct_word('день', y)} раньше, чем второй. По сколько {word4} в день может {task1} "
+                     f"каждый из них?",
+        "answer": (v1, v2)
+    }
 
 
 def task_17596():
@@ -242,9 +276,12 @@ def task_17596():
         (f"За какой срок {pers} может {task1} на {s1} {word3} больше запланированного количества?",  t - x),
         (f"За какой срок было предусмотрено, что {pers} сможет {task1} {s} {word1}?", t)
     ])
-    return f"{start_title(pers)} может {task1} {s} {word1}. Увеличив производительность, {pers} теперь может {task1} " \
-           f"в месяц на {y} {word2} больше, и закончить на {x} мес. раньше срока, перевыполнив задание на {s1} {word3}. " \
-           f"{question}", answer
+    return {
+        "condition": f"{start_title(pers)} может {task1} {s} {word1}. Увеличив производительность, {pers} теперь может "
+                     f"{task1} в месяц на {y} {word2} больше, и закончить на {x} мес. раньше срока, перевыполнив "
+                     f"задание на {s1} {word3}. {question}",
+        "answer": answer
+    }
 
 
 def task_17621():
@@ -259,9 +296,12 @@ def task_17621():
             t = 1.2345
         if int(t) - t == 0:
             break
-    return f"Бассейн, содержащий {int(s)} м3 воды, сначала был опорожнен, а затем наполнен до прежнего уровня. " \
-           f"На все это потребовалось {y} ч. Сколько времени шло заполнение бассейна, если при наполнении " \
-           f"насос перекачивает на {x} м3 воды меньше, чем при опорожнении?", t
+    return {
+        "condition": f"Бассейн, содержащий {int(s)} м3 воды, сначала был опорожнен, а затем наполнен до прежнего "
+                     f"уровня. На все это потребовалось {y} ч. Сколько времени шло заполнение бассейна, если при "
+                     f"наполнении насос перекачивает на {x} м3 воды меньше, чем при опорожнении?",
+        "answer": t
+    }
 
 
 def task_17622():
@@ -327,12 +367,18 @@ def task_17622():
 
     if pers1 == pers2:
         answer, question = choice(questions['equal'])
-        return f"{gender[5]} {pers1_gent} могут {task1} {new_unit}{v} {word1}. При этом {gender[0]} {pers1} работает " \
-               f"{t1} ч, а {gender[1]} {pers2} - {t2} ч. {question}", answer
+        return {
+            "condition": f"{gender[5]} {pers1_gent} могут {task1} {new_unit}{v} {word1}. При этом {gender[0]} {pers1} "
+                         f"работает {t1} ч, а {gender[1]} {pers2} - {t2} ч. {question}",
+            "answer": answer
+        }
     else:
         answer, question = choice(questions['different'])
-        return f"{start_title(pers1)} и {pers2} могут вместе {task1} {new_unit}{v} {word1}. " \
-               f"При этом {pers1} работает {t1} ч, а {pers2} - {t2} ч. {question}", answer
+        return {
+            "condition": f"{start_title(pers1)} и {pers2} могут вместе {task1} {new_unit}{v} {word1}. При этом {pers1} "
+                         f"работает {t1} ч, а {pers2} - {t2} ч. {question}",
+            "answer": answer
+        }
 
 
 def task_17624():
@@ -360,7 +406,10 @@ def task_17624():
           f'второй заказ (заказы разные по объему). Вся работа заняла {t1} ч. Если бы они вместе сделали половину всей ' \
           f'работы, а оставшуюся часть делал бы кто-то один из них, работа заняла бы {t2} ч. ' \
           f'За какое время двое из них {question}?'
-    return res, answer
+    return {
+        "condition": res,
+        "answer": answer
+    }
 
 
 def task_5173():
@@ -425,9 +474,13 @@ def task_5173():
         f'по {v2} {word3} в день ',
         f'на {delta_v} {word1} больше запланированного {meas_word1} в день '
     ])
-    return f"{start_title(pers)} {gender[0]} {task1} {new_unit}несколько {word1} за определенный срок - по {v1} {unit} " \
-           f"в день. Когда {pers} {gender[1]} к работе, оказалось, что {gender[2]} может {task1} {task_condition}" \
-           f"и завершить процесс на {t} {correct_word('день', t)} {comparison} срока. {question}", answer
+    return {
+        "condition": f"{start_title(pers)} {gender[0]} {task1} {new_unit}несколько {word1} за определенный срок - по "
+                     f"{v1} {unit} в день. Когда {pers} {gender[1]} к работе, оказалось, что {gender[2]} может {task1} "
+                     f"{task_condition}и завершить процесс на {t} {correct_word('день', t)} {comparison} срока. "
+                     f"{question}",
+        "answer": answer
+    }
 
 
 def task_108():
@@ -466,8 +519,11 @@ def task_108():
             if int(x) - x == 0 and x > 0:
                 break
 
-        return f'{start[0]} было {vol1} {unit} {item}, а {start[1]} - {vol2} {unit}. {start[2]} забрали в {k1} раза ' \
-               f'больше {item}, чем {start[3]}. Сколько {unit} {item} взяли {start[4]}?', (x, k1 * x)
+        return {
+            "condition": f'{start[0]} было {vol1} {unit} {item}, а {start[1]} - {vol2} {unit}. {start[2]} забрали в '
+                         f'{k1} раза больше {item}, чем {start[3]}. Сколько {unit} {item} взяли {start[4]}?',
+            "answer": (x, k1 * x)
+        }
 
     elif condition == 'time':
         while True:
@@ -483,9 +539,12 @@ def task_108():
 
         question = 'станут равными' if k == 1 else f'{start[5].lower()} станут в {k} {correct_word("раз", k)} меньше, чем {start[6]}'
 
-        return f'{start[0]} было {vol1} {unit} {item}, а {start[1]} - {vol2} {unit}. ' \
-               f'{start[5]} ежедневно расходуется {v1} {unit}, а {start[6]} - {v2} {unit} {item}. ' \
-               f'Через сколько дней запасы {item} {question}?', t
+        return {
+            "condition": f'{start[0]} было {vol1} {unit} {item}, а {start[1]} - {vol2} {unit}. {start[5]} ежедневно '
+                         f'расходуется {v1} {unit}, а {start[6]} - {v2} {unit} {item}. Через сколько дней запасы '
+                         f'{item} {question}?',
+            "answer": t
+        }
 
     elif condition == 'init_volume':
         while True:
@@ -496,9 +555,12 @@ def task_108():
             x = (vol1 + vol2) / (k - 1)
             if int(x) - x == 0:
                 break
-        return f'{start[0]} было в {k} {correct_word("раз", k)} больше {item}, чем {start[1]}. ' \
-               f'{start[2]} забрали {vol1} {unit} {item}, {start[8]} добавили {vol2} {unit}, ' \
-               f'после чего {item} стало поровну. Сколько {item} было первоначально {start[7]}?', (x * k, x)
+        return {
+            "condition": f'{start[0]} было в {k} {correct_word("раз", k)} больше {item}, чем {start[1]}. '
+                         f'{start[2]} забрали {vol1} {unit} {item}, {start[8]} добавили {vol2} {unit}, после чего '
+                         f'{item} стало поровну. Сколько {item} было первоначально {start[7]}?',
+            "answer": (x * k, x)
+        }
 
 
 def task_721():
@@ -541,12 +603,18 @@ def task_721():
 
     if pers1 == pers2:
         answer, question = choice(questions['equal'])
-        return f"{gender[4]} {pers1_gent} должны {task} за {t} ч. При этом {gender[0]} {pers1}, работая в одиночку, " \
-               f"может выполнить все задание на {delta_t} ч быстрее, чем {gender[1]}. {question}", answer
+        return {
+            "condition": f"{gender[4]} {pers1_gent} должны {task} за {t} ч. При этом {gender[0]} {pers1}, работая в "
+                         f"одиночку, может выполнить все задание на {delta_t} ч быстрее, чем {gender[1]}. {question}",
+            "answer": answer
+        }
     else:
         answer, question = choice(questions['different'])
-        return f"{start_title(pers1)} и {pers2} должны {task} за {t} ч. При этом {pers1}, работая в одиночку, " \
-               f"может выполнить все задание на {delta_t} ч быстрее, чем {pers2}. {question}", answer
+        return {
+            "condition": f"{start_title(pers1)} и {pers2} должны {task} за {t} ч. При этом {pers1}, работая в "
+                         f"одиночку, может выполнить все задание на {delta_t} ч быстрее, чем {pers2}. {question}",
+            "answer": answer
+        }
 
 
 def task_745():
@@ -586,15 +654,21 @@ def task_745():
         time = f'{int(t * 60)} мин'
     if pers1 == pers2:
         answer, question = choice(questions['equal'])
-        return f"{gender[4]} {pers1_gent} должны {task} за {time}. Если {gender[0]} {pers1} будет работать {t1} ч, " \
-               f"а {gender[1]} - {t2} ч, будет выполнено {k} всей работы. {question}", answer
+        return {
+            "condition": f"{gender[4]} {pers1_gent} должны {task} за {time}. Если {gender[0]} {pers1} будет работать "
+                         f"{t1} ч, а {gender[1]} - {t2} ч, будет выполнено {k} всей работы. {question}",
+            "answer": answer
+        }
     else:
         answer, question = choice(questions['different'])
-        return f"{start_title(pers1)} и {pers2} должны {task} за {time}. Если {pers1} будет работать {t1} ч, " \
-               f"а {pers2} - {t2} ч, будет выполнено {k} всей работы. {question}", answer
+        return {
+            "condition": f"{start_title(pers1)} и {pers2} должны {task} за {time}. Если {pers1} будет работать {t1} ч, "
+                         f"а {pers2} - {t2} ч, будет выполнено {k} всей работы. {question}",
+            "answer": answer
+        }
 
 
-if __name__ == "__main__":
+# if __name__ == "__main__":
     # pprint(task_721())
     # pprint(task_745())
     # pprint(task_108())
@@ -602,4 +676,4 @@ if __name__ == "__main__":
     # pprint(task_17583())
     # pprint(task_5173())
     # pprint(task_17583())
-    pprint(task_17596())
+    # pprint(task_17596())

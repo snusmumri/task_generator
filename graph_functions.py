@@ -5,9 +5,10 @@ import math as m
 import decimal as d
 from sympy import Point, Line, solve, symbols, Eq
 from sympy.abc import x, y
+from utilities.converting import save_to_base64
 
 def function_graph(x_coord, y_coord, x_points, y_points, point_A=[], lim=[[-9, 9], [-9, 9]], dash=[], trigonometry=False, color=['orange', 'blue']):
-    """Функция стоит график(и) по переданным параметрам"""
+    """Функция строит график(и) по переданным параметрам"""
     fig = plt.figure()
     ax = plt.axes()
     fig.add_axes(ax)
@@ -47,7 +48,11 @@ def function_graph(x_coord, y_coord, x_points, y_points, point_A=[], lim=[[-9, 9
             ax.plot(dash[i][0], dash[i][1], linestyle='dashed', c='gray')
     plt.xlim(lim[0][0], lim[0][1])
     plt.ylim(lim[1][0], lim[1][1])
-    plt.show()
+
+    plt_base64 = save_to_base64(plt)
+    plt.close()
+
+    return plt_base64
 
 
 # Задача 1 №509213 c сайта https://math-ege.sdamgia.ru/problem?id=509213
@@ -91,13 +96,18 @@ def two_lines():
             answer = x_int
         solution = None
 
-        def paint():
-            function_graph(x, y, x_points, y_points)
+        paint = function_graph(x, y, x_points, y_points)
 
         return answer, task, paint, solution
 
     answer, task, paint, solution = function_result()
-    return answer, task, paint, solution
+
+    return {
+        "condition": task,
+        "answer": answer,
+        "image": paint,
+        "solution": solution
+        }
 
 
 # Задача 2 https://math-ege.sdamgia.ru/problem?id=509259
@@ -182,13 +192,17 @@ def two_parabolas():
         task = f'На рисунке изображены графики функций \({equation1}\) и \(g(x) = ax^2 + bx + c\), которые пересекаются в точках A и B. Найдите {axis} точки B.'
         lim = [[point_A[0] - 9, point_A[0] + 9], [point_A[1] - 9, point_A[1] + 9]]
 
-        def paint():
-            function_graph(x_coord, y, x_points, y_points, point_A, lim)
-
+        paint = function_graph(x_coord, y, x_points, y_points, point_A, lim)
+            
         return answer, task, paint, solution
 
     answer, task, paint, solution = function_result()
-    return answer, task, paint, solution
+    return {
+        "condition": task,
+        "answer": answer,
+        "image": paint,
+        "solution": solution
+        }
 
 
 # Задача 3 №562285 c сайта https://math-ege.sdamgia.ru/problem?id=562285
@@ -232,14 +246,18 @@ def single_parabola_1():
         answer = (coef[0] * x_task ** 2 + coef[1] * x_task + coef[2])
         task = f'Вычислите \(f({x_task})\) для функции вида \(f(x) = ax^2 + bx + c\)'
 
-        def paint():
-            function_graph(x, y, x_points, y_points, lim=lim)
+        paint = function_graph(x, y, x_points, y_points, lim=lim)
 
         solution = None
         return answer, task, paint, solution
 
     answer, task, paint, solution = function_result()
-    return answer, task, paint, solution
+    return {
+        "condition": task,
+        "answer": answer,
+        "image": paint,
+        "solution": solution
+    }
 
 
 # Задача 4 https://math-ege.sdamgia.ru/problem?id=562061
@@ -287,13 +305,17 @@ def single_parabola_2():
         task = f'На рисунке изображён график функции вида \(f(x) = \\frac{{x^2}}{{a}} + bx + c\), где числа a, b и c — целые. Найдите значение уравнения при \(f({x_task})\). '
         solution = None
 
-        def paint():
-            function_graph(x, y, x_points, y_points, lim=lim)
+        paint = function_graph(x, y, x_points, y_points, lim=lim)
 
         return answer, task, paint, solution
 
     answer, task, paint, solution = function_result()
-    return answer, task, paint, solution
+    return {
+        "condition": task,
+        "answer": answer,
+        "image": paint,
+        "solution": solution
+        }
 
 
 # Задача 5 https://math-ege.sdamgia.ru/problem?id=508903
@@ -335,13 +357,17 @@ def single_line():
                     break
         solution = None
 
-        def paint():
-            function_graph(x, y, x_points, y_points)
+        paint = function_graph(x, y, x_points, y_points)
 
         return answer, task, paint, solution
 
     answer, task, paint, solution = function_result()
-    return answer, task, paint, solution
+    return {
+        "condition": task,
+        "answer": answer,
+        "image": paint,
+        "solution": solution
+        }
 
 
 # Задача 6 https://math-ege.sdamgia.ru/problem?id=635152
@@ -375,13 +401,17 @@ def abs_parabola():
         task = f'На рисунке изображён график фуıкции вида \(f(x) = |ax^2 + bx + c|\), где a, b и c — целые числа. Вычислите \(f({x_task})\).'
         solution = None
 
-        def paint():
-            function_graph(x, y, x_points, y_points, lim=lim)
+        paint = function_graph(x, y, x_points, y_points, lim=lim)
 
         return answer, task, paint, solution
 
     answer, task, paint, solution = function_result()
-    return answer, task, paint, solution
+    return {
+        "condition": task,
+        "answer": answer,
+        "image": paint,
+        "solution": solution
+        }
 
 
 # Задача 7 https://math-ege.sdamgia.ru/problem?id=508971
@@ -429,12 +459,17 @@ def giperbola_1():
         answer = x_task
       solution = None
 
-      def paint():
-        function_graph(x_coord, y_coord, x_points, y_points, lim=lim, dash=dash, color=color)
-      return answer, task, paint, solution
+      paint = function_graph(x_coord, y_coord, x_points, y_points, lim=lim, dash=dash, color=color)
 
+      return answer, task, paint, solution
+    
     answer, task, paint, solution = function_result()
-    return answer, task, paint, solution
+    return {
+        "condition": task,
+        "answer": answer,
+        "image": paint,
+        "solution": solution
+        }
 
 
 # Задача 8 https://math-ege.sdamgia.ru/problem?id=508961
@@ -482,13 +517,17 @@ def giperbola_2():
             answer = x_task
         solution = None
 
-        def paint():
-            function_graph(x_coord, y_coord, x_points, y_points, lim=lim, dash=dash, color=color)
+        paint = function_graph(x_coord, y_coord, x_points, y_points, lim=lim, dash=dash, color=color)
 
         return answer, task, paint, solution
 
     answer, task, paint, solution = function_result()
-    return answer, task, paint, solution
+    return {
+        "condition": task,
+        "answer": answer,
+        "image": paint,
+        "solution": solution
+        }
 
 
 # Задача 9 https://math-ege.sdamgia.ru/problem?id=564963
@@ -528,8 +567,7 @@ def giperbola_3():
         """Функция генерирует задание, выводит правильный ответ и график"""
         x_coord, y_coord, x_points, y_points, lim, dash, coef, color = input_parameters()
 
-        def paint():
-            function_graph(x_coord, y_coord, x_points, y_points, lim=lim, dash=dash, color=color)
+        paint = function_graph(x_coord, y_coord, x_points, y_points, lim=lim, dash=dash, color=color)
 
         random_task = randint(0, 4)
         if random_task == 0:
@@ -551,7 +589,16 @@ def giperbola_3():
         return answer, task, paint, solution
 
     answer, task, paint, solution = function_result()
-    return answer, task, paint, solution
+    if answer % 1 == 0:
+        answer = int(answer)
+    else:
+        answer = float(answer)
+    return {
+        "condition": task,
+        "answer": answer,
+        "image": paint,
+        "solution": solution
+        }
 
 
 # Задача 10 https://math-ege.sdamgia.ru/problem?id=509113
@@ -598,13 +645,17 @@ def sqrt():
             answer = x_task
         solution = None
 
-        def paint():
-            function_graph(x_coord, y_coord, x_points, y_points, lim=lim)
+        paint = function_graph(x_coord, y_coord, x_points, y_points, lim=lim)
 
         return answer, task, paint, solution
 
     answer, task, paint, solution = function_result()
-    return answer, task, paint, solution
+    return {
+        "condition": task,
+        "answer": answer,
+        "image": paint,
+        "solution": solution
+        }
 
 
 # Задача 11 https://math-ege.sdamgia.ru/problem?id=509009
@@ -651,12 +702,17 @@ def logarythm_1():
             answer = x_task
         solution = None
 
-        def paint():
-            function_graph(x_coord, y_coord, x_points, y_points, lim=lim)
+        paint = function_graph(x_coord, y_coord, x_points, y_points, lim=lim)
+
         return answer, task, paint, solution
 
     answer, task, paint, solution = function_result()
-    return answer, task, paint, solution
+    return {
+        "condition": task,
+        "answer": answer,
+        "image": paint,
+        "solution": solution
+        }
 
 
 # Задача 12 https://math-ege.sdamgia.ru/problem?id=509042
@@ -700,12 +756,17 @@ def logarythm_2():
             answer = x_task
         solution = None
 
-        def paint():
-            function_graph(x_coord, y_coord, x_points, y_points, lim=lim)
+        paint = function_graph(x_coord, y_coord, x_points, y_points, lim=lim)
+
         return answer, task, paint, solution
 
     answer, task, paint, solution = function_result()
-    return answer, task, paint, solution
+    return {
+        "condition": task,
+        "answer": answer,
+        "image": paint,
+        "solution": solution
+        }
 
 
 # Задача 13 https://math-ege.sdamgia.ru/problem?id=639672
@@ -748,12 +809,17 @@ def logarythm_3():
             answer = x_task
         solution = None
 
-        def paint():
-            function_graph(x_coord, y_coord, x_points, y_points, lim=lim)
+        paint = function_graph(x_coord, y_coord, x_points, y_points, lim=lim)
+
         return answer, task, paint, solution
 
     answer, task, paint, solution = function_result()
-    return answer, task, paint, solution
+    return {
+        "condition": task,
+        "answer": answer,
+        "image": paint,
+        "solution": solution
+        }
 
 
 # Задача 14 https://math-ege.sdamgia.ru/problem?id=509089
@@ -796,12 +862,17 @@ def exponent_1():
             answer = int(x_task)
         solution = None
 
-        def paint():
-            function_graph(x_coord, y_coord, x_points, y_points, lim=lim)
+        paint = function_graph(x_coord, y_coord, x_points, y_points, lim=lim)
+
         return answer, task, paint, solution
 
     answer, task, paint, solution = function_result()
-    return answer, task, paint, solution
+    return {
+        "condition": task,
+        "answer": answer,
+        "image": paint,
+        "solution": solution
+        }
 
 
 # Задача 15 https://math-ege.sdamgia.ru/problem?id=509101
@@ -848,12 +919,17 @@ def exponent_2():
             answer = x_task
         solution = None
 
-        def paint():
-            function_graph(x_coord, y_coord, x_points, y_points, lim=lim)
+        paint = function_graph(x_coord, y_coord, x_points, y_points, lim=lim)
+
         return answer, task, paint, solution
 
     answer, task, paint, solution = function_result()
-    return answer, task, paint, solution
+    return {
+        "condition": task,
+        "answer": answer,
+        "image": paint,
+        "solution": solution
+        }
 
 
 # Задача 16 https://math-ege.sdamgia.ru/problem?id=639480
@@ -897,12 +973,17 @@ def exponent_3():
             answer = x_task
         solution = None
 
-        def paint():
-            function_graph(x_coord, y_coord, x_points, y_points, lim=lim)
+        paint = function_graph(x_coord, y_coord, x_points, y_points, lim=lim)
+
         return answer, task, paint, solution
 
     answer, task, paint, solution = function_result()
-    return answer, task, paint, solution
+    return {
+        "condition": task,
+        "answer": answer,
+        "image": paint,
+        "solution": solution
+        }
 
 
 # Задача 17 https://math-ege.sdamgia.ru/problem?id=509123
@@ -936,13 +1017,17 @@ def trigonometric_1():
             answer = coef[1]
         solution = None
 
-        def paint():
-            function_graph(x_coord, y_coord, x_points, y_points, lim=lim, trigonometry=True)
+        paint = function_graph(x_coord, y_coord, x_points, y_points, lim=lim, trigonometry=True)
 
         return answer, task, paint, solution
 
     answer, task, paint, solution = function_result()
-    return answer, task, paint, solution
+    return {
+        "condition": task,
+        "answer": answer,
+        "image": paint,
+        "solution": solution
+        }
 
 
 # Задача 18 https://math-ege.sdamgia.ru/problem?id=509287
@@ -976,13 +1061,17 @@ def trigonometric_2():
             answer = coef[1]
         solution = None
 
-        def paint():
-            function_graph(x_coord, y_coord, x_points, y_points, lim=lim, trigonometry=True)
+        paint = function_graph(x_coord, y_coord, x_points, y_points, lim=lim, trigonometry=True)
 
         return answer, task, paint, solution
 
     answer, task, paint, solution = function_result()
-    return answer, task, paint, solution
+    return {
+        "condition": task,
+        "answer": answer,
+        "image": paint,
+        "solution": solution
+        }
 
 
 # Задача 19 https://math-ege.sdamgia.ru/problem?id=509143
@@ -1027,13 +1116,17 @@ def trigonometric_3():
             answer = coef[1]
         solution = None
 
-        def paint():
-            function_graph(x_coord, y_coord, x_points, y_points, lim=lim, dash=dash, trigonometry=True, color=color)
+        paint = function_graph(x_coord, y_coord, x_points, y_points, lim=lim, dash=dash, trigonometry=True, color=color)
+
         return answer, task, paint, solution
 
     answer, task, paint, solution = function_result()
-    return answer, task, paint, solution
-
+    return {
+        "condition": task,
+        "answer": answer,
+        "image": paint,
+        "solution": solution
+        }
 
 
 # Задача 20 https://math-ege.sdamgia.ru/problem?id=509149
@@ -1098,13 +1191,17 @@ def line_and_parab():
 
         solution = None
 
-        def paint():
-            function_graph(x_coord, y_coord, x_points, y_points, point_A, lim)
+        paint = function_graph(x_coord, y_coord, x_points, y_points, point_A, lim)
 
         return answer, task, paint, solution
 
     answer, task, paint, solution = function_result()
-    return answer, task, paint, solution
+    return {
+        "condition": task,
+        "answer": answer,
+        "image": paint,
+        "solution": solution
+        }
 
 
 # Задача 21 https://math-ege.sdamgia.ru/problem?id=509167
@@ -1173,13 +1270,17 @@ def line_and_giperbola():
             task = f'На рисунке изображены графики функций \(f(x) = ax + b\) и \(g(x) = \\frac{{k}}{{x}}\). Найдите абсциссу точки пересечения графиков.'  # абсцисса - x
         solution = None
 
-        def paint():
-            function_graph(x_coord, y_coord, x_points, y_points, point_A, lim, color=color)
+        paint = function_graph(x_coord, y_coord, x_points, y_points, point_A, lim, color=color)
 
         return answer, task, paint, solution
 
     answer, task, paint, solution = function_result()
-    return answer, task, paint, solution
+    return {
+        "condition": task,
+        "answer": answer,
+        "image": paint,
+        "solution": solution
+        }
 
 
 # Задача 22 https://math-ege.sdamgia.ru/problem?id=509279
@@ -1239,18 +1340,14 @@ def line_and_sqrt():
 
         solution = None
 
-        def paint():
-            function_graph(x_coord, y_coord, x_points, y_points, point_A, lim)
+        paint = function_graph(x_coord, y_coord, x_points, y_points, point_A, lim)
 
         return answer, task, paint, solution
 
     answer, task, paint, solution = function_result()
-    return answer, task, paint, solution
-
-
-if __name__ == '__main__':
-    answer, task, paint, solution = trigonometric_3()
-    print(task)
-    print(answer)
-    print(solution)
-    paint()
+    return {
+        "condition": task,
+        "answer": answer,
+        "image": paint,
+        "solution": solution
+        }

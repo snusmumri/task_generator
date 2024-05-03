@@ -1,7 +1,6 @@
 from math import ceil
 import random
 import numpy as np
-import pymorphy2
 import matplotlib.pyplot as plt
 from decimal import Decimal
 
@@ -40,20 +39,21 @@ def task_35629():
         line2.append("0")
         table_data = [line1, line2]
         break
-    task = f'''В {choosing_declension_form(next_month, "loct")} 2017 года был взят кредит в банке на {years} {"года" if years in [3, 4] else "лет"} в размере S млн рублей, где S — целое число. Условия его возврата
-таковы: каждый январь долг увеличивается на {per}% по сравнению с концом предыдущего года; — с февраля по {month} каждого
-года необходимо выплатить одним платежом часть долга; — в {choosing_declension_form(next_month, "loct")} каждого года долг должен составлять часть кредита в соответствии
-со следующей таблицей (см. рис. ниже). Найдите наименьшее значение S, при котором каждая из выплат будет больше {pay} млн рублей.'''
+    task = f'В {choosing_declension_form(next_month, "loct")} 2017 года был взят кредит в банке на {years} {"года" if years in [3, 4] else "лет"} в размере S млн рублей, где S — целое число. Условия его возврата таковы: каждый январь долг увеличивается на {per}% по сравнению с концом предыдущего года; — с февраля по {month} каждого года необходимо выплатить одним платежом часть долга; — в {choosing_declension_form(next_month, "loct")} каждого года долг должен составлять часть кредита в соответствии со следующей таблицей (см. рис. ниже). Найдите наименьшее значение S, при котором каждая из выплат будет больше {pay} млн рублей.'
     fig, ax = plt.subplots(figsize=(10, 2))
     if years < 6:
         plt.rcParams['font.size'] = '8'
     else:
         plt.rcParams['font.size'] = '10'
-    plt.text(0.0, 0.7, task, fontsize=8)
+    # plt.text(0.0, 0.7, task, fontsize=8)
     ax.table(cellText=table_data, loc='center', cellLoc='center', cellColours=[['#D3D3D3' for i in range(1, years+3)], ['#E0FFFF' for i in range(1, years+3)]])
     ax.axis('off')
+    # plt.savefig('TABLE/table_35629.png')
     plt.show()
-    return answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_35630():
     '''Генерация аналогичных задач № 35630 с портала https://kuzovkin.info/one_exercise_1/35630
@@ -86,20 +86,21 @@ def task_35630():
           line2.append(f'{current_debt[i]}%')
         table_data = [line1, line2]
         break
-    task = f'''{day} {choosing_declension_form(month_task[month_start])} был выдан кредит на развитие бизнеса. В таблице представлен график его погашения. Текущий долг
-выражается в процентах от кредита (см. рис. ниже). В конце каждого месяца, начиная с {choosing_declension_form(month_task[month_start])}, текущий долг
-увеличивается на {per}%, а выплаты по погашению кредита должны происходить в первой половине каждого месяца,
-начиная с {choosing_declension_form(month_task[month_start+1])}. На сколько процентов общая сумма выплат при таких условиях больше суммы самого кредита?'''
+    task = f'{day} {choosing_declension_form(month_task[month_start])} был выдан кредит на развитие бизнеса. В таблице представлен график его погашения. Текущий долг выражается в процентах от кредита (см. рис. ниже). В конце каждого месяца, начиная с {choosing_declension_form(month_task[month_start])}, текущий долг увеличивается на {per}%, а выплаты по погашению кредита должны происходить в первой половине каждого месяца, начиная с {choosing_declension_form(month_task[month_start+1])}. На сколько процентов общая сумма выплат при таких условиях больше суммы самого кредита?'
     fig, ax = plt.subplots(figsize=(10, 2))
     if months < 6:
         plt.rcParams['font.size'] = '8'
     else:
         plt.rcParams['font.size'] = '10'
-    plt.text(0.0, 0.7, task, fontsize=8)
+    # plt.text(0.0, 0.7, task, fontsize=8)
     ax.table(cellText=table_data, loc='center', cellLoc='center', cellColours=[['#D3D3D3' for i in range(1, months+3)], ['#E0FFFF' for i in range(1, months+3)]])
     ax.axis('off')
+    # plt.savefig('TABLE/table_35630.png')
     plt.show()
-    return answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_35631():
     '''Генерация аналогичных задач № 35631 с портала https://kuzovkin.info/one_exercise_1/35631
@@ -144,20 +145,21 @@ def task_35631():
         line2.append("0")
         table_data = [line1, line2]
         break
-    task = f'''В {choosing_declension_form(next_month, "loct")} 2017 года был взят кредит в банке в размере S тыс. рублей, где S — натуральное число, на {years} {"года" if years in [3, 4] else "лет"}. Условия его возврата таковы:
-- каждый январь долг увеличивается на {per}% по сравнению с концом предыдущего года; - с февраля по {month} каждого года необходимо
-выплатить одним платежом часть долга; в {choosing_declension_form(next_month, "loct")} каждого года долг должен составлять часть кредита в соответствии со следующей
-таблицей (см. рис. ниже). Найдите наименьшее значение S, при котором каждая из выплат будет составлять целое число тысяч рублей.'''
+    task = f'В {choosing_declension_form(next_month, "loct")} 2017 года был взят кредит в банке в размере S тыс. рублей, где S — натуральное число, на {years} {"года" if years in [3, 4] else "лет"}. Условия его возврата таковы: - каждый январь долг увеличивается на {per}% по сравнению с концом предыдущего года; - с февраля по {month} каждого года необходимо выплатить одним платежом часть долга; в {choosing_declension_form(next_month, "loct")} каждого года долг должен составлять часть кредита в соответствии со следующей таблицей (см. рис. ниже). Найдите наименьшее значение S, при котором каждая из выплат будет составлять целое число тысяч рублей.'
     fig, ax = plt.subplots(figsize=(10, 2))
     if years < 6:
         plt.rcParams['font.size'] = '8'
     else:
         plt.rcParams['font.size'] = '10'
-    plt.text(0.0, 0.7, task, fontsize=8)
+    # plt.text(0.0, 0.7, task, fontsize=8)
     ax.table(cellText=table_data, loc='center', cellLoc='center', cellColours=[['#D3D3D3' for i in range(1, years+3)], ['#E0FFFF' for i in range(1, years+3)]])
     ax.axis('off')
+    # plt.savefig('TABLE/table_35631.png')
     plt.show()
-    return answer
+    return {
+      "condition": task,
+      "answer": answer
+    }
 
 def task_35633():
     '''В июле планируется взять кредит в банке на сумму 10 млн рублей на некоторый срок (целое число лет). Условия его возврата таковы:
@@ -176,4 +178,7 @@ def task_35633():
             answer = int(n)
             break
     task = f'В {choosing_declension_form(next_month, "loct")} планируется взять кредит в банке на сумму {s} млн рублей на некоторый срок (целое число лет). Условия его возврата таковы: — каждый январь долг возрастает на {per}% по сравнению с концом предыдущего года; — с февраля по {month} каждого года необходимо выплатить часть долга; — в {choosing_declension_form(next_month, "loct")} каждого года долг должен быть на одну и ту же сумму меньше долга на {next_month} предыдущего года. На сколько лет планируется взять кредит, если известно, что общая сумма выплат после его полного погашения составит {pay} млн рублей?'
-    return task, answer
+    return {
+      "condition": task,
+      "answer": answer
+    }

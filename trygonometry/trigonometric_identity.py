@@ -4,10 +4,12 @@ import math
 
 from sympy import *
 
+
 template_task = Template(f'Вычислить $$ \$goal \\alpha $$, если $$ \$known \\alpha = $value$$\
   и  $$ \\alpha \\in [$segment] $$')
 
 segment_q = lambda x: latex(UnevaluatedExpr(S.One*pi*(math.floor(x*2/pi))/2)) + ", " + latex(UnevaluatedExpr(S.One*pi*(math.floor(x*2/pi)+1)/2))
+
 
 def get_task(radian, answer_100, target, known):
     target_ = '\\'*target.endswith('g')+target
@@ -61,5 +63,7 @@ def trig_identity(target_known='cos-sin'):
       pass
 
   task = get_task(radian, answer_100, target, known)
-  return task, answer_100/100
-
+  return {
+      "condition": task,
+      "answer": answer_100/100
+  }
