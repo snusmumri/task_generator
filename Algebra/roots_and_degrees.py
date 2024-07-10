@@ -384,7 +384,7 @@ def task_13192():
         task = r'Вычислить: \('+ latex(pow(UnevaluatedExpr(b), -m/n)) +'\)'
         result = fractions.Fraction(1, pow(a, m))
         answer = float(Fraction(result).limit_denominator())
-        if m < n and  and len(str(float(frac)).split('.')[1]) <= 6:
+        if m < n and len(str(float(frac)).split('.')[1]) <= 6:
             if answer % 1 == 0:
                 answer = int(answer)
             break
