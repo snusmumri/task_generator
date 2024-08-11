@@ -3,3 +3,4 @@ numpy
 pymorphy2
 sympy
 pytexit==0.4.0
+
