@@ -38,7 +38,7 @@ def break_line():
   if z == -1:
     znak = '-'
   if z == 1:
-    znak == '+'
+    znak = '+'
   while True:
     a = randint(1, 9)
     b = randint(1, 9)
